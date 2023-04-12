@@ -26,9 +26,10 @@ class NoKnowWordsViewController: UIViewController {
 
     private let startLearnButton: UIButton = {
         let button = UIButton()
-        button.titleLabel?.text = "Начать обучение"
+        button.setTitle("Начать обучение", for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.992441237, green: 0.8533335924, blue: 0.4606403112, alpha: 1)
-        button.layer.cornerRadius = 9
+        button.layer.cornerRadius = 11
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
@@ -61,7 +62,7 @@ extension NoKnowWordsViewController: UITableViewDelegate, UITableViewDataSource 
 extension NoKnowWordsViewController {
 
     private func setupViews() {
-        // view.addSubview(tableView)
+        view.addSubview(tableView)
         view.addSubview(startLearnButton)
         tableView.delegate = self
         tableView.dataSource = self
@@ -72,15 +73,15 @@ extension NoKnowWordsViewController {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
 
-            startLearnButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 32),
+            startLearnButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 38),
             startLearnButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
             startLearnButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
-            startLearnButton.heightAnchor.constraint(equalToConstant: 40)
+            startLearnButton.heightAnchor.constraint(equalToConstant: 40),
 
-//            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 64),
-//            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.topAnchor.constraint(equalTo: startLearnButton.bottomAnchor, constant: 8),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
 
         ])
     }
