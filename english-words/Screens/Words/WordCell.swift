@@ -24,6 +24,7 @@ class WordCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 6)
         label.text = "He started out in blues"
+        label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -62,16 +63,16 @@ extension WordCell {
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            wordLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            wordLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            wordLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
+            wordLabel.topAnchor.constraint(equalTo: topAnchor, constant: 5),
+            wordLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            wordLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
 
             phraseLabel.topAnchor.constraint(equalTo: wordLabel.bottomAnchor, constant: 5),
-            phraseLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            phraseLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
+            phraseLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            phraseLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
 
-            musicButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            musicButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            musicButton.topAnchor.constraint(equalTo: topAnchor, constant: 5),
+            musicButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
             musicButton.heightAnchor.constraint(equalToConstant: 26)
         ])
     }

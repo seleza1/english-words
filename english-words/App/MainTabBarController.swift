@@ -11,9 +11,9 @@ class MainTabBarController: UITabBarController {
 
     private var wordsController: WordsViewController = {
         let controller = WordsViewController()
-        let image = UIImage(systemName: "menucard")
-        let selectedImage = UIImage(systemName: "menucard.fill")
-        let tabItem = UITabBarItem.init(title: "Меню", image: image, selectedImage: selectedImage)
+        let image = UIImage(systemName: "textformat.alt")
+        let selectedImage = UIImage(systemName: "textformat.alt")
+        let tabItem = UITabBarItem.init(title: "Мой словарь", image: image, selectedImage: selectedImage)
         controller.tabBarItem = tabItem
 
         return controller
@@ -21,9 +21,9 @@ class MainTabBarController: UITabBarController {
 
     private var knownWordsController: KnownWordsViewController = {
         let controller = KnownWordsViewController()
-        let image = UIImage(systemName: "cart")
-        let selectedImage = UIImage(systemName: "cart.fill")
-        let tabItem = UITabBarItem.init(title: "Корзина", image: image, selectedImage: selectedImage)
+        let image = UIImage(systemName: "pencil")
+        let selectedImage = UIImage(systemName: "pencil")
+        let tabItem = UITabBarItem.init(title: "Изучаю", image: image, selectedImage: selectedImage)
         controller.tabBarItem = tabItem
 
         return controller
@@ -31,9 +31,9 @@ class MainTabBarController: UITabBarController {
 
     private var noKnownWordsController: NoKnowWordsViewController = {
         let controller = NoKnowWordsViewController()
-        let image = UIImage(systemName: "cart")
-        let selectedImage = UIImage(systemName: "cart.fill")
-        let tabItem = UITabBarItem.init(title: "Корзина", image: image, selectedImage: selectedImage)
+        let image = UIImage(systemName: "bed.double.fill")
+        let selectedImage = UIImage(systemName: "bed.double.fill")
+        let tabItem = UITabBarItem.init(title: "Знаю", image: image, selectedImage: selectedImage)
         controller.tabBarItem = tabItem
 
         return controller
@@ -45,7 +45,7 @@ class MainTabBarController: UITabBarController {
     }
 
     private func setup() {
-        tabBar.tintColor = .green
+        tabBar.tintColor = #colorLiteral(red: 0.2317892015, green: 0.2613468766, blue: 0.9948940873, alpha: 1)
         viewControllers = [wordsController, knownWordsController, noKnownWordsController]
     }
 }

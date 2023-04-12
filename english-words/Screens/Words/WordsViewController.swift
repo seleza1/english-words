@@ -20,7 +20,7 @@ class WordsViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: WordCell.reuseId)
+        tableView.register(WordCell.self, forCellReuseIdentifier: WordCell.reuseId)
         return tableView
     }()
 
@@ -28,12 +28,14 @@ class WordsViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
+        tableView.delegate = self
+        tableView.dataSource = self
 
         words = wordsService.fetchWords()
     }
 }
 
-extension WordsViewController: UITabBarDelegate, UITableViewDataSource {
+extension WordsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return words.count
     }
@@ -44,8 +46,11 @@ extension WordsViewController: UITabBarDelegate, UITableViewDataSource {
         let word = words[indexPath.row]
 
         cell.update(word)
+
         return cell
     }
+
+
 }
 
 extension WordsViewController {
