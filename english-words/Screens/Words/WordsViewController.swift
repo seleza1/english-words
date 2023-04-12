@@ -28,8 +28,6 @@ class WordsViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
-        tableView.delegate = self
-        tableView.dataSource = self
 
         words = wordsService.fetchWords()
     }
@@ -44,19 +42,19 @@ extension WordsViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: WordCell.reuseId, for: indexPath) as! WordCell
 
         let word = words[indexPath.row]
-
         cell.update(word)
 
         return cell
     }
-
-
 }
 
 extension WordsViewController {
 
     private func setupViews() {
         view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = 60
     }
 
     private func setupConstraints() {
@@ -67,8 +65,6 @@ extension WordsViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
 
         ])
-
-
     }
 }
 

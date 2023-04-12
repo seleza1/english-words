@@ -14,7 +14,6 @@ class WordCell: UITableViewCell {
     private let wordLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.text = "laugh"
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -22,9 +21,8 @@ class WordCell: UITableViewCell {
 
     private let phraseLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 6)
-        label.text = "He started out in blues"
-        label.textColor = .black
+        label.font = UIFont.boldSystemFont(ofSize: 9)
+        label.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -63,17 +61,18 @@ extension WordCell {
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            wordLabel.topAnchor.constraint(equalTo: topAnchor, constant: 5),
-            wordLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            wordLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
+
+            musicButton.topAnchor.constraint(equalTo: topAnchor, constant: 12),
+            musicButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
+            musicButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
+
+            wordLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            wordLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 72),
+            wordLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
 
             phraseLabel.topAnchor.constraint(equalTo: wordLabel.bottomAnchor, constant: 5),
-            phraseLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            phraseLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
-
-            musicButton.topAnchor.constraint(equalTo: topAnchor, constant: 5),
-            musicButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
-            musicButton.heightAnchor.constraint(equalToConstant: 26)
+            phraseLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 72),
+            phraseLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
         ])
     }
 }
