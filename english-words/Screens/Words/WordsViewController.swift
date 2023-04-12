@@ -1,0 +1,69 @@
+//
+//  ViewController.swift
+//  english-words
+//
+//  Created by user on 12.04.2023.
+//
+
+import UIKit
+
+class WordsViewController: UIViewController {
+
+    let wordsService = WordsService()
+
+    var words: [Word] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: WordCell.reuseId)
+        return tableView
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupViews()
+        setupConstraints()
+
+        words = wordsService.fetchWords()
+    }
+}
+
+extension WordsViewController: UITabBarDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return words.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: WordCell.reuseId, for: indexPath) as! WordCell
+
+        let word = words[indexPath.row]
+
+        cell.update(word)
+        return cell
+    }
+}
+
+extension WordsViewController {
+
+    private func setupViews() {
+        view.addSubview(tableView)
+    }
+
+    private func setupConstraints() {
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+
+        ])
+
+
+    }
+}
+

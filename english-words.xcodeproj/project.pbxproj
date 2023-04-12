@@ -9,21 +9,35 @@
 /* Begin PBXBuildFile section */
 		CE6466E329E6990900D32B47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466E229E6990900D32B47 /* AppDelegate.swift */; };
 		CE6466E529E6990900D32B47 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466E429E6990900D32B47 /* SceneDelegate.swift */; };
-		CE6466E729E6990900D32B47 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466E629E6990900D32B47 /* ViewController.swift */; };
-		CE6466EA29E6990900D32B47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE6466E829E6990900D32B47 /* Main.storyboard */; };
+		CE6466E729E6990900D32B47 /* WordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466E629E6990900D32B47 /* WordsViewController.swift */; };
 		CE6466EC29E6990B00D32B47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE6466EB29E6990B00D32B47 /* Assets.xcassets */; };
 		CE6466EF29E6990B00D32B47 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE6466ED29E6990B00D32B47 /* LaunchScreen.storyboard */; };
+		CE6466FB29E69C1500D32B47 /* WordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466FA29E69C1500D32B47 /* WordCell.swift */; };
+		CE6466FE29E69F1500D32B47 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466FD29E69F1500D32B47 /* Word.swift */; };
+		CE64670129E6A1F200D32B47 /* WordsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64670029E6A1F200D32B47 /* WordsService.swift */; };
+		CE64670329E6A50500D32B47 /* words5000.json in Resources */ = {isa = PBXBuildFile; fileRef = CE64670229E6A50500D32B47 /* words5000.json */; };
+		CE64670529E6A6E600D32B47 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64670429E6A6E600D32B47 /* MainTabBarController.swift */; };
+		CE64670729E6A8DD00D32B47 /* KnownWordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64670629E6A8DD00D32B47 /* KnownWordsViewController.swift */; };
+		CE64670929E6AA5500D32B47 /* NoKnowWordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64670829E6AA5500D32B47 /* NoKnowWordsViewController.swift */; };
+		CE64670B29E6ABC300D32B47 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64670A29E6ABC300D32B47 /* GameViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CE6466DF29E6990900D32B47 /* english-words.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "english-words.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6466E229E6990900D32B47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6466E429E6990900D32B47 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CE6466E629E6990900D32B47 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		CE6466E929E6990900D32B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CE6466E629E6990900D32B47 /* WordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsViewController.swift; sourceTree = "<group>"; };
 		CE6466EB29E6990B00D32B47 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE6466EE29E6990B00D32B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE6466F029E6990B00D32B47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE6466FA29E69C1500D32B47 /* WordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCell.swift; sourceTree = "<group>"; };
+		CE6466FD29E69F1500D32B47 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
+		CE64670029E6A1F200D32B47 /* WordsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsService.swift; sourceTree = "<group>"; };
+		CE64670229E6A50500D32B47 /* words5000.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = words5000.json; sourceTree = "<group>"; };
+		CE64670429E6A6E600D32B47 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		CE64670629E6A8DD00D32B47 /* KnownWordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownWordsViewController.swift; sourceTree = "<group>"; };
+		CE64670829E6AA5500D32B47 /* NoKnowWordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoKnowWordsViewController.swift; sourceTree = "<group>"; };
+		CE64670A29E6ABC300D32B47 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +70,70 @@
 		CE6466E129E6990900D32B47 /* english-words */ = {
 			isa = PBXGroup;
 			children = (
+				CE6466F629E6991800D32B47 /* App */,
+				CE6466F829E69BEE00D32B47 /* Screens */,
+				CE6466FC29E69EFC00D32B47 /* Models */,
+				CE6466FF29E6A1D300D32B47 /* Services */,
+				CE6466F729E6992900D32B47 /* Resources */,
+			);
+			path = "english-words";
+			sourceTree = "<group>";
+		};
+		CE6466F629E6991800D32B47 /* App */ = {
+			isa = PBXGroup;
+			children = (
 				CE6466E229E6990900D32B47 /* AppDelegate.swift */,
 				CE6466E429E6990900D32B47 /* SceneDelegate.swift */,
-				CE6466E629E6990900D32B47 /* ViewController.swift */,
-				CE6466E829E6990900D32B47 /* Main.storyboard */,
+				CE64670429E6A6E600D32B47 /* MainTabBarController.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		CE6466F729E6992900D32B47 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CE64670229E6A50500D32B47 /* words5000.json */,
 				CE6466EB29E6990B00D32B47 /* Assets.xcassets */,
 				CE6466ED29E6990B00D32B47 /* LaunchScreen.storyboard */,
 				CE6466F029E6990B00D32B47 /* Info.plist */,
 			);
-			path = "english-words";
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CE6466F829E69BEE00D32B47 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				CE64670829E6AA5500D32B47 /* NoKnowWordsViewController.swift */,
+				CE64670629E6A8DD00D32B47 /* KnownWordsViewController.swift */,
+				CE64670A29E6ABC300D32B47 /* GameViewController.swift */,
+				CE6466F929E69BFA00D32B47 /* Words */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		CE6466F929E69BFA00D32B47 /* Words */ = {
+			isa = PBXGroup;
+			children = (
+				CE6466E629E6990900D32B47 /* WordsViewController.swift */,
+				CE6466FA29E69C1500D32B47 /* WordCell.swift */,
+			);
+			path = Words;
+			sourceTree = "<group>";
+		};
+		CE6466FC29E69EFC00D32B47 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CE6466FD29E69F1500D32B47 /* Word.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CE6466FF29E6A1D300D32B47 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CE64670029E6A1F200D32B47 /* WordsService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +196,7 @@
 			files = (
 				CE6466EF29E6990B00D32B47 /* LaunchScreen.storyboard in Resources */,
 				CE6466EC29E6990B00D32B47 /* Assets.xcassets in Resources */,
-				CE6466EA29E6990900D32B47 /* Main.storyboard in Resources */,
+				CE64670329E6A50500D32B47 /* words5000.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +207,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE6466E729E6990900D32B47 /* ViewController.swift in Sources */,
+				CE64670B29E6ABC300D32B47 /* GameViewController.swift in Sources */,
+				CE6466E729E6990900D32B47 /* WordsViewController.swift in Sources */,
+				CE6466FB29E69C1500D32B47 /* WordCell.swift in Sources */,
 				CE6466E329E6990900D32B47 /* AppDelegate.swift in Sources */,
+				CE64670529E6A6E600D32B47 /* MainTabBarController.swift in Sources */,
+				CE64670929E6AA5500D32B47 /* NoKnowWordsViewController.swift in Sources */,
+				CE64670129E6A1F200D32B47 /* WordsService.swift in Sources */,
+				CE64670729E6A8DD00D32B47 /* KnownWordsViewController.swift in Sources */,
 				CE6466E529E6990900D32B47 /* SceneDelegate.swift in Sources */,
+				CE6466FE29E69F1500D32B47 /* Word.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		CE6466E829E6990900D32B47 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CE6466E929E6990900D32B47 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CE6466ED29E6990B00D32B47 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -289,12 +357,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L86P4HUDQ3;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "english-words/Info.plist";
+				INFOPLIST_FILE = "english-words/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,9 +370,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "seleza1.english-words";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -317,12 +388,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L86P4HUDQ3;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "english-words/Info.plist";
+				INFOPLIST_FILE = "english-words/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -330,9 +401,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "seleza1.english-words";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
