@@ -1,5 +1,5 @@
 //
-//  NoKnowCell.swift
+//  StudyingCell.swift
 //  english-words
 //
 //  Created by user on 13.04.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NoKnowCell: UITableViewCell {
+class StudyingCell: UITableViewCell {
 
     static let reuseId = "WordCell"
 
@@ -52,7 +52,7 @@ class NoKnowCell: UITableViewCell {
     }
 }
 
-extension NoKnowCell {
+extension StudyingCell {
     private func setupViews() {
         addSubview(wordLabel)
         addSubview(phraseLabel)
