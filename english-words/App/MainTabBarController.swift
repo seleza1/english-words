@@ -23,7 +23,7 @@ class MainTabBarController: UITabBarController {
         let controller = KnownWordsViewController()
         let image = UIImage(systemName: "pencil")
         let selectedImage = UIImage(systemName: "pencil")
-        let tabItem = UITabBarItem.init(title: "Изучаю", image: image, selectedImage: selectedImage)
+        let tabItem = UITabBarItem.init(title: "Знаю", image: image, selectedImage: selectedImage)
         controller.tabBarItem = tabItem
 
         return controller
@@ -33,7 +33,7 @@ class MainTabBarController: UITabBarController {
         let controller = NoKnowWordsViewController()
         let image = UIImage(systemName: "bed.double.fill")
         let selectedImage = UIImage(systemName: "bed.double.fill")
-        let tabItem = UITabBarItem.init(title: "Знаю", image: image, selectedImage: selectedImage)
+        let tabItem = UITabBarItem.init(title: "Изучаю", image: image, selectedImage: selectedImage)
         controller.tabBarItem = tabItem
 
         return controller

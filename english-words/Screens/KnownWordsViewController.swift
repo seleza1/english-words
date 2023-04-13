@@ -9,9 +9,63 @@ import UIKit
 
 class KnownWordsViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    let wordsService = WordsService()
+
+    var words: [Word] = [] {
+        didSet {
+            tableView.reloadData()
+        }
     }
 
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(WordCell.self, forCellReuseIdentifier: WordCell.reuseId)
+        return tableView
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupViews()
+        setupConstraints()
+
+        words = wordsService.fetchWords()
+    }
+}
+
+extension KnownWordsViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return words.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: WordCell.reuseId, for: indexPath) as! WordCell
+
+        let word = words[indexPath.row]
+        cell.update(word)
+
+        return cell
+    }
+}
+
+extension KnownWordsViewController {
+
+    private func setupViews() {
+        view.addSubview(tableView)
+        view.backgroundColor = .white
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = 60
+    }
+
+    private func setupConstraints() {
+        NSLayoutConstraint.activate([
+
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+
+        ])
+    }
 }

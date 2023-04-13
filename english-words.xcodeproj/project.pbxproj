@@ -17,9 +17,9 @@
 		CE64670129E6A1F200D32B47 /* WordsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64670029E6A1F200D32B47 /* WordsService.swift */; };
 		CE64670329E6A50500D32B47 /* words5000.json in Resources */ = {isa = PBXBuildFile; fileRef = CE64670229E6A50500D32B47 /* words5000.json */; };
 		CE64670529E6A6E600D32B47 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64670429E6A6E600D32B47 /* MainTabBarController.swift */; };
-		CE64670729E6A8DD00D32B47 /* KnownWordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64670629E6A8DD00D32B47 /* KnownWordsViewController.swift */; };
 		CE64670929E6AA5500D32B47 /* NoKnowWordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64670829E6AA5500D32B47 /* NoKnowWordsViewController.swift */; };
 		CE64670B29E6ABC300D32B47 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64670A29E6ABC300D32B47 /* GameViewController.swift */; };
+		CE64670D29E7E2B000D32B47 /* KnownWordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64670C29E7E2B000D32B47 /* KnownWordsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,9 +35,9 @@
 		CE64670029E6A1F200D32B47 /* WordsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsService.swift; sourceTree = "<group>"; };
 		CE64670229E6A50500D32B47 /* words5000.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = words5000.json; sourceTree = "<group>"; };
 		CE64670429E6A6E600D32B47 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		CE64670629E6A8DD00D32B47 /* KnownWordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownWordsViewController.swift; sourceTree = "<group>"; };
 		CE64670829E6AA5500D32B47 /* NoKnowWordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoKnowWordsViewController.swift; sourceTree = "<group>"; };
 		CE64670A29E6ABC300D32B47 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		CE64670C29E7E2B000D32B47 /* KnownWordsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnownWordsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,8 +103,8 @@
 		CE6466F829E69BEE00D32B47 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				CE64670C29E7E2B000D32B47 /* KnownWordsViewController.swift */,
 				CE64670829E6AA5500D32B47 /* NoKnowWordsViewController.swift */,
-				CE64670629E6A8DD00D32B47 /* KnownWordsViewController.swift */,
 				CE64670A29E6ABC300D32B47 /* GameViewController.swift */,
 				CE6466F929E69BFA00D32B47 /* Words */,
 			);
@@ -209,12 +209,12 @@
 			files = (
 				CE64670B29E6ABC300D32B47 /* GameViewController.swift in Sources */,
 				CE6466E729E6990900D32B47 /* WordsViewController.swift in Sources */,
+				CE64670D29E7E2B000D32B47 /* KnownWordsViewController.swift in Sources */,
 				CE6466FB29E69C1500D32B47 /* WordCell.swift in Sources */,
 				CE6466E329E6990900D32B47 /* AppDelegate.swift in Sources */,
 				CE64670529E6A6E600D32B47 /* MainTabBarController.swift in Sources */,
 				CE64670929E6AA5500D32B47 /* NoKnowWordsViewController.swift in Sources */,
 				CE64670129E6A1F200D32B47 /* WordsService.swift in Sources */,
-				CE64670729E6A8DD00D32B47 /* KnownWordsViewController.swift in Sources */,
 				CE6466E529E6990900D32B47 /* SceneDelegate.swift in Sources */,
 				CE6466FE29E69F1500D32B47 /* Word.swift in Sources */,
 			);

@@ -64,10 +64,10 @@ extension NoKnowWordsViewController {
     private func setupViews() {
         view.addSubview(tableView)
         view.addSubview(startLearnButton)
+        view.backgroundColor = .white
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 60
-        view.backgroundColor = .white
     }
 
     private func setupConstraints() {
