@@ -186,7 +186,7 @@ extension GameViewController {
             uiView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -64),
             uiView.heightAnchor.constraint(equalToConstant: 223),
 
-            wordLabel.topAnchor.constraint(equalTo: uiView.topAnchor, constant: 64),
+            wordLabel.topAnchor.constraint(equalTo: uiView.topAnchor, constant: 78),
             wordLabel.leadingAnchor.constraint(equalTo: uiView.leadingAnchor, constant: 32),
             wordLabel.trailingAnchor.constraint(equalTo: uiView.trailingAnchor, constant: -32),
 
