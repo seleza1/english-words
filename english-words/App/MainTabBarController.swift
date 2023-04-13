@@ -29,8 +29,8 @@ class MainTabBarController: UITabBarController {
         return controller
     }()
 
-    private var noKnownWordsController: NoKnowWordsViewController = {
-        let controller = NoKnowWordsViewController()
+    private var studyingWordsController: StudyingWordsViewController = {
+        let controller = StudyingWordsViewController()
         let image = UIImage(systemName: "bed.double.fill")
         let selectedImage = UIImage(systemName: "bed.double.fill")
         let tabItem = UITabBarItem.init(title: "Изучаю", image: image, selectedImage: selectedImage)
@@ -46,6 +46,6 @@ class MainTabBarController: UITabBarController {
 
     private func setup() {
         tabBar.tintColor = #colorLiteral(red: 0.2317892015, green: 0.2613468766, blue: 0.9948940873, alpha: 1)
-        viewControllers = [wordsController, noKnownWordsController, knownWordsController]
+        viewControllers = [wordsController, studyingWordsController, knownWordsController]
     }
 }
