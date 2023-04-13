@@ -121,8 +121,8 @@ class GameViewController: UIViewController {
     }
 
     @objc private func nextQuest() {
-        let newProgress = indicatorProgress.progress + 0.3
-        indicatorProgress.setProgress(newProgress, animated: true)
+        total = indicatorProgress.progress + 0.3
+        indicatorProgress.setProgress(total, animated: true)
     }
 }
 
