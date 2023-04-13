@@ -31,7 +31,7 @@ class WordCell: UITableViewCell {
     private let musicButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "play.rectangle"), for: .normal)
+        button.setImage(UIImage(systemName: "arrowtriangle.forward.circle"), for: .normal)
 
         return button
     }()
