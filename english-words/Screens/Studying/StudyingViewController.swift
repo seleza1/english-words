@@ -44,7 +44,7 @@ class StudyingWordsViewController: UIViewController {
         words = wordsService.fetchWords()
     }
 
-    @objc func startedLearn() {
+    @objc private func startedLearn() {
         let gameVC = GameViewController()
         gameVC.modalPresentationStyle = .fullScreen
         self.present(gameVC, animated: true)
