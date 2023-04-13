@@ -42,6 +42,7 @@ extension GameViewController {
         view.addSubview(wordLabel)
         view.addSubview(imageView)
         view.addSubview(musicButton)
+        view.backgroundColor = .white
     }
 
     private func setupConstraints() {

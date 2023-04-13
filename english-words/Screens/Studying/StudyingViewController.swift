@@ -31,6 +31,7 @@ class StudyingWordsViewController: UIViewController {
         button.backgroundColor = #colorLiteral(red: 0.992441237, green: 0.8533335924, blue: 0.4606403112, alpha: 1)
         button.layer.cornerRadius = 11
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(startedLearn), for: .touchUpInside)
 
         return button
     }()
@@ -41,6 +42,13 @@ class StudyingWordsViewController: UIViewController {
         setupConstraints()
 
         words = wordsService.fetchWords()
+    }
+
+    @objc func startedLearn() {
+        let gameVC = GameViewController()
+        gameVC.modalPresentationStyle = .fullScreen
+        self.present(gameVC, animated: true)
+
     }
 }
 
