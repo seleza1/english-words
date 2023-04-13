@@ -20,7 +20,7 @@ class KnownWordsViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(WordCell.self, forCellReuseIdentifier: WordCell.reuseId)
+        tableView.register(KnowCell.self, forCellReuseIdentifier: KnowCell.reuseId)
         return tableView
     }()
 
@@ -39,7 +39,7 @@ extension KnownWordsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: WordCell.reuseId, for: indexPath) as! WordCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: KnowCell.reuseId, for: indexPath) as! KnowCell
 
         let word = words[indexPath.row]
         cell.update(word)

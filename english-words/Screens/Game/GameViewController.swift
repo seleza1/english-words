@@ -11,6 +11,8 @@ class GameViewController: UIViewController {
 
     private var total: Float = 0
 
+    private let stackView = UIStackView()
+
     private let backButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
@@ -69,8 +71,8 @@ class GameViewController: UIViewController {
         button.setTitle("Пейзаж", for: .normal)
         button.layer.cornerRadius = 15
         button.setTitleColor(UIColor.black, for: .normal)
-        button.addTarget(self, action: #selector(nextQuest), for: .touchUpInside)
         button.backgroundColor = #colorLiteral(red: 0.9529412389, green: 0.9529411197, blue: 0.9529412389, alpha: 1)
+        button.addTarget(self, action: #selector(nextQuest), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
@@ -113,16 +115,22 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
+        setupStackView()
+
+    }
+
+    @objc private func nextQuest() {
+        total += 0.25
+        indicatorProgress.setProgress((total), animated: true)
+        
+        if total == 1 {
+            dismiss(animated: true)
+        }
 
     }
 
     @objc private func gotToVC() {
         dismiss(animated: true)
-    }
-
-    @objc private func nextQuest() {
-        total = indicatorProgress.progress + 0.3
-        indicatorProgress.setProgress(total, animated: true)
     }
 }
 
@@ -136,9 +144,27 @@ extension GameViewController {
         view.addSubview(twoButton)
         view.addSubview(threeButton)
         view.addSubview(secondButton)
+        view.addSubview(stackView)
+
         uiView.addSubview(wordLabel)
         uiView.addSubview(hintButton)
         view.backgroundColor = .white
+
+
+    }
+
+    private func setupStackView() {
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.distribution = .fillEqually // Установите распределение элементов в StackView
+        stackView.spacing = 10
+
+        stackView.addArrangedSubview(oneButton)
+        stackView.addArrangedSubview(secondButton)
+        stackView.addArrangedSubview(twoButton)
+        stackView.addArrangedSubview(threeButton)
+
+        stackView.translatesAutoresizingMaskIntoConstraints = false
     }
 
     private func setupConstraints() {
@@ -155,7 +181,7 @@ extension GameViewController {
             selectAnswerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             selectAnswerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
 
-            uiView.topAnchor.constraint(equalTo: selectAnswerLabel.bottomAnchor, constant: 9),
+            uiView.topAnchor.constraint(equalTo: selectAnswerLabel.bottomAnchor, constant: 16),
             uiView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 64),
             uiView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -64),
             uiView.heightAnchor.constraint(equalToConstant: 223),
@@ -167,24 +193,28 @@ extension GameViewController {
             hintButton.trailingAnchor.constraint(equalTo: uiView.trailingAnchor, constant: -6),
             hintButton.bottomAnchor.constraint(equalTo: uiView.bottomAnchor, constant: -6),
 
-            oneButton.topAnchor.constraint(equalTo: uiView.bottomAnchor, constant: 52),
-            oneButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            oneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            stackView.topAnchor.constraint(equalTo: uiView.bottomAnchor, constant: 60),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+
+            oneButton.topAnchor.constraint(equalTo: stackView.topAnchor, constant: 6),
+            oneButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 6),
+            oneButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -6),
             oneButton.heightAnchor.constraint(equalToConstant: 44),
 
             secondButton.topAnchor.constraint(equalTo: oneButton.bottomAnchor, constant: 9),
-            secondButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            secondButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            secondButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 6),
+            secondButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -6),
             secondButton.heightAnchor.constraint(equalToConstant: 44),
 
             twoButton.topAnchor.constraint(equalTo: secondButton.bottomAnchor, constant: 9),
-            twoButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            twoButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            twoButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 6),
+            twoButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -6),
             twoButton.heightAnchor.constraint(equalToConstant: 44),
 
             threeButton.topAnchor.constraint(equalTo: twoButton.bottomAnchor, constant: 9),
-            threeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            threeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            threeButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 6),
+            threeButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -6),
             threeButton.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
