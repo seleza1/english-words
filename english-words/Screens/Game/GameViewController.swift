@@ -9,7 +9,7 @@ import UIKit
 
 class GameViewController: UIViewController {
 
-    private var total = 0
+    private var total: Float = 0
 
     private let backButton: UIButton = {
         let button = UIButton()
@@ -69,6 +69,7 @@ class GameViewController: UIViewController {
         button.setTitle("Пейзаж", for: .normal)
         button.layer.cornerRadius = 15
         button.setTitleColor(UIColor.black, for: .normal)
+        button.addTarget(self, action: #selector(nextQuest), for: .touchUpInside)
         button.backgroundColor = #colorLiteral(red: 0.9529412389, green: 0.9529411197, blue: 0.9529412389, alpha: 1)
         button.translatesAutoresizingMaskIntoConstraints = false
 
@@ -118,6 +119,11 @@ class GameViewController: UIViewController {
     @objc private func gotToVC() {
         dismiss(animated: true)
     }
+
+    @objc private func nextQuest() {
+        let newProgress = indicatorProgress.progress + 0.3
+        indicatorProgress.setProgress(newProgress, animated: true)
+    }
 }
 
 extension GameViewController {
@@ -133,9 +139,6 @@ extension GameViewController {
         uiView.addSubview(wordLabel)
         uiView.addSubview(hintButton)
         view.backgroundColor = .white
-
-        indicatorProgress.setProgress(Float(total), animated: true)
-
     }
 
     private func setupConstraints() {
@@ -182,10 +185,7 @@ extension GameViewController {
             threeButton.topAnchor.constraint(equalTo: twoButton.bottomAnchor, constant: 9),
             threeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             threeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            threeButton.heightAnchor.constraint(equalToConstant: 44),
-
-
-
+            threeButton.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
 }
