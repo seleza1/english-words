@@ -9,6 +9,8 @@ import UIKit
 
 class GameViewController: UIViewController {
 
+    private var total = 0
+
     private let backButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
@@ -20,7 +22,6 @@ class GameViewController: UIViewController {
 
     private let indicatorProgress: UIProgressView = {
         let indicatorProgress = UIProgressView()
-        indicatorProgress.setProgress(0.3, animated: true)
         indicatorProgress.translatesAutoresizingMaskIntoConstraints = false
 
         return indicatorProgress
@@ -132,6 +133,9 @@ extension GameViewController {
         uiView.addSubview(wordLabel)
         uiView.addSubview(hintButton)
         view.backgroundColor = .white
+
+        indicatorProgress.setProgress(Float(total), animated: true)
+
     }
 
     private func setupConstraints() {
