@@ -28,7 +28,7 @@ class WordsViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
-        words = JsonLoader.loadProducts(filename: "words5000")!
+        words = JsonLoader.loadProducts(filename: "words5000")! //не понял что тут поставить
     }
 }
 
@@ -40,7 +40,7 @@ extension WordsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WordCell.reuseId, for: indexPath) as! WordCell
 
-        let word = words[indexPath.row]
+        let word = words.shuffled()[indexPath.row]
         cell.update(word)
 
         return cell

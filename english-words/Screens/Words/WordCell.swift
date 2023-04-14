@@ -66,7 +66,7 @@ extension WordCell {
             musicButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
             musicButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
 
-            wordLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            wordLabel.topAnchor.constraint(equalTo: topAnchor, constant: 19),
             wordLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 72),
             wordLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
 
