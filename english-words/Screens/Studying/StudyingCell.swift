@@ -31,7 +31,7 @@ class StudyingCell: UITableViewCell {
     private let musicButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "arrowtriangle.forward.circle"), for: .normal)
+        button.setImage(UIImage(systemName: "speaker.wave.3"), for: .normal)
 
         return button
     }()
@@ -66,7 +66,7 @@ extension StudyingCell {
             musicButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
             musicButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
 
-            wordLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            wordLabel.topAnchor.constraint(equalTo: topAnchor, constant: 19),
             wordLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 72),
             wordLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
 
