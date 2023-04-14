@@ -48,7 +48,7 @@ class KnowCell: UITableViewCell {
 
     func update(_ word: Word) {
         wordLabel.text = word.word
-        phraseLabel.text = word.phrase
+        // phraseLabel.text = word.phrase
     }
 }
 
@@ -68,11 +68,11 @@ extension KnowCell {
 
             wordLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             wordLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 72),
-            wordLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            wordLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
 
-            phraseLabel.topAnchor.constraint(equalTo: wordLabel.bottomAnchor, constant: 5),
-            phraseLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 72),
-            phraseLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
+//            phraseLabel.topAnchor.constraint(equalTo: wordLabel.bottomAnchor, constant: 5),
+//            phraseLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 72),
+//            phraseLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
         ])
     }
 }

@@ -9,8 +9,8 @@ import Foundation
 
 class WordsService {
     let words = [
-        Word.init(word: "cat", phrase: "cat mey", translate: "кот"),
-        Word.init(word: "human", phrase: "human see", translate: "человек")
+        Word.init(word: "cat", translate: "кот"),
+        Word.init(word: "human", translate: "человек")
     ]
 
     func fetchWords() -> [Word] {

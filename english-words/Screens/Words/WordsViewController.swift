@@ -28,8 +28,7 @@ class WordsViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
-
-        words = wordsService.fetchWords()
+        words = JsonLoader.loadProducts(filename: "words5000")!
     }
 }
 
