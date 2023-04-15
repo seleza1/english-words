@@ -11,7 +11,7 @@ final class JsonLoader {
 
     static func loadProducts(filename: String) -> [Word]? {
 
-        if let url = Bundle.main.url(forResource: "words5000", withExtension: "json") {
+        if let url = Bundle.main.url(forResource: filename, withExtension: "json") {
             do {
                 let data = try Data(contentsOf: url)
 

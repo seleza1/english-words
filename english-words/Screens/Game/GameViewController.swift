@@ -155,7 +155,7 @@ extension GameViewController {
     private func setupStackView() {
         stackView.axis = .vertical
         stackView.alignment = .center
-        stackView.distribution = .fillEqually // Установите распределение элементов в StackView
+        stackView.distribution = .fillEqually
         stackView.spacing = 10
 
         stackView.addArrangedSubview(oneButton)
