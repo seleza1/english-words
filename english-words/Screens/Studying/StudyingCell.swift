@@ -21,7 +21,7 @@ final class StudyingCell: UITableViewCell {
 
     private let phraseLabel: UILabel = {
         let label = UILabel()
-        label.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        label.textColor = Colors.phraseLabelColor
         label.font = UIFont.boldSystemFont(ofSize: 9)
         label.translatesAutoresizingMaskIntoConstraints = false
 

@@ -22,7 +22,7 @@ final class WordCell: UITableViewCell {
     private let phraseLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 9)
-        label.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        label.textColor = Colors.phraseLabelColor
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
