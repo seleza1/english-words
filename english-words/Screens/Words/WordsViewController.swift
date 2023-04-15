@@ -28,7 +28,8 @@ final class WordsViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
-        words = JsonLoader.loadProducts(filename: "words5000")! //не знал что тут поставить вместо палки
+        setupTableView()
+        getWords()
     }
 }
 
@@ -40,10 +41,8 @@ extension WordsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WordCell.reuseId, for: indexPath) as! WordCell
 
-        let word = words.shuffled()[indexPath.row]
+        let word = words[indexPath.item]
         cell.update(word)
-
-        cell.selectionStyle = .none
 
         return cell
     }
@@ -53,9 +52,6 @@ extension WordsViewController {
 
     private func setupViews() {
         view.addSubview(tableView)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.rowHeight = 60
     }
 
     private func setupConstraints() {
@@ -65,6 +61,18 @@ extension WordsViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+
+    private func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = 60
+    }
+
+    private func getWords() {
+        if let loadedWords = JsonLoader.loadProducts(filename: "words5000") {
+            words = loadedWords.shuffled()
+        }
     }
 }
 

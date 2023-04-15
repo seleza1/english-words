@@ -28,6 +28,7 @@ final class KnownWordsViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
+        setupTableView()
 
         words = wordsService.fetchWords()
     }
@@ -53,9 +54,7 @@ extension KnownWordsViewController {
     private func setupViews() {
         view.addSubview(tableView)
         view.backgroundColor = .white
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.rowHeight = 60
+
     }
 
     private func setupConstraints() {
@@ -67,5 +66,11 @@ extension KnownWordsViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
 
         ])
+    }
+
+    private func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = 60
     }
 }

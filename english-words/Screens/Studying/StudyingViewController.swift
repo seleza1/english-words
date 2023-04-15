@@ -40,6 +40,7 @@ final class StudyingWordsViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
+        setupTableView()
 
         words = wordsService.fetchWords()
     }
@@ -73,9 +74,7 @@ extension StudyingWordsViewController {
         view.addSubview(tableView)
         view.addSubview(startLearnButton)
         view.backgroundColor = .white
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.rowHeight = 60
+
     }
 
     private func setupConstraints() {
@@ -92,5 +91,11 @@ extension StudyingWordsViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
 
         ])
+    }
+
+    private func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = 60
     }
 }
