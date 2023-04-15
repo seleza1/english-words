@@ -32,6 +32,7 @@ final class KnownWordsViewController: UIViewController {
 
         words = wordsService.fetchWords()
     }
+
 }
 
 extension KnownWordsViewController: UITableViewDelegate, UITableViewDataSource {

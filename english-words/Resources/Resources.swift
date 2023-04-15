@@ -22,5 +22,3 @@ enum Resources {
         static let wordLabelGameFont = UIFont.boldSystemFont(ofSize: 30)
     }
 }
-
-

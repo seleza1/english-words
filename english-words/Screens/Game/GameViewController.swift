@@ -13,6 +13,13 @@ final class GameViewController: UIViewController {
 
     private let stackView = UIStackView()
 
+    private let indicatorProgress: UIProgressView = {
+        let indicatorProgress = UIProgressView()
+        indicatorProgress.translatesAutoresizingMaskIntoConstraints = false
+
+        return indicatorProgress
+    }()
+
     private let backButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
@@ -20,13 +27,6 @@ final class GameViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
-    }()
-
-    private let indicatorProgress: UIProgressView = {
-        let indicatorProgress = UIProgressView()
-        indicatorProgress.translatesAutoresizingMaskIntoConstraints = false
-
-        return indicatorProgress
     }()
 
     private let selectAnswerLabel: UILabel = {

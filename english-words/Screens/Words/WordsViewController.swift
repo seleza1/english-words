@@ -40,12 +40,14 @@ extension WordsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WordCell.reuseId, for: indexPath) as! WordCell
+        cell.selectionStyle = .none
 
         let word = words[indexPath.item]
         cell.update(word)
 
         return cell
     }
+
 }
 
 extension WordsViewController {
