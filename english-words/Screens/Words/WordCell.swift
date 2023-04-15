@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WordCell: UITableViewCell {
+final class WordCell: UITableViewCell {
 
     static let reuseId = "WordCell"
 
@@ -30,8 +30,8 @@ class WordCell: UITableViewCell {
 
     private let musicButton: UIButton = {
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "speaker.wave.3"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
     }()

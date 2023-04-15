@@ -10,5 +10,4 @@ import Foundation
 struct Word: Decodable {
     let word: String
     let translate: String
-    let id: Int
 }

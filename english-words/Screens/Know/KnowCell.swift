@@ -7,7 +7,7 @@
 
 import UIKit
 
-class KnowCell: UITableViewCell {
+final class KnowCell: UITableViewCell {
 
     static let reuseId = "WordCell"
 

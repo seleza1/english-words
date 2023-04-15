@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StudyingCell: UITableViewCell {
+final class StudyingCell: UITableViewCell {
 
     static let reuseId = "WordCell"
 
@@ -21,8 +21,8 @@ class StudyingCell: UITableViewCell {
 
     private let phraseLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 9)
         label.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        label.font = UIFont.boldSystemFont(ofSize: 9)
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -30,8 +30,9 @@ class StudyingCell: UITableViewCell {
 
     private let musicButton: UIButton = {
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "speaker.wave.3"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+
 
         return button
     }()

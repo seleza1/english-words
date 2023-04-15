@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GameViewController: UIViewController {
+final class GameViewController: UIViewController {
 
     private var total: Float = 0
 
@@ -126,7 +126,6 @@ class GameViewController: UIViewController {
         if total == 1 {
             dismiss(animated: true)
         }
-
     }
 
     @objc private func gotToVC() {

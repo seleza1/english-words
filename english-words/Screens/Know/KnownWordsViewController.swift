@@ -7,7 +7,7 @@
 
 import UIKit
 
-class KnownWordsViewController: UIViewController {
+final class KnownWordsViewController: UIViewController {
 
     let wordsService = WordsService()
 
