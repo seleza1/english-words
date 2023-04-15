@@ -41,13 +41,13 @@ extension WordsViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: WordCell.reuseId, for: indexPath) as! WordCell
 
         let word = words.shuffled()[indexPath.row]
-        cell.selectionStyle = .none
         cell.update(word)
+
+        cell.selectionStyle = .none
 
         return cell
     }
 }
-
 
 extension WordsViewController {
 
@@ -64,7 +64,6 @@ extension WordsViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-
         ])
     }
 }
