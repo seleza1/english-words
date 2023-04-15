@@ -28,7 +28,7 @@ final class StudyingWordsViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Начать обучение", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
-        button.backgroundColor = Colors.startLearnButtonColor
+        button.backgroundColor = Resources.Colors.startLearnButtonColor
         button.layer.cornerRadius = 11
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(startedLearn), for: .touchUpInside)

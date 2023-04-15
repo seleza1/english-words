@@ -40,7 +40,7 @@ final class GameViewController: UIViewController {
 
     private let uiView: UIView = {
         let view = UIView()
-        view.backgroundColor = Colors.uiViewColor
+        view.backgroundColor = Resources.Colors.uiViewColor
         view.layer.cornerRadius = 9
         view.translatesAutoresizingMaskIntoConstraints = false
 
@@ -51,7 +51,7 @@ final class GameViewController: UIViewController {
         let label = UILabel()
         label.text = "shift"
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.font = Resources.UIFonts.wordLabelGameFont
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -60,7 +60,7 @@ final class GameViewController: UIViewController {
     private let hintButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "lightbulb"), for: .normal)
-        button.backgroundColor = Colors.backgroundButtonColor
+        button.backgroundColor = Resources.Colors.backgroundButtonColor
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
@@ -71,7 +71,7 @@ final class GameViewController: UIViewController {
         button.setTitle("Пейзаж", for: .normal)
         button.layer.cornerRadius = 15
         button.setTitleColor(UIColor.black, for: .normal)
-        button.backgroundColor = Colors.backgroundButtonColor
+        button.backgroundColor = Resources.Colors.backgroundButtonColor
         button.addTarget(self, action: #selector(nextQuest), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
 
@@ -83,7 +83,7 @@ final class GameViewController: UIViewController {
         button.setTitle("Выравнивание", for: .normal)
         button.layer.cornerRadius = 15
         button.setTitleColor(UIColor.black, for: .normal)
-        button.backgroundColor = Colors.backgroundButtonColor
+        button.backgroundColor = Resources.Colors.backgroundButtonColor
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
@@ -94,7 +94,7 @@ final class GameViewController: UIViewController {
         button.setTitle("Перемещение", for: .normal)
         button.layer.cornerRadius = 15
         button.setTitleColor(UIColor.black, for: .normal)
-        button.backgroundColor = Colors.backgroundButtonColor
+        button.backgroundColor = Resources.Colors.backgroundButtonColor
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
@@ -105,7 +105,7 @@ final class GameViewController: UIViewController {
         button.setTitle("Сдвиг", for: .normal)
         button.layer.cornerRadius = 15
         button.setTitleColor(UIColor.black, for: .normal)
-        button.backgroundColor = Colors.backgroundButtonColor
+        button.backgroundColor = Resources.Colors.backgroundButtonColor
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button

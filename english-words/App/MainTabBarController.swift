@@ -45,7 +45,7 @@ class MainTabBarController: UITabBarController {
     }
 
     private func setup() {
-        tabBar.tintColor = Colors.tabBarTintColor
+        tabBar.tintColor = Resources.Colors.tabBarTintColor
         viewControllers = [wordsController, studyingWordsController, knownWordsController]
     }
 }

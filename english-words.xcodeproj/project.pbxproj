@@ -23,7 +23,7 @@
 		CE64671329E7E64000D32B47 /* KnowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64671229E7E64000D32B47 /* KnowCell.swift */; };
 		CEBB91D529E7E7EC00D26220 /* StudyingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB91D429E7E7EC00D26220 /* StudyingViewController.swift */; };
 		CEBB91D729E8828F00D26220 /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB91D629E8828E00D26220 /* JsonLoader.swift */; };
-		CEBB91D929EAD6DF00D26220 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB91D829EAD6DF00D26220 /* Colors.swift */; };
+		CEBB91D929EAD6DF00D26220 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB91D829EAD6DF00D26220 /* Resources.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +45,7 @@
 		CE64671229E7E64000D32B47 /* KnowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowCell.swift; sourceTree = "<group>"; };
 		CEBB91D429E7E7EC00D26220 /* StudyingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyingViewController.swift; sourceTree = "<group>"; };
 		CEBB91D629E8828E00D26220 /* JsonLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonLoader.swift; sourceTree = "<group>"; };
-		CEBB91D829EAD6DF00D26220 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		CEBB91D829EAD6DF00D26220 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +100,7 @@
 		CE6466F729E6992900D32B47 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				CEBB91D829EAD6DF00D26220 /* Colors.swift */,
+				CEBB91D829EAD6DF00D26220 /* Resources.swift */,
 				CE64670229E6A50500D32B47 /* words5000.json */,
 				CE6466EB29E6990B00D32B47 /* Assets.xcassets */,
 				CE6466ED29E6990B00D32B47 /* LaunchScreen.storyboard */,
@@ -246,7 +246,7 @@
 				CE64670B29E6ABC300D32B47 /* GameViewController.swift in Sources */,
 				CE6466E729E6990900D32B47 /* WordsViewController.swift in Sources */,
 				CE64670D29E7E2B000D32B47 /* KnownWordsViewController.swift in Sources */,
-				CEBB91D929EAD6DF00D26220 /* Colors.swift in Sources */,
+				CEBB91D929EAD6DF00D26220 /* Resources.swift in Sources */,
 				CE64671029E7E62500D32B47 /* StudyingCell.swift in Sources */,
 				CE6466FB29E69C1500D32B47 /* WordCell.swift in Sources */,
 				CEBB91D529E7E7EC00D26220 /* StudyingViewController.swift in Sources */,

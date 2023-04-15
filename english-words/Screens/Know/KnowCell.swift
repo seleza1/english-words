@@ -13,7 +13,7 @@ final class KnowCell: UITableViewCell {
 
     private let wordLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = Resources.UIFonts.wordLabelFont
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -21,8 +21,8 @@ final class KnowCell: UITableViewCell {
 
     private let phraseLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 9)
-        label.textColor = Colors.phraseLabelColor
+        label.font = Resources.UIFonts.phraseLabelFont
+        label.textColor = Resources.Colors.phraseLabelColor
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
