@@ -11,9 +11,9 @@ class MainTabBarController: UITabBarController {
 
     private var wordsController: WordsViewController = {
         let controller = WordsViewController()
-        let image = UIImage(systemName: "textformat.alt")
-        let selectedImage = UIImage(systemName: "textformat.alt")
-        let tabItem = UITabBarItem.init(title: "Мой словарь", image: image, selectedImage: selectedImage)
+        let image = Resources.Icons.wordsControllerIcon
+        let selectedImage = Resources.Icons.wordsControllerIcon
+        let tabItem = Resources.Title.tabItemWords
         controller.tabBarItem = tabItem
 
         return controller
@@ -21,9 +21,9 @@ class MainTabBarController: UITabBarController {
 
     private var studyingWordsController: StudyingWordsViewController = {
         let controller = StudyingWordsViewController()
-        let image = UIImage(systemName: "bed.double.fill")
-        let selectedImage = UIImage(systemName: "bed.double.fill")
-        let tabItem = UITabBarItem.init(title: "Изучаю", image: image, selectedImage: selectedImage)
+        let image = Resources.Icons.studyingWordsController
+        let selectedImage = Resources.Icons.studyingWordsController
+        let tabItem = Resources.Title.tabItemStudying
         controller.tabBarItem = tabItem
 
         return controller
@@ -31,9 +31,9 @@ class MainTabBarController: UITabBarController {
 
     private var knownWordsController: KnownWordsViewController = {
         let controller = KnownWordsViewController()
-        let image = UIImage(systemName: "pencil")
-        let selectedImage = UIImage(systemName: "pencil")
-        let tabItem = UITabBarItem.init(title: "Знаю", image: image, selectedImage: selectedImage)
+        let image = Resources.Icons.knownWordsController
+        let selectedImage = Resources.Icons.knownWordsController
+        let tabItem = Resources.Title.tabItemKnown
         controller.tabBarItem = tabItem
 
         return controller

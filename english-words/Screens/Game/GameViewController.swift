@@ -21,24 +21,13 @@ final class GameViewController: UIViewController {
     }()
 
     private let closeButton = Button(style: .close)
-
-//    private let closeButton: UIButton = {
-//        let button = UIButton()
-//        button.setImage(UIImage(systemName: "xmark"), for: .normal)
-//        button.addTarget(self, action: #selector(gotToVC), for: .touchUpInside)
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//
-//        return button
-//    }()
-
-    private let selectAnswerLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Выберите правильный ответ"
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
-
-        return label
-    }()
+    private let selectAnswerLabel = Label(style: .select)
+    private let wordLabel = Label(style: .wordGame)
+    private let hintButton = Button(style: .hint)
+    private let oneButton = Button(style: .one)
+    private let secondButton = Button(style: .second)
+    private let twoButton = Button(style: .two)
+    private let threeButton = Button(style: .three)
 
     private let cardView: UIView = {
         let view = UIView()
@@ -49,69 +38,7 @@ final class GameViewController: UIViewController {
         return view
     }()
 
-    private let wordLabel: UILabel = {
-        let label = UILabel()
-        label.text = "shift"
-        label.textAlignment = .center
-        label.font = Resources.UIFonts.wordLabelGameFont
-        label.translatesAutoresizingMaskIntoConstraints = false
 
-        return label
-    }()
-
-    private let hintButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "lightbulb"), for: .normal)
-        button.backgroundColor = Resources.Colors.backgroundButtonColor
-        button.translatesAutoresizingMaskIntoConstraints = false
-
-        return button
-    }()
-
-    private let oneButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Пейзаж", for: .normal)
-        button.layer.cornerRadius = 15
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.backgroundColor = Resources.Colors.backgroundButtonColor
-        button.addTarget(self, action: #selector(nextQuest), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-
-        return button
-    }()
-
-    private let secondButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Выравнивание", for: .normal)
-        button.layer.cornerRadius = 15
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.backgroundColor = Resources.Colors.backgroundButtonColor
-        button.translatesAutoresizingMaskIntoConstraints = false
-
-        return button
-    }()
-
-    private let twoButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Перемещение", for: .normal)
-        button.layer.cornerRadius = 15
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.backgroundColor = Resources.Colors.backgroundButtonColor
-        button.translatesAutoresizingMaskIntoConstraints = false
-
-        return button
-    }()
-
-    private let threeButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Сдвиг", for: .normal)
-        button.layer.cornerRadius = 15
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.backgroundColor = Resources.Colors.backgroundButtonColor
-        button.translatesAutoresizingMaskIntoConstraints = false
-
-        return button
-    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,20 +50,15 @@ final class GameViewController: UIViewController {
             self.dismiss(animated: true)
         }
 
-    }
+        oneButton.onAction = {
+            self.total += 0.25
+            self.progressView.setProgress((self.total), animated: true)
 
-    @objc private func nextQuest() {
-        total += 0.25
-        progressView.setProgress((total), animated: true)
-        
-        if total == 1 {
-            dismiss(animated: true)
+            if self.total == 1 {
+                self.dismiss(animated: true)
+            }
         }
     }
-
-//    @objc private func gotToVC() {
-//        dismiss(animated: true)
-//    }
 }
 
 extension GameViewController {

@@ -11,6 +11,11 @@ enum ButtonStyle {
     case sound
     case close
     case start
+    case hint
+    case one
+    case second
+    case two
+    case three
 }
 
 class Button: UIButton {
@@ -23,19 +28,44 @@ class Button: UIButton {
         switch style {
 
         case .sound:
-            self.setImage(UIImage(systemName: "speaker.wave.3"), for: .normal)
+            self.setImage(UIImage(systemName: Resources.Icons.soundIcon), for: .normal)
 
         case .close:
-            self.setImage(UIImage(systemName: "xmark"), for: .normal)
+            self.setImage(UIImage(systemName: Resources.Icons.closeIcon), for: .normal)
             self.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
 
         case .start:
             self.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
-            self.setTitle("Начать обучение", for: .normal)
+            self.setTitle(Resources.Title.startToLearnButtonTitle, for: .normal)
             self.setTitleColor(UIColor.black, for: .normal)
             self.backgroundColor = Resources.Colors.startLearnButtonColor
             self.layer.cornerRadius = 11
 
+        case .hint:
+            self.setImage(UIImage(systemName: Resources.Icons.hintIcon), for: .normal)
+            self.backgroundColor = Resources.Colors.backgroundButtonColor
+
+        case .one:
+            self.setTitle("Пейзаж", for: .normal)
+            self.layer.cornerRadius = 15
+            self.setTitleColor(UIColor.black, for: .normal)
+            self.backgroundColor = Resources.Colors.backgroundButtonColor
+            self.addTarget(self, action: #selector(nextQuest), for: .touchUpInside)
+        case .second:
+            self.setTitle("Выравнивание", for: .normal)
+            self.layer.cornerRadius = 15
+            self.setTitleColor(UIColor.black, for: .normal)
+            self.backgroundColor = Resources.Colors.backgroundButtonColor
+        case .two:
+            self.setTitle("Перемещение", for: .normal)
+            self.layer.cornerRadius = 15
+            self.setTitleColor(UIColor.black, for: .normal)
+            self.backgroundColor = Resources.Colors.backgroundButtonColor
+        case .three:
+            self.setTitle("Сдвиг", for: .normal)
+            self.layer.cornerRadius = 15
+            self.setTitleColor(UIColor.black, for: .normal)
+            self.backgroundColor = Resources.Colors.backgroundButtonColor
         }
         self.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -47,6 +77,12 @@ class Button: UIButton {
     @objc func startButtonTapped() {
         onAction?()
     }
+
+    @objc func nextQuest() {
+        onAction?()
+    }
+
+
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

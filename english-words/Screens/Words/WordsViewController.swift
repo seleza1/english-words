@@ -67,18 +67,18 @@ extension WordsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let knowWord = UIContextualAction(style: .normal, title: "Знаю") { (action, view, completionHandler) in
+        let knowWord = UIContextualAction(style: .normal, title: Resources.Title.tableViewKnownButtonTitle) { (action, view, completionHandler) in
             self.words.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             completionHandler(true)
         }
-        knowWord.backgroundColor = #colorLiteral(red: 1, green: 0.229614228, blue: 0.1135809645, alpha: 1)
+        knowWord.backgroundColor = Resources.Colors.wordKnownButton
 
-        let learnWord = UIContextualAction(style: .normal, title: "Изучаю") { (action, view, completionHandler) in
+        let learnWord = UIContextualAction(style: .normal, title: Resources.Title.tableViewLearnButtonTitle) { (action, view, completionHandler) in
             tableView.insertRows(at: [indexPath], with: .fade)
             completionHandler(true)
         }
-        learnWord.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        learnWord.backgroundColor = Resources.Colors.wordLearnButton
 
         let configuration = UISwipeActionsConfiguration(actions: [knowWord, learnWord])
         configuration.performsFirstActionWithFullSwipe = false

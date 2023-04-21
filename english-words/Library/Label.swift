@@ -29,6 +29,8 @@ private let phraseLabel: UILabel = {
 enum LabelStyle {
     case word
     case phrase
+    case select
+    case wordGame
 }
 
 class Label: UILabel {
@@ -44,6 +46,13 @@ class Label: UILabel {
         case .phrase:
             self.font = Resources.UIFonts.phraseLabelFont
             self.textColor = Resources.Colors.phraseLabelColor
+        case .select:
+            self.text = Resources.Title.selectAnswerLabel
+            self.textAlignment = .center
+        case .wordGame:
+            self.text = "shift"
+            self.textAlignment = .center
+            self.font = Resources.UIFonts.wordLabelGameFont
 
         }
 
