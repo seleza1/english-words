@@ -21,13 +21,13 @@ final class GameViewController: UIViewController {
     }()
 
     private let closeButton = Button(style: .close)
-    private let selectAnswerLabel = Label(style: .select)
-    private let wordLabel = Label(style: .wordGame)
     private let hintButton = Button(style: .hint)
     private let oneButton = Button(style: .one)
     private let secondButton = Button(style: .second)
     private let twoButton = Button(style: .two)
     private let threeButton = Button(style: .three)
+    private let selectAnswerLabel = Label(style: .select)
+    private let wordLabel = Label(style: .wordGame)
 
     private let cardView: UIView = {
         let view = UIView()
@@ -37,8 +37,6 @@ final class GameViewController: UIViewController {
 
         return view
     }()
-
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
