@@ -43,19 +43,8 @@ final class GameViewController: UIViewController {
         setupViews()
         setupConstraints()
         setupStackView()
-
-        closeButton.onAction = {
-            self.dismiss(animated: true)
-        }
-
-        oneButton.onAction = {
-            self.total += 0.25
-            self.progressView.setProgress((self.total), animated: true)
-
-            if self.total == 1 {
-                self.dismiss(animated: true)
-            }
-        }
+        updateProgress()
+        closeView()
     }
 }
 
@@ -140,5 +129,21 @@ extension GameViewController {
             threeButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -6),
             threeButton.heightAnchor.constraint(equalToConstant: 44)
         ])
+    }
+
+    private func updateProgress() {
+        oneButton.onAction = {
+            self.total += 0.25
+            self.progressView.setProgress((self.total), animated: true)
+
+            if self.total == 1 {
+                self.dismiss(animated: true)
+            }
+        }
+    }
+    private func closeView() {
+        closeButton.onAction = {
+            self.dismiss(animated: true)
+        }
     }
 }
