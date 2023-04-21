@@ -24,17 +24,7 @@ final class StudyingWordsViewController: UIViewController {
         return tableView
     }()
 
-    private let startLearnButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Начать обучение", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.backgroundColor = Resources.Colors.startLearnButtonColor
-        button.layer.cornerRadius = 11
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(startedLearn), for: .touchUpInside)
-
-        return button
-    }()
+    private let startLearnButton = Button(style: .start)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,14 +32,13 @@ final class StudyingWordsViewController: UIViewController {
         setupConstraints()
         setupTableView()
 
+        startLearnButton.onAction = {
+            let gameVC = GameViewController()
+            gameVC.modalPresentationStyle = .fullScreen
+            self.present(gameVC, animated: true)
+        }
+
         words = wordsService.fetchWords()
-    }
-
-    @objc private func startedLearn() {
-        let gameVC = GameViewController()
-        gameVC.modalPresentationStyle = .fullScreen
-        self.present(gameVC, animated: true)
-
     }
 }
 
@@ -74,7 +63,6 @@ extension StudyingWordsViewController {
         view.addSubview(tableView)
         view.addSubview(startLearnButton)
         view.backgroundColor = .white
-
     }
 
     private func setupConstraints() {

@@ -10,6 +10,7 @@ import UIKit
 enum ButtonStyle {
     case sound
     case close
+    case start
 }
 
 class Button: UIButton {
@@ -26,19 +27,28 @@ class Button: UIButton {
 
         case .close:
             self.setImage(UIImage(systemName: "xmark"), for: .normal)
-            //self.setImage(UIImage(systemName: "speaker.wave.3"), for: .normal)
-            self.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        }
+            self.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
 
+        case .start:
+            self.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
+            self.setTitle("Начать обучение", for: .normal)
+            self.setTitleColor(UIColor.black, for: .normal)
+            self.backgroundColor = Resources.Colors.startLearnButtonColor
+            self.layer.cornerRadius = 11
+
+        }
         self.translatesAutoresizingMaskIntoConstraints = false
     }
 
-    @objc func buttonTapped() {
+    @objc func closeButtonTapped() {
+        onAction?()
+    }
+
+    @objc func startButtonTapped() {
         onAction?()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }
