@@ -24,6 +24,8 @@
 		CEBB91D529E7E7EC00D26220 /* StudyingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB91D429E7E7EC00D26220 /* StudyingViewController.swift */; };
 		CEBB91D729E8828F00D26220 /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB91D629E8828E00D26220 /* JsonLoader.swift */; };
 		CEBB91D929EAD6DF00D26220 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB91D829EAD6DF00D26220 /* Resources.swift */; };
+		CEBB91EF29F29F9B00D26220 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB91EE29F29F9B00D26220 /* Button.swift */; };
+		CEBB91F129F2A16100D26220 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB91F029F2A16100D26220 /* Label.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		CEBB91D429E7E7EC00D26220 /* StudyingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyingViewController.swift; sourceTree = "<group>"; };
 		CEBB91D629E8828E00D26220 /* JsonLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonLoader.swift; sourceTree = "<group>"; };
 		CEBB91D829EAD6DF00D26220 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		CEBB91EE29F29F9B00D26220 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		CEBB91F029F2A16100D26220 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +86,7 @@
 				CE6466F829E69BEE00D32B47 /* Screens */,
 				CE6466FC29E69EFC00D32B47 /* Models */,
 				CE6466FF29E6A1D300D32B47 /* Services */,
+				CEBB91ED29F29F5800D26220 /* Library */,
 				CE6466F729E6992900D32B47 /* Resources */,
 			);
 			path = "english-words";
@@ -114,7 +119,7 @@
 			children = (
 				CE6466F929E69BFA00D32B47 /* Words */,
 				CE64670E29E7E60D00D32B47 /* Studying */,
-				CE64671129E7E62B00D32B47 /* Know */,
+				CE64671129E7E62B00D32B47 /* Known */,
 				CE64671429E7E67B00D32B47 /* Game */,
 			);
 			path = Screens;
@@ -155,13 +160,13 @@
 			path = Studying;
 			sourceTree = "<group>";
 		};
-		CE64671129E7E62B00D32B47 /* Know */ = {
+		CE64671129E7E62B00D32B47 /* Known */ = {
 			isa = PBXGroup;
 			children = (
 				CE64670C29E7E2B000D32B47 /* KnownWordsViewController.swift */,
 				CE64671229E7E64000D32B47 /* KnowCell.swift */,
 			);
-			path = Know;
+			path = Known;
 			sourceTree = "<group>";
 		};
 		CE64671429E7E67B00D32B47 /* Game */ = {
@@ -170,6 +175,15 @@
 				CE64670A29E6ABC300D32B47 /* GameViewController.swift */,
 			);
 			path = Game;
+			sourceTree = "<group>";
+		};
+		CEBB91ED29F29F5800D26220 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB91EE29F29F9B00D26220 /* Button.swift */,
+				CEBB91F029F2A16100D26220 /* Label.swift */,
+			);
+			path = Library;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,10 +263,12 @@
 				CEBB91D929EAD6DF00D26220 /* Resources.swift in Sources */,
 				CE64671029E7E62500D32B47 /* StudyingCell.swift in Sources */,
 				CE6466FB29E69C1500D32B47 /* WordCell.swift in Sources */,
+				CEBB91F129F2A16100D26220 /* Label.swift in Sources */,
 				CEBB91D529E7E7EC00D26220 /* StudyingViewController.swift in Sources */,
 				CE6466E329E6990900D32B47 /* AppDelegate.swift in Sources */,
 				CE64670529E6A6E600D32B47 /* MainTabBarController.swift in Sources */,
 				CEBB91D729E8828F00D26220 /* JsonLoader.swift in Sources */,
+				CEBB91EF29F29F9B00D26220 /* Button.swift in Sources */,
 				CE64671329E7E64000D32B47 /* KnowCell.swift in Sources */,
 				CE64670129E6A1F200D32B47 /* WordsService.swift in Sources */,
 				CE6466E529E6990900D32B47 /* SceneDelegate.swift in Sources */,

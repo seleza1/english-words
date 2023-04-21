@@ -8,6 +8,7 @@
 import UIKit
 
 enum Resources {
+    
     enum Colors {
         static let tabBarTintColor = #colorLiteral(red: 0.2317892015, green: 0.2613468766, blue: 0.9948940873, alpha: 1)
         static let startLearnButtonColor =  #colorLiteral(red: 0.992441237, green: 0.8533335924, blue: 0.4606403112, alpha: 1)
@@ -20,5 +21,9 @@ enum Resources {
         static let wordLabelFont = UIFont.boldSystemFont(ofSize: 18)
         static let phraseLabelFont = UIFont.boldSystemFont(ofSize: 9)
         static let wordLabelGameFont = UIFont.boldSystemFont(ofSize: 30)
+    }
+
+    enum Icons {
+
     }
 }

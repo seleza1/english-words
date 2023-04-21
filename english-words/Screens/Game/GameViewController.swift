@@ -13,21 +13,23 @@ final class GameViewController: UIViewController {
 
     private let stackView = UIStackView()
 
-    private let indicatorProgress: UIProgressView = {
+    private let progressView: UIProgressView = {
         let indicatorProgress = UIProgressView()
         indicatorProgress.translatesAutoresizingMaskIntoConstraints = false
 
         return indicatorProgress
     }()
 
-    private let backButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "xmark"), for: .normal)
-        button.addTarget(self, action: #selector(gotToVC), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
+    private let closeButton = Button(style: .close)
 
-        return button
-    }()
+//    private let closeButton: UIButton = {
+//        let button = UIButton()
+//        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+//        button.addTarget(self, action: #selector(gotToVC), for: .touchUpInside)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//
+//        return button
+//    }()
 
     private let selectAnswerLabel: UILabel = {
         let label = UILabel()
@@ -38,7 +40,7 @@ final class GameViewController: UIViewController {
         return label
     }()
 
-    private let uiView: UIView = {
+    private let cardView: UIView = {
         let view = UIView()
         view.backgroundColor = Resources.Colors.uiViewColor
         view.layer.cornerRadius = 9
@@ -117,39 +119,41 @@ final class GameViewController: UIViewController {
         setupConstraints()
         setupStackView()
 
+        closeButton.onAction = {
+            self.dismiss(animated: true)
+        }
+
     }
 
     @objc private func nextQuest() {
         total += 0.25
-        indicatorProgress.setProgress((total), animated: true)
+        progressView.setProgress((total), animated: true)
         
         if total == 1 {
             dismiss(animated: true)
         }
     }
 
-    @objc private func gotToVC() {
-        dismiss(animated: true)
-    }
+//    @objc private func gotToVC() {
+//        dismiss(animated: true)
+//    }
 }
 
 extension GameViewController {
     private func setupViews() {
-        view.addSubview(backButton)
-        view.addSubview(indicatorProgress)
+        view.addSubview(closeButton)
+        view.addSubview(progressView)
         view.addSubview(selectAnswerLabel)
-        view.addSubview(uiView)
+        view.addSubview(cardView)
         view.addSubview(oneButton)
         view.addSubview(twoButton)
         view.addSubview(threeButton)
         view.addSubview(secondButton)
         view.addSubview(stackView)
 
-        uiView.addSubview(wordLabel)
-        uiView.addSubview(hintButton)
+        cardView.addSubview(wordLabel)
+        cardView.addSubview(hintButton)
         view.backgroundColor = .white
-
-
     }
 
     private func setupStackView() {
@@ -168,31 +172,31 @@ extension GameViewController {
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 24),
-            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 9),
+            closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 24),
+            closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 9),
 
-            indicatorProgress.topAnchor.constraint(equalTo: view.topAnchor, constant: 64),
-            indicatorProgress.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 82),
-            indicatorProgress.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -82),
-            indicatorProgress.heightAnchor.constraint(equalToConstant: 6),
+            progressView.topAnchor.constraint(equalTo: view.topAnchor, constant: 64),
+            progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 82),
+            progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -82),
+            progressView.heightAnchor.constraint(equalToConstant: 6),
 
-            selectAnswerLabel.topAnchor.constraint(equalTo: indicatorProgress.bottomAnchor, constant: 9),
+            selectAnswerLabel.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 9),
             selectAnswerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             selectAnswerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
 
-            uiView.topAnchor.constraint(equalTo: selectAnswerLabel.bottomAnchor, constant: 16),
-            uiView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 64),
-            uiView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -64),
-            uiView.heightAnchor.constraint(equalToConstant: 223),
+            cardView.topAnchor.constraint(equalTo: selectAnswerLabel.bottomAnchor, constant: 16),
+            cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 64),
+            cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -64),
+            cardView.heightAnchor.constraint(equalToConstant: 223),
 
-            wordLabel.topAnchor.constraint(equalTo: uiView.topAnchor, constant: 78),
-            wordLabel.leadingAnchor.constraint(equalTo: uiView.leadingAnchor, constant: 32),
-            wordLabel.trailingAnchor.constraint(equalTo: uiView.trailingAnchor, constant: -32),
+            wordLabel.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 78),
+            wordLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 32),
+            wordLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -32),
 
-            hintButton.trailingAnchor.constraint(equalTo: uiView.trailingAnchor, constant: -6),
-            hintButton.bottomAnchor.constraint(equalTo: uiView.bottomAnchor, constant: -6),
+            hintButton.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -6),
+            hintButton.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -6),
 
-            stackView.topAnchor.constraint(equalTo: uiView.bottomAnchor, constant: 60),
+            stackView.topAnchor.constraint(equalTo: cardView.bottomAnchor, constant: 60),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
 

@@ -10,31 +10,35 @@ import UIKit
 final class WordCell: UITableViewCell {
 
     static let reuseId = "WordCell"
+//
+//    private let wordLabel: UILabel = {
+//        let label = UILabel()
+//        label.font = Resources.UIFonts.wordLabelFont
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//
+//        return label
+//    }()
+//
+//    private let phraseLabel: UILabel = {
+//        let label = UILabel()
+//        label.font = Resources.UIFonts.phraseLabelFont
+//        label.textColor = Resources.Colors.phraseLabelColor
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//
+//        return label
+//    }()
 
-    private let wordLabel: UILabel = {
-        let label = UILabel()
-        label.font = Resources.UIFonts.wordLabelFont
-        label.translatesAutoresizingMaskIntoConstraints = false
+    private let wordLabel = Label(style: .word)
+    private let phraseLabel = Label(style: .phrase)
+    private let soundButton = Button(style: .sound)
 
-        return label
-    }()
-
-    private let phraseLabel: UILabel = {
-        let label = UILabel()
-        label.font = Resources.UIFonts.phraseLabelFont
-        label.textColor = Resources.Colors.phraseLabelColor
-        label.translatesAutoresizingMaskIntoConstraints = false
-
-        return label
-    }()
-
-    private let musicButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "speaker.wave.3"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-
-        return button
-    }()
+//    private let soundButton: UIButton = {
+//        let button = UIButton()
+//        button.setImage(UIImage(systemName: "speaker.wave.3"), for: .normal)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//
+//        return button
+//    }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -56,15 +60,15 @@ extension WordCell {
     private func setupViews() {
         addSubview(wordLabel)
         addSubview(phraseLabel)
-        addSubview(musicButton)
+        addSubview(soundButton)
     }
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
 
-            musicButton.topAnchor.constraint(equalTo: topAnchor, constant: 12),
-            musicButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
-            musicButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
+            soundButton.topAnchor.constraint(equalTo: topAnchor, constant: 12),
+            soundButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
+            soundButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
 
             wordLabel.topAnchor.constraint(equalTo: topAnchor, constant: 19),
             wordLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 72),

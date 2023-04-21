@@ -21,6 +21,9 @@ final class WordsViewController: UIViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(WordCell.self, forCellReuseIdentifier: WordCell.reuseId)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = 60
         return tableView
     }()
 
@@ -28,8 +31,14 @@ final class WordsViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
-        setupTableView()
-        getWords()
+
+        fetchWords()
+    }
+
+    private func fetchWords() {
+        if let loadedWords = JsonLoader.loadProducts(filename: "words5000") {
+            words = loadedWords.shuffled()
+        }
     }
 }
 
@@ -49,33 +58,32 @@ extension WordsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            words.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-        } else if editingStyle == .insert {
-            print("fw")
-        }
+//        if editingStyle == .delete {
+//            words.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .automatic)
+//        } else if editingStyle == .insert {
+//            print("fw")
+//        }
     }
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .normal, title: "Знаю") { (action, view, completionHandler) in
+        let knowWord = UIContextualAction(style: .normal, title: "Знаю") { (action, view, completionHandler) in
             self.words.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             completionHandler(true)
         }
-        deleteAction.backgroundColor = .red
+        knowWord.backgroundColor = #colorLiteral(red: 1, green: 0.229614228, blue: 0.1135809645, alpha: 1)
 
-        let addAction = UIContextualAction(style: .normal, title: "Изучаю") { (action, view, completionHandler) in
+        let learnWord = UIContextualAction(style: .normal, title: "Изучаю") { (action, view, completionHandler) in
             tableView.insertRows(at: [indexPath], with: .fade)
             completionHandler(true)
         }
-        addAction.backgroundColor = .green
+        learnWord.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
 
-        let configuration = UISwipeActionsConfiguration(actions: [deleteAction, addAction])
+        let configuration = UISwipeActionsConfiguration(actions: [knowWord, learnWord])
         configuration.performsFirstActionWithFullSwipe = false
         return configuration
     }
-
 }
 
 extension WordsViewController {
@@ -91,18 +99,6 @@ extension WordsViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-    }
-
-    private func setupTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.rowHeight = 60
-    }
-
-    private func getWords() {
-        if let loadedWords = JsonLoader.loadProducts(filename: "words5000") {
-            words = loadedWords.shuffled()
-        }
     }
 }
 
