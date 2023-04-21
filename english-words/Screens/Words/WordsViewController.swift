@@ -48,6 +48,34 @@ extension WordsViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            words.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        } else if editingStyle == .insert {
+            print("fw")
+        }
+    }
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .normal, title: "Знаю") { (action, view, completionHandler) in
+            self.words.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            completionHandler(true)
+        }
+        deleteAction.backgroundColor = .red
+
+        let addAction = UIContextualAction(style: .normal, title: "Изучаю") { (action, view, completionHandler) in
+            tableView.insertRows(at: [indexPath], with: .fade)
+            completionHandler(true)
+        }
+        addAction.backgroundColor = .green
+
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction, addAction])
+        configuration.performsFirstActionWithFullSwipe = false
+        return configuration
+    }
+
 }
 
 extension WordsViewController {
