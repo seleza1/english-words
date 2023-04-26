@@ -22,6 +22,7 @@ final class WordsView: UIView {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 60
+        
         return tableView
     }()
 
@@ -46,6 +47,7 @@ final class WordsView: UIView {
 extension WordsView: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
         return words.count
     }
 
@@ -79,10 +81,11 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
             tableView.insertRows(at: [indexPath], with: .fade)
             completionHandler(true)
         }
-        learnWord.backgroundColor = Resources.Colors.wordLearnButton
+        learnWord.backgroundColor = Resources.Colors.justGreen
 
         let configuration = UISwipeActionsConfiguration(actions: [knowWord, learnWord])
         configuration.performsFirstActionWithFullSwipe = false
+
         return configuration
     }
 }
@@ -106,9 +109,10 @@ extension WordsView {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 200))
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.backgroundColor = Resources.Colors.headerTableView
+        label.backgroundColor = Resources.Colors.justGreen
         label.heightAnchor.constraint (equalToConstant: 50).isActive = true
         label.text = "\(Resources.Title.allWordsHeader) - \(index)"
+
         return label
 
     }

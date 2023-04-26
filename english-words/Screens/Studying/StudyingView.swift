@@ -35,6 +35,7 @@ final class StudyingView: UIView {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 60
+
         return tableView
     }()
 
@@ -94,10 +95,11 @@ extension StudyingView: UITableViewDelegate, UITableViewDataSource {
             tableView.insertRows(at: [indexPath], with: .fade)
             completionHandler(true)
         }
-        learnWord.backgroundColor = Resources.Colors.wordLearnButton
+        learnWord.backgroundColor = Resources.Colors.justGreen
 
         let configuration = UISwipeActionsConfiguration(actions: [knowWord, learnWord])
         configuration.performsFirstActionWithFullSwipe = false
+        
         return configuration
     }
 }
@@ -127,9 +129,10 @@ extension StudyingView {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 200))
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.backgroundColor = Resources.Colors.headerTableView
+        label.backgroundColor = Resources.Colors.justGreen
         label.heightAnchor.constraint (equalToConstant: 50).isActive = true
         label.text = "\(Resources.Title.wordsLearnHeader) - \(index)"
+
         return label
 
     }

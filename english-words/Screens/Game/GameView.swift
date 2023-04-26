@@ -9,14 +9,14 @@ import UIKit
 
 final class GameView: UIView {
 
-    private let stackView = UIStackView()
-
     let progressView: UIProgressView = {
         let indicatorProgress = UIProgressView()
         indicatorProgress.translatesAutoresizingMaskIntoConstraints = false
 
         return indicatorProgress
     }()
+
+    private let stackView = UIStackView()
 
     let closeButton = Button(style: .close)
     private let hintButton = Button(style: .hint)

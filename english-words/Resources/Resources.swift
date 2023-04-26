@@ -16,8 +16,7 @@ enum Resources {
         static let uiViewColor = #colorLiteral(red: 0.9741126895, green: 0.9580762982, blue: 0.7994511127, alpha: 1)
         static let backgroundButtonColor = #colorLiteral(red: 0.9529412389, green: 0.9529411197, blue: 0.9529412389, alpha: 1)
         static let wordKnownButton = #colorLiteral(red: 1, green: 0.229614228, blue: 0.1135809645, alpha: 1)
-        static let wordLearnButton = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
-        static let headerTableView = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        static let justGreen = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
     }
 
     enum UIFonts {
@@ -36,9 +35,22 @@ enum Resources {
     }
 
     enum Title {
-        static let tabItemWords = UITabBarItem.init(title: "Мой словарь", image: Icons.wordsControllerIcon, selectedImage: Icons.wordsControllerIcon)
-        static let tabItemStudying = UITabBarItem.init(title: "Изучаю", image: Icons.studyingWordsController, selectedImage: Icons.studyingWordsController)
-        static let tabItemKnown = UITabBarItem.init(title: "Знаю", image: Icons.knownWordsController, selectedImage: Icons.knownWordsController)
+        static let tabItemWords = UITabBarItem.init(
+            title: "Мой словарь",
+            image: Icons.wordsControllerIcon,
+            selectedImage: Icons.wordsControllerIcon
+        )
+        static let tabItemStudying = UITabBarItem.init(
+            title: Resources.Title.tableViewLearnButtonTitle,
+            image: Icons.studyingWordsController,
+            selectedImage: Icons.studyingWordsController
+        )
+
+        static let tabItemKnown = UITabBarItem.init(
+            title: Resources.Title.tableViewKnownButtonTitle,
+            image: Icons.knownWordsController,
+            selectedImage: Icons.knownWordsController
+        )
 
         static let tableViewKnownButtonTitle = "Знаю"
         static let tableViewLearnButtonTitle = "Изучаю"
