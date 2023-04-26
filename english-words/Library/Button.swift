@@ -16,6 +16,7 @@ enum ButtonStyle {
     case second
     case two
     case three
+    case repeatW
 }
 
 class Button: UIButton {
@@ -51,21 +52,32 @@ class Button: UIButton {
             self.setTitleColor(UIColor.black, for: .normal)
             self.backgroundColor = Resources.Colors.backgroundButtonColor
             self.addTarget(self, action: #selector(nextQuest), for: .touchUpInside)
+
         case .second:
             self.setTitle("Выравнивание", for: .normal)
             self.layer.cornerRadius = 15
             self.setTitleColor(UIColor.black, for: .normal)
             self.backgroundColor = Resources.Colors.backgroundButtonColor
+
         case .two:
             self.setTitle("Перемещение", for: .normal)
             self.layer.cornerRadius = 15
             self.setTitleColor(UIColor.black, for: .normal)
             self.backgroundColor = Resources.Colors.backgroundButtonColor
+
         case .three:
             self.setTitle("Сдвиг", for: .normal)
             self.layer.cornerRadius = 15
             self.setTitleColor(UIColor.black, for: .normal)
             self.backgroundColor = Resources.Colors.backgroundButtonColor
+
+        case .repeatW:
+            self.setTitle("Повторить слова", for: .normal)
+            self.layer.cornerRadius = 15
+            self.setTitleColor(UIColor.black, for: .normal)
+            self.backgroundColor = Resources.Colors.startLearnButtonColor
+            self.addTarget(self, action: #selector(nextQuest), for: .touchUpInside)
+
         }
         self.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -81,8 +93,6 @@ class Button: UIButton {
     @objc func nextQuest() {
         onAction?()
     }
-
-
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

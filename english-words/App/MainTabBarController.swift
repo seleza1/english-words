@@ -9,8 +9,8 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
 
-    private var wordsController: WordsViewController = {
-        let controller = WordsViewController()
+    private var wordsController: WordsVC = {
+        let controller = WordsVC()
         let image = Resources.Icons.wordsControllerIcon
         let selectedImage = Resources.Icons.wordsControllerIcon
         let tabItem = Resources.Title.tabItemWords
@@ -19,8 +19,8 @@ class MainTabBarController: UITabBarController {
         return controller
     }()
 
-    private var studyingWordsController: StudyingWordsViewController = {
-        let controller = StudyingWordsViewController()
+    private var studyingWordsController: StudyingWordsVC = {
+        let controller = StudyingWordsVC()
         let image = Resources.Icons.studyingWordsController
         let selectedImage = Resources.Icons.studyingWordsController
         let tabItem = Resources.Title.tabItemStudying

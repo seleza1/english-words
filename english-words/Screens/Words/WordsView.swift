@@ -1,15 +1,13 @@
 //
-//  ViewController.swift
+//  WordsView.swift
 //  english-words
 //
-//  Created by user on 12.04.2023.
+//  Created by user on 26.04.2023.
 //
 
 import UIKit
 
-final class WordsViewController: UIViewController {
-
-    let wordsService = WordsService()
+final class WordsView: UIView {
 
     var words: [Word] = [] {
         didSet {
@@ -17,7 +15,7 @@ final class WordsViewController: UIViewController {
         }
     }
 
-    private lazy var tableView: UITableView = {
+    lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(WordCell.self, forCellReuseIdentifier: WordCell.reuseId)
@@ -27,22 +25,26 @@ final class WordsViewController: UIViewController {
         return tableView
     }()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupViews()
         setupConstraints()
+        
 
-        fetchWords()
+        self.backgroundColor = .blue
     }
 
-    private func fetchWords() {
-        if let loadedWords = JsonLoader.loadProducts(filename: "words5000") {
-            words = loadedWords.shuffled()
-        }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func update(_ words: [Word]) {
+        self.words = words
     }
 }
 
-extension WordsViewController: UITableViewDelegate, UITableViewDataSource {
+extension WordsView: UITableViewDelegate, UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return words.count
     }
@@ -58,12 +60,11 @@ extension WordsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            words.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .automatic)
-//        } else if editingStyle == .insert {
-//            print("fw")
-//        }
+
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        createHeaderSectionLabel(index: words.count)
     }
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -86,19 +87,34 @@ extension WordsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension WordsViewController {
+extension WordsView {
 
     private func setupViews() {
-        view.addSubview(tableView)
+        self.addSubview(tableView)
     }
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.topAnchor.constraint(equalTo: self.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
+
+    private func createHeaderSectionLabel(index: Int = 0) -> UILabel {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 200))
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        label.heightAnchor.constraint (equalToConstant: 50).isActive = true
+        //label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Слов осталось - \(index)"
+        return label
+
+    }
+
+    
+
 }
 

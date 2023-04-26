@@ -9,7 +9,7 @@ import Foundation
 
 final class JsonLoader {
 
-    static func loadProducts(filename: String) -> [Word]? {
+    func loadProducts(filename: String) -> [Word]? {
 
         if let url = Bundle.main.url(forResource: filename, withExtension: "json") {
             do {
