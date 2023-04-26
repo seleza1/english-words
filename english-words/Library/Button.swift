@@ -78,8 +78,6 @@ class Button: UIButton {
             self.setTitleColor(UIColor.black, for: .normal)
             self.backgroundColor = Resources.Colors.backgroundButtonColor
 
-
-
         }
         self.translatesAutoresizingMaskIntoConstraints = false
     }

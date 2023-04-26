@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WordsViewModel {
+final class WordsViewModel {
 
     var onWordsChanged: (([Word])->())?
 
