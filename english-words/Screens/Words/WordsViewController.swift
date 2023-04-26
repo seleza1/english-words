@@ -62,7 +62,7 @@ final class WordsVC: UIViewController {
         super.viewDidAppear(animated)
 
         viewModel.onWordsChanged = { [weak self] words in
-            print("wrods", words)
+            print("words", words)
             self?.wordsView.update(words)
             self?.wordsView.tableView.reloadData()
         }

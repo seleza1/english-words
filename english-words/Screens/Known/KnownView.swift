@@ -121,10 +121,9 @@ extension KnownView {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 200))
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        label.backgroundColor = Resources.Colors.headerTableView
         label.heightAnchor.constraint (equalToConstant: 50).isActive = true
-        //label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Всего изучено - \(index)"
+        label.text = "\(Resources.Title.allLearnHeader) - \(index)"
         return label
 
     }

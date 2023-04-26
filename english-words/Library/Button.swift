@@ -42,6 +42,13 @@ class Button: UIButton {
             self.backgroundColor = Resources.Colors.startLearnButtonColor
             self.layer.cornerRadius = 11
 
+        case .repeatW:
+            self.setTitle(Resources.Title.startToRepeatButtonTitle, for: .normal)
+            self.layer.cornerRadius = 15
+            self.setTitleColor(UIColor.black, for: .normal)
+            self.backgroundColor = Resources.Colors.startLearnButtonColor
+            self.addTarget(self, action: #selector(nextQuest), for: .touchUpInside)
+
         case .hint:
             self.setImage(UIImage(systemName: Resources.Icons.hintIcon), for: .normal)
             self.backgroundColor = Resources.Colors.backgroundButtonColor
@@ -71,12 +78,7 @@ class Button: UIButton {
             self.setTitleColor(UIColor.black, for: .normal)
             self.backgroundColor = Resources.Colors.backgroundButtonColor
 
-        case .repeatW:
-            self.setTitle("Повторить слова", for: .normal)
-            self.layer.cornerRadius = 15
-            self.setTitleColor(UIColor.black, for: .normal)
-            self.backgroundColor = Resources.Colors.startLearnButtonColor
-            self.addTarget(self, action: #selector(nextQuest), for: .touchUpInside)
+
 
         }
         self.translatesAutoresizingMaskIntoConstraints = false

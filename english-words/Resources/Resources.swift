@@ -17,6 +17,7 @@ enum Resources {
         static let backgroundButtonColor = #colorLiteral(red: 0.9529412389, green: 0.9529411197, blue: 0.9529412389, alpha: 1)
         static let wordKnownButton = #colorLiteral(red: 1, green: 0.229614228, blue: 0.1135809645, alpha: 1)
         static let wordLearnButton = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        static let headerTableView = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
     }
 
     enum UIFonts {
@@ -43,6 +44,11 @@ enum Resources {
         static let tableViewLearnButtonTitle = "Изучаю"
         static let selectAnswerLabel = "Выберите правильный ответ"
         static let startToLearnButtonTitle = "Начать обучение"
+        static let startToRepeatButtonTitle = "Повторить слова"
+
+        static let wordsLearnHeader = "Слов на изучение"
+        static let allWordsHeader = "Слов осталось"
+        static let allLearnHeader = "Всего изучено"
 
     }
 }
