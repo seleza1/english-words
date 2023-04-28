@@ -9,7 +9,7 @@ import Foundation
 
 protocol WordsArchiverProtocol {
     func save(_ words: [Word]) //сохраняем слова
-    func retrieve() -> [Word] //закдалываем их массивом
+    func retrieve() -> [Word] //закладываем их массивом
 }
 
 final class WordsArchiver: WordsArchiverProtocol {

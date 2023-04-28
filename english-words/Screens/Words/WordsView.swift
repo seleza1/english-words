@@ -66,7 +66,7 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        createHeaderSectionLabel(index: words.count)
+        createHeaderSectionLabel(index: words.count-4)
     }
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -116,8 +116,5 @@ extension WordsView {
         return label
 
     }
-
-    
-
 }
 

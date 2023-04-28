@@ -96,7 +96,6 @@ extension StudyingView: UITableViewDelegate, UITableViewDataSource {
             completionHandler(true)
         }
         learnWord.backgroundColor = Resources.Colors.justGreen
-
         let configuration = UISwipeActionsConfiguration(actions: [knowWord, learnWord])
         configuration.performsFirstActionWithFullSwipe = false
         

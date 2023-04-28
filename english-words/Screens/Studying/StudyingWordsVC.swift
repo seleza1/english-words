@@ -17,7 +17,6 @@ import UIKit
 
 final class StudyingWordsVC: UIViewController {
 
-
     let wordsService = WordsService()
     let jsonLoader = JsonLoader()
 
@@ -46,6 +45,4 @@ final class StudyingWordsVC: UIViewController {
             studyingView.update(words)
         }
     }
-
-
 }

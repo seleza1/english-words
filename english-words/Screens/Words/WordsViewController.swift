@@ -51,21 +51,11 @@ final class WordsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        fetchWords()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
         viewModel.onWordsChanged = { [weak self] words in
-            print("words", words)
             self?.wordsView.update(words)
-            self?.wordsView.tableView.reloadData()
         }
+
+        fetchWords()
     }
 
     private func fetchWords() {

@@ -12,7 +12,6 @@ final class WordCell: UITableViewCell {
     static let reuseId = "WordCell"
 
     private let wordLabel = Label(style: .word)
-    private let phraseLabel = Label(style: .phrase)
     private let soundButton = Button(style: .sound)
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -33,7 +32,6 @@ final class WordCell: UITableViewCell {
 extension WordCell {
     private func setupViews() {
         addSubview(wordLabel)
-        addSubview(phraseLabel)
         addSubview(soundButton)
     }
 

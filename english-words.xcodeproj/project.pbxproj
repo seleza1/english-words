@@ -141,8 +141,8 @@
 		CE6466F929E69BFA00D32B47 /* Words */ = {
 			isa = PBXGroup;
 			children = (
-				CE6466E629E6990900D32B47 /* WordsViewController.swift */,
 				CEE6A4AB29F8F8B800BB90A9 /* WordsView.swift */,
+				CE6466E629E6990900D32B47 /* WordsViewController.swift */,
 				CE6466FA29E69C1500D32B47 /* WordCell.swift */,
 			);
 			path = Words;
