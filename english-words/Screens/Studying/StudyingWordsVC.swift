@@ -14,12 +14,27 @@ import UIKit
  3. Navigation
  */
 
+final class StudyingWordsModel {
 
-final class StudyingWordsVC: UIViewController {
-
+    var onWordsChanged: (([Word])->())?
+    
     let wordsService = WordsService()
     let jsonLoader = JsonLoader()
 
+    func fetchWords() {
+        if let loadedWords = jsonLoader.loadProducts(filename: "words5000") {
+            let words = loadedWords.shuffled()
+
+            onWordsChanged?(words)
+        }
+    }
+
+}
+
+final class StudyingWordsVC: UIViewController {
+
+    var viewModel = StudyingWordsModel()
+    
     var studyingView: StudyingView { return self.view as! StudyingView }
 
     override func loadView() {
@@ -28,6 +43,12 @@ final class StudyingWordsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+
+        viewModel.onWordsChanged = { [weak self] words in
+            self?.studyingView.update(words)
+            
+        }
 
         fetchWords()
 
@@ -39,10 +60,6 @@ final class StudyingWordsVC: UIViewController {
     }
 
     private func fetchWords() {
-        if let loadedWords = jsonLoader.loadProducts(filename: "words5000") {
-            let words = loadedWords.shuffled()
-
-            studyingView.update(words)
-        }
+        viewModel.fetchWords()
     }
 }
