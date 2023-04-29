@@ -18,17 +18,25 @@ final class StudyingWordsModel {
 
     var onWordsChanged: (([Word])->())?
     
-    let wordsService = WordsService()
     let jsonLoader = JsonLoader()
+    let wordsArchiver = WordsArchiver()
 
     func fetchWords() {
+
+        let archivedWords = wordsArchiver.retrieve()
+
+        if archivedWords.isNotEmpty {
+            //self.words = archivedWords
+            onWordsChanged?(archivedWords)
+            return
+        }
+
         if let loadedWords = jsonLoader.loadProducts(filename: "words5000") {
             let words = loadedWords.shuffled()
 
             onWordsChanged?(words)
         }
     }
-
 }
 
 final class StudyingWordsVC: UIViewController {
@@ -44,14 +52,15 @@ final class StudyingWordsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
         viewModel.onWordsChanged = { [weak self] words in
             self?.studyingView.update(words)
-            
         }
 
         fetchWords()
+        startLearnButtonTapped()
+    }
 
+    private func startLearnButtonTapped() {
         studyingView.startLearnButton.onAction = {
             let gameVC = GameViewController()
             self.modalPresentationStyle = .overFullScreen

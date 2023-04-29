@@ -7,32 +7,60 @@
 
 import UIKit
 
+final class KnowWordsViewModel {
+    var onWordsChanged: (([Word])->())?
+
+    let jsonLoader = JsonLoader()
+    let wordsArchiver = WordsArchiver()
+
+    func fetchWords() {
+
+        let archivedWords = wordsArchiver.retrieve()
+
+        if archivedWords.isNotEmpty {
+            //self.words = archivedWords
+            onWordsChanged?(archivedWords)
+            return
+        }
+
+        if let loadedWords = jsonLoader.loadProducts(filename: "words5000") {
+            let words = loadedWords.shuffled()
+
+            onWordsChanged?(words)
+        }
+    }
+
+}
+
 final class KnownWordsViewController: UIViewController {
 
     var knowView: KnownView { return self.view as! KnownView }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        fetchWords()
-
-        knowView.startLearnButton.onAction = {
-            let gameVC = GameViewController()
-            self.modalPresentationStyle = .overFullScreen
-            self.present(gameVC, animated: true)
-        }
-
-    }
+    let viewModel = KnowWordsViewModel()
 
     override func loadView() {
         self.view = KnownView(frame: UIScreen.main.bounds)
 
     }
 
-    private func fetchWords() {
-        if let loadedWords = JsonLoader().loadProducts(filename: "words5000") {
-            let words = loadedWords.shuffled()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        fetchWords()
+        startLearnButtonTapped()
 
-            knowView.update(words)
+        viewModel.onWordsChanged = { [weak self] words in
+            self?.knowView.update(words)
         }
+    }
+
+    private func startLearnButtonTapped() {
+        knowView.startLearnButton.onAction = {
+            let gameVC = GameViewController()
+            self.modalPresentationStyle = .overFullScreen
+            self.present(gameVC, animated: true)
+        }
+    }
+
+    private func fetchWords() {
+        viewModel.fetchWords()
     }
 }
