@@ -55,7 +55,7 @@ final class KnownWordsViewController: UIViewController {
     private func startLearnButtonTapped() {
         knowView.startLearnButton.onAction = {
             let gameVC = GameViewController()
-            self.modalPresentationStyle = .overFullScreen
+            gameVC.modalPresentationStyle = .fullScreen
             self.present(gameVC, animated: true)
         }
     }

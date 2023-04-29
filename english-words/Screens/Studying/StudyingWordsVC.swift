@@ -63,7 +63,7 @@ final class StudyingWordsVC: UIViewController {
     private func startLearnButtonTapped() {
         studyingView.startLearnButton.onAction = {
             let gameVC = GameViewController()
-            self.modalPresentationStyle = .overFullScreen
+            gameVC.modalPresentationStyle = .fullScreen
             self.present(gameVC, animated: true)
         }
     }
