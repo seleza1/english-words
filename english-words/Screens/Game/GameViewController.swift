@@ -23,11 +23,12 @@ final class GameViewController: UIViewController {
         closeView()
 
     }
+}
 
+extension GameViewController {
     private func closeView() {
         gameView.closeButton.onAction = {
             self.dismiss(animated: true)
-
         }
     }
 
@@ -41,8 +42,6 @@ final class GameViewController: UIViewController {
             }
         }
     }
-
-
 }
 
 

@@ -32,7 +32,7 @@ final class KnowWordsViewModel {
 
 }
 
-final class KnownWordsViewController: UIViewController {
+final class KnownWordsVC: UIViewController {
 
     var knowView: KnownView { return self.view as! KnownView }
     let viewModel = KnowWordsViewModel()
@@ -51,7 +51,9 @@ final class KnownWordsViewController: UIViewController {
             self?.knowView.update(words)
         }
     }
+}
 
+extension KnownWordsVC {
     private func startLearnButtonTapped() {
         knowView.startLearnButton.onAction = {
             let gameVC = GameViewController()

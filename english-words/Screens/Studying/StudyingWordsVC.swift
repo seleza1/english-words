@@ -59,7 +59,9 @@ final class StudyingWordsVC: UIViewController {
         fetchWords()
         startLearnButtonTapped()
     }
+}
 
+extension StudyingWordsVC {
     private func startLearnButtonTapped() {
         studyingView.startLearnButton.onAction = {
             let gameVC = GameViewController()

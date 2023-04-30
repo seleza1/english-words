@@ -57,7 +57,9 @@ final class WordsVC: UIViewController {
 
         fetchWords()
     }
+}
 
+extension WordsVC {
     private func fetchWords() {
         viewModel.fetchWords()
     }

@@ -29,8 +29,8 @@ final class MainTabBarController: UITabBarController {
         return controller
     }()
 
-    private var knownWordsController: KnownWordsViewController = {
-        let controller = KnownWordsViewController()
+    private var knownWordsController: KnownWordsVC = {
+        let controller = KnownWordsVC()
         let image = Resources.Icons.knownWordsController
         let selectedImage = Resources.Icons.knownWordsController
         let tabItem = Resources.Title.tabItemKnown

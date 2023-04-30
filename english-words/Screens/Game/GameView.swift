@@ -16,17 +16,6 @@ final class GameView: UIView {
         return indicatorProgress
     }()
 
-    private let stackView = UIStackView()
-
-    let closeButton = Button(style: .close)
-    private let hintButton = Button(style: .hint)
-    let oneButton = Button(style: .one)
-    private let secondButton = Button(style: .second)
-    private let twoButton = Button(style: .two)
-    private let threeButton = Button(style: .three)
-    private let selectAnswerLabel = Label(style: .select)
-    private let wordLabel = Label(style: .wordGame)
-
     private let cardView: UIView = {
         let view = UIView()
         view.backgroundColor = Resources.Colors.uiViewColor
@@ -35,7 +24,18 @@ final class GameView: UIView {
 
         return view
     }()
-    
+
+    private let stackView = UIStackView()
+
+    let closeButton = Button(style: .close)
+    let oneButton = Button(style: .one)
+    private let hintButton = Button(style: .hint)
+    private let secondButton = Button(style: .second)
+    private let twoButton = Button(style: .two)
+    private let threeButton = Button(style: .three)
+
+    private let selectAnswerLabel = Label(style: .select)
+    private let wordLabel = Label(style: .wordGame)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
