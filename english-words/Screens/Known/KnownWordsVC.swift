@@ -29,7 +29,6 @@ final class KnowWordsViewModel {
             onWordsChanged?(words)
         }
     }
-
 }
 
 final class KnownWordsVC: UIViewController {

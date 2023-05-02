@@ -52,12 +52,12 @@ final class StudyingWordsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        fetchWords()
+        startLearnButtonTapped()
+
         viewModel.onWordsChanged = { [weak self] words in
             self?.studyingView.update(words)
         }
-
-        fetchWords()
-        startLearnButtonTapped()
     }
 }
 
