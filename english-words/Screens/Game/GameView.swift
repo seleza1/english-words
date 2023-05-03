@@ -49,61 +49,12 @@ final class GameView: UIView {
         setupViews()
         setupConstraints()
         setupStackView()
+        buttonsTapped()
 
 
         self.backgroundColor = .white
 
-        oneButton.onAction = {
 
-            if self.word?.variants[0] == self.word?.translate {
-                self.oneButton.backgroundColor = .green
-            } else {
-                self.oneButton.backgroundColor = .red
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.oneButton.backgroundColor = Resources.Colors.backgroundButtonColor
-                self.onVariantChanged?()
-            }
-        }
-
-        secondButton.onAction = {
-
-            if self.word?.variants[1] == self.word?.translate {
-                self.secondButton.backgroundColor = .green
-            } else {
-                self.secondButton.backgroundColor = .red
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.secondButton.backgroundColor = Resources.Colors.backgroundButtonColor
-                self.onVariantChanged?()
-            }
-        }
-
-        twoButton.onAction = {
-
-            if self.word?.variants[2] == self.word?.translate {
-                self.twoButton.backgroundColor = .green
-            } else {
-                self.twoButton.backgroundColor = .red
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.twoButton.backgroundColor = Resources.Colors.backgroundButtonColor
-                self.onVariantChanged?()
-            }
-        }
-
-        threeButton.onAction = {
-
-            if self.word?.variants[3] == self.word?.translate {
-                self.threeButton.backgroundColor = .green
-            } else {
-                self.threeButton.backgroundColor = .red
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.threeButton.backgroundColor = Resources.Colors.backgroundButtonColor
-                self.onVariantChanged?()
-            }
-        }
     }
 
     required init?(coder: NSCoder) {
@@ -121,6 +72,60 @@ final class GameView: UIView {
         twoButton.setTitle(word.variants[2], for: .normal)
         threeButton.setTitle(word.variants[3], for: .normal)
 
+    }
+
+    func buttonsTapped() {
+        oneButton.onAction = {
+
+            if self.word?.variants[0] == self.word?.translate {
+                self.oneButton.backgroundColor = .green
+            } else {
+                self.oneButton.backgroundColor = .red
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.oneButton.backgroundColor = Resources.Colors.backgroundButtonColor
+                self.onVariantChanged?()
+            }
+        }
+
+        secondButton.onAction = {
+
+            if self.word?.variants[1] == self.word?.translate {
+                self.secondButton.backgroundColor = .green
+            } else {
+                self.secondButton.backgroundColor = .red
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.secondButton.backgroundColor = Resources.Colors.backgroundButtonColor
+                self.onVariantChanged?()
+            }
+        }
+
+        twoButton.onAction = {
+
+            if self.word?.variants[2] == self.word?.translate {
+                self.twoButton.backgroundColor = .green
+            } else {
+                self.twoButton.backgroundColor = .red
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.twoButton.backgroundColor = Resources.Colors.backgroundButtonColor
+                self.onVariantChanged?()
+            }
+        }
+
+        threeButton.onAction = {
+
+            if self.word?.variants[3] == self.word?.translate {
+                self.threeButton.backgroundColor = .green
+            } else {
+                self.threeButton.backgroundColor = .red
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.threeButton.backgroundColor = Resources.Colors.backgroundButtonColor
+                self.onVariantChanged?()
+            }
+        }
     }
 }
 
