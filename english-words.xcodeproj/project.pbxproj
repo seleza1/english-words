@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		CE2ADA4B2A024A470031B3EA /* WordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ADA4A2A024A470031B3EA /* WordsViewModel.swift */; };
+		CE2ADA4D2A026E660031B3EA /* StudyingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ADA4C2A026E660031B3EA /* StudyingViewModel.swift */; };
+		CE2ADA4F2A026ED40031B3EA /* KnowWordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ADA4E2A026ED40031B3EA /* KnowWordsViewModel.swift */; };
 		CE6466E329E6990900D32B47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466E229E6990900D32B47 /* AppDelegate.swift */; };
 		CE6466E529E6990900D32B47 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466E429E6990900D32B47 /* SceneDelegate.swift */; };
 		CE6466E729E6990900D32B47 /* WordsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466E629E6990900D32B47 /* WordsVC.swift */; };
@@ -37,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		CE2ADA4A2A024A470031B3EA /* WordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsViewModel.swift; sourceTree = "<group>"; };
+		CE2ADA4C2A026E660031B3EA /* StudyingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyingViewModel.swift; sourceTree = "<group>"; };
+		CE2ADA4E2A026ED40031B3EA /* KnowWordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowWordsViewModel.swift; sourceTree = "<group>"; };
 		CE6466DF29E6990900D32B47 /* english-words.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "english-words.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6466E229E6990900D32B47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6466E429E6990900D32B47 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -143,9 +147,9 @@
 		CE6466F929E69BFA00D32B47 /* Words */ = {
 			isa = PBXGroup;
 			children = (
+				CE2ADA4A2A024A470031B3EA /* WordsViewModel.swift */,
 				CEE6A4AB29F8F8B800BB90A9 /* WordsView.swift */,
 				CE6466E629E6990900D32B47 /* WordsVC.swift */,
-				CE2ADA4A2A024A470031B3EA /* WordsViewModel.swift */,
 				CE6466FA29E69C1500D32B47 /* WordCell.swift */,
 			);
 			path = Words;
@@ -172,6 +176,7 @@
 		CE64670E29E7E60D00D32B47 /* Studying */ = {
 			isa = PBXGroup;
 			children = (
+				CE2ADA4C2A026E660031B3EA /* StudyingViewModel.swift */,
 				CEE6A4B029F8FCD300BB90A9 /* StudyingView.swift */,
 				CEBB91D429E7E7EC00D26220 /* StudyingWordsVC.swift */,
 				CE64670F29E7E62500D32B47 /* StudyingCell.swift */,
@@ -185,6 +190,7 @@
 				CEE6A4B229F9046000BB90A9 /* KnownView.swift */,
 				CE64670C29E7E2B000D32B47 /* KnownWordsVC.swift */,
 				CE64671229E7E64000D32B47 /* KnowCell.swift */,
+				CE2ADA4E2A026ED40031B3EA /* KnowWordsViewModel.swift */,
 			);
 			path = Known;
 			sourceTree = "<group>";
@@ -291,11 +297,13 @@
 				CE64670D29E7E2B000D32B47 /* KnownWordsVC.swift in Sources */,
 				CEE6A4B329F9046000BB90A9 /* KnownView.swift in Sources */,
 				CEBB91D929EAD6DF00D26220 /* Resources.swift in Sources */,
+				CE2ADA4D2A026E660031B3EA /* StudyingViewModel.swift in Sources */,
 				CE64671029E7E62500D32B47 /* StudyingCell.swift in Sources */,
 				CE6466FB29E69C1500D32B47 /* WordCell.swift in Sources */,
 				CEE6A4BA29F92A5C00BB90A9 /* Array+NotEmpty.swift in Sources */,
 				CEE6A4AC29F8F8B800BB90A9 /* WordsView.swift in Sources */,
 				CEBB91F129F2A16100D26220 /* Label.swift in Sources */,
+				CE2ADA4F2A026ED40031B3EA /* KnowWordsViewModel.swift in Sources */,
 				CEBB91D529E7E7EC00D26220 /* StudyingWordsVC.swift in Sources */,
 				CE6466E329E6990900D32B47 /* AppDelegate.swift in Sources */,
 				CE64670529E6A6E600D32B47 /* MainTabBarController.swift in Sources */,
