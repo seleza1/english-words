@@ -11,7 +11,7 @@ final class KnowWordsViewModel {
     var onWordsChanged: (([Word])->())?
 
     let jsonLoader = JsonLoader()
-    let wordsArchiver = WordsArchiver()
+    let wordsArchiver = WordsArchiver(type: .all)
 
     func fetchWords() {
 
@@ -23,7 +23,7 @@ final class KnowWordsViewModel {
             return
         }
 
-        if let loadedWords = jsonLoader.loadProducts(filename: "words5000") {
+        if let loadedWords = jsonLoader.loadProducts(.words5000) {
             let words = loadedWords.shuffled()
 
             onWordsChanged?(words)
@@ -55,7 +55,7 @@ final class KnownWordsVC: UIViewController {
 extension KnownWordsVC {
     private func startLearnButtonTapped() {
         knowView.startLearnButton.onAction = {
-            let gameVC = GameViewController()
+            let gameVC = GameVC()
             gameVC.modalPresentationStyle = .fullScreen
             self.present(gameVC, animated: true)
         }

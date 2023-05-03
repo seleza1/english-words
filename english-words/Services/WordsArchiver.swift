@@ -7,6 +7,17 @@
 
 import Foundation
 
+//All words
+//Known
+//Unknown
+
+
+enum ArchiverType: String {
+    case all 
+    case unknown
+    case known
+}
+
 protocol WordsArchiverProtocol {
     func save(_ words: [Word]) //сохраняем слова
     func retrieve() -> [Word] //закладываем их массивом
@@ -17,7 +28,10 @@ final class WordsArchiver: WordsArchiverProtocol {
     private let encoder = JSONEncoder() //кодирует в бинарник
     private let decoder = JSONDecoder() //разкодирует
 
-    private let key = "Words"
+    init(type: ArchiverType) {
+        self.key = type.rawValue
+    }
+    private let key: String
 
     //MARK: - Public methods
     func save(_ words: [Word]) { //метод сохранить

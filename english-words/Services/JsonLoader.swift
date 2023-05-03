@@ -7,9 +7,16 @@
 
 import Foundation
 
+enum LoaderType: String {
+    case words5000
+}
+
 final class JsonLoader {
 
-    func loadProducts(filename: String) -> [Word]? {
+    func loadProducts(_ type: LoaderType) -> [Word]? {
+
+        let filename = type.rawValue
+        print(filename)
 
         if let url = Bundle.main.url(forResource: filename, withExtension: "json") {
             do {

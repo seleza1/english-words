@@ -33,10 +33,10 @@ class Button: UIButton {
 
         case .close:
             self.setImage(UIImage(systemName: Resources.Icons.closeIcon), for: .normal)
-            self.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
+            //self.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
 
         case .start:
-            self.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
+            //self.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
             self.setTitle(Resources.Title.startToLearnButtonTitle, for: .normal)
             self.setTitleColor(UIColor.black, for: .normal)
             self.backgroundColor = Resources.Colors.startLearnButtonColor
@@ -47,7 +47,7 @@ class Button: UIButton {
             self.layer.cornerRadius = 15
             self.setTitleColor(UIColor.black, for: .normal)
             self.backgroundColor = Resources.Colors.startLearnButtonColor
-            self.addTarget(self, action: #selector(nextQuest), for: .touchUpInside)
+            //self.addTarget(self, action: #selector(nextQuest), for: .touchUpInside)
 
         case .hint:
             self.setImage(UIImage(systemName: Resources.Icons.hintIcon), for: .normal)
@@ -58,7 +58,7 @@ class Button: UIButton {
             self.layer.cornerRadius = 15
             self.setTitleColor(UIColor.black, for: .normal)
             self.backgroundColor = Resources.Colors.backgroundButtonColor
-            self.addTarget(self, action: #selector(nextQuest), for: .touchUpInside)
+
 
         case .second:
             self.setTitle("Выравнивание", for: .normal)
@@ -80,19 +80,21 @@ class Button: UIButton {
 
         }
         self.translatesAutoresizingMaskIntoConstraints = false
+
+        self.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
 
-    @objc func closeButtonTapped() {
+    @objc func buttonTapped() {
         onAction?()
     }
 
-    @objc func startButtonTapped() {
-        onAction?()
-    }
-
-    @objc func nextQuest() {
-        onAction?()
-    }
+//    @objc func startButtonTapped() {
+//        onAction?()
+//    }
+//
+//    @objc func nextQuest() {
+//        onAction?()
+//    }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

@@ -7,7 +7,16 @@
 
 import Foundation
 
-struct Word: Decodable, Encodable {
+//Word -> WordModel
+struct WordModel {
+    var id: Int
+    var word: String
+    var translate: String
+    var variants: [String]
+}
+
+struct Word: Codable {
+    let id: Int
     let word: String
     let translate: String
 }

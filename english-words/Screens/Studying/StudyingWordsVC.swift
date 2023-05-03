@@ -19,7 +19,7 @@ final class StudyingWordsModel {
     var onWordsChanged: (([Word])->())?
     
     let jsonLoader = JsonLoader()
-    let wordsArchiver = WordsArchiver()
+    let wordsArchiver = WordsArchiver(type: .all)
 
     func fetchWords() {
 
@@ -31,7 +31,7 @@ final class StudyingWordsModel {
             return
         }
 
-        if let loadedWords = jsonLoader.loadProducts(filename: "words5000") {
+        if let loadedWords = jsonLoader.loadProducts(.words5000) {
             let words = loadedWords.shuffled()
 
             onWordsChanged?(words)
@@ -52,19 +52,20 @@ final class StudyingWordsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        fetchWords()
         startLearnButtonTapped()
 
         viewModel.onWordsChanged = { [weak self] words in
             self?.studyingView.update(words)
         }
+        fetchWords()
     }
 }
 
 extension StudyingWordsVC {
     private func startLearnButtonTapped() {
+        
         studyingView.startLearnButton.onAction = {
-            let gameVC = GameViewController()
+            let gameVC = GameVC()
             gameVC.modalPresentationStyle = .fullScreen
             self.present(gameVC, animated: true)
         }

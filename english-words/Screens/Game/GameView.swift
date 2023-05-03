@@ -9,6 +9,8 @@ import UIKit
 
 final class GameView: UIView {
 
+    var word: WordModel?
+
     let progressView: UIProgressView = {
         let indicatorProgress = UIProgressView()
         indicatorProgress.translatesAutoresizingMaskIntoConstraints = false
@@ -28,14 +30,19 @@ final class GameView: UIView {
     private let stackView = UIStackView()
 
     let closeButton = Button(style: .close)
-    let oneButton = Button(style: .one)
+
     private let hintButton = Button(style: .hint)
-    private let secondButton = Button(style: .second)
-    private let twoButton = Button(style: .two)
-    private let threeButton = Button(style: .three)
+
+    let oneButton = Button(style: .one)
+    let secondButton = Button(style: .second)
+    let twoButton = Button(style: .two)
+    let threeButton = Button(style: .three)
 
     private let selectAnswerLabel = Label(style: .select)
     private let wordLabel = Label(style: .wordGame)
+
+
+    var onVariantChanged: (()->())?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,10 +52,75 @@ final class GameView: UIView {
 
 
         self.backgroundColor = .white
+
+        oneButton.onAction = {
+
+            if self.word?.variants[0] == self.word?.translate {
+                self.oneButton.backgroundColor = .green
+            } else {
+                self.oneButton.backgroundColor = .red
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.oneButton.backgroundColor = Resources.Colors.backgroundButtonColor
+                self.onVariantChanged?()
+            }
+        }
+
+        secondButton.onAction = {
+
+            if self.word?.variants[1] == self.word?.translate {
+                self.secondButton.backgroundColor = .green
+            } else {
+                self.secondButton.backgroundColor = .red
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.secondButton.backgroundColor = Resources.Colors.backgroundButtonColor
+                self.onVariantChanged?()
+            }
+        }
+
+        twoButton.onAction = {
+
+            if self.word?.variants[2] == self.word?.translate {
+                self.twoButton.backgroundColor = .green
+            } else {
+                self.twoButton.backgroundColor = .red
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.twoButton.backgroundColor = Resources.Colors.backgroundButtonColor
+                self.onVariantChanged?()
+            }
+        }
+
+        threeButton.onAction = {
+
+            if self.word?.variants[3] == self.word?.translate {
+                self.threeButton.backgroundColor = .green
+            } else {
+                self.threeButton.backgroundColor = .red
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.threeButton.backgroundColor = Resources.Colors.backgroundButtonColor
+                self.onVariantChanged?()
+            }
+        }
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    func update(_ word: WordModel) {
+
+        self.word = word
+
+        wordLabel.text = word.word
+
+        oneButton.setTitle(word.variants[0], for: .normal)
+        secondButton.setTitle(word.variants[1], for: .normal)
+        twoButton.setTitle(word.variants[2], for: .normal)
+        threeButton.setTitle(word.variants[3], for: .normal)
+
     }
 }
 

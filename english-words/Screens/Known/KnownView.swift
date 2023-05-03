@@ -67,7 +67,7 @@ extension KnownView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        createHeaderSectionLabel(index: words.count-4)
+        createHeaderSectionLabel(index: words.count)
     }
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -113,7 +113,7 @@ extension KnownView {
     }
 
     private func fetchWords() {
-        if let loadedWords = JsonLoader().loadProducts(filename: "words5000") {
+        if let loadedWords = JsonLoader().loadProducts(.words5000) {
             words = loadedWords.shuffled()
         }
     }
