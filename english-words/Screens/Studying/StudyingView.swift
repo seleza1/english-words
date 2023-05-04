@@ -103,6 +103,8 @@ extension StudyingView: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+// MARK: - Layout
+
 extension StudyingView {
 
     private func setupViews() {

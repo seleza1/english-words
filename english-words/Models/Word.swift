@@ -7,7 +7,7 @@
 
 import Foundation
 
-//Word -> WordModel
+// Word -> WordModel
 struct WordModel {
     var id: Int
     var word: String

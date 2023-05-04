@@ -11,6 +11,8 @@ final class WordCell: UITableViewCell {
 
     static let reuseId = "WordCell"
 
+// MARK: - Private Properties
+
     private let wordLabel = Label(style: .word)
     private let soundButton = Button(style: .sound)
 
@@ -28,6 +30,8 @@ final class WordCell: UITableViewCell {
         wordLabel.text = word.word
     }
 }
+
+// MARK: - Layout
 
 extension WordCell {
     private func setupViews() {

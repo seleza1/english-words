@@ -36,13 +36,11 @@ class Button: UIButton {
 
         case .start:
             self.setTitle(Resources.Title.startToLearnButtonTitle, for: .normal)
-            self.setTitleColor(UIColor.black, for: .normal)
             self.backgroundColor = Resources.Colors.startLearnButtonColor
             self.layer.cornerRadius = 11
 
         case .repeatW:
             self.setTitle(Resources.Title.startToRepeatButtonTitle, for: .normal)
-            self.setTitleColor(UIColor.black, for: .normal)
             self.backgroundColor = Resources.Colors.startLearnButtonColor
 
         case .hint:
@@ -50,23 +48,20 @@ class Button: UIButton {
             self.backgroundColor = Resources.Colors.backgroundButtonColor
 
         case .one:
-            self.setTitleColor(UIColor.black, for: .normal)
             self.backgroundColor = Resources.Colors.backgroundButtonColor
 
         case .second:
-            self.setTitleColor(UIColor.black, for: .normal)
             self.backgroundColor = Resources.Colors.backgroundButtonColor
 
         case .two:
-            self.setTitleColor(UIColor.black, for: .normal)
             self.backgroundColor = Resources.Colors.backgroundButtonColor
 
         case .three:
-            self.setTitleColor(UIColor.black, for: .normal)
             self.backgroundColor = Resources.Colors.backgroundButtonColor
 
         }
 
+        self.setTitleColor(UIColor.black, for: .normal)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         self.layer.cornerRadius = 15

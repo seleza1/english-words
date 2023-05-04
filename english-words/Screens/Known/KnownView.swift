@@ -89,7 +89,15 @@ extension KnownView: UITableViewDelegate, UITableViewDataSource {
         
         return configuration
     }
+
+    private func fetchWords() {
+        if let loadedWords = JsonLoader().loadProducts(.words5000) {
+            words = loadedWords.shuffled()
+        }
+    }
 }
+
+// MARK: - Layout
 
 extension KnownView {
 
@@ -110,12 +118,6 @@ extension KnownView {
             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
-    }
-
-    private func fetchWords() {
-        if let loadedWords = JsonLoader().loadProducts(.words5000) {
-            words = loadedWords.shuffled()
-        }
     }
 
     private func createHeaderSectionLabel(index: Int = 0) -> UILabel {

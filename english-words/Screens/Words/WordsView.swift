@@ -15,6 +15,8 @@ final class WordsView: UIView {
         }
     }
 
+    let startLearnButton = Button(style: .start)
+
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -32,7 +34,7 @@ final class WordsView: UIView {
         setupConstraints()
         
 
-        self.backgroundColor = .blue
+        self.backgroundColor = .white
     }
 
     required init?(coder: NSCoder) {
@@ -90,15 +92,23 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+// MARK: - Layout
+
 extension WordsView {
 
     private func setupViews() {
         self.addSubview(tableView)
+        self.addSubview(startLearnButton)
     }
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: self.topAnchor),
+            startLearnButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 38),
+            startLearnButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12),
+            startLearnButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12),
+            startLearnButton.heightAnchor.constraint(equalToConstant: 40),
+
+            tableView.topAnchor.constraint(equalTo: startLearnButton.bottomAnchor, constant: 8),
             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)

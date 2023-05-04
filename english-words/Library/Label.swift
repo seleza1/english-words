@@ -33,7 +33,6 @@ class Label: UILabel {
             self.textAlignment = .center
 
         case .wordGame:
-            self.text = "shift"
             self.textAlignment = .center
             self.font = Resources.UIFonts.wordLabelGameFont
             self.numberOfLines = 0

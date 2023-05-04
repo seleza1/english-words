@@ -12,16 +12,16 @@ import Foundation
 class WordsService {
 
     let jsonLoader = JsonLoader()
+
     let allWordsArchiver = WordsArchiver(type: .all)
     let unknownWordsArchiver = WordsArchiver(type: .unknown)
     let knownWordsArchiver = WordsArchiver(type: .known)
 
     var allWords: [Word] = []
 
-    //Выгружать все слова и класть в архивер
+    //Выгружать все слова и класть в archiver
 
-    //метод некст который вытаскивает слово из массива и передает на экран
-
+    //метод next который вытаскивает слово из массива и передает на экран
 
     func fetchWords() {
         let words = jsonLoader.loadProducts(.words5000) ?? []
@@ -40,8 +40,12 @@ class WordsService {
         }
         variants.shuffle()
 
-
-        var wordModel = WordModel(id: next.id, word: next.word, translate: next.translate, variants: variants)
+        var wordModel = WordModel(
+            id: next.id,
+            word: next.word,
+            translate: next.translate,
+            variants: variants
+        )
 
         return wordModel
     }

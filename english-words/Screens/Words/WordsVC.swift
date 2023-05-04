@@ -20,16 +20,24 @@ final class WordsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        startLearnButtonTapped()
 
         viewModel.onWordsChanged = { [weak self] words in
             self?.wordsView.update(words)
         }
         fetchWords()
-
     }
 }
 
 extension WordsVC {
+    private func startLearnButtonTapped() {
+        wordsView.startLearnButton.onAction = {
+            let gameVC = GameVC()
+            gameVC.modalPresentationStyle = .fullScreen
+            self.present(gameVC, animated: true)
+        }
+    }
+
     private func fetchWords() {
         viewModel.fetchWords()
     }

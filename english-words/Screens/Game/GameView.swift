@@ -11,6 +11,8 @@ final class GameView: UIView {
 
     var word: WordModel?
 
+// MARK: - Stored Properties
+
     let progressView: UIProgressView = {
         let indicatorProgress = UIProgressView()
         indicatorProgress.translatesAutoresizingMaskIntoConstraints = false
@@ -34,13 +36,12 @@ final class GameView: UIView {
     private let hintButton = Button(style: .hint)
 
     let oneButton = Button(style: .one)
-    let secondButton = Button(style: .second)
-    let twoButton = Button(style: .two)
-    let threeButton = Button(style: .three)
+    let twoButton = Button(style: .second)
+    let threeButton = Button(style: .two)
+    let fourButton = Button(style: .three)
 
     private let selectAnswerLabel = Label(style: .select)
     private let wordLabel = Label(style: .wordGame)
-
 
     var onVariantChanged: (()->())?
 
@@ -51,10 +52,7 @@ final class GameView: UIView {
         setupStackView()
         buttonsTapped()
 
-
         self.backgroundColor = .white
-
-
     }
 
     required init?(coder: NSCoder) {
@@ -68,9 +66,9 @@ final class GameView: UIView {
         wordLabel.text = word.word
 
         oneButton.setTitle(word.variants[0], for: .normal)
-        secondButton.setTitle(word.variants[1], for: .normal)
-        twoButton.setTitle(word.variants[2], for: .normal)
-        threeButton.setTitle(word.variants[3], for: .normal)
+        twoButton.setTitle(word.variants[1], for: .normal)
+        threeButton.setTitle(word.variants[2], for: .normal)
+        fourButton.setTitle(word.variants[3], for: .normal)
 
     }
 
@@ -88,22 +86,9 @@ final class GameView: UIView {
             }
         }
 
-        secondButton.onAction = {
-
-            if self.word?.variants[1] == self.word?.translate {
-                self.secondButton.backgroundColor = .green
-            } else {
-                self.secondButton.backgroundColor = .red
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.secondButton.backgroundColor = Resources.Colors.backgroundButtonColor
-                self.onVariantChanged?()
-            }
-        }
-
         twoButton.onAction = {
 
-            if self.word?.variants[2] == self.word?.translate {
+            if self.word?.variants[0] == self.word?.translate {
                 self.twoButton.backgroundColor = .green
             } else {
                 self.twoButton.backgroundColor = .red
@@ -116,18 +101,34 @@ final class GameView: UIView {
 
         threeButton.onAction = {
 
-            if self.word?.variants[3] == self.word?.translate {
+            if self.word?.variants[0] == self.word?.translate {
                 self.threeButton.backgroundColor = .green
             } else {
                 self.threeButton.backgroundColor = .red
             }
+
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                 self.threeButton.backgroundColor = Resources.Colors.backgroundButtonColor
                 self.onVariantChanged?()
             }
         }
+
+        fourButton.onAction = {
+
+            if self.word?.variants[0] == self.word?.translate {
+                self.fourButton.backgroundColor = .green
+            } else {
+                self.fourButton.backgroundColor = .red
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.fourButton.backgroundColor = Resources.Colors.backgroundButtonColor
+                self.onVariantChanged?()
+            }
+        }
     }
 }
+
+// MARK: - Layout
 
 extension GameView {
     private func setupViews() {
@@ -136,9 +137,9 @@ extension GameView {
         self.addSubview(selectAnswerLabel)
         self.addSubview(cardView)
         self.addSubview(oneButton)
-        self.addSubview(twoButton)
         self.addSubview(threeButton)
-        self.addSubview(secondButton)
+        self.addSubview(fourButton)
+        self.addSubview(twoButton)
         self.addSubview(stackView)
 
         cardView.addSubview(wordLabel)
@@ -153,9 +154,9 @@ extension GameView {
         stackView.spacing = 10
 
         stackView.addArrangedSubview(oneButton)
-        stackView.addArrangedSubview(secondButton)
         stackView.addArrangedSubview(twoButton)
         stackView.addArrangedSubview(threeButton)
+        stackView.addArrangedSubview(fourButton)
 
         stackView.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -195,12 +196,7 @@ extension GameView {
             oneButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -6),
             oneButton.heightAnchor.constraint(equalToConstant: 44),
 
-            secondButton.topAnchor.constraint(equalTo: oneButton.bottomAnchor, constant: 9),
-            secondButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 6),
-            secondButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -6),
-            secondButton.heightAnchor.constraint(equalToConstant: 44),
-
-            twoButton.topAnchor.constraint(equalTo: secondButton.bottomAnchor, constant: 9),
+            twoButton.topAnchor.constraint(equalTo: oneButton.bottomAnchor, constant: 9),
             twoButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 6),
             twoButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -6),
             twoButton.heightAnchor.constraint(equalToConstant: 44),
@@ -208,7 +204,12 @@ extension GameView {
             threeButton.topAnchor.constraint(equalTo: twoButton.bottomAnchor, constant: 9),
             threeButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 6),
             threeButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -6),
-            threeButton.heightAnchor.constraint(equalToConstant: 44)
+            threeButton.heightAnchor.constraint(equalToConstant: 44),
+
+            fourButton.topAnchor.constraint(equalTo: threeButton.bottomAnchor, constant: 9),
+            fourButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 6),
+            fourButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -6),
+            fourButton.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
 }
