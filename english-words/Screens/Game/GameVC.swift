@@ -42,31 +42,11 @@ extension GameVC {
     }
 
     private func updateProgress() {
-//        gameView.oneButton.onAction = {
-//
-//            let next  = self.wordsService.next()
-//            self.gameView.update(next)
-//        }
 
         gameView.onVariantChanged = {
             let next  = self.wordsService.next()
             self.gameView.update(next)
         }
-//
-//        gameView.secondButton.onAction = {
-//            let next  = self.wordsService.next()
-//            self.gameView.update(next)
-//        }
-//
-//        gameView.twoButton.onAction = {
-//            let next  = self.wordsService.next()
-//            self.gameView.update(next)
-//        }
-//
-//        gameView.threeButton.onAction = {
-//            let next  = self.wordsService.next()
-//            self.gameView.update(next)
-//        }
     }
 }
 

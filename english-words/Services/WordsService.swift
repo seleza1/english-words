@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 class WordsService {
 
     let jsonLoader = JsonLoader()
@@ -30,7 +28,7 @@ class WordsService {
 
     func next() -> WordModel {
 
-        var next = allWords.removeFirst()
+        let next = allWords.removeFirst()
 
         var variants: [String] = Array(repeating: "", count: 4)
         variants[0] = next.translate
@@ -40,7 +38,7 @@ class WordsService {
         }
         variants.shuffle()
 
-        var wordModel = WordModel(
+        let wordModel = WordModel(
             id: next.id,
             word: next.word,
             translate: next.translate,

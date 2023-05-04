@@ -9,9 +9,11 @@ import UIKit
 
 final class GameView: UIView {
 
-    var word: WordModel?
-
 // MARK: - Stored Properties
+
+    private var word: WordModel?
+
+    var onVariantChanged: (()->())?
 
     let progressView: UIProgressView = {
         let indicatorProgress = UIProgressView()
@@ -43,8 +45,6 @@ final class GameView: UIView {
     private let selectAnswerLabel = Label(style: .select)
     private let wordLabel = Label(style: .wordGame)
 
-    var onVariantChanged: (()->())?
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -69,7 +69,6 @@ final class GameView: UIView {
         twoButton.setTitle(word.variants[1], for: .normal)
         threeButton.setTitle(word.variants[2], for: .normal)
         fourButton.setTitle(word.variants[3], for: .normal)
-
     }
 
     func buttonsTapped() {
@@ -88,7 +87,7 @@ final class GameView: UIView {
 
         twoButton.onAction = {
 
-            if self.word?.variants[0] == self.word?.translate {
+            if self.word?.variants[1] == self.word?.translate {
                 self.twoButton.backgroundColor = .green
             } else {
                 self.twoButton.backgroundColor = .red
@@ -101,7 +100,7 @@ final class GameView: UIView {
 
         threeButton.onAction = {
 
-            if self.word?.variants[0] == self.word?.translate {
+            if self.word?.variants[2] == self.word?.translate {
                 self.threeButton.backgroundColor = .green
             } else {
                 self.threeButton.backgroundColor = .red
@@ -115,7 +114,7 @@ final class GameView: UIView {
 
         fourButton.onAction = {
 
-            if self.word?.variants[0] == self.word?.translate {
+            if self.word?.variants[3] == self.word?.translate {
                 self.fourButton.backgroundColor = .green
             } else {
                 self.fourButton.backgroundColor = .red
