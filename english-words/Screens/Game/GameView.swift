@@ -58,7 +58,7 @@ final class GameView: UIView {
     }
 
     @objc func hintTapped() {
-        print("hintTapped")
+        print("help tapped")
     }
 
     required init?(coder: NSCoder) {
