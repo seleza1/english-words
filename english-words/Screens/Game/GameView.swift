@@ -52,7 +52,13 @@ final class GameView: UIView {
         setupStackView()
         buttonsTapped()
 
+        hintButton.addTarget(self, action: #selector(hintTapped), for: .touchUpInside)
+
         self.backgroundColor = .white
+    }
+
+    @objc func hintTapped() {
+        print("hintTapped")
     }
 
     required init?(coder: NSCoder) {
