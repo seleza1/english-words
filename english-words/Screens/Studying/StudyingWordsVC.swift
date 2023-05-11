@@ -14,8 +14,6 @@ import UIKit
  3. Navigation
  */
 
-
-
 final class StudyingWordsVC: UIViewController {
 
     var viewModel = StudyingWordsModel()
@@ -40,7 +38,6 @@ final class StudyingWordsVC: UIViewController {
 
 extension StudyingWordsVC {
     private func startLearnButtonTapped() {
-        
         studyingView.startLearnButton.onAction = {
             let gameVC = GameVC()
             gameVC.modalPresentationStyle = .fullScreen

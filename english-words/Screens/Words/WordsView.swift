@@ -15,6 +15,8 @@ final class WordsView: UIView {
         }
     }
 
+    var didTapped: (() -> ())?
+
     let startLearnButton = Button(style: .start)
 
     lazy var tableView: UITableView = {
@@ -63,6 +65,10 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        didTapped?()
+    }
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 
     }
@@ -90,6 +96,8 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
 
         return configuration
     }
+
+    
 }
 
 // MARK: - Layout
