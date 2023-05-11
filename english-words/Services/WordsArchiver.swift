@@ -6,12 +6,6 @@
 //
 
 import Foundation
-
-//All words
-//Known
-//Unknown
-
-
 enum ArchiverType: String {
     case all 
     case unknown
@@ -19,14 +13,14 @@ enum ArchiverType: String {
 }
 
 protocol WordsArchiverProtocol {
-    func save(_ words: [Word]) //сохраняем слова
-    func retrieve() -> [Word] //закладываем их массивом
+    func save(_ words: [Word])
+    func retrieve() -> [Word]
 }
 
 final class WordsArchiver: WordsArchiverProtocol {
 
-    private let encoder = JSONEncoder() //кодирует в бинарник
-    private let decoder = JSONDecoder() //разкодирует
+    private let encoder = JSONEncoder()
+    private let decoder = JSONDecoder()
 
     init(type: ArchiverType) {
         self.key = type.rawValue
@@ -34,10 +28,8 @@ final class WordsArchiver: WordsArchiverProtocol {
     private let key: String
 
     //MARK: - Public methods
-    func save(_ words: [Word]) { //метод сохранить
+    func save(_ words: [Word]) {
 
-        //Array<Product> -> Data
-        //массив кладем в бинарник и кодируем, бинарник кладем в UserDefaults
         do {
             let data = try encoder.encode(words)
             UserDefaults.standard.set(data, forKey: key)
@@ -45,14 +37,12 @@ final class WordsArchiver: WordsArchiverProtocol {
             print(error)
         }
     }
-    //retrieve - получить данные
-    func retrieve() -> [Word] {  //метод получить
 
-        //Data -> Array<Product>
-        //вытаскиваем из UserDefaults бинарник
+    func retrieve() -> [Word] {
+
         guard let data = UserDefaults.standard.data(forKey: key) else { return [] }
+        
         do {
-            //раскодировали бинарник в массив
             let array = try decoder.decode(Array<Word>.self, from: data)
             return array
 
