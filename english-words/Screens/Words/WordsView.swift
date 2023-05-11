@@ -15,7 +15,7 @@ final class WordsView: UIView {
         }
     }
 
-    var didTapped: (() -> ())?
+    var didTapped: ((_ word: String, _ meaning: String) -> ())?
 
     let startLearnButton = Button(style: .start)
 
@@ -34,7 +34,6 @@ final class WordsView: UIView {
         super.init(frame: frame)
         setupViews()
         setupConstraints()
-        
 
         self.backgroundColor = .white
     }
@@ -66,7 +65,9 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        didTapped?()
+        let word = words[indexPath.item]
+
+        didTapped?("\(word.word)      -", word.translate)
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

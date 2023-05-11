@@ -29,7 +29,6 @@ final class WordsVC: UIViewController {
 
         fetchWords()
     }
-
 }
 
 extension WordsVC {
@@ -42,10 +41,13 @@ extension WordsVC {
     }
 
     private func presentWordMeaning() {
-        wordsView.didTapped = { [weak self] in
+        wordsView.didTapped = { [weak self] meaning, translate in
             let wordMeaning = WordMeaningVC()
+            wordMeaning.wordLabelMeaning.text = meaning
+            wordMeaning.wordLabelTranslate.text = translate
             wordMeaning.modalPresentationStyle = .fullScreen
             self?.present(wordMeaning, animated: true)
+
         }
     }
 

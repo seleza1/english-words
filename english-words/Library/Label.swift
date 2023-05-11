@@ -12,6 +12,8 @@ enum LabelStyle {
     case phrase
     case select
     case wordGame
+    case wordMeaning
+    case translate
 }
 
 class Label: UILabel {
@@ -20,7 +22,7 @@ class Label: UILabel {
         super.init(frame: .zero)
 
         switch style {
-            
+
         case .word:
             self.font = Resources.UIFonts.wordLabelFont
             
@@ -36,7 +38,16 @@ class Label: UILabel {
             self.textAlignment = .center
             self.font = Resources.UIFonts.wordLabelGameFont
             self.numberOfLines = 0
+
+        case .wordMeaning:
+            self.textAlignment = .center
+            self.font = Resources.UIFonts.wordLabelMin
+
+        case .translate:
+            self.numberOfLines = 0
+
         }
+
         self.translatesAutoresizingMaskIntoConstraints = false
     }
 
