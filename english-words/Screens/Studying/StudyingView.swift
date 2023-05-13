@@ -7,20 +7,7 @@
 
 import UIKit
 
-/*
-
- Responsibilities
-
- 1. Configure UI
- 2. View Hierarchy
- 3. Layout UI
- 4. Delegate/Datasource UI
-
-*/
-
 final class StudyingView: UIView {
-
-    //var onAddCardAction: (() -> Void)?
 
     var words: [Word] = [] {
         didSet {

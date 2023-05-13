@@ -7,13 +7,6 @@
 
 import UIKit
 
-/*
- Responsibilities:
- 1. Business Logic (api, db, location, blte)
- 2. Event Handling
- 3. Navigation
- */
-
 final class StudyingWordsVC: UIViewController {
 
     var viewModel = StudyingWordsModel()
