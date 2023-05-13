@@ -10,7 +10,7 @@
 		CE2ADA4B2A024A470031B3EA /* WordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ADA4A2A024A470031B3EA /* WordsViewModel.swift */; };
 		CE2ADA4D2A026E660031B3EA /* StudyingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ADA4C2A026E660031B3EA /* StudyingViewModel.swift */; };
 		CE2ADA4F2A026ED40031B3EA /* KnowWordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ADA4E2A026ED40031B3EA /* KnowWordsViewModel.swift */; };
-		CE2ADA512A0CCD550031B3EA /* WordMeaningVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ADA502A0CCD550031B3EA /* WordMeaningVC.swift */; };
+		CE2ADA512A0CCD550031B3EA /* WordMeaningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ADA502A0CCD550031B3EA /* WordMeaningViewController.swift */; };
 		CE6466E329E6990900D32B47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466E229E6990900D32B47 /* AppDelegate.swift */; };
 		CE6466E529E6990900D32B47 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466E429E6990900D32B47 /* SceneDelegate.swift */; };
 		CE6466E729E6990900D32B47 /* WordsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466E629E6990900D32B47 /* WordsVC.swift */; };
@@ -42,7 +42,7 @@
 		CE2ADA4A2A024A470031B3EA /* WordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsViewModel.swift; sourceTree = "<group>"; };
 		CE2ADA4C2A026E660031B3EA /* StudyingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyingViewModel.swift; sourceTree = "<group>"; };
 		CE2ADA4E2A026ED40031B3EA /* KnowWordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowWordsViewModel.swift; sourceTree = "<group>"; };
-		CE2ADA502A0CCD550031B3EA /* WordMeaningVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordMeaningVC.swift; sourceTree = "<group>"; };
+		CE2ADA502A0CCD550031B3EA /* WordMeaningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordMeaningViewController.swift; sourceTree = "<group>"; };
 		CE6466DF29E6990900D32B47 /* english-words.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "english-words.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6466E229E6990900D32B47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6466E429E6990900D32B47 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 		CE2ADA522A0E2A460031B3EA /* Meaning */ = {
 			isa = PBXGroup;
 			children = (
-				CE2ADA502A0CCD550031B3EA /* WordMeaningVC.swift */,
+				CE2ADA502A0CCD550031B3EA /* WordMeaningViewController.swift */,
 			);
 			path = Meaning;
 			sourceTree = "<group>";
@@ -327,7 +327,7 @@
 				CE6466E529E6990900D32B47 /* SceneDelegate.swift in Sources */,
 				CE6466FE29E69F1500D32B47 /* Word.swift in Sources */,
 				CEE6A4B729F9210700BB90A9 /* WordsArchiver.swift in Sources */,
-				CE2ADA512A0CCD550031B3EA /* WordMeaningVC.swift in Sources */,
+				CE2ADA512A0CCD550031B3EA /* WordMeaningViewController.swift in Sources */,
 				CEE6A4B129F8FCD300BB90A9 /* StudyingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

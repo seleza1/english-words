@@ -41,7 +41,7 @@ extension WordsVC {
 
     private func presentWordMeaning() {
         wordsView.didTapped = { [weak self] meaning, translate in
-            let wordMeaning = WordMeaningVC()
+            let wordMeaning = WordMeaningViewController()
             wordMeaning.wordLabelMeaning.text = meaning
             wordMeaning.wordLabelTranslate.text = translate
             wordMeaning.modalPresentationStyle = .fullScreen
