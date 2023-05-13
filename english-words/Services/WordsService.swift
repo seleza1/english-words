@@ -17,10 +17,6 @@ class WordsService {
 
     var allWords: [Word] = []
 
-    //Выгружать все слова и класть в archiver
-
-    //метод next который вытаскивает слово из массива и передает на экран
-
     func fetchWords() {
         let words = jsonLoader.loadProducts(.words5000) ?? []
         self.allWords = words.shuffled()

@@ -7,16 +7,9 @@
 
 import Foundation
 
-
 final class WordsViewModel {
 
     var onWordsChanged: (([Word])->())?
-
-//    var words: [Word] = [] {
-//        didSet {
-//            onWordsChanged?(self.words)
-//        }
-//    }
 
     let jsonLoader = JsonLoader()
     let wordsArchiver = WordsArchiver(type: .all)
@@ -26,7 +19,6 @@ final class WordsViewModel {
         let archivedWords = wordsArchiver.retrieve()
 
         if archivedWords.isNotEmpty {
-            //self.words = archivedWords
             onWordsChanged?(archivedWords)
             return
         }
