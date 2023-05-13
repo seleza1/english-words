@@ -9,12 +9,10 @@ import UIKit
 
 final class GameVC: UIViewController {
 
-    var wordsService = WordsService()
-
     private var total: Float = 0
 
+    var wordsService = WordsService()
     var word: WordModel?
-
     var gameView: GameView { return self.view as! GameView }
 
     override func loadView() {
@@ -25,12 +23,9 @@ final class GameVC: UIViewController {
         super.viewDidLoad()
         updateProgress()
         closeView()
-
         wordsService.fetchWords()
-
         let next = wordsService.next()
         gameView.update(next)
-
     }
 }
 

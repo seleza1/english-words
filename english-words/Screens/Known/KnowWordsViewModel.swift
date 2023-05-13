@@ -14,7 +14,7 @@ final class KnowWordsViewModel {
     let wordsArchiver = WordsArchiver(type: .all)
 
     func fetchWords() {
-
+        
         let archivedWords = wordsArchiver.retrieve()
 
         if archivedWords.isNotEmpty {

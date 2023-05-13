@@ -23,6 +23,7 @@ enum Resources {
         static let wordLabelFont = UIFont.boldSystemFont(ofSize: 18)
         static let phraseLabelFont = UIFont.boldSystemFont(ofSize: 9)
         static let wordLabelGameFont = UIFont.boldSystemFont(ofSize: 30)
+        static let wordLabelMin = UIFont.systemFont(ofSize: 24)
     }
 
     enum Icons {
@@ -61,6 +62,5 @@ enum Resources {
         static let wordsLearnHeader = "Слов на изучение"
         static let allWordsHeader = "Слов осталось"
         static let allLearnHeader = "Всего изучено"
-
     }
 }

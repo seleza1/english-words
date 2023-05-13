@@ -33,10 +33,9 @@ final class GameView: UIView {
 
     private let stackView = UIStackView()
 
-    let closeButton = Button(style: .close)
-
     private let hintButton = Button(style: .hint)
 
+    let closeButton = Button(style: .close)
     let oneButton = Button(style: .one)
     let twoButton = Button(style: .second)
     let threeButton = Button(style: .two)

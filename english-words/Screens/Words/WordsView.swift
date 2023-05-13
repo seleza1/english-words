@@ -15,6 +15,8 @@ final class WordsView: UIView {
         }
     }
 
+    var didTapped: ((_ word: String, _ meaning: String) -> ())?
+
     let startLearnButton = Button(style: .start)
 
     lazy var tableView: UITableView = {
@@ -32,7 +34,6 @@ final class WordsView: UIView {
         super.init(frame: frame)
         setupViews()
         setupConstraints()
-        
 
         self.backgroundColor = .white
     }
@@ -63,6 +64,12 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let word = words[indexPath.item]
+
+        didTapped?("\(word.word)      -", word.translate)
+    }
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 
     }
@@ -90,12 +97,14 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
 
         return configuration
     }
+
+    
 }
 
 // MARK: - Layout
 
 extension WordsView {
-
+    
     private func setupViews() {
         self.addSubview(tableView)
         self.addSubview(startLearnButton)
