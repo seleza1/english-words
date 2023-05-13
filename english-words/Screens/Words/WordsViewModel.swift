@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 final class WordsViewModel {
 
     var onWordsChanged: (([Word])->())?

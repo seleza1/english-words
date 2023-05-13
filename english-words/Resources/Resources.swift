@@ -62,6 +62,5 @@ enum Resources {
         static let wordsLearnHeader = "Слов на изучение"
         static let allWordsHeader = "Слов осталось"
         static let allLearnHeader = "Всего изучено"
-
     }
 }

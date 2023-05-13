@@ -83,6 +83,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE2ADA522A0E2A460031B3EA /* Meaning */ = {
+			isa = PBXGroup;
+			children = (
+				CE2ADA502A0CCD550031B3EA /* WordMeaningVC.swift */,
+			);
+			path = Meaning;
+			sourceTree = "<group>";
+		};
 		CE6466D629E6990900D32B47 = {
 			isa = PBXGroup;
 			children = (
@@ -138,7 +146,7 @@
 		CE6466F829E69BEE00D32B47 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				CE2ADA502A0CCD550031B3EA /* WordMeaningVC.swift */,
+				CE2ADA522A0E2A460031B3EA /* Meaning */,
 				CE6466F929E69BFA00D32B47 /* Words */,
 				CE64670E29E7E60D00D32B47 /* Studying */,
 				CE64671129E7E62B00D32B47 /* Known */,
@@ -190,10 +198,10 @@
 		CE64671129E7E62B00D32B47 /* Known */ = {
 			isa = PBXGroup;
 			children = (
+				CE2ADA4E2A026ED40031B3EA /* KnowWordsViewModel.swift */,
 				CEE6A4B229F9046000BB90A9 /* KnownView.swift */,
 				CE64670C29E7E2B000D32B47 /* KnownWordsVC.swift */,
 				CE64671229E7E64000D32B47 /* KnowCell.swift */,
-				CE2ADA4E2A026ED40031B3EA /* KnowWordsViewModel.swift */,
 			);
 			path = Known;
 			sourceTree = "<group>";

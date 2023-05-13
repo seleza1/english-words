@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 final class KnownWordsVC: UIViewController {
 
     var knowView: KnownView { return self.view as! KnownView }

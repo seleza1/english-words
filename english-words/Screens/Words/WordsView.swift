@@ -104,7 +104,7 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
 // MARK: - Layout
 
 extension WordsView {
-
+    
     private func setupViews() {
         self.addSubview(tableView)
         self.addSubview(startLearnButton)
