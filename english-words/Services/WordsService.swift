@@ -9,6 +9,8 @@ import Foundation
 
 class WordsService {
 
+    //MARK: - Public Properties
+
     let jsonLoader = JsonLoader()
 
     let allWordsArchiver = WordsArchiver(type: .all)
@@ -16,6 +18,13 @@ class WordsService {
     let knownWordsArchiver = WordsArchiver(type: .known)
 
     var allWords: [Word] = []
+}
+
+//MARK: - Extension
+
+extension WordsService {
+
+    //MARK: - Public Methods
 
     func fetchWords() {
         let words = jsonLoader.loadProducts(.words5000) ?? []

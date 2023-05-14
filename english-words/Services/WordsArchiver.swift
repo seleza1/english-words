@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 enum ArchiverType: String {
     case all 
     case unknown
@@ -19,15 +20,26 @@ protocol WordsArchiverProtocol {
 
 final class WordsArchiver: WordsArchiverProtocol {
 
+    // MARK: - Private Properties
+
+    private let key: String
+
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
+
+    // MARK: - Initialization
 
     init(type: ArchiverType) {
         self.key = type.rawValue
     }
-    private let key: String
+}
 
-    //MARK: - Public methods
+// MARK: - Extension
+
+extension WordsArchiver {
+
+    // MARK: - Public methods
+
     func save(_ words: [Word]) {
 
         do {
@@ -41,7 +53,7 @@ final class WordsArchiver: WordsArchiverProtocol {
     func retrieve() -> [Word] {
 
         guard let data = UserDefaults.standard.data(forKey: key) else { return [] }
-        
+
         do {
             let array = try decoder.decode(Array<Word>.self, from: data)
             return array

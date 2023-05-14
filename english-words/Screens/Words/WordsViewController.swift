@@ -7,11 +7,14 @@
 
 import UIKit
 
-final class WordsVC: UIViewController {
+final class WordsViewController: UIViewController {
+
+    // MARK: - Public Properties
 
     var viewModel = WordsViewModel()
-
     var wordsView: WordsView { return self.view as! WordsView }
+
+    // MARK: - Lifecycle
 
     override func loadView() {
         self.view = WordsView(frame: UIScreen.main.bounds)
@@ -19,39 +22,46 @@ final class WordsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         startLearnButtonTapped()
         presentWordMeaning()
-
-        viewModel.onWordsChanged = { [weak self] words in
-            self?.wordsView.update(words)
-        }
-
+        didChange()
         fetchWords()
     }
 }
 
-extension WordsVC {
-    private func startLearnButtonTapped() {
+// MARK: - Extension
+
+private extension WordsViewController {
+
+    // MARK: - Private Methods
+
+    func startLearnButtonTapped() {
         wordsView.startLearnButton.onAction = {
-            let gameVC = GameVC()
+            let gameVC = GameViewController()
             gameVC.modalPresentationStyle = .fullScreen
             self.present(gameVC, animated: true)
         }
     }
 
-    private func presentWordMeaning() {
+    func presentWordMeaning() {
         wordsView.didTapped = { [weak self] meaning, translate in
             let wordMeaning = WordMeaningViewController()
             wordMeaning.wordLabelMeaning.text = meaning
             wordMeaning.wordLabelTranslate.text = translate
             wordMeaning.modalPresentationStyle = .fullScreen
             self?.present(wordMeaning, animated: true)
-
         }
     }
 
-    private func fetchWords() {
+    func fetchWords() {
         viewModel.fetchWords()
+    }
+
+    func didChange() {
+        viewModel.onWordsChanged = { [weak self] words in
+            self?.wordsView.update(words)
+        }
     }
 }
 

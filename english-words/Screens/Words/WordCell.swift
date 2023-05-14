@@ -9,12 +9,16 @@ import UIKit
 
 final class WordCell: UITableViewCell {
 
-    static let reuseId = "WordCell"
-
-// MARK: - Private Properties
+    // MARK: - Private Properties
 
     private let wordLabel = Label(style: .word)
     private let soundButton = Button(style: .sound)
+
+    // MARK: - Static Properties
+
+    static let reuseId = "WordCell"
+
+    // MARK: - Initialization
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -22,26 +26,31 @@ final class WordCell: UITableViewCell {
         setupViews()
         setupConstraints()
     }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: - Public Methods
 
     func update(_ word: Word) {
         wordLabel.text = word.word
     }
 }
 
-// MARK: - Layout
+// MARK: - Extension
 
-extension WordCell {
-    private func setupViews() {
+private extension WordCell {
+
+    // MARK: - Private Methods
+
+    func setupViews() {
         addSubview(wordLabel)
         addSubview(soundButton)
     }
 
-    private func setupConstraints() {
+    func setupConstraints() {
         NSLayoutConstraint.activate([
-
             soundButton.topAnchor.constraint(equalTo: topAnchor, constant: 12),
             soundButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
             soundButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),

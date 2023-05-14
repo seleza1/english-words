@@ -8,7 +8,9 @@
 import UIKit
 
 enum Resources {
-    
+
+    // MARK: - Colors
+
     enum Colors {
         static let tabBarTintColor = #colorLiteral(red: 0.2317892015, green: 0.2613468766, blue: 0.9948940873, alpha: 1)
         static let startLearnButtonColor =  #colorLiteral(red: 0.992441237, green: 0.8533335924, blue: 0.4606403112, alpha: 1)
@@ -19,12 +21,16 @@ enum Resources {
         static let justGreen = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
     }
 
+    // MARK: - UIFonts
+
     enum UIFonts {
         static let wordLabelFont = UIFont.boldSystemFont(ofSize: 18)
         static let phraseLabelFont = UIFont.boldSystemFont(ofSize: 9)
         static let wordLabelGameFont = UIFont.boldSystemFont(ofSize: 30)
         static let wordLabelMin = UIFont.systemFont(ofSize: 24)
     }
+
+    // MARK: - Icons
 
     enum Icons {
         static let wordsControllerIcon = UIImage(systemName: "textformat.alt")
@@ -35,12 +41,15 @@ enum Resources {
         static let hintIcon = "lightbulb"
     }
 
+    // MARK: - Title
+
     enum Title {
         static let tabItemWords = UITabBarItem.init(
             title: "Мой словарь",
             image: Icons.wordsControllerIcon,
             selectedImage: Icons.wordsControllerIcon
         )
+
         static let tabItemStudying = UITabBarItem.init(
             title: Resources.Title.tableViewLearnButtonTitle,
             image: Icons.studyingWordsController,
@@ -55,11 +64,14 @@ enum Resources {
 
         static let tableViewKnownButtonTitle = "Знаю"
         static let tableViewLearnButtonTitle = "Изучаю"
+
         static let selectAnswerLabel = "Выберите правильный ответ"
+
         static let startToLearnButtonTitle = "Начать обучение"
         static let startToRepeatButtonTitle = "Повторить слова"
 
         static let wordsLearnHeader = "Слов на изучение"
+
         static let allWordsHeader = "Слов осталось"
         static let allLearnHeader = "Всего изучено"
     }

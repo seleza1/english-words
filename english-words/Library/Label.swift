@@ -16,7 +16,9 @@ enum LabelStyle {
     case translate
 }
 
-class Label: UILabel {
+final class Label: UILabel {
+
+    // MARK: - Initialization
 
     init(style: LabelStyle) {
         super.init(frame: .zero)

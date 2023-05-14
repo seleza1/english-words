@@ -7,13 +7,19 @@
 
 import UIKit
 
-final class GameVC: UIViewController {
+final class GameViewController: UIViewController {
+
+    // MARK: - Private Properties
 
     private var total: Float = 0
+
+    // MARK: - Public Properties
 
     var wordsService = WordsService()
     var word: WordModel?
     var gameView: GameView { return self.view as! GameView }
+
+    // MARK: - Lifecycle
 
     override func loadView() {
         self.view = GameView(frame: UIScreen.main.bounds)
@@ -21,27 +27,36 @@ final class GameVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         updateProgress()
         closeView()
         wordsService.fetchWords()
-        let next = wordsService.next()
-        gameView.update(next)
+        update()
     }
 }
 
-extension GameVC {
-    private func closeView() {
+// MARK: - Extension
+
+private extension GameViewController {
+
+    // MARK: - Private Methods
+
+    func closeView() {
         gameView.closeButton.onAction = {
             self.dismiss(animated: true)
         }
     }
 
-    private func updateProgress() {
-
+    func updateProgress() {
         gameView.onVariantChanged = {
             let next  = self.wordsService.next()
             self.gameView.update(next)
         }
+    }
+
+    func update() {
+        let next = wordsService.next()
+        gameView.update(next)
     }
 }
 

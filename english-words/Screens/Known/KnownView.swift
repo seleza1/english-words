@@ -9,13 +9,13 @@ import UIKit
 
 final class KnownView: UIView {
 
-    var words: [Word] = [] {
+    // MARK: - Private Properties
+
+    private var words: [Word] = [] {
         didSet {
             tableView.reloadData()
         }
     }
-
-    let startLearnButton = Button(style: .repeatW)
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -24,12 +24,17 @@ final class KnownView: UIView {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 60
-        
+
         return tableView
     }()
 
+    let startLearnButton = Button(style: .repeatW)
+
+    // MARK: - Initialization
+
     override init(frame: CGRect) {
         super.init(frame: frame)
+
         setupViews()
         setupConstraints()
         fetchWords()
@@ -41,10 +46,14 @@ final class KnownView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Public Methods
+
     func update(_ words: [Word]) {
         self.words = words
     }
 }
+
+// MARK: - Extension Table View Data Source, UITableViewDelegate
 
 extension KnownView: UITableViewDelegate, UITableViewDataSource {
 
@@ -89,24 +98,20 @@ extension KnownView: UITableViewDelegate, UITableViewDataSource {
         
         return configuration
     }
-
-    private func fetchWords() {
-        if let loadedWords = JsonLoader().loadProducts(.words5000) {
-            words = loadedWords.shuffled()
-        }
-    }
 }
 
-// MARK: - Layout
+// MARK: - Extension
 
-extension KnownView {
+private extension KnownView {
 
-    private func setupViews() {
+    // MARK: - Private Methods
+
+    func setupViews() {
         self.addSubview(tableView)
         self.addSubview(startLearnButton)
     }
 
-    private func setupConstraints() {
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             startLearnButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 38),
             startLearnButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12),
@@ -120,7 +125,7 @@ extension KnownView {
         ])
     }
 
-    private func createHeaderSectionLabel(index: Int = 0) -> UILabel {
+    func createHeaderSectionLabel(index: Int = 0) -> UILabel {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 200))
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 20)
@@ -130,5 +135,11 @@ extension KnownView {
 
         return label
 
+    }
+
+    func fetchWords() {
+        if let loadedWords = JsonLoader().loadProducts(.words5000) {
+            words = loadedWords.shuffled()
+        }
     }
 }

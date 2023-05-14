@@ -7,37 +7,47 @@
 
 import UIKit
 
-final class KnownWordsVC: UIViewController {
+final class KnownWordsViewController: UIViewController {
 
     var knowView: KnownView { return self.view as! KnownView }
     let viewModel = KnowWordsViewModel()
 
+    // MARK: - Lifecycle
+
     override func loadView() {
         self.view = KnownView(frame: UIScreen.main.bounds)
-
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         fetchWords()
         startLearnButtonTapped()
-
-        viewModel.onWordsChanged = { [weak self] words in
-            self?.knowView.update(words)
-        }
+        update()
     }
 }
 
-extension KnownWordsVC {
-    private func startLearnButtonTapped() {
+// MARK: - Extension
+
+private extension KnownWordsViewController {
+
+    // MARK: - Private Methods
+
+    func startLearnButtonTapped() {
         knowView.startLearnButton.onAction = {
-            let gameVC = GameVC()
+            let gameVC = GameViewController()
             gameVC.modalPresentationStyle = .fullScreen
             self.present(gameVC, animated: true)
         }
     }
 
-    private func fetchWords() {
+    func fetchWords() {
         viewModel.fetchWords()
+    }
+
+    func update() {
+        viewModel.onWordsChanged = { [weak self] words in
+            self?.knowView.update(words)
+        }
     }
 }
