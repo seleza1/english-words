@@ -14,6 +14,8 @@ final class WordCell: UITableViewCell {
     private let wordLabel = Label(style: .word)
     private let soundButton = Button(style: .sound)
 
+    private let roundView = UIView()
+
     // MARK: - Static Properties
 
     static let reuseId = "WordCell"
@@ -45,8 +47,15 @@ private extension WordCell {
     // MARK: - Private Methods
 
     func setupViews() {
+        roundView.translatesAutoresizingMaskIntoConstraints = false
+        roundView.layer.cornerRadius = 12
+        roundView.layer.borderColor = UIColor.red.cgColor
+        roundView.layer.borderWidth = 1
         addSubview(wordLabel)
         addSubview(soundButton)
+        addSubview(roundView)
+
+
     }
 
     func setupConstraints() {
@@ -57,7 +66,12 @@ private extension WordCell {
 
             wordLabel.topAnchor.constraint(equalTo: topAnchor, constant: 19),
             wordLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 72),
-            wordLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
+            wordLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+
+            roundView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            roundView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            roundView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            roundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
         ])
     }
 }

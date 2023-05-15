@@ -29,7 +29,7 @@ final class WordsView: UIView {
         tableView.register(WordCell.self, forCellReuseIdentifier: WordCell.reuseId)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = 60
+        tableView.rowHeight = 104
         
         return tableView
     }()
