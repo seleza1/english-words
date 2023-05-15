@@ -7,11 +7,12 @@
 
 import UIKit
 
-final class StudyingWordsVC: UIViewController {
+final class StudyingWordsViewController: UIViewController {
 
     var viewModel = StudyingWordsModel()
-    
     var studyingView: StudyingView { return self.view as! StudyingView }
+
+    // MARK: - Lifecycle
 
     override func loadView() {
         self.view = StudyingView(frame: UIScreen.main.bounds)
@@ -19,26 +20,34 @@ final class StudyingWordsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         startLearnButtonTapped()
-
-        viewModel.onWordsChanged = { [weak self] words in
-            self?.studyingView.update(words)
-        }
+        didChange()
         fetchWords()
     }
 }
 
-extension StudyingWordsVC {
-    private func startLearnButtonTapped() {
+// MARK: - Extension
+
+private extension StudyingWordsViewController {
+
+    // MARK: - Private Methods
+
+    func startLearnButtonTapped() {
         studyingView.startLearnButton.onAction = {
-            let gameVC = GameVC()
+            let gameVC = GameViewController()
             gameVC.modalPresentationStyle = .fullScreen
             self.present(gameVC, animated: true)
         }
     }
 
-    private func fetchWords() {
+    func fetchWords() {
         viewModel.fetchWords()
+    }
+
+    func didChange() {
+        viewModel.onWordsChanged = { [weak self] words in
+            self?.studyingView.update(words)
+        }
     }
 }

@@ -23,6 +23,8 @@ class Button: UIButton {
 
     var onAction: (()->())?
 
+    //MARK: - Initialization
+
     init(style: ButtonStyle) {
         super.init(frame: .zero)
 

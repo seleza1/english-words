@@ -9,11 +9,15 @@ import UIKit
 
 final class WordsView: UIView {
 
-    var words: [Word] = [] {
+    // MARK: - Private Properties
+
+    private var words: [Word] = [] {
         didSet {
             tableView.reloadData()
         }
     }
+
+    // MARK: - Public Properties
 
     var didTapped: ((_ word: String, _ meaning: String) -> ())?
 
@@ -30,8 +34,11 @@ final class WordsView: UIView {
         return tableView
     }()
 
+    // MARK: - Initialization
+
     override init(frame: CGRect) {
         super.init(frame: frame)
+
         setupViews()
         setupConstraints()
 
@@ -42,10 +49,14 @@ final class WordsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Public Methods
+
     func update(_ words: [Word]) {
         self.words = words
     }
 }
+
+// MARK: - Extension Table View Data Source, UITableViewDelegate
 
 extension WordsView: UITableViewDelegate, UITableViewDataSource {
 
@@ -84,12 +95,14 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
             tableView.deleteRows(at: [indexPath], with: .fade)
             completionHandler(true)
         }
+
         knowWord.backgroundColor = Resources.Colors.wordKnownButton
 
         let learnWord = UIContextualAction(style: .normal, title: Resources.Title.tableViewLearnButtonTitle) { (action, view, completionHandler) in
             tableView.insertRows(at: [indexPath], with: .fade)
             completionHandler(true)
         }
+
         learnWord.backgroundColor = Resources.Colors.justGreen
 
         let configuration = UISwipeActionsConfiguration(actions: [knowWord, learnWord])
@@ -97,20 +110,20 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
 
         return configuration
     }
-
-    
 }
 
-// MARK: - Layout
+// MARK: - Extension
 
-extension WordsView {
-    
-    private func setupViews() {
+private extension WordsView {
+
+    // MARK: - Private Methods
+
+    func setupViews() {
         self.addSubview(tableView)
         self.addSubview(startLearnButton)
     }
 
-    private func setupConstraints() {
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             startLearnButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 38),
             startLearnButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12),
@@ -124,7 +137,7 @@ extension WordsView {
         ])
     }
 
-    private func createHeaderSectionLabel(index: Int = 0) -> UILabel {
+    func createHeaderSectionLabel(index: Int = 0) -> UILabel {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 200))
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 20)
@@ -133,7 +146,6 @@ extension WordsView {
         label.text = "\(Resources.Title.allWordsHeader) - \(index)"
 
         return label
-
     }
 }
 

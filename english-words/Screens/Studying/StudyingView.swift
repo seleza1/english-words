@@ -9,7 +9,9 @@ import UIKit
 
 final class StudyingView: UIView {
 
-    var words: [Word] = [] {
+    // MARK: - Private Properties
+
+    private var words: [Word] = [] {
         didSet {
             tableView.reloadData()
         }
@@ -26,10 +28,15 @@ final class StudyingView: UIView {
         return tableView
     }()
 
+    // MARK: - Public Properties
+
     let startLearnButton = Button(style: .start)
+
+    // MARK: - Lifecycle
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+
         setupViews()
         setupConstraints()
 
@@ -40,10 +47,14 @@ final class StudyingView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Public Methods
+
     func update(_ words: [Word]) {
         self.words = words
     }
 }
+
+// MARK: - Extension Table View Data Source, UITableViewDelegate
 
 extension StudyingView: UITableViewDelegate, UITableViewDataSource {
 
@@ -90,16 +101,18 @@ extension StudyingView: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-// MARK: - Layout
+// MARK: - Extension
 
-extension StudyingView {
+private extension StudyingView {
 
-    private func setupViews() {
+    // MARK: - Private Methods
+
+    func setupViews() {
         self.addSubview(tableView)
         self.addSubview(startLearnButton)
     }
 
-    private func setupConstraints() {
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             startLearnButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 38),
             startLearnButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12),
@@ -113,7 +126,7 @@ extension StudyingView {
         ])
     }
 
-    private func createHeaderSectionLabel(index: Int = 0) -> UILabel {
+    func createHeaderSectionLabel(index: Int = 0) -> UILabel {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 200))
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 20)
@@ -122,6 +135,5 @@ extension StudyingView {
         label.text = "\(Resources.Title.wordsLearnHeader) - \(index)"
 
         return label
-
     }
 }

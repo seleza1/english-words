@@ -9,7 +9,11 @@ import UIKit
 
 final class WordMeaningViewController: UIViewController {
 
+    // MARK: - Private Properties
+
     private let closeButton = Button(style: .close)
+
+    // MARK: - Public Properties
 
     let wordLabelMeaning = Label(style: .wordMeaning)
     let wordLabelTranslate = Label(style: .translate)
@@ -18,17 +22,18 @@ final class WordMeaningViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupView()
         setupConstraints()
+        setupActions()
     }
 }
 
-// MARK: - Private methods
+// MARK: - Extension
 
 private extension WordMeaningViewController {
     
-    // MARK: - Setup
+    // MARK: - Private Methods
     
     func setupView() {
         view.backgroundColor = .white
