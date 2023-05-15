@@ -44,23 +44,6 @@ enum Resources {
     // MARK: - Title
 
     enum Title {
-        static let tabItemWords = UITabBarItem.init(
-            title: "Мой словарь",
-            image: Icons.wordsControllerIcon,
-            selectedImage: Icons.wordsControllerIcon
-        )
-
-        static let tabItemStudying = UITabBarItem.init(
-            title: Resources.Title.tableViewLearnButtonTitle,
-            image: Icons.studyingWordsController,
-            selectedImage: Icons.studyingWordsController
-        )
-
-        static let tabItemKnown = UITabBarItem.init(
-            title: Resources.Title.tableViewKnownButtonTitle,
-            image: Icons.knownWordsController,
-            selectedImage: Icons.knownWordsController
-        )
 
         static let tableViewKnownButtonTitle = "Знаю"
         static let tableViewLearnButtonTitle = "Изучаю"

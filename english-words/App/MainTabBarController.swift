@@ -9,48 +9,37 @@ import UIKit
 
 final class MainTabBarController: UITabBarController {
 
-    // MARK: - Private Properties
-
-    private var wordsController: WordsViewController = {
-        let controller = WordsViewController()
-        let image = Resources.Icons.wordsControllerIcon
-        let selectedImage = Resources.Icons.wordsControllerIcon
-        let tabItem = Resources.Title.tabItemWords
-        controller.tabBarItem = tabItem
-
-        return controller
-    }()
-
-    private var studyingWordsController: StudyingWordsViewController = {
-        let controller = StudyingWordsViewController()
-        let image = Resources.Icons.studyingWordsController
-        let selectedImage = Resources.Icons.studyingWordsController
-        let tabItem = Resources.Title.tabItemStudying
-        controller.tabBarItem = tabItem
-
-        return controller
-    }()
-
-    private var knownWordsController: KnownWordsViewController = {
-        let controller = KnownWordsViewController()
-        let image = Resources.Icons.knownWordsController
-        let selectedImage = Resources.Icons.knownWordsController
-        let tabItem = Resources.Title.tabItemKnown
-        controller.tabBarItem = tabItem
-
-        return controller
-    }()
-
-    // MARK: - LifeCycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
+
+        setupView()
     }
+}
 
-    // MARK: - Private Methods
+private extension MainTabBarController {
 
-    private func setup() {
+    func setupView() {
+        let wordsController = WordsViewController()
+        wordsController.tabBarItem = UITabBarItem(
+            title: .dictionary,
+            image: UIImage(named: "books"),
+            selectedImage: UIImage(named: "books_selected")
+        )
+
+        let studyingWordsController = StudyingWordsViewController()
+        studyingWordsController.tabBarItem = UITabBarItem(
+            title: .learn,
+            image: Resources.Icons.studyingWordsController,
+            selectedImage: Resources.Icons.studyingWordsController
+        )
+
+        let knownWordsController = KnownWordsViewController()
+        knownWordsController.tabBarItem = UITabBarItem(
+            title: .known,
+            image: Resources.Icons.knownWordsController,
+            selectedImage: Resources.Icons.knownWordsController
+        )
+
         tabBar.tintColor = Resources.Colors.tabBarTintColor
         viewControllers = [wordsController, studyingWordsController, knownWordsController]
     }
