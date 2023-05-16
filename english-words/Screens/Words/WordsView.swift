@@ -121,16 +121,17 @@ private extension WordsView {
     func setupViews() {
         self.addSubview(tableView)
         self.addSubview(startLearnButton)
+
     }
 
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            startLearnButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 38),
-            startLearnButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12),
-            startLearnButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12),
-            startLearnButton.heightAnchor.constraint(equalToConstant: 40),
+            startLearnButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            startLearnButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            startLearnButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -102),
+            startLearnButton.heightAnchor.constraint(equalToConstant: 64),
 
-            tableView.topAnchor.constraint(equalTo: startLearnButton.bottomAnchor, constant: 8),
+            tableView.topAnchor.constraint(equalTo: self.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
