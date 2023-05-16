@@ -29,7 +29,8 @@ final class WordsView: UIView {
         tableView.register(WordCell.self, forCellReuseIdentifier: WordCell.reuseId)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = 60
+        tableView.rowHeight = 104
+        tableView.separatorStyle = .none
         
         return tableView
     }()
@@ -85,12 +86,8 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
 
     }
 
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        createHeaderSectionLabel(index: words.count)
-    }
-
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let knowWord = UIContextualAction(style: .normal, title: Resources.Title.tableViewKnownButtonTitle) { (action, view, completionHandler) in
+        let knowWord = UIContextualAction(style: .normal, title: .known) { (action, view, completionHandler) in
             self.words.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             completionHandler(true)
@@ -98,7 +95,7 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
 
         knowWord.backgroundColor = Resources.Colors.wordKnownButton
 
-        let learnWord = UIContextualAction(style: .normal, title: Resources.Title.tableViewLearnButtonTitle) { (action, view, completionHandler) in
+        let learnWord = UIContextualAction(style: .normal, title: .learn) { (action, view, completionHandler) in
             tableView.insertRows(at: [indexPath], with: .fade)
             completionHandler(true)
         }
@@ -135,17 +132,6 @@ private extension WordsView {
             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
-    }
-
-    func createHeaderSectionLabel(index: Int = 0) -> UILabel {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 200))
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.backgroundColor = Resources.Colors.justGreen
-        label.heightAnchor.constraint (equalToConstant: 50).isActive = true
-        label.text = "\(Resources.Title.allWordsHeader) - \(index)"
-
-        return label
     }
 }
 

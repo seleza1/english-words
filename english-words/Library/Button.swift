@@ -23,15 +23,13 @@ class Button: UIButton {
 
     var onAction: (()->())?
 
-    //MARK: - Initialization
-
     init(style: ButtonStyle) {
         super.init(frame: .zero)
 
         switch style {
 
         case .sound:
-            self.setImage(UIImage(systemName: Resources.Icons.soundIcon), for: .normal)
+            self.setImage(UIImage(named: "sound"), for: .normal)
 
         case .close:
             self.setImage(UIImage(systemName: Resources.Icons.closeIcon), for: .normal)

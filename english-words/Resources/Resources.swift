@@ -45,9 +45,6 @@ enum Resources {
 
     enum Title {
 
-        static let tableViewKnownButtonTitle = "Знаю"
-        static let tableViewLearnButtonTitle = "Изучаю"
-
         static let selectAnswerLabel = "Выберите правильный ответ"
 
         static let startToLearnButtonTitle = "Начать обучение"

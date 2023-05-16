@@ -31,6 +31,7 @@
 		CEBB91D929EAD6DF00D26220 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB91D829EAD6DF00D26220 /* Resources.swift */; };
 		CEBB91EF29F29F9B00D26220 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB91EE29F29F9B00D26220 /* Button.swift */; };
 		CEBB91F129F2A16100D26220 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB91F029F2A16100D26220 /* Label.swift */; };
+		CEE0F52F2A13651800ACBDB5 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE0F52E2A13651800ACBDB5 /* View.swift */; };
 		CEE6A4AC29F8F8B800BB90A9 /* WordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE6A4AB29F8F8B800BB90A9 /* WordsView.swift */; };
 		CEE6A4B129F8FCD300BB90A9 /* StudyingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE6A4B029F8FCD300BB90A9 /* StudyingView.swift */; };
 		CEE6A4B329F9046000BB90A9 /* KnownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE6A4B229F9046000BB90A9 /* KnownView.swift */; };
@@ -66,6 +67,7 @@
 		CEBB91D829EAD6DF00D26220 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		CEBB91EE29F29F9B00D26220 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		CEBB91F029F2A16100D26220 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		CEE0F52E2A13651800ACBDB5 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		CEE6A4AB29F8F8B800BB90A9 /* WordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsView.swift; sourceTree = "<group>"; };
 		CEE6A4B029F8FCD300BB90A9 /* StudyingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyingView.swift; sourceTree = "<group>"; };
 		CEE6A4B229F9046000BB90A9 /* KnownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownView.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 			children = (
 				CEBB91EE29F29F9B00D26220 /* Button.swift */,
 				CEBB91F029F2A16100D26220 /* Label.swift */,
+				CEE0F52E2A13651800ACBDB5 /* View.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				CEE6A4AC29F8F8B800BB90A9 /* WordsView.swift in Sources */,
 				CEBB91F129F2A16100D26220 /* Label.swift in Sources */,
 				CE2ADA4F2A026ED40031B3EA /* KnowWordsViewModel.swift in Sources */,
+				CEE0F52F2A13651800ACBDB5 /* View.swift in Sources */,
 				CEBB91D529E7E7EC00D26220 /* StudyingWordsViewController.swift in Sources */,
 				CE6466E329E6990900D32B47 /* AppDelegate.swift in Sources */,
 				CE64670529E6A6E600D32B47 /* MainTabBarController.swift in Sources */,
