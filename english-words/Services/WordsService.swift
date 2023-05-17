@@ -24,8 +24,6 @@ class WordsService {
 
 extension WordsService {
 
-    //MARK: - Public Methods
-
     func fetchWords() {
         let words = jsonLoader.loadProducts(.words5000) ?? []
         self.allWords = words.shuffled()

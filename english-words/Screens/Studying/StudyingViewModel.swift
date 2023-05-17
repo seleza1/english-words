@@ -21,8 +21,6 @@ final class StudyingWordsModel {
 
 extension StudyingWordsModel {
 
-    // MARK: - Public Methods
-
     func fetchWords() {
 
         let archivedWords = wordsArchiver.retrieve()

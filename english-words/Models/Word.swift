@@ -7,16 +7,12 @@
 
 import Foundation
 
-// MARK: - WordModel
-
 struct WordModel {
     var id: Int
     var word: String
     var translate: String
     var variants: [String]
 }
-
-// MARK: - Word
 
 struct Word: Codable {
     let id: Int

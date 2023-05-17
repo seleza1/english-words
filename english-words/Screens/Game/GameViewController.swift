@@ -9,10 +9,6 @@ import UIKit
 
 final class GameViewController: UIViewController {
 
-    // MARK: - Private Properties
-
-    private var total: Float = 0
-
     // MARK: - Public Properties
 
     var wordsService = WordsService()
@@ -32,6 +28,8 @@ final class GameViewController: UIViewController {
         closeView()
         wordsService.fetchWords()
         update()
+        hintTapped()
+        soundTapped()
     }
 }
 
@@ -39,11 +37,21 @@ final class GameViewController: UIViewController {
 
 private extension GameViewController {
 
-    // MARK: - Private Methods
-
     func closeView() {
         gameView.closeButton.onAction = {
             self.dismiss(animated: true)
+        }
+    }
+
+    func hintTapped() {
+        gameView.hintButton.onAction = {
+            print("hint")
+        }
+    }
+
+    func soundTapped() {
+        gameView.soundButton.onAction = {
+            print("sound")
         }
     }
 

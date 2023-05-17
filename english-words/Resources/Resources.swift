@@ -15,10 +15,11 @@ enum Resources {
         static let tabBarTintColor = #colorLiteral(red: 0.2317892015, green: 0.2613468766, blue: 0.9948940873, alpha: 1)
         static let startLearnButtonColor =  #colorLiteral(red: 0.992441237, green: 0.8533335924, blue: 0.4606403112, alpha: 1)
         static let phraseLabelColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
-        static let uiViewColor = #colorLiteral(red: 0.9741126895, green: 0.9580762982, blue: 0.7994511127, alpha: 1)
-        static let backgroundButtonColor = #colorLiteral(red: 0.9529412389, green: 0.9529411197, blue: 0.9529412389, alpha: 1)
+        static let uiViewColor = #colorLiteral(red: 0.9190513492, green: 0.9369968772, blue: 1, alpha: 1)
+        static let backgroundButtonColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         static let wordKnownButton = #colorLiteral(red: 1, green: 0.229614228, blue: 0.1135809645, alpha: 1)
         static let justGreen = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        static let buttonColor = UIColor.gray
     }
 
     // MARK: - UIFonts
@@ -36,9 +37,9 @@ enum Resources {
         static let wordsControllerIcon = UIImage(systemName: "textformat.alt")
         static let studyingWordsController = UIImage(systemName: "bed.double.fill")
         static let knownWordsController = UIImage(systemName: "pencil")
-        static let soundIcon = "speaker.wave.3"
-        static let closeIcon = "xmark"
-        static let hintIcon = "lightbulb"
+        static let soundIcon = "sound"
+        static let closeIcon = "chevron"
+        static let hintIcon = "key"
     }
 
     // MARK: - Title

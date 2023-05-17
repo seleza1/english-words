@@ -13,8 +13,6 @@ enum LoaderType: String {
 
 final class JsonLoader {
 
-    // MARK: - Public Methods
-
     func loadProducts(_ type: LoaderType) -> [Word]? {
 
         let filename = type.rawValue

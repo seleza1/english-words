@@ -42,8 +42,6 @@ final class WordCell: UITableViewCell {
 
 private extension WordCell {
 
-    // MARK: - Private Methods
-
     func setupViews() {
         addSubview(wordLabel)
         addSubview(soundButton)

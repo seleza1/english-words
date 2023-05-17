@@ -104,8 +104,6 @@ extension KnownView: UITableViewDelegate, UITableViewDataSource {
 
 private extension KnownView {
 
-    // MARK: - Private Methods
-
     func setupViews() {
         self.addSubview(tableView)
         self.addSubview(startLearnButton)

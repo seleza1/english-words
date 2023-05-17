@@ -53,6 +53,7 @@ final class WordsView: UIView {
 
     func update(_ words: [Word]) {
         self.words = words
+
     }
 }
 
@@ -115,8 +116,6 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
 // MARK: - Extension
 
 private extension WordsView {
-
-    // MARK: - Private Methods
 
     func setupViews() {
         self.addSubview(tableView)

@@ -7,9 +7,8 @@
 
 import Foundation
 
-// MARK: - Extension Array
-
 extension Array {
+
     var isNotEmpty: Bool {
         return !isEmpty
     }

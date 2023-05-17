@@ -20,14 +20,10 @@ protocol WordsArchiverProtocol {
 
 final class WordsArchiver: WordsArchiverProtocol {
 
-    // MARK: - Private Properties
-
     private let key: String
 
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
-
-    // MARK: - Initialization
 
     init(type: ArchiverType) {
         self.key = type.rawValue
@@ -37,8 +33,6 @@ final class WordsArchiver: WordsArchiverProtocol {
 // MARK: - Extension
 
 extension WordsArchiver {
-
-    // MARK: - Public methods
 
     func save(_ words: [Word]) {
 

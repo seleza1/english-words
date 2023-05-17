@@ -105,8 +105,6 @@ extension StudyingView: UITableViewDelegate, UITableViewDataSource {
 
 private extension StudyingView {
 
-    // MARK: - Private Methods
-
     func setupViews() {
         self.addSubview(tableView)
         self.addSubview(startLearnButton)

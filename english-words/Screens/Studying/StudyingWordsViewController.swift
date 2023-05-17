@@ -31,8 +31,6 @@ final class StudyingWordsViewController: UIViewController {
 
 private extension StudyingWordsViewController {
 
-    // MARK: - Private Methods
-
     func startLearnButtonTapped() {
         studyingView.startLearnButton.onAction = {
             let gameVC = GameViewController()

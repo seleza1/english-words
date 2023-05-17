@@ -9,8 +9,6 @@ import UIKit
 
 final class MainTabBarController: UITabBarController {
 
-    // MARK: - Private Properties
-
     private var wordsController: WordsViewController = {
         let controller = WordsViewController()
         let image = Resources.Icons.wordsControllerIcon
@@ -41,14 +39,10 @@ final class MainTabBarController: UITabBarController {
         return controller
     }()
 
-    // MARK: - LifeCycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
-
-    // MARK: - Private Methods
 
     private func setup() {
         tabBar.tintColor = Resources.Colors.tabBarTintColor

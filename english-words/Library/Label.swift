@@ -14,11 +14,10 @@ enum LabelStyle {
     case wordGame
     case wordMeaning
     case translate
+    case number
 }
 
 final class Label: UILabel {
-
-    // MARK: - Initialization
 
     init(style: LabelStyle) {
         super.init(frame: .zero)
@@ -47,6 +46,9 @@ final class Label: UILabel {
 
         case .translate:
             self.numberOfLines = 0
+
+        case .number:
+            self.textAlignment = .center
 
         }
 

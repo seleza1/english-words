@@ -25,6 +25,7 @@
 		CE64670D29E7E2B000D32B47 /* KnownWordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64670C29E7E2B000D32B47 /* KnownWordsViewController.swift */; };
 		CE64671029E7E62500D32B47 /* StudyingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64670F29E7E62500D32B47 /* StudyingCell.swift */; };
 		CE64671329E7E64000D32B47 /* KnowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64671229E7E64000D32B47 /* KnowCell.swift */; };
+		CEB5678A2A14BD43002F2483 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB567892A14BD43002F2483 /* View.swift */; };
 		CEBB91D529E7E7EC00D26220 /* StudyingWordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB91D429E7E7EC00D26220 /* StudyingWordsViewController.swift */; };
 		CEBB91D729E8828F00D26220 /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB91D629E8828E00D26220 /* JsonLoader.swift */; };
 		CEBB91D929EAD6DF00D26220 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB91D829EAD6DF00D26220 /* Resources.swift */; };
@@ -59,6 +60,7 @@
 		CE64670C29E7E2B000D32B47 /* KnownWordsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnownWordsViewController.swift; sourceTree = "<group>"; };
 		CE64670F29E7E62500D32B47 /* StudyingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyingCell.swift; sourceTree = "<group>"; };
 		CE64671229E7E64000D32B47 /* KnowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowCell.swift; sourceTree = "<group>"; };
+		CEB567892A14BD43002F2483 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		CEBB91D429E7E7EC00D26220 /* StudyingWordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyingWordsViewController.swift; sourceTree = "<group>"; };
 		CEBB91D629E8828E00D26220 /* JsonLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonLoader.swift; sourceTree = "<group>"; };
 		CEBB91D829EAD6DF00D26220 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 			children = (
 				CEBB91EE29F29F9B00D26220 /* Button.swift */,
 				CEBB91F029F2A16100D26220 /* Label.swift */,
+				CEB567892A14BD43002F2483 /* View.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				CE2ADA4F2A026ED40031B3EA /* KnowWordsViewModel.swift in Sources */,
 				CEBB91D529E7E7EC00D26220 /* StudyingWordsViewController.swift in Sources */,
 				CE6466E329E6990900D32B47 /* AppDelegate.swift in Sources */,
+				CEB5678A2A14BD43002F2483 /* View.swift in Sources */,
 				CE64670529E6A6E600D32B47 /* MainTabBarController.swift in Sources */,
 				CEBB91D729E8828F00D26220 /* JsonLoader.swift in Sources */,
 				CEBB91EF29F29F9B00D26220 /* Button.swift in Sources */,
