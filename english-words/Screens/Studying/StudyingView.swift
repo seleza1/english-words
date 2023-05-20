@@ -17,22 +17,25 @@ final class StudyingView: UIView {
         }
     }
 
-    private lazy var tableView: UITableView = {
+    // MARK: - Public Properties
+
+    var didTapped: ((_ word: String, _ meaning: String) -> ())?
+
+    let startLearnButton = Button(style: .start)
+
+    lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(StudyingCell.self, forCellReuseIdentifier: StudyingCell.reuseId)
+        tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.reuseId)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = 60
+        tableView.rowHeight = 104
+        tableView.separatorStyle = .none
 
         return tableView
     }()
 
-    // MARK: - Public Properties
-
-    let startLearnButton = Button(style: .start)
-
-    // MARK: - Lifecycle
+    // MARK: - Initialization
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -59,41 +62,20 @@ final class StudyingView: UIView {
 extension StudyingView: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
         return words.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: StudyingCell.reuseId, for: indexPath) as! StudyingCell
-        cell.selectionStyle = .none
+        let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseId, for: indexPath) as! TableViewCell
 
         let word = words[indexPath.item]
-        cell.update(word)
+        let model = TableViewModel(word: word.word, isLearned: false)
+
+        cell.configure(model)
+        cell.selectionStyle = .none
 
         return cell
-    }
-
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-
-    }
-
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-
-        let knowWord = UIContextualAction(style: .normal, title: .known) { (action, view, completionHandler) in
-            self.words.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            completionHandler(true)
-        }
-        knowWord.backgroundColor = Resources.Colors.wordKnownButton
-
-        let learnWord = UIContextualAction(style: .normal, title: .learn) { (action, view, completionHandler) in
-            tableView.insertRows(at: [indexPath], with: .fade)
-            completionHandler(true)
-        }
-        learnWord.backgroundColor = Resources.Colors.justGreen
-        let configuration = UISwipeActionsConfiguration(actions: [knowWord, learnWord])
-        configuration.performsFirstActionWithFullSwipe = false
-        
-        return configuration
     }
 }
 

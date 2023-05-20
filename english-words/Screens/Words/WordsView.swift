@@ -26,7 +26,7 @@ final class WordsView: UIView {
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(WordCell.self, forCellReuseIdentifier: WordCell.reuseId)
+        tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.reuseId)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 104
@@ -67,45 +67,16 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: WordCell.reuseId, for: indexPath) as! WordCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseId, for: indexPath) as! TableViewCell
         cell.selectionStyle = .none
 
         let word = words[indexPath.item]
-        cell.update(word)
+        
+        let model = TableViewModel(word: word.word, isLearned: nil)
+
+        cell.configure(model)
 
         return cell
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let word = words[indexPath.item]
-
-        didTapped?("\(word.word)      -", word.translate)
-    }
-
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-
-    }
-
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let knowWord = UIContextualAction(style: .normal, title: .known) { (action, view, completionHandler) in
-            self.words.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            completionHandler(true)
-        }
-
-        knowWord.backgroundColor = Resources.Colors.wordKnownButton
-
-        let learnWord = UIContextualAction(style: .normal, title: .learn) { (action, view, completionHandler) in
-            tableView.insertRows(at: [indexPath], with: .fade)
-            completionHandler(true)
-        }
-
-        learnWord.backgroundColor = Resources.Colors.justGreen
-
-        let configuration = UISwipeActionsConfiguration(actions: [knowWord, learnWord])
-        configuration.performsFirstActionWithFullSwipe = false
-
-        return configuration
     }
 }
 

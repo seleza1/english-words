@@ -8,6 +8,7 @@
 import UIKit
 
 enum ViewStyle {
+    
     case roundView
     case roundSoundView
 }

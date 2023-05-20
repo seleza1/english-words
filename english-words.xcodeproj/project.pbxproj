@@ -17,15 +17,14 @@
 		CE6466E729E6990900D32B47 /* WordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466E629E6990900D32B47 /* WordsViewController.swift */; };
 		CE6466EC29E6990B00D32B47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE6466EB29E6990B00D32B47 /* Assets.xcassets */; };
 		CE6466EF29E6990B00D32B47 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE6466ED29E6990B00D32B47 /* LaunchScreen.storyboard */; };
-		CE6466FB29E69C1500D32B47 /* WordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466FA29E69C1500D32B47 /* WordCell.swift */; };
+		CE6466FB29E69C1500D32B47 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466FA29E69C1500D32B47 /* TableViewCell.swift */; };
 		CE6466FE29E69F1500D32B47 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466FD29E69F1500D32B47 /* Word.swift */; };
 		CE64670129E6A1F200D32B47 /* WordsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64670029E6A1F200D32B47 /* WordsService.swift */; };
 		CE64670329E6A50500D32B47 /* words5000.json in Resources */ = {isa = PBXBuildFile; fileRef = CE64670229E6A50500D32B47 /* words5000.json */; };
 		CE64670529E6A6E600D32B47 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64670429E6A6E600D32B47 /* MainTabBarController.swift */; };
 		CE64670B29E6ABC300D32B47 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64670A29E6ABC300D32B47 /* GameViewController.swift */; };
 		CE64670D29E7E2B000D32B47 /* KnownWordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64670C29E7E2B000D32B47 /* KnownWordsViewController.swift */; };
-		CE64671029E7E62500D32B47 /* StudyingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64670F29E7E62500D32B47 /* StudyingCell.swift */; };
-		CE64671329E7E64000D32B47 /* KnowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64671229E7E64000D32B47 /* KnowCell.swift */; };
+		CEB5679D2A18C101002F2483 /* TableWordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB5679C2A18C101002F2483 /* TableWordsViewModel.swift */; };
 		CEBB91D529E7E7EC00D26220 /* StudyingWordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB91D429E7E7EC00D26220 /* StudyingWordsViewController.swift */; };
 		CEBB91D729E8828F00D26220 /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB91D629E8828E00D26220 /* JsonLoader.swift */; };
 		CEBB91D929EAD6DF00D26220 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB91D829EAD6DF00D26220 /* Resources.swift */; };
@@ -53,15 +52,14 @@
 		CE6466EB29E6990B00D32B47 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE6466EE29E6990B00D32B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE6466F029E6990B00D32B47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CE6466FA29E69C1500D32B47 /* WordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCell.swift; sourceTree = "<group>"; };
+		CE6466FA29E69C1500D32B47 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		CE6466FD29E69F1500D32B47 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		CE64670029E6A1F200D32B47 /* WordsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsService.swift; sourceTree = "<group>"; };
 		CE64670229E6A50500D32B47 /* words5000.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = words5000.json; sourceTree = "<group>"; };
 		CE64670429E6A6E600D32B47 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CE64670A29E6ABC300D32B47 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		CE64670C29E7E2B000D32B47 /* KnownWordsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnownWordsViewController.swift; sourceTree = "<group>"; };
-		CE64670F29E7E62500D32B47 /* StudyingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyingCell.swift; sourceTree = "<group>"; };
-		CE64671229E7E64000D32B47 /* KnowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowCell.swift; sourceTree = "<group>"; };
+		CEB5679C2A18C101002F2483 /* TableWordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableWordsViewModel.swift; sourceTree = "<group>"; };
 		CEBB91D429E7E7EC00D26220 /* StudyingWordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyingWordsViewController.swift; sourceTree = "<group>"; };
 		CEBB91D629E8828E00D26220 /* JsonLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonLoader.swift; sourceTree = "<group>"; };
 		CEBB91D829EAD6DF00D26220 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
@@ -151,6 +149,8 @@
 		CE6466F829E69BEE00D32B47 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				CEB5679C2A18C101002F2483 /* TableWordsViewModel.swift */,
+				CE6466FA29E69C1500D32B47 /* TableViewCell.swift */,
 				CE2ADA522A0E2A460031B3EA /* Meaning */,
 				CE6466F929E69BFA00D32B47 /* Words */,
 				CE64670E29E7E60D00D32B47 /* Studying */,
@@ -166,7 +166,6 @@
 				CE2ADA4A2A024A470031B3EA /* WordsViewModel.swift */,
 				CEE6A4AB29F8F8B800BB90A9 /* WordsView.swift */,
 				CE6466E629E6990900D32B47 /* WordsViewController.swift */,
-				CE6466FA29E69C1500D32B47 /* WordCell.swift */,
 			);
 			path = Words;
 			sourceTree = "<group>";
@@ -195,7 +194,6 @@
 				CE2ADA4C2A026E660031B3EA /* StudyingViewModel.swift */,
 				CEE6A4B029F8FCD300BB90A9 /* StudyingView.swift */,
 				CEBB91D429E7E7EC00D26220 /* StudyingWordsViewController.swift */,
-				CE64670F29E7E62500D32B47 /* StudyingCell.swift */,
 			);
 			path = Studying;
 			sourceTree = "<group>";
@@ -206,7 +204,6 @@
 				CE2ADA4E2A026ED40031B3EA /* KnowWordsViewModel.swift */,
 				CEE6A4B229F9046000BB90A9 /* KnownView.swift */,
 				CE64670C29E7E2B000D32B47 /* KnownWordsViewController.swift */,
-				CE64671229E7E64000D32B47 /* KnowCell.swift */,
 			);
 			path = Known;
 			sourceTree = "<group>";
@@ -315,8 +312,7 @@
 				CEE6A4B329F9046000BB90A9 /* KnownView.swift in Sources */,
 				CEBB91D929EAD6DF00D26220 /* Resources.swift in Sources */,
 				CE2ADA4D2A026E660031B3EA /* StudyingViewModel.swift in Sources */,
-				CE64671029E7E62500D32B47 /* StudyingCell.swift in Sources */,
-				CE6466FB29E69C1500D32B47 /* WordCell.swift in Sources */,
+				CE6466FB29E69C1500D32B47 /* TableViewCell.swift in Sources */,
 				CEE6A4BA29F92A5C00BB90A9 /* Array+NotEmpty.swift in Sources */,
 				CEE6A4AC29F8F8B800BB90A9 /* WordsView.swift in Sources */,
 				CEBB91F129F2A16100D26220 /* Label.swift in Sources */,
@@ -330,11 +326,11 @@
 				CE2ADA542A1283780031B3EA /* String+Resource.swift in Sources */,
 				CE2ADA4B2A024A470031B3EA /* WordsViewModel.swift in Sources */,
 				CEE6A4B529F9056000BB90A9 /* GameView.swift in Sources */,
-				CE64671329E7E64000D32B47 /* KnowCell.swift in Sources */,
 				CE64670129E6A1F200D32B47 /* WordsService.swift in Sources */,
 				CE6466E529E6990900D32B47 /* SceneDelegate.swift in Sources */,
 				CE6466FE29E69F1500D32B47 /* Word.swift in Sources */,
 				CEE6A4B729F9210700BB90A9 /* WordsArchiver.swift in Sources */,
+				CEB5679D2A18C101002F2483 /* TableWordsViewModel.swift in Sources */,
 				CE2ADA512A0CCD550031B3EA /* WordMeaningViewController.swift in Sources */,
 				CEE6A4B129F8FCD300BB90A9 /* StudyingView.swift in Sources */,
 			);
