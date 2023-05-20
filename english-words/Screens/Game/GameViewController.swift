@@ -28,8 +28,6 @@ final class GameViewController: UIViewController {
         closeView()
         wordsService.fetchWords()
         update()
-        hintTapped()
-        soundTapped()
     }
 }
 
@@ -40,18 +38,6 @@ private extension GameViewController {
     func closeView() {
         gameView.closeButton.onAction = {
             self.dismiss(animated: true)
-        }
-    }
-
-    func hintTapped() {
-        gameView.hintButton.onAction = {
-            print("hint")
-        }
-    }
-
-    func soundTapped() {
-        gameView.soundButton.onAction = {
-            print("sound")
         }
     }
 

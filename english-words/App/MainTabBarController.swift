@@ -11,8 +11,8 @@ final class MainTabBarController: UITabBarController {
 
     private var wordsController: WordsViewController = {
         let controller = WordsViewController()
-        let image = Resources.Icons.wordsControllerIcon
-        let selectedImage = Resources.Icons.wordsControllerIcon
+        let image = UIImage.wordsControllerIcon
+        let selectedImage = UIImage.wordsControllerIcon
         let tabItem = Resources.Title.tabItemWords
         controller.tabBarItem = tabItem
 
@@ -21,8 +21,8 @@ final class MainTabBarController: UITabBarController {
 
     private var studyingWordsController: StudyingWordsViewController = {
         let controller = StudyingWordsViewController()
-        let image = Resources.Icons.studyingWordsController
-        let selectedImage = Resources.Icons.studyingWordsController
+        let image = UIImage.studyingWordsController
+        let selectedImage = UIImage.studyingWordsController
         let tabItem = Resources.Title.tabItemStudying
         controller.tabBarItem = tabItem
 
@@ -31,8 +31,8 @@ final class MainTabBarController: UITabBarController {
 
     private var knownWordsController: KnownWordsViewController = {
         let controller = KnownWordsViewController()
-        let image = Resources.Icons.knownWordsController
-        let selectedImage = Resources.Icons.knownWordsController
+        let image = UIImage.knownWordsController
+        let selectedImage = UIImage.knownWordsController
         let tabItem = Resources.Title.tabItemKnown
         controller.tabBarItem = tabItem
 

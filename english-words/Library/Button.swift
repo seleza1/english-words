@@ -35,13 +35,13 @@ class Button: UIButton {
             self.setImage(UIImage(named: Resources.Icons.closeIcon), for: .normal)
 
         case .start:
-            self.setTitle(Resources.Title.startToLearnButtonTitle, for: .normal)
+            self.setTitle(.startToLearnButtonTitle, for: .normal)
             self.backgroundColor = Resources.Colors.startLearnButtonColor
             self.setTitleColor(UIColor.black, for: .normal)
             self.layer.cornerRadius = 11
 
         case .repeatW:
-            self.setTitle(Resources.Title.startToRepeatButtonTitle, for: .normal)
+            self.setTitle(.startToRepeatButtonTitle, for: .normal)
             self.backgroundColor = Resources.Colors.startLearnButtonColor
             self.setTitleColor(UIColor.black, for: .normal)
 

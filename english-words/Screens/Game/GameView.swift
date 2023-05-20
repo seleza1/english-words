@@ -15,14 +15,9 @@ final class GameView: UIView {
 
     private var word: WordModel?
 
+    private let stickerView = StickerView()
     private let stackView = UIStackView()
 
-    private let cardView = View(style: .card)
-    private let hintView = View(style: .hint)
-    private let soundView = View(style: .sound)
-
-    private let selectAnswerLabel = Label(style: .select)
-    private let wordLabel = Label(style: .wordGame)
     private let numberWordLabel = Label(style: .number)
 
     // MARK: - Public Properties
@@ -32,8 +27,6 @@ final class GameView: UIView {
     let twoButton = Button(style: .two)
     let threeButton = Button(style: .three)
     let fourButton = Button(style: .four)
-    let hintButton = Button(style: .hint)
-    let soundButton = Button(style: .sound)
 
     // MARK: - Initialization
 
@@ -44,6 +37,7 @@ final class GameView: UIView {
         setupConstraints()
         setupStackView()
         buttonsTapped()
+        setupStickerView()
         
         numberWordLabel.text = "1 /4900"
     }
@@ -58,7 +52,13 @@ final class GameView: UIView {
 
         self.word = word
 
-        wordLabel.text = word.word.capitalized
+        let model = StickerViewModel(
+            word: word.word.capitalized,
+            translation: nil,
+            backgroundColor: .sky ?? UIColor.white
+        )
+
+        stickerView.configure(with: model)
 
         oneButton.setTitle(word.variants[0].capitalized, for: .normal)
         twoButton.setTitle(word.variants[1].capitalized, for: .normal)
@@ -73,20 +73,13 @@ private extension GameView {
 
     func setupViews() {
         addSubview(closeButton)
-        addSubview(selectAnswerLabel)
-        addSubview(cardView)
         addSubview(oneButton)
         addSubview(threeButton)
         addSubview(fourButton)
         addSubview(twoButton)
         addSubview(stackView)
         addSubview(numberWordLabel)
-
-        cardView.addSubview(hintView)
-        cardView.addSubview(soundView)
-        cardView.addSubview(wordLabel)
-        hintView.addSubview(hintButton)
-        soundView.addSubview(soundButton)
+        addSubview(stickerView)
 
         backgroundColor = .white
     }
@@ -101,8 +94,11 @@ private extension GameView {
         stackView.addArrangedSubview(twoButton)
         stackView.addArrangedSubview(threeButton)
         stackView.addArrangedSubview(fourButton)
-
         stackView.translatesAutoresizingMaskIntoConstraints = false
+    }
+
+    func setupStickerView() {
+        stickerView.translatesAutoresizingMaskIntoConstraints = false
     }
 
     func setupConstraints() {
@@ -110,22 +106,6 @@ private extension GameView {
             closeButton.topAnchor.constraint(equalTo: topAnchor, constant: 61),
             closeButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 27),
             closeButton.heightAnchor.constraint(equalToConstant: 28),
-
-            selectAnswerLabel.topAnchor.constraint(equalTo: bottomAnchor, constant: 9),
-            selectAnswerLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            selectAnswerLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-
-            cardView.topAnchor.constraint(equalTo: topAnchor, constant: 117),
-            cardView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            cardView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            cardView.heightAnchor.constraint(equalToConstant: 240),
-            cardView.widthAnchor.constraint(equalToConstant: 335),
-
-            wordLabel.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 89),
-            wordLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 32),
-            wordLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -32),
-            wordLabel.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -89),
-            wordLabel.heightAnchor.constraint(equalToConstant: 52),
 
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
@@ -151,28 +131,15 @@ private extension GameView {
             fourButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -1),
             fourButton.heightAnchor.constraint(equalToConstant: 54),
 
-            hintButton.topAnchor.constraint(equalTo: hintView.topAnchor, constant: 12),
-            hintButton.leadingAnchor.constraint(equalTo: hintView.leadingAnchor, constant: 12),
-            hintButton.trailingAnchor.constraint(equalTo: hintView.trailingAnchor, constant: -12),
-            hintButton.bottomAnchor.constraint(equalTo: hintView.bottomAnchor, constant: -12),
-
-            hintView.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 180),
-            hintView.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 214),
-            hintView.heightAnchor.constraint(equalToConstant: 48),
-
-            soundView.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 180),
-            soundView.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -12),
-            soundView.heightAnchor.constraint(equalToConstant: 48),
-
-            soundButton.topAnchor.constraint(equalTo: soundView.topAnchor, constant: 12),
-            soundButton.leadingAnchor.constraint(equalTo: soundView.leadingAnchor, constant: 12),
-            soundButton.trailingAnchor.constraint(equalTo: soundView.trailingAnchor, constant: -12),
-            soundButton.bottomAnchor.constraint(equalTo: soundView.bottomAnchor, constant: -12),
-
             numberWordLabel.topAnchor.constraint(equalTo: topAnchor, constant: 64),
             numberWordLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 280),
             numberWordLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            numberWordLabel.heightAnchor.constraint(equalToConstant: 22)
+            numberWordLabel.heightAnchor.constraint(equalToConstant: 22),
+
+            stickerView.topAnchor.constraint(equalTo: topAnchor, constant: 117),
+            stickerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            stickerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            stickerView.heightAnchor.constraint(equalToConstant: 240)
         ])
     }
 
