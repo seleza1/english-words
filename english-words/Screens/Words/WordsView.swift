@@ -76,12 +76,6 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let word = words[indexPath.item]
-
-        didTapped?("\(word.word)      -", word.translate)
-    }
-
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 
     }

@@ -17,6 +17,8 @@ final class KnownView: UIView {
         }
     }
 
+    var didTappedCell: ((_ word: String, _ translate: String)->())?
+
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -73,6 +75,11 @@ extension KnownView: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let word = words[indexPath.item]
+        didTappedCell?(word.word, word.translate)
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

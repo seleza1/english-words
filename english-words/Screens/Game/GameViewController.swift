@@ -44,13 +44,13 @@ private extension GameViewController {
     func updateProgress() {
         gameView.onVariantChanged = {
             let next  = self.wordsService.next()
-            self.gameView.update(next)
+            self.gameView.configure(next)
         }
     }
 
     func update() {
         let next = wordsService.next()
-        gameView.update(next)
+        gameView.configure(next)
     }
 }
 

@@ -48,13 +48,14 @@ final class GameView: UIView {
 
     // MARK: - Public Methods
 
-    func update(_ word: WordModel) {
+    func configure(_ word: WordModel) {
 
         self.word = word
 
         let model = StickerViewModel(
             word: word.word.capitalized,
             translation: nil,
+            showHintButton: true,
             backgroundColor: .sky ?? UIColor.white
         )
 
