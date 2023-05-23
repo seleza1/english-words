@@ -29,15 +29,15 @@ private extension MainTabBarController {
         let studyingWordsController = StudyingWordsViewController()
         studyingWordsController.tabBarItem = UITabBarItem(
             title: .learn,
-            image: Resources.Icons.studyingWordsController,
-            selectedImage: Resources.Icons.studyingWordsController
+            image: UIImage(named: "coffee"),
+            selectedImage: UIImage(named: "coffee_selected")
         )
 
         let knownWordsController = KnownWordsViewController()
         knownWordsController.tabBarItem = UITabBarItem(
             title: .known,
-            image: Resources.Icons.knownWordsController,
-            selectedImage: Resources.Icons.knownWordsController
+            image: UIImage(named: "smile"),
+            selectedImage: UIImage(named: "smile_selected")
         )
 
         tabBar.tintColor = Resources.Colors.tabBarTintColor
