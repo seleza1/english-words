@@ -13,7 +13,7 @@ enum Resources {
 
     enum Colors {
         static let tabBarTintColor = #colorLiteral(red: 0.2317892015, green: 0.2613468766, blue: 0.9948940873, alpha: 1)
-        static let startLearnButtonColor =  #colorLiteral(red: 0.992441237, green: 0.8533335924, blue: 0.4606403112, alpha: 1)
+        static let startLearnButtonColor =  #colorLiteral(red: 0.2317892015, green: 0.2613468766, blue: 0.9948940873, alpha: 1)
         static let phraseLabelColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         static let backgroundButtonColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         static let wordKnownButton = #colorLiteral(red: 1, green: 0.229614228, blue: 0.1135809645, alpha: 1)

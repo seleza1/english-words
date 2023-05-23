@@ -35,10 +35,12 @@ class Button: UIButton {
             self.setImage(UIImage(named: Resources.Icons.closeIcon), for: .normal)
 
         case .start:
+
             self.setTitle(.startToLearnButtonTitle, for: .normal)
+            self.setTitleColor(UIColor.white, for: .normal)
+            self.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .medium)
             self.backgroundColor = Resources.Colors.startLearnButtonColor
-            self.setTitleColor(UIColor.black, for: .normal)
-            self.layer.cornerRadius = 11
+            self.layer.cornerRadius = 33
 
         case .repeatW:
             self.setTitle(.startToRepeatButtonTitle, for: .normal)
@@ -48,43 +50,26 @@ class Button: UIButton {
         case .hint:
             self.setImage(UIImage(named: Resources.Icons.hintIcon), for: .normal)
             self.backgroundColor = Resources.Colors.backgroundButtonColor
+            self.setTitleColor(UIColor.black, for: .normal)
 
         case .one:
             self.backgroundColor = Resources.Colors.backgroundButtonColor
-            self.setTitleColor(Resources.Colors.buttonColor, for: .normal)
-            self.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
-            self.titleLabel?.textColor = #colorLiteral(red: 0.6000000834, green: 0.5999999642, blue: 0.6000000238, alpha: 1)
-            self.layer.borderWidth = 1
-            self.layer.borderColor = #colorLiteral(red: 0.938919723, green: 0.9531306624, blue: 0.9746883512, alpha: 1)
+            self.setTitleColor(UIColor.black, for: .normal)
 
         case .two:
             self.backgroundColor = Resources.Colors.backgroundButtonColor
-            self.setTitleColor(Resources.Colors.buttonColor, for: .normal)
-            self.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
-            self.titleLabel?.textColor = #colorLiteral(red: 0.6000000834, green: 0.5999999642, blue: 0.6000000238, alpha: 1)
-            self.layer.borderWidth = 1
-            self.layer.borderColor = #colorLiteral(red: 0.938919723, green: 0.9531306624, blue: 0.9746883512, alpha: 1)
+            self.setTitleColor(UIColor.black, for: .normal)
 
         case .three:
             self.backgroundColor = Resources.Colors.backgroundButtonColor
-            self.setTitleColor(Resources.Colors.buttonColor, for: .normal)
-            self.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
-            self.titleLabel?.textColor = #colorLiteral(red: 0.6000000834, green: 0.5999999642, blue: 0.6000000238, alpha: 1)
-            self.layer.borderWidth = 1
-            self.layer.borderColor = #colorLiteral(red: 0.938919723, green: 0.9531306624, blue: 0.9746883512, alpha: 1)
+            self.setTitleColor(UIColor.black, for: .normal)
 
         case .four:
             self.backgroundColor = Resources.Colors.backgroundButtonColor
-            self.setTitleColor(Resources.Colors.buttonColor, for: .normal)
-            self.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
-            self.titleLabel?.textColor = #colorLiteral(red: 0.6000000834, green: 0.5999999642, blue: 0.6000000238, alpha: 1)
-            self.layer.borderWidth = 1
-            self.layer.borderColor = #colorLiteral(red: 0.938919723, green: 0.9531306624, blue: 0.9746883512, alpha: 1)
-
+            self.setTitleColor(UIColor.black, for: .normal)
         }
         self.translatesAutoresizingMaskIntoConstraints = false
         self.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        self.layer.cornerRadius = 15
     }
 
     @objc func buttonTapped() {
