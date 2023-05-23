@@ -42,8 +42,6 @@ final class KnowCell: UITableViewCell {
 
 private extension KnowCell {
 
-    // MARK: - Private Methods
-
     func setupViews() {
         addSubview(wordLabel)
         addSubview(soundButton)

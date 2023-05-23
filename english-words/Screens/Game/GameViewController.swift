@@ -9,10 +9,6 @@ import UIKit
 
 final class GameViewController: UIViewController {
 
-    // MARK: - Private Properties
-
-    private var total: Float = 0
-
     // MARK: - Public Properties
 
     var wordsService = WordsService()
@@ -39,8 +35,6 @@ final class GameViewController: UIViewController {
 
 private extension GameViewController {
 
-    // MARK: - Private Methods
-
     func closeView() {
         gameView.closeButton.onAction = {
             self.dismiss(animated: true)
@@ -50,13 +44,13 @@ private extension GameViewController {
     func updateProgress() {
         gameView.onVariantChanged = {
             let next  = self.wordsService.next()
-            self.gameView.update(next)
+            self.gameView.configure(next)
         }
     }
 
     func update() {
         let next = wordsService.next()
-        gameView.update(next)
+        gameView.configure(next)
     }
 }
 

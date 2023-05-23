@@ -43,8 +43,6 @@ final class StudyingCell: UITableViewCell {
 
 private extension StudyingCell {
 
-    // MARK: - Private Methods
-
     func setupViews() {
         addSubview(wordLabel)
         addSubview(soundButton)

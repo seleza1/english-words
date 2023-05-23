@@ -24,15 +24,14 @@ final class KnownWordsViewController: UIViewController {
         fetchWords()
         startLearnButtonTapped()
         update()
+        present()
     }
 }
 
 // MARK: - Extension
 
 private extension KnownWordsViewController {
-
-    // MARK: - Private Methods
-
+    
     func startLearnButtonTapped() {
         knowView.startLearnButton.onAction = {
             let gameVC = GameViewController()
@@ -43,6 +42,16 @@ private extension KnownWordsViewController {
 
     func fetchWords() {
         viewModel.fetchWords()
+    }
+
+    func present() {
+        knowView.didTappedCell = { word, translate in
+            let wordMeaning = WordMeaningViewController()
+            wordMeaning.wordLabel.text = word.capitalized
+            wordMeaning.translateLabel.text = translate.capitalized
+            wordMeaning.modalPresentationStyle = .fullScreen
+            self.present(wordMeaning, animated: true)
+        }
     }
 
     func update() {

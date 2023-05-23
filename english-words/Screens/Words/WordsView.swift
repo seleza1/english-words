@@ -53,6 +53,7 @@ final class WordsView: UIView {
 
     func update(_ words: [Word]) {
         self.words = words
+
     }
 }
 
@@ -75,12 +76,6 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let word = words[indexPath.item]
-
-        didTapped?("\(word.word)      -", word.translate)
-    }
-
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 
     }
@@ -90,7 +85,7 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let knowWord = UIContextualAction(style: .normal, title: Resources.Title.tableViewKnownButtonTitle) { (action, view, completionHandler) in
+        let knowWord = UIContextualAction(style: .normal, title: .tableViewKnownButtonTitle) { (action, view, completionHandler) in
             self.words.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             completionHandler(true)
@@ -98,7 +93,7 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
 
         knowWord.backgroundColor = Resources.Colors.wordKnownButton
 
-        let learnWord = UIContextualAction(style: .normal, title: Resources.Title.tableViewLearnButtonTitle) { (action, view, completionHandler) in
+        let learnWord = UIContextualAction(style: .normal, title: .tableViewLearnButtonTitle) { (action, view, completionHandler) in
             tableView.insertRows(at: [indexPath], with: .fade)
             completionHandler(true)
         }
@@ -115,8 +110,6 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
 // MARK: - Extension
 
 private extension WordsView {
-
-    // MARK: - Private Methods
 
     func setupViews() {
         self.addSubview(tableView)
@@ -143,7 +136,7 @@ private extension WordsView {
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.backgroundColor = Resources.Colors.justGreen
         label.heightAnchor.constraint (equalToConstant: 50).isActive = true
-        label.text = "\(Resources.Title.allWordsHeader) - \(index)"
+        label.text = "\("Resources.Title.allWordsHeader") - \(index)"
 
         return label
     }

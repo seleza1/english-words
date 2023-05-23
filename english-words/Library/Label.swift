@@ -14,11 +14,10 @@ enum LabelStyle {
     case wordGame
     case wordMeaning
     case translate
+    case number
 }
 
 final class Label: UILabel {
-
-    // MARK: - Initialization
 
     init(style: LabelStyle) {
         super.init(frame: .zero)
@@ -26,30 +25,32 @@ final class Label: UILabel {
         switch style {
 
         case .word:
-            self.font = Resources.UIFonts.wordLabelFont
+            self.font = .wordLabelFont
             
         case .phrase:
-            self.font = Resources.UIFonts.phraseLabelFont
+            self.font = .phraseLabelFont
             self.textColor = Resources.Colors.phraseLabelColor
 
         case .select:
-            self.text = Resources.Title.selectAnswerLabel
+            self.text = .selectAnswerLabel
             self.textAlignment = .center
 
         case .wordGame:
             self.textAlignment = .center
-            self.font = Resources.UIFonts.wordLabelGameFont
+            self.font = .wordLabelGameFont
             self.numberOfLines = 0
 
         case .wordMeaning:
             self.textAlignment = .center
-            self.font = Resources.UIFonts.wordLabelMin
+            self.font = .wordLabelMin
 
         case .translate:
             self.numberOfLines = 0
 
-        }
+        case .number:
+            self.textAlignment = .center
 
+        }
         self.translatesAutoresizingMaskIntoConstraints = false
     }
 

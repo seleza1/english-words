@@ -21,8 +21,6 @@ final class KnowWordsViewModel {
 
 extension KnowWordsViewModel {
 
-    // MARK: - Public Methods
-
     func fetchWords() {
 
         let archivedWords = wordsArchiver.retrieve()

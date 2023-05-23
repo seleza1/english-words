@@ -22,8 +22,6 @@ final class WordsViewModel {
 
 extension WordsViewModel {
 
-    // MARK: - Public Methods
-
     func fetchWords() {
         let archivedWords = wordsArchiver.retrieve()
 

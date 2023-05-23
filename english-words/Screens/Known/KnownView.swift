@@ -17,6 +17,8 @@ final class KnownView: UIView {
         }
     }
 
+    var didTappedCell: ((_ word: String, _ translate: String)->())?
+
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -75,19 +77,24 @@ extension KnownView: UITableViewDelegate, UITableViewDataSource {
 
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let word = words[indexPath.item]
+        didTappedCell?(word.word, word.translate)
+    }
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         createHeaderSectionLabel(index: words.count)
     }
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let knowWord = UIContextualAction(style: .normal, title: Resources.Title.tableViewKnownButtonTitle) { (action, view, completionHandler) in
+        let knowWord = UIContextualAction(style: .normal, title: .tableViewKnownButtonTitle) { (action, view, completionHandler) in
             self.words.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             completionHandler(true)
         }
         knowWord.backgroundColor = Resources.Colors.wordKnownButton
 
-        let learnWord = UIContextualAction(style: .normal, title: Resources.Title.tableViewLearnButtonTitle) { (action, view, completionHandler) in
+        let learnWord = UIContextualAction(style: .normal, title: .tableViewLearnButtonTitle) { (action, view, completionHandler) in
             tableView.insertRows(at: [indexPath], with: .fade)
             completionHandler(true)
         }
@@ -103,8 +110,6 @@ extension KnownView: UITableViewDelegate, UITableViewDataSource {
 // MARK: - Extension
 
 private extension KnownView {
-
-    // MARK: - Private Methods
 
     func setupViews() {
         self.addSubview(tableView)
@@ -131,7 +136,7 @@ private extension KnownView {
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.backgroundColor = Resources.Colors.justGreen
         label.heightAnchor.constraint (equalToConstant: 50).isActive = true
-        label.text = "\(Resources.Title.allLearnHeader) - \(index)"
+        label.text = "\("Resources.Title.allLearnHeader") - \(index)"
 
         return label
 

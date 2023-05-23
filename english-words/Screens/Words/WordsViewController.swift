@@ -34,8 +34,6 @@ final class WordsViewController: UIViewController {
 
 private extension WordsViewController {
 
-    // MARK: - Private Methods
-
     func startLearnButtonTapped() {
         wordsView.startLearnButton.onAction = {
             let gameVC = GameViewController()
@@ -47,8 +45,6 @@ private extension WordsViewController {
     func presentWordMeaning() {
         wordsView.didTapped = { [weak self] meaning, translate in
             let wordMeaning = WordMeaningViewController()
-            wordMeaning.wordLabelMeaning.text = meaning
-            wordMeaning.wordLabelTranslate.text = translate
             wordMeaning.modalPresentationStyle = .fullScreen
             self?.present(wordMeaning, animated: true)
         }
