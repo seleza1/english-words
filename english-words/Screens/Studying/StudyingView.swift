@@ -17,22 +17,23 @@ final class StudyingView: UIView {
         }
     }
 
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(StudyingCell.self, forCellReuseIdentifier: StudyingCell.reuseId)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.rowHeight = 60
-
-        return tableView
-    }()
-
     // MARK: - Public Properties
 
     let startLearnButton = Button(style: .start)
 
-    // MARK: - Lifecycle
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.reuseId)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = 104
+        tableView.separatorStyle = .none
+
+        return tableView
+    }()
+
+    // MARK: - Initialization
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -59,45 +60,20 @@ final class StudyingView: UIView {
 extension StudyingView: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
         return words.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: StudyingCell.reuseId, for: indexPath) as! StudyingCell
-        cell.selectionStyle = .none
+        let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseId, for: indexPath) as! TableViewCell
 
         let word = words[indexPath.item]
-        cell.update(word)
+        let model = TableViewModel(word: word.word, isLearned: false)
+
+        cell.configure(model)
+        cell.selectionStyle = .none
 
         return cell
-    }
-
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-
-    }
-
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        createHeaderSectionLabel(index: words.count)
-    }
-
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-
-        let knowWord = UIContextualAction(style: .normal, title: .tableViewKnownButtonTitle) { (action, view, completionHandler) in
-            self.words.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            completionHandler(true)
-        }
-        knowWord.backgroundColor = Resources.Colors.wordKnownButton
-
-        let learnWord = UIContextualAction(style: .normal, title: .tableViewLearnButtonTitle) { (action, view, completionHandler) in
-            tableView.insertRows(at: [indexPath], with: .fade)
-            completionHandler(true)
-        }
-        learnWord.backgroundColor = Resources.Colors.justGreen
-        let configuration = UISwipeActionsConfiguration(actions: [knowWord, learnWord])
-        configuration.performsFirstActionWithFullSwipe = false
-        
-        return configuration
     }
 }
 
@@ -122,16 +98,5 @@ private extension StudyingView {
             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
-    }
-
-    func createHeaderSectionLabel(index: Int = 0) -> UILabel {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 200))
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.backgroundColor = Resources.Colors.justGreen
-        label.heightAnchor.constraint (equalToConstant: 50).isActive = true
-        label.text = "\("fwe") - \(index)"
-
-        return label
     }
 }

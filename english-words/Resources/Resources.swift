@@ -33,24 +33,16 @@ enum Resources {
     // MARK: - Title
 
     enum Title {
-        static let tabItemWords = UITabBarItem.init(
-            title: "Мой словарь",
-            image: .wordsControllerIcon ,
-            selectedImage: .wordsControllerIcon
-        )
 
-        static let tabItemStudying = UITabBarItem.init(
-            title: .tableViewLearnButtonTitle,
-            image: .studyingWordsController,
-            selectedImage: .studyingWordsController
-        )
+        static let selectAnswerLabel = "Выберите правильный ответ"
 
-        static let tabItemKnown = UITabBarItem.init(
-            title: .tableViewKnownButtonTitle,
-            image: .knownWordsController,
-            selectedImage: .knownWordsController
-        )
+        static let startToLearnButtonTitle = "Начать обучение"
+        static let startToRepeatButtonTitle = "Повторить слова"
 
-        
+        static let wordsLearnHeader = "Слов на изучение"
+
+        static let allWordsHeader = "Слов осталось"
+        static let allLearnHeader = "Всего изучено"
+
     }
 }

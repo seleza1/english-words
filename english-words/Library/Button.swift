@@ -29,7 +29,7 @@ class Button: UIButton {
         switch style {
             
         case .sound:
-            self.setImage(UIImage(named: Resources.Icons.soundIcon), for: .normal)
+            self.setImage(UIImage(named: "sound"), for: .normal)
 
         case .close:
             self.setImage(UIImage(named: Resources.Icons.closeIcon), for: .normal)

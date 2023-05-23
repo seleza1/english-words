@@ -9,42 +9,37 @@ import UIKit
 
 final class MainTabBarController: UITabBarController {
 
-    private var wordsController: WordsViewController = {
-        let controller = WordsViewController()
-        let image = UIImage.wordsControllerIcon
-        let selectedImage = UIImage.wordsControllerIcon
-        let tabItem = Resources.Title.tabItemWords
-        controller.tabBarItem = tabItem
-
-        return controller
-    }()
-
-    private var studyingWordsController: StudyingWordsViewController = {
-        let controller = StudyingWordsViewController()
-        let image = UIImage.studyingWordsController
-        let selectedImage = UIImage.studyingWordsController
-        let tabItem = Resources.Title.tabItemStudying
-        controller.tabBarItem = tabItem
-
-        return controller
-    }()
-
-    private var knownWordsController: KnownWordsViewController = {
-        let controller = KnownWordsViewController()
-        let image = UIImage.knownWordsController
-        let selectedImage = UIImage.knownWordsController
-        let tabItem = Resources.Title.tabItemKnown
-        controller.tabBarItem = tabItem
-
-        return controller
-    }()
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
-    }
 
-    private func setup() {
+        setupView()
+    }
+}
+
+private extension MainTabBarController {
+
+    func setupView() {
+        let wordsController = WordsViewController()
+        wordsController.tabBarItem = UITabBarItem(
+            title: .dictionary,
+            image: UIImage(named: "books"),
+            selectedImage: UIImage(named: "books_selected")
+        )
+
+        let studyingWordsController = StudyingWordsViewController()
+        studyingWordsController.tabBarItem = UITabBarItem(
+            title: .learn,
+            image: UIImage(named: "coffee"),
+            selectedImage: UIImage(named: "coffee_selected")
+        )
+
+        let knownWordsController = KnownWordsViewController()
+        knownWordsController.tabBarItem = UITabBarItem(
+            title: .known,
+            image: UIImage(named: "smile"),
+            selectedImage: UIImage(named: "smile_selected")
+        )
+
         tabBar.tintColor = Resources.Colors.tabBarTintColor
         viewControllers = [wordsController, studyingWordsController, knownWordsController]
     }

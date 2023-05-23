@@ -22,7 +22,6 @@ final class StudyingWordsModel {
 extension StudyingWordsModel {
 
     func fetchWords() {
-
         let archivedWords = wordsArchiver.retrieve()
 
         if archivedWords.isNotEmpty {

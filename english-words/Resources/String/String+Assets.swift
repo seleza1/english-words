@@ -9,6 +9,10 @@ import Foundation
 
 extension String {
     
+    static let dictionary = "Словарь"
+    static let learn = "Изучаю"
+    static let known = "Знаю"
+    
     static let tableViewKnownButtonTitle = "Знаю"
     static let tableViewLearnButtonTitle = "Изучаю"
 

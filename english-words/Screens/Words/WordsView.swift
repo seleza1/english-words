@@ -26,10 +26,11 @@ final class WordsView: UIView {
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(WordCell.self, forCellReuseIdentifier: WordCell.reuseId)
+        tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.reuseId)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = 60
+        tableView.rowHeight = 104
+        tableView.separatorStyle = .none
         
         return tableView
     }()
@@ -67,43 +68,16 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: WordCell.reuseId, for: indexPath) as! WordCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseId, for: indexPath) as! TableViewCell
         cell.selectionStyle = .none
 
         let word = words[indexPath.item]
-        cell.update(word)
+        
+        let model = TableViewModel(word: word.word, isLearned: nil)
+
+        cell.configure(model)
 
         return cell
-    }
-
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-
-    }
-
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        createHeaderSectionLabel(index: words.count)
-    }
-
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let knowWord = UIContextualAction(style: .normal, title: .tableViewKnownButtonTitle) { (action, view, completionHandler) in
-            self.words.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            completionHandler(true)
-        }
-
-        knowWord.backgroundColor = Resources.Colors.wordKnownButton
-
-        let learnWord = UIContextualAction(style: .normal, title: .tableViewLearnButtonTitle) { (action, view, completionHandler) in
-            tableView.insertRows(at: [indexPath], with: .fade)
-            completionHandler(true)
-        }
-
-        learnWord.backgroundColor = Resources.Colors.justGreen
-
-        let configuration = UISwipeActionsConfiguration(actions: [knowWord, learnWord])
-        configuration.performsFirstActionWithFullSwipe = false
-
-        return configuration
     }
 }
 
@@ -129,17 +103,6 @@ private extension WordsView {
             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
-    }
-
-    func createHeaderSectionLabel(index: Int = 0) -> UILabel {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 200))
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.backgroundColor = Resources.Colors.justGreen
-        label.heightAnchor.constraint (equalToConstant: 50).isActive = true
-        label.text = "\("Resources.Title.allWordsHeader") - \(index)"
-
-        return label
     }
 }
 

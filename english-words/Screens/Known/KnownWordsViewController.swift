@@ -45,13 +45,13 @@ private extension KnownWordsViewController {
     }
 
     func present() {
-        knowView.didTappedCell = { word, translate in
-            let wordMeaning = WordMeaningViewController()
-            wordMeaning.wordLabel.text = word.capitalized
-            wordMeaning.translateLabel.text = translate.capitalized
-            wordMeaning.modalPresentationStyle = .fullScreen
-            self.present(wordMeaning, animated: true)
-        }
+//        knowView.didTappedCell = { word, translate in
+//            let wordMeaning = WordMeaningViewController()
+//            wordMeaning.wordLabel.text = word.capitalized
+//            wordMeaning.translateLabel.text = translate.capitalized
+//            wordMeaning.modalPresentationStyle = .fullScreen
+//            self.present(wordMeaning, animated: true)
+//        }
     }
 
     func update() {
