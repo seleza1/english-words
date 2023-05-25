@@ -15,7 +15,6 @@ final class WordsViewModel {
 
     let jsonLoader = JsonLoader()
     let wordsArchiver = WordsArchiver(type: .all)
-
 }
 
 // MARK: - Extension

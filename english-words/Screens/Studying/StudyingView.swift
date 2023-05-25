@@ -17,14 +17,16 @@ final class StudyingView: UIView {
         }
     }
 
+    var oneTapLearnButton: (() -> ())?
+
     // MARK: - Public Properties
 
-    let startLearnButton = Button(style: .start)
+    let startLearnButton = UIButton()
 
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.reuseId)
+        tableView.register(WordTableViewCell.self, forCellReuseIdentifier: WordTableViewCell.reuseId)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 104
@@ -65,10 +67,10 @@ extension StudyingView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseId, for: indexPath) as! TableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: WordTableViewCell.reuseId, for: indexPath) as! WordTableViewCell
 
         let word = words[indexPath.item]
-        let model = TableViewModel(word: word.word, isLearned: false)
+        let model = WordTableViewCellModel(word: word.word, isLearned: false)
 
         cell.configure(model)
         cell.selectionStyle = .none
@@ -84,19 +86,34 @@ private extension StudyingView {
     func setupViews() {
         self.addSubview(tableView)
         self.addSubview(startLearnButton)
+
+        startLearnButton.setTitle(.continueToLearnButtonTitle, for: .normal)
+        startLearnButton.setTitleColor(UIColor.white, for: .normal)
+        startLearnButton.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .medium)
+        startLearnButton.backgroundColor = .designSystemBlue
+        startLearnButton.layer.cornerRadius = 33
+        
+        startLearnButton.addTarget(self, action: #selector(tappedStartLearnButton), for: .touchUpInside)
+
+    }
+
+    @objc func tappedStartLearnButton() {
+        oneTapLearnButton?()
     }
 
     func setupConstraints() {
-        NSLayoutConstraint.activate([
-            startLearnButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 38),
-            startLearnButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12),
-            startLearnButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12),
-            startLearnButton.heightAnchor.constraint(equalToConstant: 40),
+        startLearnButton.translatesAutoresizingMaskIntoConstraints = false
 
-            tableView.topAnchor.constraint(equalTo: startLearnButton.bottomAnchor, constant: 8),
-            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        NSLayoutConstraint.activate([
+            startLearnButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            startLearnButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            startLearnButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            startLearnButton.heightAnchor.constraint(equalToConstant: 64),
+
+            tableView.topAnchor.constraint(equalTo: topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }

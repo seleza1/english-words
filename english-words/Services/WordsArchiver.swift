@@ -8,12 +8,14 @@
 import Foundation
 
 enum ArchiverType: String {
-    case all 
+
+    case all
     case unknown
     case known
 }
 
 protocol WordsArchiverProtocol {
+
     func save(_ words: [Word])
     func retrieve() -> [Word]
 }

@@ -9,20 +9,25 @@ import UIKit
 
 final class GameView: UIView {
 
-    var onVariantChanged: (()->())?
+    var onVariantChanged: (() -> ())?
+    var oneTappCloseButton: (() -> ())?
+
+    var onAction: (() -> ())?
 
     // MARK: - Private Properties
 
     private var word: WordModel?
 
     private let stickerView = StickerView()
+    
     private let stackView = UIStackView()
 
-    private let numberWordLabel = Label(style: .number)
+    private let numberWordLabel = UILabel()
 
     // MARK: - Public Properties
 
-    let closeButton = Button(style: .close)
+    let closeButton = UIButton()
+
     let oneButton = Button(style: .one)
     let twoButton = Button(style: .two)
     let threeButton = Button(style: .three)
@@ -56,7 +61,7 @@ final class GameView: UIView {
             word: word.word.capitalized,
             translation: nil,
             showHintButton: true,
-            backgroundColor: .sky ?? UIColor.white
+            backgroundColor: .designSystemSky ?? UIColor.white
         )
 
         stickerView.configure(with: model)
@@ -82,7 +87,20 @@ private extension GameView {
         addSubview(numberWordLabel)
         addSubview(stickerView)
 
+        closeButton.setImage(UIImage.chevronImage, for: .normal)
+        closeButton.addTarget(self, action: #selector(oneTappCloseButtons), for: .touchUpInside)
+
+        numberWordLabel.textAlignment = .center
+
         backgroundColor = .white
+    }
+
+    @objc func onActions() {
+        onAction?()
+    }
+
+    @objc func oneTappCloseButtons() {
+        oneTappCloseButton?()
     }
 
     func setupStackView() {
@@ -96,6 +114,7 @@ private extension GameView {
         stackView.addArrangedSubview(threeButton)
         stackView.addArrangedSubview(fourButton)
         stackView.translatesAutoresizingMaskIntoConstraints = false
+
     }
 
     func setupStickerView() {
@@ -103,6 +122,9 @@ private extension GameView {
     }
 
     func setupConstraints() {
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        numberWordLabel.translatesAutoresizingMaskIntoConstraints = false
+
         NSLayoutConstraint.activate([
             closeButton.topAnchor.constraint(equalTo: topAnchor, constant: 61),
             closeButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 27),
@@ -148,15 +170,15 @@ private extension GameView {
         oneButton.onAction = {
 
             if self.word?.variants[0] == self.word?.translate {
-                self.oneButton.backgroundColor = #colorLiteral(red: 0.2067455649, green: 0.8660475612, blue: 0.5491089821, alpha: 1)
+                self.oneButton.backgroundColor = .designSystemGreen
                 self.oneButton.setTitleColor(UIColor.white, for: .normal)
             } else {
-                self.oneButton.backgroundColor = #colorLiteral(red: 0.9983076453, green: 0.386271596, blue: 0.4940415621, alpha: 1)
+                self.oneButton.backgroundColor = .designSystemRose
                 self.oneButton.setTitleColor(UIColor.white, for: .normal)
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.oneButton.backgroundColor = Resources.Colors.backgroundButtonColor
-                self.oneButton.setTitleColor(UIColor.gray, for: .normal)
+                self.oneButton.backgroundColor = .designSystemWhite
+                self.oneButton.setTitleColor(UIColor.designSystemGrey, for: .normal)
                 self.onVariantChanged?()
             }
         }
@@ -164,15 +186,15 @@ private extension GameView {
         twoButton.onAction = {
             
             if self.word?.variants[1] == self.word?.translate {
-                self.twoButton.backgroundColor = #colorLiteral(red: 0.2067455649, green: 0.8660475612, blue: 0.5491089821, alpha: 1)
-                self.twoButton.setTitleColor(UIColor.white, for: .normal)
+                self.twoButton.backgroundColor = .designSystemGreen
+                self.twoButton.setTitleColor(UIColor.designSystemWhite, for: .normal)
             } else {
-                self.twoButton.backgroundColor = #colorLiteral(red: 0.9983076453, green: 0.386271596, blue: 0.4940415621, alpha: 1)
-                self.twoButton.setTitleColor(UIColor.white, for: .normal)
+                self.twoButton.backgroundColor = .designSystemRose
+                self.twoButton.setTitleColor(UIColor.designSystemWhite, for: .normal)
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.twoButton.backgroundColor = Resources.Colors.backgroundButtonColor
-                self.twoButton.setTitleColor(UIColor.gray, for: .normal)
+                self.twoButton.backgroundColor = .designSystemWhite
+                self.twoButton.setTitleColor(UIColor.designSystemGrey, for: .normal)
                 self.onVariantChanged?()
             }
         }
@@ -180,15 +202,15 @@ private extension GameView {
         threeButton.onAction = {
 
             if self.word?.variants[2] == self.word?.translate {
-                self.threeButton.backgroundColor = #colorLiteral(red: 0.2067455649, green: 0.8660475612, blue: 0.5491089821, alpha: 1)
-                self.threeButton.setTitleColor(UIColor.white, for: .normal)
+                self.threeButton.backgroundColor = .designSystemGreen
+                self.threeButton.setTitleColor(UIColor.designSystemWhite, for: .normal)
             } else {
-                self.threeButton.backgroundColor = #colorLiteral(red: 0.9983076453, green: 0.386271596, blue: 0.4940415621, alpha: 1)
-                self.threeButton.setTitleColor(UIColor.white, for: .normal)
+                self.threeButton.backgroundColor = .designSystemRose
+                self.threeButton.setTitleColor(UIColor.designSystemWhite, for: .normal)
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.threeButton.backgroundColor = Resources.Colors.backgroundButtonColor
-                self.threeButton.setTitleColor(UIColor.gray, for: .normal)
+                self.threeButton.backgroundColor = .designSystemWhite
+                self.threeButton.setTitleColor(UIColor.designSystemGrey, for: .normal)
                 self.onVariantChanged?()
             }
         }
@@ -196,15 +218,15 @@ private extension GameView {
         fourButton.onAction = {
 
             if self.word?.variants[3] == self.word?.translate {
-                self.fourButton.backgroundColor = #colorLiteral(red: 0.2067455649, green: 0.8660475612, blue: 0.5491089821, alpha: 1)
-                self.fourButton.setTitleColor(UIColor.white, for: .normal)
+                self.fourButton.backgroundColor = .designSystemGreen
+                self.fourButton.setTitleColor(UIColor.designSystemWhite, for: .normal)
             } else {
-                self.fourButton.backgroundColor = #colorLiteral(red: 0.9983076453, green: 0.386271596, blue: 0.4940415621, alpha: 1)
-                self.fourButton.setTitleColor(UIColor.white, for: .normal)
+                self.fourButton.backgroundColor = .designSystemRose
+                self.fourButton.setTitleColor(UIColor.designSystemWhite, for: .normal)
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.fourButton.backgroundColor = Resources.Colors.backgroundButtonColor
-                self.fourButton.setTitleColor(UIColor.gray, for: .normal)
+                self.fourButton.backgroundColor = .designSystemWhite
+                self.fourButton.setTitleColor(UIColor.designSystemGrey, for: .normal)
                 self.onVariantChanged?()
             }
         }

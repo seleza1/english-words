@@ -22,25 +22,25 @@ private extension MainTabBarController {
         let wordsController = WordsViewController()
         wordsController.tabBarItem = UITabBarItem(
             title: .dictionary,
-            image: UIImage(named: "books"),
-            selectedImage: UIImage(named: "books_selected")
+            image: UIImage.booksImage,
+            selectedImage: UIImage.booksSelectedImage
         )
 
         let studyingWordsController = StudyingWordsViewController()
         studyingWordsController.tabBarItem = UITabBarItem(
-            title: .learn,
-            image: UIImage(named: "coffee"),
-            selectedImage: UIImage(named: "coffee_selected")
+            title: .tableViewLearnButtonTitle,
+            image: UIImage.coffeeImage,
+            selectedImage: UIImage.coffeeSelectedImage
         )
 
         let knownWordsController = KnownWordsViewController()
         knownWordsController.tabBarItem = UITabBarItem(
-            title: .known,
-            image: UIImage(named: "smile"),
-            selectedImage: UIImage(named: "smile_selected")
+            title: .tableViewKnownButtonTitle,
+            image: UIImage.smileImage,
+            selectedImage: UIImage.smileSelectedImage
         )
 
-        tabBar.tintColor = Resources.Colors.tabBarTintColor
+        tabBar.tintColor = .designSystemBlue
         viewControllers = [wordsController, studyingWordsController, knownWordsController]
     }
 }

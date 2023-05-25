@@ -18,6 +18,7 @@ final class GameViewController: UIViewController {
     // MARK: - Lifecycle
 
     override func loadView() {
+        
         self.view = GameView(frame: UIScreen.main.bounds)
     }
 
@@ -36,7 +37,7 @@ final class GameViewController: UIViewController {
 private extension GameViewController {
 
     func closeView() {
-        gameView.closeButton.onAction = {
+        gameView.oneTappCloseButton = {
             self.dismiss(animated: true)
         }
     }

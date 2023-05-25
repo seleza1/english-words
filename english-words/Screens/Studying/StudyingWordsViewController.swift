@@ -15,6 +15,7 @@ final class StudyingWordsViewController: UIViewController {
     // MARK: - Lifecycle
 
     override func loadView() {
+        
         self.view = StudyingView(frame: UIScreen.main.bounds)
     }
 
@@ -32,7 +33,7 @@ final class StudyingWordsViewController: UIViewController {
 private extension StudyingWordsViewController {
 
     func startLearnButtonTapped() {
-        studyingView.startLearnButton.onAction = {
+        studyingView.oneTapLearnButton = {
             let gameVC = GameViewController()
             gameVC.modalPresentationStyle = .fullScreen
             self.present(gameVC, animated: true)

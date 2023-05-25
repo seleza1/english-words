@@ -20,7 +20,7 @@ final class KnownView: UIView {
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.reuseId)
+        tableView.register(WordTableViewCell.self, forCellReuseIdentifier: WordTableViewCell.reuseId)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 104
@@ -29,7 +29,6 @@ final class KnownView: UIView {
         return tableView
     }()
 
-    let startLearnButton = Button(style: .repeatW)
 
     // MARK: - Initialization
 
@@ -63,10 +62,10 @@ extension KnownView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseId, for: indexPath) as! TableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: WordTableViewCell.reuseId, for: indexPath) as! WordTableViewCell
 
         let word = words[indexPath.item]
-        let model = TableViewModel(word: word.word, isLearned: true)
+        let model = WordTableViewCellModel(word: word.word, isLearned: true)
 
         cell.configure(model)
         cell.selectionStyle = .none
@@ -81,20 +80,15 @@ private extension KnownView {
 
     func setupViews() {
         self.addSubview(tableView)
-        self.addSubview(startLearnButton)
     }
 
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            startLearnButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 38),
-            startLearnButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12),
-            startLearnButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12),
-            startLearnButton.heightAnchor.constraint(equalToConstant: 40),
 
-            tableView.topAnchor.constraint(equalTo: startLearnButton.bottomAnchor, constant: 8),
-            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            tableView.topAnchor.constraint(equalTo: topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 

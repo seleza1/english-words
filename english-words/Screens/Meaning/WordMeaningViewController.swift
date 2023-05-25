@@ -9,10 +9,9 @@ import UIKit
 
 final class WordMeaningViewController: UIViewController {
 
-    private let closeButton = Button(style: .close)
-
     private let stickerView = StickerView()
 
+    private let closeButton = UIButton()
     private let nextButton = UIButton()
 
     let wordLabel = UILabel()
@@ -38,23 +37,25 @@ private extension WordMeaningViewController {
         view.addSubview(nextButton)
 
         nextButton.setTitleColor(UIColor.black, for: .normal)
-        nextButton.backgroundColor = #colorLiteral(red: 0.992441237, green: 0.8533335924, blue: 0.4606403112, alpha: 1)
+        nextButton.backgroundColor = .designSystemYellow
         nextButton.layer.cornerRadius = 32
-        nextButton.setTitle("Следующее", for: .normal)
+        nextButton.setTitle(.continueToLearnButtonTitle, for: .normal)
 
-        stickerView.hintView.isHidden = true
-        stickerView.backgroundColor = #colorLiteral(red: 0.919233799, green: 0.9984920621, blue: 1, alpha: 1)
+        stickerView.backgroundColor = .designSystemSky
         stickerView.addSubview(wordLabel)
         stickerView.addSubview(translateLabel)
 
-        wordLabel.font = UIFont.systemFont(ofSize: 32, weight: .medium)
+        wordLabel.font = .stickerWorldLabelFont
         wordLabel.textColor = .designSystemBlack
         wordLabel.textAlignment = .center
 
-        translateLabel.font = UIFont.systemFont(ofSize: 24, weight: .medium)
-        translateLabel.textColor = .designSystemGray
+        translateLabel.font = .translationLabelFont
+        translateLabel.textColor = .designSystemGrey
         translateLabel.textAlignment = .center
         translateLabel.numberOfLines = 0
+
+        closeButton.setImage(UIImage.chevronImage, for: .normal)
+
     }
     
     func setupActions() {
@@ -66,6 +67,7 @@ private extension WordMeaningViewController {
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         wordLabel.translatesAutoresizingMaskIntoConstraints = false
         translateLabel.translatesAutoresizingMaskIntoConstraints = false
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 61),
