@@ -15,7 +15,6 @@ final class StudyingWordsViewController: UIViewController {
     // MARK: - Lifecycle
 
     override func loadView() {
-        super.loadView()
         
         self.view = StudyingView(frame: UIScreen.main.bounds)
     }

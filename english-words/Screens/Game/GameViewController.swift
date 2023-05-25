@@ -18,7 +18,6 @@ final class GameViewController: UIViewController {
     // MARK: - Lifecycle
 
     override func loadView() {
-        super.loadView()
         
         self.view = GameView(frame: UIScreen.main.bounds)
     }

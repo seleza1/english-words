@@ -17,7 +17,6 @@ final class WordsViewController: UIViewController {
     // MARK: - Lifecycle
 
     override func loadView() {
-        super.loadView()
 
         self.view = WordsView(frame: UIScreen.main.bounds)
     }

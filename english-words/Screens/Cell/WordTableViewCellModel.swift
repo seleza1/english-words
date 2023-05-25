@@ -1,5 +1,5 @@
 //
-//  TableViewModel.swift
+//  WordTableViewCellModel.swift
 //  english-words
 //
 //  Created by user on 20.05.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TableViewModel {
+struct WordTableViewCellModel {
 
     let word: String
     var isLearned: Bool? = nil

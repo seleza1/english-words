@@ -1,5 +1,5 @@
 //
-//  TableViewCell.swift
+//  WordTableViewCell.swift
 //  english-words
 //
 //  Created by user on 12.04.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TableViewCell: UITableViewCell {
+final class WordTableViewCell: UITableViewCell {
 
     // MARK: - Private Properties
 
@@ -16,8 +16,8 @@ final class TableViewCell: UITableViewCell {
     private let roundView = UIView()
 
     private let soundButton = UIButton()
-    private let repeatButton = UIButton()
-    private let successButton = UIButton()
+
+    private let statusImageView = UIImageView()
 
     // MARK: - Static Properties
 
@@ -27,7 +27,6 @@ final class TableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        soundButton.showsTouchWhenHighlighted = true
 
         setupViews()
         setupConstraints()
@@ -39,48 +38,36 @@ final class TableViewCell: UITableViewCell {
 
     // MARK: - Public Methods
 
-    func configure(_ word: TableViewModel) {
+    func configure(_ word: WordTableViewCellModel) {
         wordLabel.text = word.word
 
-        if word.isLearned == true {
-            successButton.setImage(UIImage.successIcon, for: .normal)
-            successButton.backgroundColor = .designSystemGreen
-        } else if word.isLearned == false {
-            repeatButton.backgroundColor = .designSystemOrange
-            repeatButton.setImage(UIImage.repeatIcon, for: .normal)
-            repeatButton.isHidden = true
+        if let wordLearned = word.isLearned {
+            if wordLearned {
+                statusImageView.image = .successIcon
+                statusImageView.isHidden = false
+                statusImageView.backgroundColor = .designSystemGreen
+            } else {
+                statusImageView.image = .repeatIcon
+                statusImageView.isHidden = false
+                statusImageView.backgroundColor = .designSystemYellow
+            }
         } else {
-            successButton.isHidden = true
-            repeatButton.isHidden = true
+            statusImageView.isHidden = true
         }
     }
 }
 
 // MARK: - Extension
 
-private extension TableViewCell {
+private extension WordTableViewCell {
 
     // MARK: - Private Methods
 
     func setupViews() {
         addSubview(wordLabel)
         addSubview(roundView)
-
-        addSubview(successButton)
-        addSubview(repeatButton)
         addSubview(soundButton)
-
-        repeatButton.layer.cornerRadius = 18
-        repeatButton.layer.borderWidth = 1
-        repeatButton.backgroundColor = .designSystemOrange
-        repeatButton.layer.borderColor = UIColor.designSystemLightGray?.cgColor
-        repeatButton.setImage(UIImage.repeatIcon, for: .normal)
-
-        successButton.layer.cornerRadius = 18
-        successButton.layer.borderWidth = 1
-        successButton.backgroundColor = .designSystemGreen
-        successButton.layer.borderColor = UIColor.designSystemLightGray?.cgColor
-        successButton.setImage(UIImage.successIcon, for: .normal)
+        addSubview(statusImageView)
 
         roundView.layer.cornerRadius = 12
         roundView.layer.borderColor = UIColor.designSystemLightGray?.cgColor
@@ -92,15 +79,18 @@ private extension TableViewCell {
         soundButton.layer.borderColor = UIColor.designSystemLightGray?.cgColor
         soundButton.setImage(UIImage.soundSpeakerImage, for: .normal)
 
+        statusImageView.layer.cornerRadius = 18
+        statusImageView.contentMode = .center
+
         wordLabel.font = UIFont.wordLabelFont
     }
 
     func setupConstraints() {
-        successButton.translatesAutoresizingMaskIntoConstraints = false
-        repeatButton.translatesAutoresizingMaskIntoConstraints = false
+
         soundButton.translatesAutoresizingMaskIntoConstraints = false
         roundView.translatesAutoresizingMaskIntoConstraints = false
         wordLabel.translatesAutoresizingMaskIntoConstraints = false
+        statusImageView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             wordLabel.topAnchor.constraint(equalTo: topAnchor, constant: 41),
@@ -119,17 +109,11 @@ private extension TableViewCell {
             soundButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -287),
             soundButton.heightAnchor.constraint(equalToConstant: 48),
 
-            repeatButton.topAnchor.constraint(equalTo: roundView.bottomAnchor, constant: 34),
-            repeatButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 299),
-            repeatButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -34),
-            repeatButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40),
-            repeatButton.heightAnchor.constraint(equalToConstant: 36),
-
-            successButton.topAnchor.constraint(equalTo: roundView.bottomAnchor, constant: 34),
-            successButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 299),
-            successButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -34),
-            successButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40),
-            successButton.heightAnchor.constraint(equalToConstant: 36),
+            statusImageView.topAnchor.constraint(equalTo: roundView.bottomAnchor, constant: 34),
+            statusImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 299),
+            statusImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -34),
+            statusImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40),
+            statusImageView.heightAnchor.constraint(equalToConstant: 36),
         ])
     }
 }

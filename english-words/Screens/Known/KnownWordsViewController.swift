@@ -15,7 +15,6 @@ final class KnownWordsViewController: UIViewController {
     // MARK: - Lifecycle
 
     override func loadView() {
-        super.loadView()
         
         self.view = KnownView(frame: UIScreen.main.bounds)
     }
