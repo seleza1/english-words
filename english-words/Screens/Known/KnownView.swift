@@ -29,7 +29,6 @@ final class KnownView: UIView {
         return tableView
     }()
 
-    let startLearnButton = Button(style: .repeatW)
 
     // MARK: - Initialization
 
@@ -81,20 +80,15 @@ private extension KnownView {
 
     func setupViews() {
         self.addSubview(tableView)
-        self.addSubview(startLearnButton)
     }
 
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            startLearnButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 38),
-            startLearnButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12),
-            startLearnButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12),
-            startLearnButton.heightAnchor.constraint(equalToConstant: 40),
 
-            tableView.topAnchor.constraint(equalTo: startLearnButton.bottomAnchor, constant: 8),
-            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            tableView.topAnchor.constraint(equalTo: topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 

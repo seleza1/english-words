@@ -21,7 +21,9 @@ final class WordsView: UIView {
 
     var didTapped: ((_ word: String, _ meaning: String) -> ())?
 
-    let startLearnButton = Button(style: .start)
+    var oneTapLearnButton: (() -> ())?
+
+    let startLearnButton = UIButton()
 
     lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -42,7 +44,6 @@ final class WordsView: UIView {
 
         setupViews()
         setupConstraints()
-
         self.backgroundColor = .white
     }
 
@@ -54,7 +55,6 @@ final class WordsView: UIView {
 
     func update(_ words: [Word]) {
         self.words = words
-
     }
 }
 
@@ -69,13 +69,12 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseId, for: indexPath) as! TableViewCell
-        cell.selectionStyle = .none
 
         let word = words[indexPath.item]
-        
         let model = TableViewModel(word: word.word, isLearned: nil)
 
         cell.configure(model)
+        cell.selectionStyle = .none
 
         return cell
     }
@@ -89,19 +88,32 @@ private extension WordsView {
         self.addSubview(tableView)
         self.addSubview(startLearnButton)
 
+        startLearnButton.setTitle(.startToLearnButtonTitle, for: .normal)
+        startLearnButton.setTitleColor(UIColor.white, for: .normal)
+        startLearnButton.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .medium)
+        startLearnButton.backgroundColor = .designSystemBlue
+        startLearnButton.layer.cornerRadius = 33
+
+        startLearnButton.addTarget(self, action: #selector(tappedStartLearnButton), for: .touchUpInside)
+    }
+
+    @objc func tappedStartLearnButton() {
+        oneTapLearnButton?()
     }
 
     func setupConstraints() {
+        startLearnButton.translatesAutoresizingMaskIntoConstraints = false
+
         NSLayoutConstraint.activate([
-            startLearnButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            startLearnButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            startLearnButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -102),
+            startLearnButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            startLearnButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            startLearnButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
             startLearnButton.heightAnchor.constraint(equalToConstant: 64),
 
-            tableView.topAnchor.constraint(equalTo: self.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            tableView.topAnchor.constraint(equalTo: topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }

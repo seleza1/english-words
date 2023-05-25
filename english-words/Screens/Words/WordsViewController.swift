@@ -17,6 +17,8 @@ final class WordsViewController: UIViewController {
     // MARK: - Lifecycle
 
     override func loadView() {
+        super.loadView()
+
         self.view = WordsView(frame: UIScreen.main.bounds)
     }
 
@@ -35,7 +37,7 @@ final class WordsViewController: UIViewController {
 private extension WordsViewController {
 
     func startLearnButtonTapped() {
-        wordsView.startLearnButton.onAction = {
+        wordsView.oneTapLearnButton = {
             let gameVC = GameViewController()
             gameVC.modalPresentationStyle = .fullScreen
             self.present(gameVC, animated: true)

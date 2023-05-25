@@ -15,6 +15,8 @@ final class KnownWordsViewController: UIViewController {
     // MARK: - Lifecycle
 
     override func loadView() {
+        super.loadView()
+        
         self.view = KnownView(frame: UIScreen.main.bounds)
     }
 
@@ -22,7 +24,6 @@ final class KnownWordsViewController: UIViewController {
         super.viewDidLoad()
 
         fetchWords()
-        startLearnButtonTapped()
         update()
         present()
     }
@@ -31,14 +32,6 @@ final class KnownWordsViewController: UIViewController {
 // MARK: - Extension
 
 private extension KnownWordsViewController {
-    
-    func startLearnButtonTapped() {
-        knowView.startLearnButton.onAction = {
-            let gameVC = GameViewController()
-            gameVC.modalPresentationStyle = .fullScreen
-            self.present(gameVC, animated: true)
-        }
-    }
 
     func fetchWords() {
         viewModel.fetchWords()

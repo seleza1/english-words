@@ -10,8 +10,13 @@ import UIKit
 extension UIColor {
 
     static let designSystemBlack = UIColor(named: "designSystemBlack")
-    static let designSystemGray = UIColor(named: "designSystemGray")
-    static let sky = UIColor(named: "sky")
-    static let yellow = UIColor(named: "yellow")
-
+    static let designSystemGrey = UIColor(named: "designSystemGrey")
+    static let designSystemSky = UIColor(named: "designSystemSky")
+    static let designSystemYellow = UIColor(named: "designSystemYellow")
+    static let designSystemGreen = UIColor(named: "designSystemGreen")
+    static let designSystemOrange = UIColor(named: "designSystemOrange")
+    static let designSystemRose = UIColor(named: "designSystemRose")
+    static let designSystemBlue = UIColor(named: "designSystemBlue")
+    static let designSystemWhite = UIColor(named: "designSystemWhite")
+    static let designSystemLightGray = UIColor(named: "designSystemLightGray")
 }

@@ -14,7 +14,7 @@ final class StudyingWordsModel {
     var onWordsChanged: (([Word])->())?
 
     let jsonLoader = JsonLoader()
-    let wordsArchiver = WordsArchiver(type: .all)
+    let wordsArchiver = WordsArchiver(type: .unknown)
 }
 
 // MARK: - Extension

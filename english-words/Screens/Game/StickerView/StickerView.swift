@@ -11,14 +11,13 @@ final class StickerView: UIView {
 
     // MARK: - Private
 
+    private let stackView = UIStackView()
+
     private let worldLabel = UILabel()
-    let translationLabel = UILabel()
+    private let translationLabel = UILabel()
 
     private let hintButton = UIButton()
     private let speakerButton = UIButton()
-
-    let hintView = UIView()
-    private let speakerView = UIView()
 
     // MARK: - Public
 
@@ -41,32 +40,6 @@ extension StickerView {
         worldLabel.text = viewModel.word
         translationLabel.text = viewModel.translation
         backgroundColor = viewModel.backgroundColor
-
-
-        if viewModel.showHintButton {
-            translationLabel.isHidden = true
-            hintView.isHidden = false
-
-            NSLayoutConstraint.activate([
-                worldLabel.topAnchor.constraint(equalTo: topAnchor, constant: 109),
-                worldLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
-                worldLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -70)
-            ])
-        } else {
-            translationLabel.isEnabled = false
-            hintView.isHidden = true
-
-            NSLayoutConstraint.activate([
-                worldLabel.topAnchor.constraint(equalTo: topAnchor, constant: 86),
-                worldLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
-                worldLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -70),
-                worldLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -90),
-
-                translationLabel.topAnchor.constraint(equalTo: worldLabel.bottomAnchor, constant: 24),
-                translationLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
-                translationLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -70),
-            ])
-        }
     }
 }
 
@@ -75,31 +48,30 @@ private extension StickerView {
     func setupView() {
         layer.cornerRadius = 12
 
-        worldLabel.font = UIFont.systemFont(ofSize: 32, weight: .medium)
+        addSubview(speakerButton)
+        addSubview(hintButton)
+        addSubview(stackView)
+
+        stackView.addArrangedSubview(worldLabel)
+        stackView.addArrangedSubview(translationLabel)
+
+        stackView.spacing = 24
+
+        worldLabel.font = .stickerWorldLabelFont
         worldLabel.textColor = .designSystemBlack
         worldLabel.textAlignment = .center
 
-        translationLabel.font = UIFont.systemFont(ofSize: 24, weight: .medium)
-        translationLabel.textColor = .designSystemGray
+        translationLabel.font = .translationLabelFont
+        translationLabel.textColor = .designSystemGrey
         translationLabel.textAlignment = .center
 
         speakerButton.setImage(UIImage.soundSpeakerImage, for: .normal)
+        speakerButton.layer.cornerRadius = 22
+        speakerButton.backgroundColor = UIColor.white
+
         hintButton.setImage(UIImage.keyImage, for: .normal)
-
-        hintView.layer.cornerRadius = 22
-        hintView.backgroundColor = .white
-        speakerView.layer.cornerRadius = 22
-        speakerView.backgroundColor = .white
-
-        addSubview(hintView)
-        addSubview(speakerView)
-
-        hintView.addSubview(hintButton)
-        speakerView.addSubview(speakerButton)
-
-        addSubview(worldLabel)
-        addSubview(translationLabel)
-
+        hintButton.layer.cornerRadius = 22
+        hintButton.backgroundColor = UIColor.white
     }
 
     func setupConstraints() {
@@ -107,40 +79,21 @@ private extension StickerView {
         translationLabel.translatesAutoresizingMaskIntoConstraints = false
         speakerButton.translatesAutoresizingMaskIntoConstraints = false
         hintButton.translatesAutoresizingMaskIntoConstraints = false
-        hintView.translatesAutoresizingMaskIntoConstraints = false
-        speakerView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            worldLabel.topAnchor.constraint(equalTo: topAnchor, constant: 109),
-            worldLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
-            worldLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -70),
-            worldLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -90),
+            stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
 
-            translationLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -86),
-            translationLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
-            translationLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -70),
+            speakerButton.topAnchor.constraint(equalTo: topAnchor, constant: 180),
+            speakerButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 275),
+            speakerButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
+            speakerButton.heightAnchor.constraint(equalToConstant: 48),
 
-            speakerView.topAnchor.constraint(equalTo: topAnchor, constant: 180),
-            speakerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 275),
-            speakerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
-            speakerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
-            speakerView.heightAnchor.constraint(equalToConstant: 48),
-
-            speakerButton.topAnchor.constraint(equalTo: speakerView.topAnchor, constant: 12),
-            speakerButton.leadingAnchor.constraint(equalTo: speakerView.leadingAnchor, constant: 12),
-            speakerButton.trailingAnchor.constraint(equalTo: speakerView.trailingAnchor, constant: -12),
-            speakerButton.bottomAnchor.constraint(equalTo: speakerView.bottomAnchor, constant: -12),
-
-            hintView.topAnchor.constraint(equalTo: topAnchor, constant: 180),
-            hintView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 214),
-            hintView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -73),
-            hintView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
-            hintView.heightAnchor.constraint(equalToConstant: 48),
-
-            hintButton.topAnchor.constraint(equalTo: hintView.topAnchor, constant: 12),
-            hintButton.leadingAnchor.constraint(equalTo: hintView.leadingAnchor, constant: 12),
-            hintButton.trailingAnchor.constraint(equalTo: hintView.trailingAnchor, constant: -12),
-            hintButton.bottomAnchor.constraint(equalTo: hintView.bottomAnchor, constant: -12)
+            hintButton.topAnchor.constraint(equalTo: topAnchor, constant: 180),
+            hintButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 214),
+            hintButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -73),
+            hintButton.heightAnchor.constraint(equalToConstant: 48)
         ])
 
     }

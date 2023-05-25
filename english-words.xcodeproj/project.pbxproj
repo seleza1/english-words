@@ -32,10 +32,7 @@
 		CEB5679D2A18C101002F2483 /* TableWordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB5679C2A18C101002F2483 /* TableWordsViewModel.swift */; };
 		CEBB91D529E7E7EC00D26220 /* StudyingWordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB91D429E7E7EC00D26220 /* StudyingWordsViewController.swift */; };
 		CEBB91D729E8828F00D26220 /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB91D629E8828E00D26220 /* JsonLoader.swift */; };
-		CEBB91D929EAD6DF00D26220 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB91D829EAD6DF00D26220 /* Resources.swift */; };
 		CEBB91EF29F29F9B00D26220 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB91EE29F29F9B00D26220 /* Button.swift */; };
-		CEBB91F129F2A16100D26220 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB91F029F2A16100D26220 /* Label.swift */; };
-		CEE0F52F2A13651800ACBDB5 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE0F52E2A13651800ACBDB5 /* View.swift */; };
 		CEE6A4AC29F8F8B800BB90A9 /* WordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE6A4AB29F8F8B800BB90A9 /* WordsView.swift */; };
 		CEE6A4B129F8FCD300BB90A9 /* StudyingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE6A4B029F8FCD300BB90A9 /* StudyingView.swift */; };
 		CEE6A4B329F9046000BB90A9 /* KnownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE6A4B229F9046000BB90A9 /* KnownView.swift */; };
@@ -72,10 +69,7 @@
 		CEB5679C2A18C101002F2483 /* TableWordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableWordsViewModel.swift; sourceTree = "<group>"; };
 		CEBB91D429E7E7EC00D26220 /* StudyingWordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyingWordsViewController.swift; sourceTree = "<group>"; };
 		CEBB91D629E8828E00D26220 /* JsonLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonLoader.swift; sourceTree = "<group>"; };
-		CEBB91D829EAD6DF00D26220 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		CEBB91EE29F29F9B00D26220 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
-		CEBB91F029F2A16100D26220 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
-		CEE0F52E2A13651800ACBDB5 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		CEE6A4AB29F8F8B800BB90A9 /* WordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsView.swift; sourceTree = "<group>"; };
 		CEE6A4B029F8FCD300BB90A9 /* StudyingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyingView.swift; sourceTree = "<group>"; };
 		CEE6A4B229F9046000BB90A9 /* KnownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownView.swift; sourceTree = "<group>"; };
@@ -111,6 +105,15 @@
 			path = Meaning;
 			sourceTree = "<group>";
 		};
+		CE5C11D92A1DF08F00241508 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				CEB5679C2A18C101002F2483 /* TableWordsViewModel.swift */,
+				CE6466FA29E69C1500D32B47 /* TableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		CE6466D629E6990900D32B47 = {
 			isa = PBXGroup;
 			children = (
@@ -134,7 +137,6 @@
 				CE6466F829E69BEE00D32B47 /* Screens */,
 				CE6466FC29E69EFC00D32B47 /* Models */,
 				CE6466FF29E6A1D300D32B47 /* Services */,
-				CEBB91ED29F29F5800D26220 /* Library */,
 				CEE6A4B829F92A1500BB90A9 /* Extensions */,
 				CE6466F729E6992900D32B47 /* Resources */,
 			);
@@ -158,7 +160,6 @@
 				CEB567972A17CD57002F2483 /* String */,
 				CEB567922A16C2B4002F2483 /* Fonts */,
 				CEB567912A16C0BD002F2483 /* Colors */,
-				CEBB91D829EAD6DF00D26220 /* Resources.swift */,
 				CE64670229E6A50500D32B47 /* words5000.json */,
 				CE6466EB29E6990B00D32B47 /* Assets.xcassets */,
 				CE6466ED29E6990B00D32B47 /* LaunchScreen.storyboard */,
@@ -170,8 +171,7 @@
 		CE6466F829E69BEE00D32B47 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				CEB5679C2A18C101002F2483 /* TableWordsViewModel.swift */,
-				CE6466FA29E69C1500D32B47 /* TableViewCell.swift */,
+				CE5C11D92A1DF08F00241508 /* Cell */,
 				CE2ADA522A0E2A460031B3EA /* Meaning */,
 				CE6466F929E69BFA00D32B47 /* Words */,
 				CE64670E29E7E60D00D32B47 /* Studying */,
@@ -234,6 +234,7 @@
 			children = (
 				CE64670A29E6ABC300D32B47 /* GameViewController.swift */,
 				CEE6A4B429F9056000BB90A9 /* GameView.swift */,
+				CEBB91EE29F29F9B00D26220 /* Button.swift */,
 				CEB5678C2A16BE32002F2483 /* StickerView */,
 			);
 			path = Game;
@@ -242,8 +243,8 @@
 		CEB5678C2A16BE32002F2483 /* StickerView */ = {
 			isa = PBXGroup;
 			children = (
-				0C02A0362A1D1B8500094D27 /* StickerView.swift */,
 				0C02A0352A1D1B8500094D27 /* StickerViewModel.swift */,
+				0C02A0362A1D1B8500094D27 /* StickerView.swift */,
 			);
 			path = StickerView;
 			sourceTree = "<group>";
@@ -270,16 +271,6 @@
 				0C02A02F2A1D1B2600094D27 /* String+Assets.swift */,
 			);
 			path = String;
-			sourceTree = "<group>";
-		};
-		CEBB91ED29F29F5800D26220 /* Library */ = {
-			isa = PBXGroup;
-			children = (
-				CEBB91EE29F29F9B00D26220 /* Button.swift */,
-				CEBB91F029F2A16100D26220 /* Label.swift */,
-				CEE0F52E2A13651800ACBDB5 /* View.swift */,
-			);
-			path = Library;
 			sourceTree = "<group>";
 		};
 		CEE6A4B829F92A1500BB90A9 /* Extensions */ = {
@@ -366,15 +357,12 @@
 				0C02A0342A1D1B3B00094D27 /* UIColor+Assets.swift in Sources */,
 				CE64670D29E7E2B000D32B47 /* KnownWordsViewController.swift in Sources */,
 				CEE6A4B329F9046000BB90A9 /* KnownView.swift in Sources */,
-				CEBB91D929EAD6DF00D26220 /* Resources.swift in Sources */,
 				CE2ADA4D2A026E660031B3EA /* StudyingViewModel.swift in Sources */,
 				CE6466FB29E69C1500D32B47 /* TableViewCell.swift in Sources */,
 				0C02A0302A1D1B2600094D27 /* String+Assets.swift in Sources */,
 				CEE6A4BA29F92A5C00BB90A9 /* Array+NotEmpty.swift in Sources */,
 				CEE6A4AC29F8F8B800BB90A9 /* WordsView.swift in Sources */,
-				CEBB91F129F2A16100D26220 /* Label.swift in Sources */,
 				CE2ADA4F2A026ED40031B3EA /* KnowWordsViewModel.swift in Sources */,
-				CEE0F52F2A13651800ACBDB5 /* View.swift in Sources */,
 				0C02A03B2A1D1C5000094D27 /* UIImage+Assets.swift in Sources */,
 				0C02A0372A1D1B8500094D27 /* StickerViewModel.swift in Sources */,
 				0C02A0322A1D1B3200094D27 /* UIFonts+Assets.swift in Sources */,
