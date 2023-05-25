@@ -13,6 +13,8 @@
 		0C02A0372A1D1B8500094D27 /* StickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C02A0352A1D1B8500094D27 /* StickerViewModel.swift */; };
 		0C02A0382A1D1B8500094D27 /* StickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C02A0362A1D1B8500094D27 /* StickerView.swift */; };
 		0C02A03B2A1D1C5000094D27 /* UIImage+Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C02A03A2A1D1C5000094D27 /* UIImage+Assets.swift */; };
+		0CAABDD02A1FBD6200240090 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAABDCF2A1FBD6200240090 /* GameViewModel.swift */; };
+		0CAABDD32A1FC0D600240090 /* GameAssemler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAABDD22A1FC0D600240090 /* GameAssemler.swift */; };
 		CE2ADA4B2A024A470031B3EA /* WordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ADA4A2A024A470031B3EA /* WordsViewModel.swift */; };
 		CE2ADA4D2A026E660031B3EA /* StudyingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ADA4C2A026E660031B3EA /* StudyingViewModel.swift */; };
 		CE2ADA4F2A026ED40031B3EA /* KnowWordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ADA4E2A026ED40031B3EA /* KnowWordsViewModel.swift */; };
@@ -48,6 +50,8 @@
 		0C02A0352A1D1B8500094D27 /* StickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerViewModel.swift; sourceTree = "<group>"; };
 		0C02A0362A1D1B8500094D27 /* StickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerView.swift; sourceTree = "<group>"; };
 		0C02A03A2A1D1C5000094D27 /* UIImage+Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Assets.swift"; sourceTree = "<group>"; };
+		0CAABDCF2A1FBD6200240090 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		0CAABDD22A1FC0D600240090 /* GameAssemler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAssemler.swift; sourceTree = "<group>"; };
 		CE2ADA4A2A024A470031B3EA /* WordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsViewModel.swift; sourceTree = "<group>"; };
 		CE2ADA4C2A026E660031B3EA /* StudyingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyingViewModel.swift; sourceTree = "<group>"; };
 		CE2ADA4E2A026ED40031B3EA /* KnowWordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowWordsViewModel.swift; sourceTree = "<group>"; };
@@ -95,6 +99,41 @@
 				0C02A03A2A1D1C5000094D27 /* UIImage+Assets.swift */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		0CAABDD12A1FC09D00240090 /* Assembler */ = {
+			isa = PBXGroup;
+			children = (
+				0CAABDD22A1FC0D600240090 /* GameAssemler.swift */,
+			);
+			path = Assembler;
+			sourceTree = "<group>";
+		};
+		0CAABDD42A1FC13E00240090 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE64670A29E6ABC300D32B47 /* GameViewController.swift */,
+				CEE6A4B429F9056000BB90A9 /* GameView.swift */,
+				0CAABDD62A1FC19400240090 /* Subviews */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0CAABDD52A1FC17900240090 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0CAABDCF2A1FBD6200240090 /* GameViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0CAABDD62A1FC19400240090 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB91EE29F29F9B00D26220 /* Button.swift */,
+				CEB5678C2A16BE32002F2483 /* StickerView */,
+			);
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 		CE2ADA522A0E2A460031B3EA /* Meaning */ = {
@@ -232,10 +271,9 @@
 		CE64671429E7E67B00D32B47 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				CE64670A29E6ABC300D32B47 /* GameViewController.swift */,
-				CEE6A4B429F9056000BB90A9 /* GameView.swift */,
-				CEBB91EE29F29F9B00D26220 /* Button.swift */,
-				CEB5678C2A16BE32002F2483 /* StickerView */,
+				0CAABDD12A1FC09D00240090 /* Assembler */,
+				0CAABDD42A1FC13E00240090 /* View */,
+				0CAABDD52A1FC17900240090 /* ViewModel */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -370,6 +408,7 @@
 				CE6466E329E6990900D32B47 /* AppDelegate.swift in Sources */,
 				CE64670529E6A6E600D32B47 /* MainTabBarController.swift in Sources */,
 				CEBB91D729E8828F00D26220 /* JsonLoader.swift in Sources */,
+				0CAABDD02A1FBD6200240090 /* GameViewModel.swift in Sources */,
 				CEBB91EF29F29F9B00D26220 /* Button.swift in Sources */,
 				CE2ADA4B2A024A470031B3EA /* WordsViewModel.swift in Sources */,
 				CEE6A4B529F9056000BB90A9 /* GameView.swift in Sources */,
@@ -379,6 +418,7 @@
 				CEE6A4B729F9210700BB90A9 /* WordsArchiver.swift in Sources */,
 				0C02A0382A1D1B8500094D27 /* StickerView.swift in Sources */,
 				CEB5679D2A18C101002F2483 /* WordTableViewCellModel.swift in Sources */,
+				0CAABDD32A1FC0D600240090 /* GameAssemler.swift in Sources */,
 				CE2ADA512A0CCD550031B3EA /* WordMeaningViewController.swift in Sources */,
 				CEE6A4B129F8FCD300BB90A9 /* StudyingView.swift in Sources */,
 			);

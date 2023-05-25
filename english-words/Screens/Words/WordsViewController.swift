@@ -37,9 +37,9 @@ private extension WordsViewController {
 
     func startLearnButtonTapped() {
         wordsView.oneTapLearnButton = {
-            let gameVC = GameViewController()
-            gameVC.modalPresentationStyle = .fullScreen
-            self.present(gameVC, animated: true)
+            let controller = GameAssemler.buildModule()
+            controller.modalPresentationStyle = .fullScreen
+            self.present(controller, animated: true)
         }
     }
 
