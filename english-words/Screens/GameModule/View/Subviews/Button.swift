@@ -29,7 +29,7 @@ class Button: UIButton {
 
             self.layer.cornerRadius = 12
             self.layer.borderWidth = 1
-            self.layer.borderColor = #colorLiteral(red: 0.938919723, green: 0.9531306624, blue: 0.9746883512, alpha: 1)
+            self.layer.borderColor = UIColor.designSystemWhiteSky?.cgColor
             self.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .medium)
 
         case .two:
@@ -38,7 +38,7 @@ class Button: UIButton {
 
             self.layer.cornerRadius = 12
             self.layer.borderWidth = 1
-            self.layer.borderColor = #colorLiteral(red: 0.938919723, green: 0.9531306624, blue: 0.9746883512, alpha: 1)
+            self.layer.borderColor = UIColor.designSystemWhiteSky?.cgColor
             self.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .medium)
 
         case .three:
@@ -47,7 +47,7 @@ class Button: UIButton {
 
             self.layer.cornerRadius = 12
             self.layer.borderWidth = 1
-            self.layer.borderColor = #colorLiteral(red: 0.938919723, green: 0.9531306624, blue: 0.9746883512, alpha: 1)
+            self.layer.borderColor = UIColor.designSystemWhiteSky?.cgColor
             self.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .medium)
 
         case .four:
@@ -56,7 +56,7 @@ class Button: UIButton {
 
             self.layer.cornerRadius = 12
             self.layer.borderWidth = 1
-            self.layer.borderColor = #colorLiteral(red: 0.938919723, green: 0.9531306624, blue: 0.9746883512, alpha: 1)
+            self.layer.borderColor = UIColor.designSystemWhiteSky?.cgColor
             self.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .medium)
         }
         self.translatesAutoresizingMaskIntoConstraints = false

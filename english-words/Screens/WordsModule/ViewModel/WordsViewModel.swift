@@ -9,7 +9,14 @@ import Foundation
 
 final class WordsViewModel {
 
-    // MARK: - Public Properties
+    // MARK: - Private
+
+    private let wordService = WordsService()
+    private let wordsView = WordsView()
+
+    // MARK: - Public
+
+    weak var viewController: WordsViewController?
 
     var onWordsChanged: (([Word])->())?
 
@@ -33,6 +40,17 @@ extension WordsViewModel {
         if let loadedWords = jsonLoader.loadProducts(.words5000) {
             let words = loadedWords.shuffled()
             onWordsChanged?(words)
+        }
+    }
+
+    func viewDidLoad() {
+        wordService.fetchWords()
+        didChange()
+    }
+
+    func didChange() {
+        onWordsChanged = { [ weak self ] words in
+            self?.wordsView.update(words)
         }
     }
 }

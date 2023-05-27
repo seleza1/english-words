@@ -1,13 +1,13 @@
 //
-//  WordMeaningViewController.swift
+//  WordMeaningView.swift
 //  english-words
 //
-//  Created by user on 11.05.2023.
+//  Created by user on 26.05.2023.
 //
 
 import UIKit
 
-final class WordMeaningViewController: UIViewController {
+final class WordMeaningView: UIView {
 
     private let stickerView = StickerView()
 
@@ -17,24 +17,33 @@ final class WordMeaningViewController: UIViewController {
     let wordLabel = UILabel()
     let translateLabel = UILabel()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    var onAction: (() -> ())?
+    
+    // MARK: - Initialization
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
 
         setupView()
         setupActions()
         setupConstraints()
+        
+        self.backgroundColor = .white
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
-// MARK: - Extension
-
-private extension WordMeaningViewController {
+private extension WordMeaningView {
 
     func setupView() {
-        view.backgroundColor = .white
-        view.addSubview(closeButton)
-        view.addSubview(stickerView)
-        view.addSubview(nextButton)
+        backgroundColor = .white
+
+        addSubview(closeButton)
+        addSubview(stickerView)
+        addSubview(nextButton)
 
         nextButton.setTitleColor(UIColor.black, for: .normal)
         nextButton.backgroundColor = .designSystemYellow
@@ -55,11 +64,14 @@ private extension WordMeaningViewController {
         translateLabel.numberOfLines = 0
 
         closeButton.setImage(UIImage.chevronImage, for: .normal)
-
     }
-    
+
     func setupActions() {
-        closeButton.addTarget(self, action: #selector(closeView), for: .touchUpInside)
+        closeButton.addTarget(self, action: #selector(onTappCloseButton), for: .touchUpInside)
+    }
+
+    @objc func onTappCloseButton() {
+        onAction?()
     }
 
     func setupConstraints() {
@@ -70,18 +82,18 @@ private extension WordMeaningViewController {
         closeButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 61),
-            closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 27),
+            closeButton.topAnchor.constraint(equalTo: topAnchor, constant: 61),
+            closeButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 27),
             closeButton.heightAnchor.constraint(equalToConstant: 28),
 
-            stickerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 117),
-            stickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            stickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            stickerView.topAnchor.constraint(equalTo: topAnchor, constant: 117),
+            stickerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            stickerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             stickerView.heightAnchor.constraint(equalToConstant: 240),
 
-            nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
-            nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            nextButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -40),
+            nextButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            nextButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             nextButton.heightAnchor.constraint(equalToConstant: 64),
 
             wordLabel.topAnchor.constraint(equalTo: stickerView.topAnchor, constant: 86),
@@ -92,9 +104,5 @@ private extension WordMeaningViewController {
             translateLabel.leadingAnchor.constraint(equalTo: stickerView.leadingAnchor, constant: 70),
             translateLabel.trailingAnchor.constraint(equalTo: stickerView.trailingAnchor, constant: -70)
         ])
-    }
-        
-    @objc func closeView() {
-        dismiss(animated: true)
     }
 }

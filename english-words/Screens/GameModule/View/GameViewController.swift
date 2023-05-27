@@ -19,7 +19,6 @@ final class GameViewController: UIViewController {
 
     init(viewModel: GameViewModel) {
         self.viewModel = viewModel
-        
         super.init(nibName: "", bundle: nil)
     }
     
@@ -37,7 +36,6 @@ final class GameViewController: UIViewController {
         super.viewDidLoad()
         
         setupActions()
-       
         viewModel.viewDidLoad()
     }
     
@@ -61,5 +59,4 @@ private extension GameViewController {
             self.viewModel.displayNextWord()
         }
     }
-
 }

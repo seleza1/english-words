@@ -9,22 +9,21 @@ import UIKit
 
 final class GameView: UIView {
 
-    var onVariantChanged: (() -> ())?
-    var oneTappCloseButton: (() -> ())?
-
-    var onAction: (() -> ())?
-
-    // MARK: - Private Properties
+    // MARK: - Private
 
     private var word: WordModel?
 
     private let stickerView = StickerView()
-    
+
     private let stackView = UIStackView()
 
     private let numberWordLabel = UILabel()
 
-    // MARK: - Public Properties
+    // MARK: - Public
+
+    var onVariantChanged: (() -> ())?
+    var oneTappCloseButton: (() -> ())?
+    var onAction: (() -> ())?
 
     let closeButton = UIButton()
 
@@ -114,7 +113,6 @@ private extension GameView {
         stackView.addArrangedSubview(threeButton)
         stackView.addArrangedSubview(fourButton)
         stackView.translatesAutoresizingMaskIntoConstraints = false
-
     }
 
     func setupStickerView() {

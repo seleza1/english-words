@@ -9,7 +9,7 @@ import UIKit
 
 final class KnownView: UIView {
 
-    // MARK: - Private Properties
+    // MARK: - Private
 
     private var words: [Word] = [] {
         didSet {
@@ -17,7 +17,7 @@ final class KnownView: UIView {
         }
     }
 
-    lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(WordTableViewCell.self, forCellReuseIdentifier: WordTableViewCell.reuseId)
@@ -28,7 +28,6 @@ final class KnownView: UIView {
 
         return tableView
     }()
-
 
     // MARK: - Initialization
 

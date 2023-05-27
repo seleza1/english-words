@@ -1,5 +1,5 @@
 //
-//  StudyingView.swift
+//  WordsView.swift
 //  english-words
 //
 //  Created by user on 26.04.2023.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class StudyingView: UIView {
+final class WordsView: UIView {
 
-    // MARK: - Private Properties
+    // MARK: - Private
 
     private var words: [Word] = [] {
         didSet {
@@ -17,13 +17,7 @@ final class StudyingView: UIView {
         }
     }
 
-    var oneTapLearnButton: (() -> ())?
-
-    // MARK: - Public Properties
-
-    let startLearnButton = UIButton()
-
-    lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(WordTableViewCell.self, forCellReuseIdentifier: WordTableViewCell.reuseId)
@@ -35,6 +29,14 @@ final class StudyingView: UIView {
         return tableView
     }()
 
+    // MARK: - Public
+
+    var didTapped: ((_ word: String, _ meaning: String) -> ())?
+
+    var oneTapLearnButton: (() -> ())?
+
+    let startLearnButton = UIButton()
+
     // MARK: - Initialization
 
     override init(frame: CGRect) {
@@ -42,6 +44,7 @@ final class StudyingView: UIView {
 
         setupViews()
         setupConstraints()
+        fetchWords()
 
         self.backgroundColor = .white
     }
@@ -59,7 +62,7 @@ final class StudyingView: UIView {
 
 // MARK: - Extension Table View Data Source, UITableViewDelegate
 
-extension StudyingView: UITableViewDelegate, UITableViewDataSource {
+extension WordsView: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
@@ -70,7 +73,7 @@ extension StudyingView: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: WordTableViewCell.reuseId, for: indexPath) as! WordTableViewCell
 
         let word = words[indexPath.item]
-        let model = WordTableViewCellModel(word: word.word, isLearned: false)
+        let model = WordTableViewCellModel(word: word.word, isLearned: nil)
 
         cell.configure(model)
         cell.selectionStyle = .none
@@ -81,20 +84,19 @@ extension StudyingView: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: - Extension
 
-private extension StudyingView {
+private extension WordsView {
 
     func setupViews() {
         self.addSubview(tableView)
         self.addSubview(startLearnButton)
 
-        startLearnButton.setTitle(.continueToLearnButtonTitle, for: .normal)
+        startLearnButton.setTitle(.startToLearnButtonTitle, for: .normal)
         startLearnButton.setTitleColor(UIColor.white, for: .normal)
         startLearnButton.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .medium)
         startLearnButton.backgroundColor = .designSystemBlue
         startLearnButton.layer.cornerRadius = 33
         
         startLearnButton.addTarget(self, action: #selector(tappedStartLearnButton), for: .touchUpInside)
-
     }
 
     @objc func tappedStartLearnButton() {
@@ -115,5 +117,11 @@ private extension StudyingView {
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+    }
+
+    func fetchWords() {
+        if let loadedWords = JsonLoader().loadProducts(.words5000) {
+            words = loadedWords.shuffled()
+        }
     }
 }

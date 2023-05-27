@@ -24,5 +24,4 @@ final class GameViewModel {
         let word = wordsService.next()
         viewController?.update(with: word)
     }
-    
 }
