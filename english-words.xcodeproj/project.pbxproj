@@ -195,8 +195,8 @@
 		CE5C11E12A208F2B00241508 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CEE6A4B029F8FCD300BB90A9 /* StudyingView.swift */,
 				CEBB91D429E7E7EC00D26220 /* StudyingWordsViewController.swift */,
+				CEE6A4B029F8FCD300BB90A9 /* StudyingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -228,8 +228,8 @@
 		CE5C11E72A20906100241508 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CEE6A4B229F9046000BB90A9 /* KnownView.swift */,
 				CE64670C29E7E2B000D32B47 /* KnownWordsViewController.swift */,
+				CEE6A4B229F9046000BB90A9 /* KnownView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

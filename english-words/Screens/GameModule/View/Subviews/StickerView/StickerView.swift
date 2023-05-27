@@ -77,24 +77,27 @@ private extension StickerView {
     func setupConstraints() {
         worldLabel.translatesAutoresizingMaskIntoConstraints = false
         translationLabel.translatesAutoresizingMaskIntoConstraints = false
-        speakerButton.translatesAutoresizingMaskIntoConstraints = false
-        hintButton.translatesAutoresizingMaskIntoConstraints = false
-        stackView.translatesAutoresizingMaskIntoConstraints = false
 
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
-
-            speakerButton.topAnchor.constraint(equalTo: topAnchor, constant: 180),
-            speakerButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 275),
-            speakerButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
-            speakerButton.heightAnchor.constraint(equalToConstant: 48),
-
-            hintButton.topAnchor.constraint(equalTo: topAnchor, constant: 180),
-            hintButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 214),
-            hintButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -73),
-            hintButton.heightAnchor.constraint(equalToConstant: 48)
+            stackView.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
 
+        speakerButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            speakerButton.topAnchor.constraint(equalTo: topAnchor, constant: 180),
+            speakerButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
+            speakerButton.heightAnchor.constraint(equalToConstant: 48),
+            speakerButton.widthAnchor.constraint(equalToConstant: 48)
+        ])
+
+        hintButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            hintButton.topAnchor.constraint(equalTo: topAnchor, constant: 180),
+            hintButton.trailingAnchor.constraint(equalTo: speakerButton.leadingAnchor, constant: -13),
+            hintButton.heightAnchor.constraint(equalToConstant: 48),
+            hintButton.widthAnchor.constraint(equalToConstant: 48)
+        ])
     }
 }

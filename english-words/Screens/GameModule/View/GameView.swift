@@ -39,10 +39,8 @@ final class GameView: UIView {
 
         setupViews()
         setupConstraints()
-        setupStackView()
         buttonsTapped()
-        setupStickerView()
-        
+
         numberWordLabel.text = "1 /4900"
     }
 
@@ -77,6 +75,8 @@ final class GameView: UIView {
 private extension GameView {
 
     func setupViews() {
+        backgroundColor = .white
+
         addSubview(closeButton)
         addSubview(oneButton)
         addSubview(threeButton)
@@ -86,12 +86,20 @@ private extension GameView {
         addSubview(numberWordLabel)
         addSubview(stickerView)
 
+        stackView.addArrangedSubview(oneButton)
+        stackView.addArrangedSubview(twoButton)
+        stackView.addArrangedSubview(threeButton)
+        stackView.addArrangedSubview(fourButton)
+
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.distribution = .fillEqually
+        stackView.spacing = 10
+
         closeButton.setImage(UIImage.chevronImage, for: .normal)
         closeButton.addTarget(self, action: #selector(oneTappCloseButtons), for: .touchUpInside)
 
         numberWordLabel.textAlignment = .center
-
-        backgroundColor = .white
     }
 
     @objc func onActions() {
@@ -102,36 +110,40 @@ private extension GameView {
         oneTappCloseButton?()
     }
 
-    func setupStackView() {
-        stackView.axis = .vertical
-        stackView.alignment = .center
-        stackView.distribution = .fillEqually
-        stackView.spacing = 10
-
-        stackView.addArrangedSubview(oneButton)
-        stackView.addArrangedSubview(twoButton)
-        stackView.addArrangedSubview(threeButton)
-        stackView.addArrangedSubview(fourButton)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-    }
-
-    func setupStickerView() {
-        stickerView.translatesAutoresizingMaskIntoConstraints = false
-    }
-
     func setupConstraints() {
-        closeButton.translatesAutoresizingMaskIntoConstraints = false
-        numberWordLabel.translatesAutoresizingMaskIntoConstraints = false
 
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             closeButton.topAnchor.constraint(equalTo: topAnchor, constant: 61),
             closeButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 27),
-            closeButton.heightAnchor.constraint(equalToConstant: 28),
+            closeButton.heightAnchor.constraint(equalToConstant: 28)
+        ])
 
+        numberWordLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            numberWordLabel.topAnchor.constraint(equalTo: topAnchor, constant: 64),
+            numberWordLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 280),
+            numberWordLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            numberWordLabel.heightAnchor.constraint(equalToConstant: 22)
+        ])
+
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -40),
 
+        ])
+
+        stickerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            stickerView.topAnchor.constraint(equalTo: topAnchor, constant: 117),
+            stickerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            stickerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            stickerView.heightAnchor.constraint(equalToConstant: 240)
+        ])
+
+        NSLayoutConstraint.activate([
             oneButton.topAnchor.constraint(equalTo: stackView.topAnchor, constant: 6),
             oneButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 1),
             oneButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -1),
@@ -150,17 +162,7 @@ private extension GameView {
             fourButton.topAnchor.constraint(equalTo: threeButton.bottomAnchor, constant: 9),
             fourButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 1),
             fourButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -1),
-            fourButton.heightAnchor.constraint(equalToConstant: 54),
-
-            numberWordLabel.topAnchor.constraint(equalTo: topAnchor, constant: 64),
-            numberWordLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 280),
-            numberWordLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            numberWordLabel.heightAnchor.constraint(equalToConstant: 22),
-
-            stickerView.topAnchor.constraint(equalTo: topAnchor, constant: 117),
-            stickerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            stickerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            stickerView.heightAnchor.constraint(equalToConstant: 240)
+            fourButton.heightAnchor.constraint(equalToConstant: 54)
         ])
     }
 
@@ -169,10 +171,10 @@ private extension GameView {
 
             if self.word?.variants[0] == self.word?.translate {
                 self.oneButton.backgroundColor = .designSystemGreen
-                self.oneButton.setTitleColor(UIColor.white, for: .normal)
+                self.oneButton.setTitleColor(UIColor.designSystemWhite, for: .normal)
             } else {
                 self.oneButton.backgroundColor = .designSystemRose
-                self.oneButton.setTitleColor(UIColor.white, for: .normal)
+                self.oneButton.setTitleColor(UIColor.designSystemWhite, for: .normal)
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                 self.oneButton.backgroundColor = .designSystemWhite

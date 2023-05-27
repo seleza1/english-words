@@ -75,31 +75,39 @@ private extension WordMeaningView {
     }
 
     func setupConstraints() {
-        stickerView.translatesAutoresizingMaskIntoConstraints = false
-        nextButton.translatesAutoresizingMaskIntoConstraints = false
-        wordLabel.translatesAutoresizingMaskIntoConstraints = false
-        translateLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         closeButton.translatesAutoresizingMaskIntoConstraints = false
-
         NSLayoutConstraint.activate([
             closeButton.topAnchor.constraint(equalTo: topAnchor, constant: 61),
             closeButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 27),
-            closeButton.heightAnchor.constraint(equalToConstant: 28),
-
+            closeButton.heightAnchor.constraint(equalToConstant: 28)
+        ])
+        
+        stickerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
             stickerView.topAnchor.constraint(equalTo: topAnchor, constant: 117),
             stickerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             stickerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            stickerView.heightAnchor.constraint(equalToConstant: 240),
-
+            stickerView.heightAnchor.constraint(equalToConstant: 240)
+        ])
+        
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
             nextButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -40),
             nextButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             nextButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            nextButton.heightAnchor.constraint(equalToConstant: 64),
-
+            nextButton.heightAnchor.constraint(equalToConstant: 64)
+        ])
+        
+        wordLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
             wordLabel.topAnchor.constraint(equalTo: stickerView.topAnchor, constant: 86),
             wordLabel.leadingAnchor.constraint(equalTo: stickerView.leadingAnchor, constant: 70),
-            wordLabel.trailingAnchor.constraint(equalTo: stickerView.trailingAnchor, constant: -70),
-
+            wordLabel.trailingAnchor.constraint(equalTo: stickerView.trailingAnchor, constant: -70)
+        ])
+        
+        translateLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
             translateLabel.topAnchor.constraint(equalTo: wordLabel.bottomAnchor, constant: 24),
             translateLabel.leadingAnchor.constraint(equalTo: stickerView.leadingAnchor, constant: 70),
             translateLabel.trailingAnchor.constraint(equalTo: stickerView.trailingAnchor, constant: -70)
