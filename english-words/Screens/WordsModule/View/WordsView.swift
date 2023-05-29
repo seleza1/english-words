@@ -122,7 +122,7 @@ private extension WordsView {
     }
 
     func fetchWords() {
-        if let loadedWords = JsonLoader().loadProducts(.words5000) {
+        if let loadedWords = JSONLoader().loadWords(.words5000) {
             words = loadedWords.shuffled()
         }
     }

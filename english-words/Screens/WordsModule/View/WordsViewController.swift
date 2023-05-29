@@ -37,6 +37,7 @@ final class WordsViewController: UIViewController {
 
         startLearnButtonTapped()
         fetchWords()
+        
         viewModel.viewDidLoad()
     }
 }

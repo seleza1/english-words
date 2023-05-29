@@ -20,8 +20,8 @@ final class WordsViewModel {
 
     var onWordsChanged: (([Word])->())?
 
-    let jsonLoader = JsonLoader()
-    let wordsArchiver = WordsArchiver(type: .all)
+    let jsonLoader = JSONLoader()
+    let wordsArchiver = WordsArchiver()
 }
 
 // MARK: - Extension
@@ -37,7 +37,7 @@ extension WordsViewModel {
             return
         }
 
-        if let loadedWords = jsonLoader.loadProducts(.words5000) {
+        if let loadedWords = jsonLoader.loadWords(.words5000) {
             let words = loadedWords.shuffled()
             onWordsChanged?(words)
         }

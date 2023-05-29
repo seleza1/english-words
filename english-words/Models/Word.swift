@@ -14,8 +14,23 @@ struct WordModel {
     var variants: [String]
 }
 
+extension Word {
+    
+    enum Status: String, Codable {
+        
+        case learning
+        case learned
+        
+    }
+    
+}
+
 struct Word: Codable {
+    
     let id: Int
     let word: String
     let translate: String
+    
+    var status: Status?
+    
 }

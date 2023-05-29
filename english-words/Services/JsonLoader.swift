@@ -1,5 +1,5 @@
 //
-//  JsonLoader.swift
+//  JSONLoader.swift
 //  english-words
 //
 //  Created by user on 13.04.2023.
@@ -7,17 +7,17 @@
 
 import Foundation
 
-enum LoaderType: String {
+enum JSONFile: String {
+    
     case words5000
+    
 }
 
-final class JsonLoader {
+final class JSONLoader {
 
-    func loadProducts(_ type: LoaderType) -> [Word]? {
-
-        let filename = type.rawValue
-        print(filename)
-
+    func loadWords(_ file: JSONFile) -> [Word]? {
+        let filename = file.rawValue
+        
         if let url = Bundle.main.url(forResource: filename, withExtension: "json") {
             do {
                 let data = try Data(contentsOf: url)
@@ -25,9 +25,10 @@ final class JsonLoader {
                 let jsonData = try JSONDecoder().decode([Word].self, from: data)
                 return jsonData
             } catch {
-                print("error:\(error)")
+                print("JSONLoader error: \(error)")
             }
         }
+        
         return nil
     }
 }

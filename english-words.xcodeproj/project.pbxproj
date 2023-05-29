@@ -19,7 +19,7 @@
 		CE2ADA4D2A026E660031B3EA /* StudyingWordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ADA4C2A026E660031B3EA /* StudyingWordsViewModel.swift */; };
 		CE2ADA4F2A026ED40031B3EA /* KnowWordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ADA4E2A026ED40031B3EA /* KnowWordsViewModel.swift */; };
 		CE2ADA512A0CCD550031B3EA /* WordMeaningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ADA502A0CCD550031B3EA /* WordMeaningViewController.swift */; };
-		CE5C11DB2A207E5600241508 /* WordsAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C11DA2A207E5600241508 /* WordsAssembler.swift */; };
+		CE5C11DB2A207E5600241508 /* WordModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C11DA2A207E5600241508 /* WordModuleAssembly.swift */; };
 		CE5C11E02A208F1A00241508 /* StudyingAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C11DF2A208F1A00241508 /* StudyingAssembler.swift */; };
 		CE5C11E52A20904000241508 /* KnownAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C11E42A20904000241508 /* KnownAssembler.swift */; };
 		CE5C11EA2A20BF2600241508 /* WordMeaningAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C11E92A20BF2600241508 /* WordMeaningAssembler.swift */; };
@@ -62,7 +62,7 @@
 		CE2ADA4C2A026E660031B3EA /* StudyingWordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyingWordsViewModel.swift; sourceTree = "<group>"; };
 		CE2ADA4E2A026ED40031B3EA /* KnowWordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowWordsViewModel.swift; sourceTree = "<group>"; };
 		CE2ADA502A0CCD550031B3EA /* WordMeaningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordMeaningViewController.swift; sourceTree = "<group>"; };
-		CE5C11DA2A207E5600241508 /* WordsAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsAssembler.swift; sourceTree = "<group>"; };
+		CE5C11DA2A207E5600241508 /* WordModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordModuleAssembly.swift; sourceTree = "<group>"; };
 		CE5C11DF2A208F1A00241508 /* StudyingAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyingAssembler.swift; sourceTree = "<group>"; };
 		CE5C11E42A20904000241508 /* KnownAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownAssembler.swift; sourceTree = "<group>"; };
 		CE5C11E92A20BF2600241508 /* WordMeaningAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordMeaningAssembler.swift; sourceTree = "<group>"; };
@@ -167,12 +167,12 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		CE5C11DC2A207E7A00241508 /* Assembler */ = {
+		CE5C11DC2A207E7A00241508 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
-				CE5C11DA2A207E5600241508 /* WordsAssembler.swift */,
+				CE5C11DA2A207E5600241508 /* WordModuleAssembly.swift */,
 			);
-			path = Assembler;
+			path = Assembly;
 			sourceTree = "<group>";
 		};
 		CE5C11DD2A20805900241508 /* View */ = {
@@ -337,7 +337,7 @@
 		CE6466F929E69BFA00D32B47 /* WordsModule */ = {
 			isa = PBXGroup;
 			children = (
-				CE5C11DC2A207E7A00241508 /* Assembler */,
+				CE5C11DC2A207E7A00241508 /* Assembly */,
 				CE5C11DE2A20806400241508 /* ViewModel */,
 				CE5C11DD2A20805900241508 /* View */,
 			);
@@ -512,7 +512,7 @@
 				CE2ADA4D2A026E660031B3EA /* StudyingWordsViewModel.swift in Sources */,
 				CE6466FB29E69C1500D32B47 /* WordTableViewCell.swift in Sources */,
 				0C02A0302A1D1B2600094D27 /* String+Assets.swift in Sources */,
-				CE5C11DB2A207E5600241508 /* WordsAssembler.swift in Sources */,
+				CE5C11DB2A207E5600241508 /* WordModuleAssembly.swift in Sources */,
 				CEE6A4BA29F92A5C00BB90A9 /* Array+NotEmpty.swift in Sources */,
 				CEE6A4AC29F8F8B800BB90A9 /* WordsView.swift in Sources */,
 				CE2ADA4F2A026ED40031B3EA /* KnowWordsViewModel.swift in Sources */,

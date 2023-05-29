@@ -11,11 +11,11 @@ class WordsService {
 
     //MARK: - Public Properties
 
-    let jsonLoader = JsonLoader()
+    let jsonLoader = JSONLoader()
 
-    let allWordsArchiver = WordsArchiver(type: .all)
-    let unknownWordsArchiver = WordsArchiver(type: .unknown)
-    let knownWordsArchiver = WordsArchiver(type: .known)
+    let allWordsArchiver = WordsArchiver()
+    let unknownWordsArchiver = WordsArchiver()
+    let knownWordsArchiver = WordsArchiver()
 
     var allWords: [Word] = []
 }
@@ -25,7 +25,7 @@ class WordsService {
 extension WordsService {
 
     func fetchWords() {
-        let words = jsonLoader.loadProducts(.words5000) ?? []
+        let words = jsonLoader.loadWords(.words5000) ?? []
         self.allWords = words.shuffled()
     }
 
@@ -50,4 +50,39 @@ extension WordsService {
 
         return wordModel
     }
+}
+
+final class _WordsService {
+    
+    static let shared = _WordsService()
+    
+    private let loader = JSONLoader()
+    private let archiver = WordsArchiver()
+    
+    private init() {
+        var words = archiver.retrieve()
+        
+        if words.isEmpty {
+            words = loader.loadWords(.words5000) ?? []
+            archiver.save(words)
+        }
+    }
+    
+    func loadWords() -> [Word] {
+        archiver.retrieve()
+    }
+    
+    func save(word: Word) {
+        var words = archiver.retrieve()
+
+        let index = words.firstIndex { oldWords in
+            oldWords.id == word.id
+        }
+        
+        if let index = index {
+            words[index] = word
+            archiver.save(words)
+        }
+    }
+    
 }
