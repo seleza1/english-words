@@ -25,7 +25,6 @@ final class StudyingView: UIView {
 
     lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(WordTableViewCell.self, forCellReuseIdentifier: WordTableViewCell.reuseId)
         tableView.delegate = self
         tableView.dataSource = self
@@ -102,18 +101,21 @@ private extension StudyingView {
     }
 
     func setupConstraints() {
-        startLearnButton.translatesAutoresizingMaskIntoConstraints = false
-
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            startLearnButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            startLearnButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            startLearnButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
-            startLearnButton.heightAnchor.constraint(equalToConstant: 64),
-
             tableView.topAnchor.constraint(equalTo: topAnchor),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+        
+        startLearnButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            startLearnButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            startLearnButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            startLearnButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            startLearnButton.heightAnchor.constraint(equalToConstant: 64)
         ])
     }
 

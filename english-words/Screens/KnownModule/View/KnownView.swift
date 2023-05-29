@@ -19,7 +19,6 @@ final class KnownView: UIView {
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(WordTableViewCell.self, forCellReuseIdentifier: WordTableViewCell.reuseId)
         tableView.delegate = self
         tableView.dataSource = self
@@ -82,8 +81,9 @@ private extension KnownView {
     }
 
     func setupConstraints() {
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-
             tableView.topAnchor.constraint(equalTo: topAnchor),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
