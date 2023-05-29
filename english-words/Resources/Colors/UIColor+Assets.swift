@@ -19,4 +19,5 @@ extension UIColor {
     static let designSystemBlue = UIColor(named: "designSystemBlue")
     static let designSystemWhite = UIColor(named: "designSystemWhite")
     static let designSystemLightGray = UIColor(named: "designSystemLightGray")
+    static let designSystemWhiteSky = UIColor(named: "designSystemWhiteSky")
 }

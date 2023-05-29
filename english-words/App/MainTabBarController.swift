@@ -19,21 +19,21 @@ final class MainTabBarController: UITabBarController {
 private extension MainTabBarController {
 
     func setupView() {
-        let wordsController = WordsViewController()
+        let wordsController = WordsViewController(viewModel: WordsViewModel())
         wordsController.tabBarItem = UITabBarItem(
             title: .dictionary,
             image: UIImage.booksImage,
             selectedImage: UIImage.booksSelectedImage
         )
 
-        let studyingWordsController = StudyingWordsViewController()
+        let studyingWordsController = StudyingWordsViewController(viewModel: StudyingWordsModel())
         studyingWordsController.tabBarItem = UITabBarItem(
             title: .tableViewLearnButtonTitle,
             image: UIImage.coffeeImage,
             selectedImage: UIImage.coffeeSelectedImage
         )
 
-        let knownWordsController = KnownWordsViewController()
+        let knownWordsController = KnownWordsViewController(viewModel: KnowWordsViewModel())
         knownWordsController.tabBarItem = UITabBarItem(
             title: .tableViewKnownButtonTitle,
             image: UIImage.smileImage,
