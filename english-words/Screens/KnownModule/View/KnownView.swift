@@ -35,9 +35,8 @@ final class KnownView: UIView {
 
         setupViews()
         setupConstraints()
-        fetchWords()
 
-        self.backgroundColor = .white
+        backgroundColor = .designSystemWhite
     }
 
     required init?(coder: NSCoder) {
@@ -77,7 +76,7 @@ extension KnownView: UITableViewDelegate, UITableViewDataSource {
 private extension KnownView {
 
     func setupViews() {
-        self.addSubview(tableView)
+        addSubview(tableView)
     }
 
     func setupConstraints() {
@@ -89,11 +88,5 @@ private extension KnownView {
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
-    }
-
-    func fetchWords() {
-        if let loadedWords = JSONLoader().loadWords(.words5000) {
-            words = loadedWords.shuffled()
-        }
     }
 }

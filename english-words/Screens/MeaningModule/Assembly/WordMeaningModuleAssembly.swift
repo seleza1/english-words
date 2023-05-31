@@ -1,5 +1,5 @@
 //
-//  WordMeaningAssembler.swift
+//  WordMeaningModuleAssembly.swift
 //  english-words
 //
 //  Created by user on 26.05.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum WordMeaningAssembler {
+enum WordMeaningModuleAssembly {
 
     static func buildModule() -> UIViewController {
         let viewModel = WordMeaningViewModel()

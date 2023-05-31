@@ -12,7 +12,6 @@ final class WordsViewModel {
     // MARK: - Private
 
     private let wordService = WordsService()
-    private let wordsView = WordsView()
 
     // MARK: - Public
 
@@ -45,12 +44,5 @@ extension WordsViewModel {
 
     func viewDidLoad() {
         wordService.fetchWords()
-        didChange()
-    }
-
-    func didChange() {
-        onWordsChanged = { [ weak self ] words in
-            self?.wordsView.update(words)
-        }
     }
 }

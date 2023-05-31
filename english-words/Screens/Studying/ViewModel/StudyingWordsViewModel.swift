@@ -22,7 +22,6 @@ final class StudyingWordsModel {
 
     let jsonLoader = JSONLoader()
     let wordsArchiver = WordsArchiver()
-
 }
 
 // MARK: - Extension
@@ -45,12 +44,5 @@ extension StudyingWordsModel {
 
     func viewDidLoad() {
         wordsService.fetchWords()
-        update()
-    }
-
-    func update() {
-        onWordsChanged = { [ weak self ] words in
-            self?.studyingView.update(words)
-        }
     }
 }

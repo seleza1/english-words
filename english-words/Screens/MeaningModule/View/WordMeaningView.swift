@@ -28,7 +28,7 @@ final class WordMeaningView: UIView {
         setupActions()
         setupConstraints()
         
-        self.backgroundColor = .white
+        self.backgroundColor = .designSystemWhite
     }
     
     required init?(coder: NSCoder) {
@@ -63,7 +63,7 @@ private extension WordMeaningView {
         translateLabel.textAlignment = .center
         translateLabel.numberOfLines = 0
 
-        closeButton.setImage(UIImage.chevronImage, for: .normal)
+        closeButton.setImage(.chevronImage, for: .normal)
     }
 
     func setupActions() {

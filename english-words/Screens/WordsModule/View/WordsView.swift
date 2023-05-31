@@ -45,7 +45,7 @@ final class WordsView: UIView {
         setupConstraints()
         fetchWords()
 
-        self.backgroundColor = .white
+        self.backgroundColor = .designSystemWhite
     }
 
     required init?(coder: NSCoder) {
@@ -86,19 +86,19 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
 private extension WordsView {
 
     func setupViews() {
-        self.addSubview(tableView)
-        self.addSubview(startLearnButton)
+        addSubview(tableView)
+        addSubview(startLearnButton)
 
         startLearnButton.setTitle(.startToLearnButtonTitle, for: .normal)
         startLearnButton.setTitleColor(UIColor.white, for: .normal)
-        startLearnButton.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .medium)
+        startLearnButton.titleLabel?.font = .startLearnButton
         startLearnButton.backgroundColor = .designSystemBlue
         startLearnButton.layer.cornerRadius = 33
         
-        startLearnButton.addTarget(self, action: #selector(tappedStartLearnButton), for: .touchUpInside)
+        startLearnButton.addTarget(self, action: #selector(onTappStartLearnButton), for: .touchUpInside)
     }
 
-    @objc func tappedStartLearnButton() {
+    @objc func onTappStartLearnButton() {
         oneTapLearnButton?()
     }
 

@@ -56,6 +56,7 @@ private extension StickerView {
         stackView.addArrangedSubview(translationLabel)
 
         stackView.spacing = 24
+        stackView.axis = .vertical
 
         worldLabel.font = .stickerWorldLabelFont
         worldLabel.textColor = .designSystemBlack
@@ -65,13 +66,13 @@ private extension StickerView {
         translationLabel.textColor = .designSystemGrey
         translationLabel.textAlignment = .center
 
-        speakerButton.setImage(UIImage.soundSpeakerImage, for: .normal)
+        speakerButton.setImage(.soundSpeakerImage, for: .normal)
         speakerButton.layer.cornerRadius = 22
-        speakerButton.backgroundColor = UIColor.white
+        speakerButton.backgroundColor = .designSystemWhite
 
-        hintButton.setImage(UIImage.keyImage, for: .normal)
+        hintButton.setImage(.keyImage, for: .normal)
         hintButton.layer.cornerRadius = 22
-        hintButton.backgroundColor = UIColor.white
+        hintButton.backgroundColor = .designSystemWhite
     }
 
     func setupConstraints() {

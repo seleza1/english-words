@@ -36,7 +36,6 @@ final class StudyingWordsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchWords()
         startLearnButtonTapped()
         viewModel.viewDidLoad()
     }
@@ -52,9 +51,5 @@ private extension StudyingWordsViewController {
             controller.modalPresentationStyle = .fullScreen
             self.present(controller, animated: true)
         }
-    }
-
-    func fetchWords() {
-        viewModel.fetchWords()
     }
 }

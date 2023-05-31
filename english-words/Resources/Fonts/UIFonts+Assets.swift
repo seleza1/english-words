@@ -15,4 +15,5 @@ extension UIFont {
     static let wordLabelMin = UIFont.systemFont(ofSize: 24)
     static let stickerWorldLabelFont = UIFont.systemFont(ofSize: 32, weight: .medium)
     static let translationLabelFont = UIFont.systemFont(ofSize: 24, weight: .medium)
+    static let startLearnButton = UIFont.systemFont(ofSize: 24, weight: .medium)
 }

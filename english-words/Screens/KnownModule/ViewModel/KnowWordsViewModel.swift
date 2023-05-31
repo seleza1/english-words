@@ -12,7 +12,6 @@ final class KnowWordsViewModel {
     // MARK: - Private
 
     private let wordsService = WordsService()
-    private let knownView = KnownView()
 
     // MARK: - Public
 
@@ -45,12 +44,5 @@ extension KnowWordsViewModel {
 
     func viewDidLoad() {
         wordsService.fetchWords()
-        update()
-    }
-
-    func update() {
-        onWordsChanged = { [weak self] words in
-            self?.knownView.update(words)
-        }
     }
 }

@@ -19,7 +19,7 @@ final class StudyingView: UIView {
 
     // MARK: - Public
 
-    let startLearnButton = UIButton()
+    let continueToLearnButton = UIButton()
 
     var oneTapLearnButton: (() -> ())?
 
@@ -41,9 +41,8 @@ final class StudyingView: UIView {
 
         setupViews()
         setupConstraints()
-        fetchWords()
 
-        self.backgroundColor = .white
+        self.backgroundColor = .designSystemWhite
     }
 
     required init?(coder: NSCoder) {
@@ -84,19 +83,23 @@ extension StudyingView: UITableViewDelegate, UITableViewDataSource {
 private extension StudyingView {
 
     func setupViews() {
-        self.addSubview(tableView)
-        self.addSubview(startLearnButton)
+        addSubview(tableView)
+        addSubview(continueToLearnButton)
 
-        startLearnButton.setTitle(.continueToLearnButtonTitle, for: .normal)
-        startLearnButton.setTitleColor(UIColor.white, for: .normal)
-        startLearnButton.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .medium)
-        startLearnButton.backgroundColor = .designSystemBlue
-        startLearnButton.layer.cornerRadius = 33
-        
-        startLearnButton.addTarget(self, action: #selector(tappedStartLearnButton), for: .touchUpInside)
+        continueToLearnButton.setTitle(.continueToLearnButtonTitle, for: .normal)
+        continueToLearnButton.setTitleColor(.designSystemWhite, for: .normal)
+        continueToLearnButton.titleLabel?.font = .wordLabelMin
+        continueToLearnButton.backgroundColor = .designSystemBlue
+        continueToLearnButton.layer.cornerRadius = 33
+
+        continueToLearnButton.addTarget(self, action: #selector(onActionsLearnButton), for: .touchUpInside)
+
+        if words.count < 1 {
+            continueToLearnButton.isHidden = true
+        }
     }
 
-    @objc func tappedStartLearnButton() {
+    @objc func onActionsLearnButton() {
         oneTapLearnButton?()
     }
 
@@ -110,18 +113,12 @@ private extension StudyingView {
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
         
-        startLearnButton.translatesAutoresizingMaskIntoConstraints = false
+        continueToLearnButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            startLearnButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            startLearnButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            startLearnButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
-            startLearnButton.heightAnchor.constraint(equalToConstant: 64)
+            continueToLearnButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            continueToLearnButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            continueToLearnButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            continueToLearnButton.heightAnchor.constraint(equalToConstant: 64)
         ])
-    }
-
-    func fetchWords() {
-        if let loadedWords = JSONLoader().loadWords(.words5000) {
-            words = loadedWords.shuffled()
-        }
     }
 }

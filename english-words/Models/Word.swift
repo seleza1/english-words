@@ -22,7 +22,6 @@ extension Word {
         case learned
         
     }
-    
 }
 
 struct Word: Codable {
@@ -32,5 +31,4 @@ struct Word: Codable {
     let translate: String
     
     var status: Status?
-    
 }
