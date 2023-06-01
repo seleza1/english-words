@@ -19,11 +19,14 @@ extension KnowWordsViewModel {
     func viewDidLoad() {
         let words = wordsService.loadWords()
 
-        for word in words {
+        let wordsLearned = words.filter { word in
             if word.status == .learned {
-                viewController?.update(with: [word])
-                wordsService.save(word: word)
+
+                return true
+            } else {
+                return false
             }
         }
+        viewController?.update(with: wordsLearned)
     }
 }

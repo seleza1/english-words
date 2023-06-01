@@ -11,13 +11,13 @@ final class StudyingWordsViewController: UIViewController {
 
     // MARK: - Private
 
-    private var viewModel = StudyingWordsModel()
+    private var viewModel = StudyingWordsViewModel()
 
     private var studyingView: StudyingView {
         return self.view as! StudyingView
     }
 
-    init(viewModel: StudyingWordsModel) {
+    init(viewModel: StudyingWordsViewModel) {
         super.init(nibName: "", bundle: nil)
         self.viewModel = viewModel
     }

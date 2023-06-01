@@ -1,5 +1,5 @@
 //
-//  StudyingWordsModel.swift
+//  StudyingWordsViewModel.swift
 //  english-words
 //
 //  Created by user on 03.05.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class StudyingWordsModel {
+final class StudyingWordsViewModel {
 
     private let wordsService = WordsService.shared
     private let studyingView = StudyingView()
@@ -15,16 +15,18 @@ final class StudyingWordsModel {
     weak var viewController: StudyingWordsViewController?
 }
 
-extension StudyingWordsModel {
+extension StudyingWordsViewModel {
 
     func viewDidLoad() {
         let words = wordsService.loadWords()
-        
-        for word in words {
+
+        let wordsStudying = words.filter { word in
             if word.status == .learning {
-                viewController?.update(with: [word])
-                wordsService.save(word: word)
+                return true
+            } else {
+                return false
             }
         }
+        viewController?.update(with: wordsStudying)
     }
 }
