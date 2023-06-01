@@ -20,9 +20,9 @@
 		CE2ADA4F2A026ED40031B3EA /* KnowWordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ADA4E2A026ED40031B3EA /* KnowWordsViewModel.swift */; };
 		CE2ADA512A0CCD550031B3EA /* WordMeaningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ADA502A0CCD550031B3EA /* WordMeaningViewController.swift */; };
 		CE5C11DB2A207E5600241508 /* WordModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C11DA2A207E5600241508 /* WordModuleAssembly.swift */; };
-		CE5C11E02A208F1A00241508 /* StudyingAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C11DF2A208F1A00241508 /* StudyingAssembler.swift */; };
-		CE5C11E52A20904000241508 /* KnownAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C11E42A20904000241508 /* KnownAssembler.swift */; };
-		CE5C11EA2A20BF2600241508 /* WordMeaningAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C11E92A20BF2600241508 /* WordMeaningAssembler.swift */; };
+		CE5C11E02A208F1A00241508 /* StudyingModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C11DF2A208F1A00241508 /* StudyingModuleAssembly.swift */; };
+		CE5C11E52A20904000241508 /* KnownModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C11E42A20904000241508 /* KnownModuleAssembly.swift */; };
+		CE5C11EA2A20BF2600241508 /* WordMeaningModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C11E92A20BF2600241508 /* WordMeaningModuleAssembly.swift */; };
 		CE5C11EC2A20BF3400241508 /* WordMeaningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C11EB2A20BF3400241508 /* WordMeaningView.swift */; };
 		CE5C11EE2A20C02400241508 /* WordMeaningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C11ED2A20C02400241508 /* WordMeaningViewModel.swift */; };
 		CE6466E329E6990900D32B47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466E229E6990900D32B47 /* AppDelegate.swift */; };
@@ -63,9 +63,9 @@
 		CE2ADA4E2A026ED40031B3EA /* KnowWordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowWordsViewModel.swift; sourceTree = "<group>"; };
 		CE2ADA502A0CCD550031B3EA /* WordMeaningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordMeaningViewController.swift; sourceTree = "<group>"; };
 		CE5C11DA2A207E5600241508 /* WordModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordModuleAssembly.swift; sourceTree = "<group>"; };
-		CE5C11DF2A208F1A00241508 /* StudyingAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyingAssembler.swift; sourceTree = "<group>"; };
-		CE5C11E42A20904000241508 /* KnownAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownAssembler.swift; sourceTree = "<group>"; };
-		CE5C11E92A20BF2600241508 /* WordMeaningAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordMeaningAssembler.swift; sourceTree = "<group>"; };
+		CE5C11DF2A208F1A00241508 /* StudyingModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyingModuleAssembly.swift; sourceTree = "<group>"; };
+		CE5C11E42A20904000241508 /* KnownModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownModuleAssembly.swift; sourceTree = "<group>"; };
+		CE5C11E92A20BF2600241508 /* WordMeaningModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordMeaningModuleAssembly.swift; sourceTree = "<group>"; };
 		CE5C11EB2A20BF3400241508 /* WordMeaningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordMeaningView.swift; sourceTree = "<group>"; };
 		CE5C11ED2A20C02400241508 /* WordMeaningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordMeaningViewModel.swift; sourceTree = "<group>"; };
 		CE6466DF29E6990900D32B47 /* english-words.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "english-words.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,7 +151,7 @@
 		CE2ADA522A0E2A460031B3EA /* MeaningModule */ = {
 			isa = PBXGroup;
 			children = (
-				CE5C11EF2A20C0B800241508 /* Assembler */,
+				CE5C11EF2A20C0B800241508 /* Assembly */,
 				CE5C11F12A20C0CB00241508 /* ViewModel */,
 				CE5C11F02A20C0C500241508 /* View */,
 			);
@@ -201,12 +201,12 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		CE5C11E22A208F4D00241508 /* Assembler */ = {
+		CE5C11E22A208F4D00241508 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
-				CE5C11DF2A208F1A00241508 /* StudyingAssembler.swift */,
+				CE5C11DF2A208F1A00241508 /* StudyingModuleAssembly.swift */,
 			);
-			path = Assembler;
+			path = Assembly;
 			sourceTree = "<group>";
 		};
 		CE5C11E32A208F5500241508 /* ViewModel */ = {
@@ -220,7 +220,7 @@
 		CE5C11E62A20905800241508 /* Assembler */ = {
 			isa = PBXGroup;
 			children = (
-				CE5C11E42A20904000241508 /* KnownAssembler.swift */,
+				CE5C11E42A20904000241508 /* KnownModuleAssembly.swift */,
 			);
 			path = Assembler;
 			sourceTree = "<group>";
@@ -242,12 +242,12 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		CE5C11EF2A20C0B800241508 /* Assembler */ = {
+		CE5C11EF2A20C0B800241508 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
-				CE5C11E92A20BF2600241508 /* WordMeaningAssembler.swift */,
+				CE5C11E92A20BF2600241508 /* WordMeaningModuleAssembly.swift */,
 			);
-			path = Assembler;
+			path = Assembly;
 			sourceTree = "<group>";
 		};
 		CE5C11F02A20C0C500241508 /* View */ = {
@@ -324,12 +324,12 @@
 		CE6466F829E69BEE00D32B47 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				CE5C11D92A1DF08F00241508 /* Cell */,
-				CE2ADA522A0E2A460031B3EA /* MeaningModule */,
 				CE6466F929E69BFA00D32B47 /* WordsModule */,
-				CE64670E29E7E60D00D32B47 /* Studying */,
+				CE64670E29E7E60D00D32B47 /* StudyingModule */,
 				CE64671129E7E62B00D32B47 /* KnownModule */,
 				CE64671429E7E67B00D32B47 /* GameModule */,
+				CE2ADA522A0E2A460031B3EA /* MeaningModule */,
+				CE5C11D92A1DF08F00241508 /* Cell */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -362,14 +362,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		CE64670E29E7E60D00D32B47 /* Studying */ = {
+		CE64670E29E7E60D00D32B47 /* StudyingModule */ = {
 			isa = PBXGroup;
 			children = (
-				CE5C11E22A208F4D00241508 /* Assembler */,
+				CE5C11E22A208F4D00241508 /* Assembly */,
 				CE5C11E32A208F5500241508 /* ViewModel */,
 				CE5C11E12A208F2B00241508 /* View */,
 			);
-			path = Studying;
+			path = StudyingModule;
 			sourceTree = "<group>";
 		};
 		CE64671129E7E62B00D32B47 /* KnownModule */ = {
@@ -520,12 +520,12 @@
 				0C02A0372A1D1B8500094D27 /* StickerViewModel.swift in Sources */,
 				0C02A0322A1D1B3200094D27 /* UIFonts+Assets.swift in Sources */,
 				CEBB91D529E7E7EC00D26220 /* StudyingWordsViewController.swift in Sources */,
-				CE5C11E02A208F1A00241508 /* StudyingAssembler.swift in Sources */,
+				CE5C11E02A208F1A00241508 /* StudyingModuleAssembly.swift in Sources */,
 				CE5C11EE2A20C02400241508 /* WordMeaningViewModel.swift in Sources */,
 				CE6466E329E6990900D32B47 /* AppDelegate.swift in Sources */,
 				CE64670529E6A6E600D32B47 /* MainTabBarController.swift in Sources */,
 				CEBB91D729E8828F00D26220 /* JsonLoader.swift in Sources */,
-				CE5C11EA2A20BF2600241508 /* WordMeaningAssembler.swift in Sources */,
+				CE5C11EA2A20BF2600241508 /* WordMeaningModuleAssembly.swift in Sources */,
 				0CAABDD02A1FBD6200240090 /* GameViewModel.swift in Sources */,
 				CE5C11EC2A20BF3400241508 /* WordMeaningView.swift in Sources */,
 				CEBB91EF29F29F9B00D26220 /* Button.swift in Sources */,
@@ -537,7 +537,7 @@
 				CEE6A4B729F9210700BB90A9 /* WordsArchiver.swift in Sources */,
 				0C02A0382A1D1B8500094D27 /* StickerView.swift in Sources */,
 				CEB5679D2A18C101002F2483 /* WordTableViewCellModel.swift in Sources */,
-				CE5C11E52A20904000241508 /* KnownAssembler.swift in Sources */,
+				CE5C11E52A20904000241508 /* KnownModuleAssembly.swift in Sources */,
 				0CAABDD32A1FC0D600240090 /* GameAssembler.swift in Sources */,
 				CE2ADA512A0CCD550031B3EA /* WordMeaningViewController.swift in Sources */,
 				CEE6A4B129F8FCD300BB90A9 /* StudyingView.swift in Sources */,

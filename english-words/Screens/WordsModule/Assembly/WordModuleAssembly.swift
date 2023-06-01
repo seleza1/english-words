@@ -17,5 +17,4 @@ enum WordModuleAssembly {
 
         return viewController
     }
-    
 }

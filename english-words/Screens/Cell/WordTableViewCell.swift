@@ -64,25 +64,26 @@ private extension WordTableViewCell {
     // MARK: - Private Methods
 
     func setupViews() {
-        addSubview(wordLabel)
         addSubview(roundView)
-        addSubview(soundButton)
-        addSubview(statusImageView)
 
-        wordLabel.font = UIFont.wordLabelFont
+        roundView.addSubview(wordLabel)
+        roundView.addSubview(soundButton)
+        roundView.addSubview(statusImageView)
 
         roundView.layer.cornerRadius = 12
-        roundView.layer.borderColor = UIColor.designSystemLightGray?.cgColor
+        roundView.layer.borderColor = UIColor.designSystemLightGray.cgColor
         roundView.layer.borderWidth = 1
 
         soundButton.layer.cornerRadius = 24
         soundButton.layer.borderWidth = 1
         soundButton.backgroundColor = .designSystemLightGray
-        soundButton.layer.borderColor = UIColor.designSystemLightGray?.cgColor
-        soundButton.setImage(UIImage.soundSpeakerImage, for: .normal)
+        soundButton.layer.borderColor = UIColor.designSystemLightGray.cgColor
+        soundButton.setImage(.soundSpeakerImage, for: .normal)
 
         statusImageView.layer.cornerRadius = 18
         statusImageView.contentMode = .center
+
+        wordLabel.font = .wordLabelFont
     }
 
     func setupConstraints() {
@@ -91,7 +92,6 @@ private extension WordTableViewCell {
         NSLayoutConstraint.activate([
             wordLabel.topAnchor.constraint(equalTo: topAnchor, constant: 41),
             wordLabel.leadingAnchor.constraint(equalTo: soundButton.trailingAnchor, constant: 16),
-            wordLabel.trailingAnchor.constraint(equalTo: statusImageView.leadingAnchor, constant: -16),
             wordLabel.heightAnchor.constraint(equalToConstant: 22)
         ])
         
@@ -102,21 +102,20 @@ private extension WordTableViewCell {
             roundView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             roundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
         ])
-        
+
         soundButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            soundButton.topAnchor.constraint(equalTo: roundView.bottomAnchor, constant: 28),
+            soundButton.topAnchor.constraint(equalTo: topAnchor, constant: 28),
             soundButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40),
             soundButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -28),
             soundButton.heightAnchor.constraint(equalToConstant: 48),
             soundButton.widthAnchor.constraint(equalToConstant: 48)
         ])
-        
+
         statusImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            statusImageView.topAnchor.constraint(equalTo: roundView.bottomAnchor, constant: 34),
+            statusImageView.topAnchor.constraint(equalTo: topAnchor, constant: 34),
             statusImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40),
-            statusImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -34),
             statusImageView.heightAnchor.constraint(equalToConstant: 36),
             statusImageView.widthAnchor.constraint(equalToConstant: 36)
         ])

@@ -51,12 +51,12 @@ final class GameViewController: UIViewController {
 private extension GameViewController {
     
     func setupActions() {
-        gameView.oneTappCloseButton = {
-            self.dismiss(animated: true)
+        gameView.oneTappCloseButton = { [ weak self ] in
+            self?.dismiss(animated: true)
         }
         
-        gameView.onVariantChanged = {
-            self.viewModel.displayNextWord()
+        gameView.onVariantChanged = { [ weak self ] in
+            self?.viewModel.displayNextWord()
         }
     }
 }

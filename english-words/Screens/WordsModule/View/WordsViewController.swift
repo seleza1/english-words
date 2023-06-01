@@ -35,10 +35,12 @@ final class WordsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        startLearnButtonTapped()
-        fetchWords()
-        
+        setupActions()
         viewModel.viewDidLoad()
+    }
+
+    func update(with word: [Word]) {
+        wordsView.configure(word)
     }
 }
 
@@ -46,16 +48,12 @@ final class WordsViewController: UIViewController {
 
 private extension WordsViewController {
 
-    func startLearnButtonTapped() {
+    func setupActions() {
         wordsView.oneTapLearnButton = {
             let controller = GameAssembler.buildModule()
             controller.modalPresentationStyle = .fullScreen
             self.present(controller, animated: true)
         }
-    }
-
-    func fetchWords() {
-        viewModel.fetchWords()
     }
 }
 

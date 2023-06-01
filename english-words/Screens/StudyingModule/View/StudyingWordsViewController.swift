@@ -11,13 +11,13 @@ final class StudyingWordsViewController: UIViewController {
 
     // MARK: - Private
 
-    private var viewModel = StudyingWordsModel()
+    private var viewModel = StudyingWordsViewModel()
 
     private var studyingView: StudyingView {
         return self.view as! StudyingView
     }
 
-    init(viewModel: StudyingWordsModel) {
+    init(viewModel: StudyingWordsViewModel) {
         super.init(nibName: "", bundle: nil)
         self.viewModel = viewModel
     }
@@ -36,9 +36,12 @@ final class StudyingWordsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchWords()
-        startLearnButtonTapped()
+        setupActions()
         viewModel.viewDidLoad()
+    }
+
+    func update(with word: [Word]) {
+        studyingView.configure(word)
     }
 }
 
@@ -46,15 +49,11 @@ final class StudyingWordsViewController: UIViewController {
 
 private extension StudyingWordsViewController {
 
-    func startLearnButtonTapped() {
+    func setupActions() {
         studyingView.oneTapLearnButton = {
             let controller = GameAssembler.buildModule()
             controller.modalPresentationStyle = .fullScreen
             self.present(controller, animated: true)
         }
-    }
-
-    func fetchWords() {
-        viewModel.fetchWords()
     }
 }

@@ -36,16 +36,9 @@ final class KnownWordsViewController: UIViewController {
         super.viewDidLoad()
         
         viewModel.viewDidLoad()
-        fetchWords()
-
     }
-}
 
-// MARK: - Extension
-
-private extension KnownWordsViewController {
-
-    func fetchWords() {
-        viewModel.fetchWords()
+    func update(with word: [Word]) {
+        knowView.configure(word)
     }
 }

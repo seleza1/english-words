@@ -8,6 +8,7 @@
 import UIKit
 
 enum ButtonStyle {
+
     case one
     case two
     case three
@@ -25,38 +26,38 @@ class Button: UIButton {
 
         case .one:
             self.backgroundColor = .designSystemWhite
-            self.setTitleColor(UIColor.designSystemGrey, for: .normal)
+            self.setTitleColor(.designSystemGrey, for: .normal)
 
             self.layer.cornerRadius = 12
             self.layer.borderWidth = 1
-            self.layer.borderColor = UIColor.designSystemWhiteSky?.cgColor
+            self.layer.borderColor = UIColor.designSystemWhiteSky.cgColor
             self.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .medium)
 
         case .two:
             self.backgroundColor = .designSystemWhite
-            self.setTitleColor(UIColor.designSystemGrey, for: .normal)
+            self.setTitleColor(.designSystemGrey, for: .normal)
 
             self.layer.cornerRadius = 12
             self.layer.borderWidth = 1
-            self.layer.borderColor = UIColor.designSystemWhiteSky?.cgColor
+            self.layer.borderColor = UIColor.designSystemWhiteSky.cgColor
             self.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .medium)
 
         case .three:
             self.backgroundColor = .designSystemWhite
-            self.setTitleColor(UIColor.designSystemGrey, for: .normal)
+            self.setTitleColor(.designSystemGrey, for: .normal)
 
             self.layer.cornerRadius = 12
             self.layer.borderWidth = 1
-            self.layer.borderColor = UIColor.designSystemWhiteSky?.cgColor
+            self.layer.borderColor = UIColor.designSystemWhiteSky.cgColor
             self.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .medium)
 
         case .four:
             self.backgroundColor = .designSystemWhite
-            self.setTitleColor(UIColor.designSystemGrey, for: .normal)
+            self.setTitleColor(.designSystemGrey, for: .normal)
 
             self.layer.cornerRadius = 12
             self.layer.borderWidth = 1
-            self.layer.borderColor = UIColor.designSystemWhiteSky?.cgColor
+            self.layer.borderColor = UIColor.designSystemWhiteSky.cgColor
             self.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .medium)
         }
         self.translatesAutoresizingMaskIntoConstraints = false

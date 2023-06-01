@@ -2,26 +2,25 @@
 //  GameViewModel.swift
 //  english-words
 //
-//  Created by Viktor Shabanov on 25/05/2023.
+//  Created by user on 25/05/2023.
 //
 
 import Foundation
 
 final class GameViewModel {
     
-    private let wordsService = WordsService()
+    private let wordsService = WordsService.shared
     
     weak var viewController: GameViewController?
     
     // MARK: - Input
     
     func viewDidLoad() {
-        wordsService.fetchWords()
-        displayNextWord()
+        //displayNextWord()
     }
-    
+
     func displayNextWord() {
-        let word = wordsService.next()
-        viewController?.update(with: word)
+        //let word = wordsService.next()
+        //viewController?.update(with: word)
     }
 }

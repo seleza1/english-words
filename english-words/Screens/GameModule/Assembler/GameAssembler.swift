@@ -2,7 +2,7 @@
 //  GameAssembler.swift
 //  english-words
 //
-//  Created by Viktor Shabanov on 25/05/2023.
+//  Created by user on 25/05/2023.
 //
 
 import UIKit
@@ -17,5 +17,4 @@ enum GameAssembler {
         
         return viewController
     }
-    
 }

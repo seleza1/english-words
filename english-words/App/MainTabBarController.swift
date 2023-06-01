@@ -26,18 +26,18 @@ private extension MainTabBarController {
             selectedImage: .booksSelectedImage
         )
 
-        let studyingWordsController = StudyingWordsViewController(viewModel: StudyingWordsModel())
+        let studyingWordsController = StudyingModuleAssembly.buildModule()
         studyingWordsController.tabBarItem = UITabBarItem(
             title: .tableViewLearnButtonTitle,
-            image: UIImage.coffeeImage,
-            selectedImage: UIImage.coffeeSelectedImage
+            image: .coffeeImage,
+            selectedImage: .coffeeSelectedImage
         )
 
-        let knownWordsController = KnownWordsViewController(viewModel: KnowWordsViewModel())
+        let knownWordsController = KnownModuleAssembly.buildModule()
         knownWordsController.tabBarItem = UITabBarItem(
             title: .tableViewKnownButtonTitle,
-            image: UIImage.smileImage,
-            selectedImage: UIImage.smileSelectedImage
+            image: .smileImage,
+            selectedImage: .smileSelectedImage
         )
 
         tabBar.tintColor = .designSystemBlue
