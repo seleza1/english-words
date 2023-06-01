@@ -37,4 +37,8 @@ final class KnownWordsViewController: UIViewController {
         
         viewModel.viewDidLoad()
     }
+
+    func update(with word: [Word]) {
+        knowView.configure(word)
+    }
 }

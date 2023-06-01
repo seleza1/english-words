@@ -43,7 +43,6 @@ final class WordsView: UIView {
 
         setupViews()
         setupConstraints()
-        fetchWords()
 
         self.backgroundColor = .designSystemWhite
     }
@@ -54,8 +53,8 @@ final class WordsView: UIView {
 
     // MARK: - Public Methods
 
-    func update(_ words: [Word]) {
-        self.words = words
+    func configure(_ words: [Word]) {
+        self.words = words.shuffled()
     }
 }
 
@@ -119,11 +118,5 @@ private extension WordsView {
             startLearnButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
             startLearnButton.heightAnchor.constraint(equalToConstant: 64)
         ])
-    }
-
-    func fetchWords() {
-        if let loadedWords = JSONLoader().loadWords(.words5000) {
-            words = loadedWords.shuffled()
-        }
     }
 }

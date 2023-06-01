@@ -38,6 +38,10 @@ final class WordsViewController: UIViewController {
         setupActions()
         viewModel.viewDidLoad()
     }
+
+    func update(with word: [Word]) {
+        wordsView.configure(word)
+    }
 }
 
 // MARK: - Extension

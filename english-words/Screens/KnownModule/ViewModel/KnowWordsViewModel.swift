@@ -9,40 +9,24 @@ import Foundation
 
 final class KnowWordsViewModel {
 
-    // MARK: - Private
-
-    private let wordsService = WordsService()
-
-    // MARK: - Public
+    private let wordsService = WordsService.shared
 
     weak var viewController: KnownWordsViewController?
-
-    var onWordsChanged: (([Word])->())?
-
-    let jsonLoader = JSONLoader()
-    let wordsArchiver = WordsArchiver()
-
 }
-
-// MARK: - Extension
 
 extension KnowWordsViewModel {
 
-    func fetchWords() {
-        let archivedWords = wordsArchiver.retrieve()
-
-        if archivedWords.isNotEmpty {
-            onWordsChanged?(archivedWords)
-            return
-        }
-
-        if let loadedWords = jsonLoader.loadWords(.words5000) {
-            let words = loadedWords.shuffled()
-            onWordsChanged?(words)
-        }
-    }
-
     func viewDidLoad() {
-        wordsService.fetchWords()
+        let words = wordsService.loadWords()
+
+        let wordsLearned = words.filter { word in
+            if word.status == .learned {
+
+                return true
+            } else {
+                return false
+            }
+        }
+        viewController?.update(with: wordsLearned)
     }
 }

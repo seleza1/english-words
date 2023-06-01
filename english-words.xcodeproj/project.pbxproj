@@ -324,12 +324,12 @@
 		CE6466F829E69BEE00D32B47 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				CE5C11D92A1DF08F00241508 /* Cell */,
-				CE2ADA522A0E2A460031B3EA /* MeaningModule */,
 				CE6466F929E69BFA00D32B47 /* WordsModule */,
-				CE64670E29E7E60D00D32B47 /* Studying */,
+				CE64670E29E7E60D00D32B47 /* StudyingModule */,
 				CE64671129E7E62B00D32B47 /* KnownModule */,
 				CE64671429E7E67B00D32B47 /* GameModule */,
+				CE2ADA522A0E2A460031B3EA /* MeaningModule */,
+				CE5C11D92A1DF08F00241508 /* Cell */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -362,14 +362,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		CE64670E29E7E60D00D32B47 /* Studying */ = {
+		CE64670E29E7E60D00D32B47 /* StudyingModule */ = {
 			isa = PBXGroup;
 			children = (
 				CE5C11E22A208F4D00241508 /* Assembly */,
 				CE5C11E32A208F5500241508 /* ViewModel */,
 				CE5C11E12A208F2B00241508 /* View */,
 			);
-			path = Studying;
+			path = StudyingModule;
 			sourceTree = "<group>";
 		};
 		CE64671129E7E62B00D32B47 /* KnownModule */ = {

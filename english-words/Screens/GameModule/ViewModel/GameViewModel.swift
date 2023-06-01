@@ -9,19 +9,18 @@ import Foundation
 
 final class GameViewModel {
     
-    private let wordsService = WordsService()
+    private let wordsService = WordsService.shared
     
     weak var viewController: GameViewController?
     
     // MARK: - Input
     
     func viewDidLoad() {
-        wordsService.fetchWords()
-        displayNextWord()
+        //displayNextWord()
     }
-    
+
     func displayNextWord() {
-        let word = wordsService.next()
-        viewController?.update(with: word)
+        //let word = wordsService.next()
+        //viewController?.update(with: word)
     }
 }

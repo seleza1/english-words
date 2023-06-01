@@ -51,7 +51,7 @@ final class StudyingView: UIView {
 
     // MARK: - Public Methods
 
-    func update(_ words: [Word]) {
+    func configure(_ words: [Word]) {
         self.words = words
     }
 }
@@ -93,10 +93,6 @@ private extension StudyingView {
         continueToLearnButton.layer.cornerRadius = 33
 
         continueToLearnButton.addTarget(self, action: #selector(onActionsLearnButton), for: .touchUpInside)
-
-        if words.count < 1 {
-            continueToLearnButton.isHidden = true
-        }
     }
 
     @objc func onActionsLearnButton() {
