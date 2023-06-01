@@ -45,7 +45,7 @@ final class KnownView: UIView {
 
     // MARK: - Public Methods
 
-    func update(_ words: [Word]) {
+    func configure(_ words: [Word]) {
         self.words = words
     }
 }

@@ -9,40 +9,16 @@ import Foundation
 
 final class WordsViewModel {
 
-    // MARK: - Private
-
-    private let wordService = WordsService()
-
-    // MARK: - Public
+    private let wordService = WordsService.shared
 
     weak var viewController: WordsViewController?
-
-    var onWordsChanged: (([Word])->())?
-
-    let jsonLoader = JSONLoader()
-    let wordsArchiver = WordsArchiver()
 }
-
-// MARK: - Extension
 
 extension WordsViewModel {
 
-    func fetchWords() {
-        let archivedWords = wordsArchiver.retrieve()
-
-        if archivedWords.isNotEmpty {
-            onWordsChanged?(archivedWords)
-
-            return
-        }
-
-        if let loadedWords = jsonLoader.loadWords(.words5000) {
-            let words = loadedWords.shuffled()
-            onWordsChanged?(words)
-        }
-    }
-
     func viewDidLoad() {
-        wordService.fetchWords()
+        let words = wordService.loadWords()
+
+        viewController?.update(with: words)
     }
 }

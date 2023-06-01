@@ -36,8 +36,12 @@ final class StudyingWordsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        startLearnButtonTapped()
+        setupActions()
         viewModel.viewDidLoad()
+    }
+
+    func update(with word: [Word]) {
+        studyingView.configure(word)
     }
 }
 
@@ -45,7 +49,7 @@ final class StudyingWordsViewController: UIViewController {
 
 private extension StudyingWordsViewController {
 
-    func startLearnButtonTapped() {
+    func setupActions() {
         studyingView.oneTapLearnButton = {
             let controller = GameAssembler.buildModule()
             controller.modalPresentationStyle = .fullScreen

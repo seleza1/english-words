@@ -8,6 +8,7 @@
 import UIKit
 
 enum ButtonStyle {
+
     case one
     case two
     case three
