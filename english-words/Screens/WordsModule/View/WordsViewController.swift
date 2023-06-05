@@ -39,6 +39,11 @@ final class WordsViewController: UIViewController {
         viewModel.viewDidLoad()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.viewWillAppear()
+    }
+
     func update(with word: [Word]) {
         wordsView.configure(word)
     }

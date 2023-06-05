@@ -17,7 +17,7 @@ final class WordMeaningView: UIView {
     let wordLabel = UILabel()
     let translateLabel = UILabel()
 
-    var onAction: (() -> ())?
+    var onAction: (() -> Void)?
     
     // MARK: - Initialization
     

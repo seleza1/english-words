@@ -14,6 +14,9 @@ final class GameViewController: UIViewController {
     private var gameView: GameView {
         self.view as! GameView
     }
+
+    var word: GameModel?
+
     
     // MARK: - Interface
 
@@ -41,8 +44,12 @@ final class GameViewController: UIViewController {
     
     // MARK: - Input
     
-    func update(with word: WordModel) {
-        gameView.configure(word)
+    func update(word: GameModel, number: Int, index: Int) {
+        gameView.configure(
+            word: word,
+            number: number,
+            index: index
+        )
     }
 }
 
@@ -51,12 +58,16 @@ final class GameViewController: UIViewController {
 private extension GameViewController {
     
     func setupActions() {
-        gameView.oneTappCloseButton = { [ weak self ] in
+        gameView.oneTappCloseButton = { [weak self] in
             self?.dismiss(animated: true)
         }
         
-        gameView.onVariantChanged = { [ weak self ] in
+        gameView.onVariantChanged = { [weak self] in
             self?.viewModel.displayNextWord()
+        }
+
+        gameView.updateWord = { [weak self] id, status in
+            self?.viewModel.updateStatus(id: id, status: status)
         }
     }
 }

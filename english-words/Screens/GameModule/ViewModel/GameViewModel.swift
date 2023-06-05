@@ -8,19 +8,81 @@
 import Foundation
 
 final class GameViewModel {
+
+    // MARK: - Private
     
     private let wordsService = WordsService.shared
-    
+    private var allWords: [Word] = []
+    private var index: Int = 0
+
     weak var viewController: GameViewController?
-    
+
+    var word: GameModel?
+
     // MARK: - Input
     
     func viewDidLoad() {
-        //displayNextWord()
+
+        allWords = wordsService.loadWords()
+
+        allWords = allWords.filter { word in
+            if word.status == .none || word.status == .learning {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        displayNextWord()
     }
 
     func displayNextWord() {
-        //let word = wordsService.next()
-        //viewController?.update(with: word)
+        index += 1
+
+        let word = next()
+
+        viewController?.update(
+            word: word,
+            number: index,
+            index: allWords.count
+        )
+    }
+
+    func updateStatus(id: Int, status: Word.Status) {
+        for allWord in allWords {
+            if allWord.id == id {
+                var word = allWord
+                word.status = status
+                wordsService.save(word: word)
+                break
+            }
+        }
+    }
+}
+
+// MARK: - Methods
+
+private extension GameViewModel {
+
+    func next() -> GameModel {
+
+        let next = allWords[index]
+
+        var variants: [String] = Array(repeating: "", count: 4)
+        variants[0] = next.translate
+
+        for index in 1..<variants.count {
+            variants[index] = allWords.randomElement()?.translate ?? ""
+        }
+        variants.shuffle()
+
+        let gameModel = GameModel(
+            id: next.id,
+            word: next.word,
+            translate: next.translate,
+            variants: variants
+        )
+
+        return gameModel
     }
 }

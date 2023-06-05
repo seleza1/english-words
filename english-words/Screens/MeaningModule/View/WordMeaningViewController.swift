@@ -35,7 +35,7 @@ final class WordMeaningViewController: UIViewController {
 
 private extension WordMeaningViewController {
     func closeButton() {
-        wordsView.onAction = { [ weak self ] in
+        wordsView.onAction = { [weak self] in
             self?.dismiss(animated: true)
         }
     }
