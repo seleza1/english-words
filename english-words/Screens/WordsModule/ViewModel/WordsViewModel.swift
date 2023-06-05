@@ -25,4 +25,9 @@ extension WordsViewModel {
         allWords = wordService.loadWords()
         viewController?.update(with: allWords)
     }
+
+    func viewWillAppear() {
+        allWords = wordService.loadWords()
+        viewController?.update(with: allWords)
+    }
 }

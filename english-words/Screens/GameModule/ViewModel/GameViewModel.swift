@@ -13,17 +13,26 @@ final class GameViewModel {
     
     private let wordsService = WordsService.shared
     private var allWords: [Word] = []
-    private var wordsNotStatus: [Word] = []
     private var index: Int = 0
 
     weak var viewController: GameViewController?
 
     var word: GameModel?
 
-    
     // MARK: - Input
     
     func viewDidLoad() {
+
+        allWords = wordsService.loadWords()
+
+        allWords = allWords.filter { word in
+            if word.status == .none || word.status == .learning {
+                return true
+            } else {
+                return false
+            }
+        }
+
         displayNextWord()
     }
 
@@ -35,17 +44,18 @@ final class GameViewModel {
         viewController?.update(
             word: word,
             number: index,
-            index: wordsNotStatus.count + 1
+            index: allWords.count
         )
     }
 
-
-    func checkVariants(translations: String) -> Bool {
-
-        if word?.variants[0] == translations {
-            return false
-        } else {
-            return true
+    func updateStatus(id: Int, status: Word.Status) {
+        for allWord in allWords {
+            if allWord.id == id {
+                var word = allWord
+                word.status = status
+                wordsService.save(word: word)
+                break
+            }
         }
     }
 }
@@ -55,25 +65,14 @@ final class GameViewModel {
 private extension GameViewModel {
 
     func next() -> GameModel {
-        
-        let words = wordsService.loadWords()
-        allWords = words.shuffled()
 
-        wordsNotStatus = allWords.filter { word in
-            if word.status != .learned {
-                return true
-            } else {
-                return false
-            }
-        }
-
-        let next = wordsNotStatus.removeFirst()
+        let next = allWords[index]
 
         var variants: [String] = Array(repeating: "", count: 4)
         variants[0] = next.translate
 
         for index in 1..<variants.count {
-            variants[index] = wordsNotStatus.randomElement()?.translate ?? ""
+            variants[index] = allWords.randomElement()?.translate ?? ""
         }
         variants.shuffle()
 

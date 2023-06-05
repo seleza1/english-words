@@ -48,8 +48,8 @@ extension WordsService {
     func next() -> GameModel {
 
         let words = loadWords()
-        self.allWords = words.shuffled()
-
+        self.allWords = words
+        
         let next = allWords.removeFirst()
 
         var variants: [String] = Array(repeating: "", count: 4)

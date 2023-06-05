@@ -17,6 +17,8 @@ final class GameView: UIView {
 
     private let numberWordLabel = UILabel()
 
+    var updateWord: ((_ wordId: Int, _ status: Word.Status) ->Void)?
+
     // MARK: - Public
 
     var word: GameModel?
@@ -168,6 +170,27 @@ private extension GameView {
     }
 
     func setupActions() {
+
+        oneButton.onAction = {
+            if self.word?.variants[0] == self.word?.translate {
+                self.oneButton.backgroundColor = .designSystemGreen
+                self.oneButton.setTitleColor(.designSystemWhite, for: .normal)
+                if let word = self.word {
+                    self.updateWord?(word.id, .learned)
+                }
+            } else {
+                self.oneButton.backgroundColor = .designSystemRose
+                self.oneButton.setTitleColor(.designSystemWhite, for: .normal)
+                if let word = self.word {
+                    self.updateWord?(word.id, .learning)
+                }
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.oneButton.backgroundColor = .designSystemWhite
+                self.oneButton.setTitleColor(.designSystemGrey, for: .normal)
+                self.onVariantChanged?()
+            }
+        }
 
         twoButton.onAction = {
             if self.word?.variants[1] == self.word?.translate {

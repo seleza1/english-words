@@ -66,23 +66,8 @@ private extension GameViewController {
             self?.viewModel.displayNextWord()
         }
 
-        gameView.oneButton.onAction = {
-
-            let translations = self.gameView.word?.translate
-            let isCorrect = self.viewModel.checkVariants(translations: translations!)
-
-            if isCorrect {
-                    self.gameView.oneButton.backgroundColor = .designSystemGreen
-                    self.gameView.oneButton.setTitleColor(.designSystemWhite, for: .normal)
-                } else {
-                    self.gameView.oneButton.backgroundColor = .designSystemRose
-                    self.gameView.oneButton.setTitleColor(.designSystemWhite, for: .normal)
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                    self.gameView.oneButton.backgroundColor = .designSystemWhite
-                    self.gameView.oneButton.setTitleColor(.designSystemGrey, for: .normal)
-                    self.gameView.onVariantChanged?()
-                }
-            }
+        gameView.updateWord = { [weak self] id, status in
+            self?.viewModel.updateStatus(id: id, status: status)
         }
     }
+}
