@@ -14,6 +14,8 @@ final class WordsService {
     private let loader = JSONLoader()
     private let archiver = WordsArchiver()
 
+    var allWords: [Word] = []
+
     private init() {
         var words = archiver.retrieve()
 
@@ -41,48 +43,30 @@ final class WordsService {
     }
 }
 
-//
-//class WordsService {
-//
-//    //MARK: - Public Properties
-//
-//    let jsonLoader = JSONLoader()
-//
-//    let allWordsArchiver = WordsArchiver()
-//    let unknownWordsArchiver = WordsArchiver()
-//    let knownWordsArchiver = WordsArchiver()
-//
-//    var allWords: [Word] = []
-//}
-//
-////MARK: - Extension
-//
-//extension WordsService {
-//
-//    func fetchWords() {
-//        let words = jsonLoader.loadWords(.words5000) ?? []
-//        self.allWords = words.shuffled()
-//    }
-//
-//    func next() -> WordModel {
-//
-//        let next = allWords.removeFirst()
-//
-//        var variants: [String] = Array(repeating: "", count: 4)
-//        variants[0] = next.translate
-//
-//        for index in 1..<variants.count {
-//            variants[index] = allWords.randomElement()?.translate ?? ""
-//        }
-//        variants.shuffle()
-//
-//        let wordModel = WordModel(
-//            id: next.id,
-//            word: next.word,
-//            translate: next.translate,
-//            variants: variants
-//        )
-//
-//        return wordModel
-//    }
-//}
+extension WordsService {
+
+    func next() -> GameModel {
+
+        let words = loadWords()
+        self.allWords = words.shuffled()
+
+        let next = allWords.removeFirst()
+
+        var variants: [String] = Array(repeating: "", count: 4)
+        variants[0] = next.translate
+
+        for index in 1..<variants.count {
+            variants[index] = allWords.randomElement()?.translate ?? ""
+        }
+        variants.shuffle()
+
+        let wordModel = GameModel(
+            id: next.id,
+            word: next.word,
+            translate: next.translate,
+            variants: variants
+        )
+
+        return wordModel
+    }
+}

@@ -30,9 +30,9 @@ final class WordsView: UIView {
 
     // MARK: - Public
 
-    var didTapped: ((_ word: String, _ meaning: String) -> ())?
+    var didTapped: ((_ word: String, _ meaning: String) -> Void)?
 
-    var oneTapLearnButton: (() -> ())?
+    var oneTapLearnButton: (() -> Void)?
 
     let startLearnButton = UIButton()
 
@@ -54,7 +54,7 @@ final class WordsView: UIView {
     // MARK: - Public Methods
 
     func configure(_ words: [Word]) {
-        self.words = words.shuffled()
+        self.words = words
     }
 }
 
@@ -71,7 +71,14 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: WordTableViewCell.reuseId, for: indexPath) as! WordTableViewCell
 
         let word = words[indexPath.item]
-        let model = WordTableViewCellModel(word: word.word, isLearned: nil)
+
+        var isLearned: Bool?
+
+        if let status = word.status {
+            isLearned = status == .learned
+        }
+
+        let model = WordTableViewCellModel(word: word.word, isLearned: isLearned)
 
         cell.configure(model)
         cell.selectionStyle = .none

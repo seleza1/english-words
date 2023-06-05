@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WordModel {
+struct GameModel {
     var id: Int
     var word: String
     var translate: String

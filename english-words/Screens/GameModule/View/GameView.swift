@@ -11,8 +11,6 @@ final class GameView: UIView {
 
     // MARK: - Private
 
-    private var word: WordModel?
-
     private let stickerView = StickerView()
 
     private let stackView = UIStackView()
@@ -21,9 +19,11 @@ final class GameView: UIView {
 
     // MARK: - Public
 
-    var onVariantChanged: (() -> ())?
-    var oneTappCloseButton: (() -> ())?
-    var onAction: (() -> ())?
+    var word: GameModel?
+
+    var onVariantChanged: (() -> Void)?
+    var oneTappCloseButton: (() -> Void)?
+    var onAction: (() -> Void)?
 
     let closeButton = UIButton()
 
@@ -40,8 +40,8 @@ final class GameView: UIView {
         setupViews()
         setupConstraints()
         setupActions()
+        setupAddTarget()
 
-        numberWordLabel.text = "1 /4900"
     }
 
     required init?(coder: NSCoder) {
@@ -50,9 +50,10 @@ final class GameView: UIView {
 
     // MARK: - Public Methods
 
-    func configure(_ word: WordModel) {
+    func configure(word: GameModel, number: Int, index: Int) {
 
         self.word = word
+        numberWordLabel.text = "\(number)/ \(index)"
 
         let model = StickerViewModel(
             word: word.word.capitalized,
@@ -78,10 +79,6 @@ private extension GameView {
         backgroundColor = .designSystemWhite
 
         addSubview(closeButton)
-        addSubview(oneButton)
-        addSubview(threeButton)
-        addSubview(fourButton)
-        addSubview(twoButton)
         addSubview(stackView)
         addSubview(numberWordLabel)
         addSubview(stickerView)
@@ -97,13 +94,12 @@ private extension GameView {
         stackView.spacing = 12
 
         closeButton.setImage(.chevronImage, for: .normal)
-        closeButton.addTarget(self, action: #selector(oneTappCloseButtons), for: .touchUpInside)
 
         numberWordLabel.textAlignment = .center
     }
 
-    @objc func onActions() {
-        onAction?()
+    func setupAddTarget() {
+        closeButton.addTarget(self, action: #selector(oneTappCloseButtons), for: .touchUpInside)
     }
 
     @objc func oneTappCloseButtons() {
@@ -142,19 +138,29 @@ private extension GameView {
             stickerView.heightAnchor.constraint(equalToConstant: 240)
         ])
 
+        oneButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             oneButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 1),
             oneButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -1),
-            oneButton.heightAnchor.constraint(equalToConstant: 54),
+            oneButton.heightAnchor.constraint(equalToConstant: 54)
+        ])
 
+        twoButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
             twoButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 1),
             twoButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -1),
-            twoButton.heightAnchor.constraint(equalToConstant: 54),
+            twoButton.heightAnchor.constraint(equalToConstant: 54)
+        ])
 
+        threeButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
             threeButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 1),
             threeButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -1),
-            threeButton.heightAnchor.constraint(equalToConstant: 54),
+            threeButton.heightAnchor.constraint(equalToConstant: 54)
+        ])
 
+        fourButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
             fourButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 1),
             fourButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -1),
             fourButton.heightAnchor.constraint(equalToConstant: 54)
@@ -162,24 +168,8 @@ private extension GameView {
     }
 
     func setupActions() {
-        oneButton.onAction = {
-
-            if self.word?.variants[0] == self.word?.translate {
-                self.oneButton.backgroundColor = .designSystemGreen
-                self.oneButton.setTitleColor(.designSystemWhite, for: .normal)
-            } else {
-                self.oneButton.backgroundColor = .designSystemRose
-                self.oneButton.setTitleColor(.designSystemWhite, for: .normal)
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.oneButton.backgroundColor = .designSystemWhite
-                self.oneButton.setTitleColor(.designSystemGrey, for: .normal)
-                self.onVariantChanged?()
-            }
-        }
 
         twoButton.onAction = {
-            
             if self.word?.variants[1] == self.word?.translate {
                 self.twoButton.backgroundColor = .designSystemGreen
                 self.twoButton.setTitleColor(.designSystemWhite, for: .normal)
@@ -195,7 +185,6 @@ private extension GameView {
         }
 
         threeButton.onAction = {
-
             if self.word?.variants[2] == self.word?.translate {
                 self.threeButton.backgroundColor = .designSystemGreen
                 self.threeButton.setTitleColor(.designSystemWhite, for: .normal)
@@ -211,7 +200,6 @@ private extension GameView {
         }
 
         fourButton.onAction = {
-
             if self.word?.variants[3] == self.word?.translate {
                 self.fourButton.backgroundColor = .designSystemGreen
                 self.fourButton.setTitleColor(.designSystemWhite, for: .normal)

@@ -21,7 +21,7 @@ final class StudyingView: UIView {
 
     let continueToLearnButton = UIButton()
 
-    var oneTapLearnButton: (() -> ())?
+    var oneTapLearnButton: (() -> Void)?
 
     lazy var tableView: UITableView = {
         let tableView = UITableView()

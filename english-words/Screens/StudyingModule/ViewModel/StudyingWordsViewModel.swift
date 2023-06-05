@@ -9,18 +9,22 @@ import Foundation
 
 final class StudyingWordsViewModel {
 
+    // MARK: - Private
+
     private let wordsService = WordsService.shared
-    private let studyingView = StudyingView()
+    private var allWords: [Word] = []
 
     weak var viewController: StudyingWordsViewController?
 }
 
+// MARK: - Methods
+
 extension StudyingWordsViewModel {
 
     func viewDidLoad() {
-        let words = wordsService.loadWords()
+        allWords = wordsService.loadWords()
 
-        let wordsStudying = words.filter { word in
+        let wordsStudying = allWords.filter { word in
             if word.status == .learning {
                 return true
             } else {
