@@ -12,11 +12,8 @@ final class WordTableViewCell: UITableViewCell {
     // MARK: - Private Properties
 
     private let wordLabel = UILabel()
-
     private let roundView = UIView()
-
     private let soundButton = UIButton()
-
     private let statusImageView = UIImageView()
 
     // MARK: - Static Properties
@@ -57,11 +54,10 @@ final class WordTableViewCell: UITableViewCell {
     }
 }
 
-// MARK: - Extension
+// MARK: - Private Methods
+
 
 private extension WordTableViewCell {
-
-    // MARK: - Private Methods
 
     func setupViews() {
         addSubview(roundView)

@@ -87,7 +87,7 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-// MARK: - Extension
+// MARK: - Private Methods
 
 private extension WordsView {
 

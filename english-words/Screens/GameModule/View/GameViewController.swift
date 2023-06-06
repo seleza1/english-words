@@ -9,15 +9,14 @@ import UIKit
 
 final class GameViewController: UIViewController {
 
+    // MARK: - Private
+
     private let viewModel: GameViewModel
     
     private var gameView: GameView {
         self.view as! GameView
     }
 
-    var word: GameModel?
-
-    
     // MARK: - Interface
 
     init(viewModel: GameViewModel) {
@@ -53,7 +52,7 @@ final class GameViewController: UIViewController {
     }
 }
 
-// MARK: - Extension
+// MARK: - Private Methods
 
 private extension GameViewController {
     

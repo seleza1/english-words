@@ -78,7 +78,7 @@ extension StudyingView: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-// MARK: - Extension
+// MARK: - Private Methods
 
 private extension StudyingView {
 

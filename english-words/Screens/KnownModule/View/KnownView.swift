@@ -71,7 +71,7 @@ extension KnownView: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-// MARK: - Extension
+// MARK: - Private Methods
 
 private extension KnownView {
 
