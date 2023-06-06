@@ -34,4 +34,18 @@ extension KnowWordsViewModel {
         }
         viewController?.update(with: wordsLearned)
     }
+
+    func viewDidAppear() {
+        allWords = wordsService.loadWords()
+
+        let wordsLearned = allWords.filter { word in
+            if word.status == .learned {
+
+                return true
+            } else {
+                return false
+            }
+        }
+        viewController?.update(with: wordsLearned)
+    }
 }

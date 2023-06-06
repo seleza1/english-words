@@ -33,4 +33,17 @@ extension StudyingWordsViewModel {
         }
         viewController?.update(with: wordsStudying)
     }
+
+    func viewDidAppear() {
+        allWords = wordsService.loadWords()
+
+        let wordsStudying = allWords.filter { word in
+            if word.status == .learning {
+                return true
+            } else {
+                return false
+            }
+        }
+        viewController?.update(with: wordsStudying)
+    }
 }
