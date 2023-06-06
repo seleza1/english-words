@@ -11,6 +11,7 @@ enum WordMeaningModuleAssembly {
 
     static func buildModule() -> UIViewController {
         let viewModel = WordMeaningViewModel()
+
         let viewController = WordMeaningViewController(viewModel: viewModel)
 
         viewModel.viewController = viewController

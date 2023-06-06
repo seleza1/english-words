@@ -13,7 +13,7 @@ final class GameViewModel {
     
     private let wordsService = WordsService.shared
     private var allWords: [Word] = []
-    private var index: Int = 0
+    private var index: Int = -1
 
     // MARK: - Public
 
@@ -43,7 +43,7 @@ final class GameViewModel {
 
         viewController?.update(
             word: word,
-            number: index,
+            number: index+1,
             index: allWords.count
         )
     }

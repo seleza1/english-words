@@ -13,7 +13,7 @@ final class StudyingWordsViewController: UIViewController {
 
     private var viewModel = StudyingWordsViewModel()
 
-    private var studyingView: StudyingView {
+    var studyingView: StudyingView {
         return self.view as! StudyingView
     }
 
@@ -43,6 +43,7 @@ final class StudyingWordsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewModel.viewDidAppear()
+        
     }
 
     func update(with word: [Word]) {

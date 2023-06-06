@@ -10,7 +10,7 @@ import UIKit
 enum KnownModuleAssembly {
 
     static func buildModule() -> UIViewController {
-        let viewModel = KnowWordsViewModel()
+        let viewModel = KnownWordsViewModel()
         let viewController = KnownWordsViewController(viewModel: viewModel)
 
         viewModel.viewController = viewController

@@ -13,13 +13,12 @@ final class StickerView: UIView {
 
     private let stackView = UIStackView()
 
-    private let worldLabel = UILabel()
-    private let translationLabel = UILabel()
-
-    private let hintButton = UIButton()
-    private let speakerButton = UIButton()
-
     // MARK: - Public
+
+    let worldLabel = UILabel()
+    let translationLabel = UILabel()
+    let speakerButton = UIButton()
+    let hintButton = UIButton()
 
     var onHint: (()-> Void)?
 
