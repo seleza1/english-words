@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 final class GameView: UIView {
 
@@ -43,6 +44,7 @@ final class GameView: UIView {
         setupActions()
         setupAddTarget()
         showHint()
+        speakWord()
 
     }
 
@@ -76,6 +78,18 @@ final class GameView: UIView {
 // MARK: - Private Methods
 
 private extension GameView {
+
+    func speakWord() {
+        stickerView.onVoice = {
+            guard let word = self.stickerView.worldLabel.text else { return }
+
+            let synthesizer = AVSpeechSynthesizer()
+            let utterance = AVSpeechUtterance(string: word)
+            utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
+
+            synthesizer.speak(utterance)
+        }
+    }
 
     // MARK: - Setup
 

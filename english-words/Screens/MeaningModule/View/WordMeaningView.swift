@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import AVFoundation
 
 final class WordMeaningView: UIView {
 
@@ -25,6 +24,7 @@ final class WordMeaningView: UIView {
     // MARK: - Public
 
     var onTappNextButtonS: (() -> Void)?
+    var onVoice: (() -> Void)?
     var onAction: (() -> Void)?
     
     // MARK: - Initialization
@@ -76,6 +76,11 @@ private extension WordMeaningView {
     func setupActions() {
         closeButton.addTarget(self, action: #selector(onTappCloseButton), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(onTappNextButton), for: .touchUpInside)
+        stickerView.speakerButton.addTarget(self, action: #selector(onTappVoiceButton), for: .touchUpInside)
+    }
+
+    @objc func onTappVoiceButton() {
+        onVoice?()
     }
 
     @objc func onTappCloseButton() {

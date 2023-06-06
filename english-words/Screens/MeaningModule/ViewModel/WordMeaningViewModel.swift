@@ -9,12 +9,13 @@ import UIKit
 
 final class WordMeaningViewModel {
 
-    // MARK: - Private
+    // MARK: Private
 
     private let wordsService = WordsService.shared
     private var allWords: [Word] = []
 
     weak var viewController: WordMeaningViewController?
+
 }
 
 extension WordMeaningViewModel {

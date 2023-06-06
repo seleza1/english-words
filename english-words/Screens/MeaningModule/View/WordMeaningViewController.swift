@@ -34,6 +34,7 @@ final class WordMeaningViewController: UIViewController {
         viewModel.viewDidLoad()
         closeButton()
         nextWords()
+        speakWord()
     }
 
     func update(with word: Int) {
@@ -51,6 +52,18 @@ private extension WordMeaningViewController {
     func nextWords() {
         wordsView.onTappNextButtonS = {
             print("nextWord")
+        }
+    }
+
+    func speakWord() {
+        wordsView.onVoice = {
+            guard let word = self.wordsView.stickerView.worldLabel.text else { return }
+
+            let synthesizer = AVSpeechSynthesizer()
+            let utterance = AVSpeechUtterance(string: word)
+            utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
+
+            synthesizer.speak(utterance)
         }
     }
 }

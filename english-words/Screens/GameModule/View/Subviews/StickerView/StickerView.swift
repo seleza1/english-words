@@ -21,6 +21,7 @@ final class StickerView: UIView {
     let hintButton = UIButton()
 
     var onHint: (()-> Void)?
+    var onVoice: (()-> Void)?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -82,10 +83,15 @@ private extension StickerView {
 
     func setupActions() {
         hintButton.addTarget(self, action: #selector(onTappHintButton), for: .touchUpInside)
+        speakerButton.addTarget(self, action: #selector(onTappVoiceButton), for: .touchUpInside)
     }
 
     @objc func onTappHintButton() {
         onHint?()
+    }
+
+    @objc func onTappVoiceButton() {
+        onVoice?()
     }
 
     func setupConstraints() {
