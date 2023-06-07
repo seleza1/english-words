@@ -23,7 +23,7 @@ final class WordMeaningView: UIView {
 
     // MARK: - Public
 
-    var onTappNextButtonS: (() -> Void)?
+    var onTappNextButtonWord: (() -> Void)?
     var onVoice: (() -> Void)?
     var onAction: (() -> Void)?
     
@@ -40,7 +40,7 @@ final class WordMeaningView: UIView {
     }
 
     func configure(_ words: Int) {
-        numberWordLabel.text = "\(index) / \(words)"
+        numberWordLabel.text = "\(index) /\(words)"
     }
     
     required init?(coder: NSCoder) {
@@ -88,7 +88,7 @@ private extension WordMeaningView {
     }
 
     @objc func onTappNextButton() {
-        onTappNextButtonS?()
+        onTappNextButtonWord?()
     }
 
     func setupConstraints() {

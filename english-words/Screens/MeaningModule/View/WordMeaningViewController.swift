@@ -16,6 +16,10 @@ final class WordMeaningViewController: UIViewController {
         self.view as! WordMeaningView
     }
 
+    private let wordsService = WordsService.shared
+
+    private var allWords: [Word] = []
+
     init(viewModel: WordMeaningViewModel) {
         self.viewModel = viewModel
         super.init(nibName: "", bundle: nil)
@@ -50,8 +54,8 @@ private extension WordMeaningViewController {
     }
 
     func nextWords() {
-        wordsView.onTappNextButtonS = {
-            print("nextWord")
+        wordsView.onTappNextButtonWord = {
+            print("next")
         }
     }
 
