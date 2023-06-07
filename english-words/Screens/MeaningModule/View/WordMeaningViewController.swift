@@ -61,7 +61,7 @@ private extension WordMeaningViewController {
 
             let synthesizer = AVSpeechSynthesizer()
             let utterance = AVSpeechUtterance(string: word)
-            utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
+            utterance.voice = AVSpeechSynthesisVoice(language: "com.apple.eloquence.en-US.Eddy")
 
             synthesizer.speak(utterance)
         }
