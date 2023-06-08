@@ -17,8 +17,6 @@ final class GameView: UIView {
 
     private let numberWordLabel = UILabel()
 
-    var updateWord: ((_ wordId: Int, _ status: Word.Status) ->Void)?
-
     // MARK: - Public
 
     var word: GameModel?
@@ -26,6 +24,7 @@ final class GameView: UIView {
     var onVariantChanged: (() -> Void)?
     var oneTappCloseButton: (() -> Void)?
     var onAction: (() -> Void)?
+    var updateWord: ((_ wordId: Int, _ status: Word.Status) ->Void)?
 
     let closeButton = UIButton()
 
@@ -43,6 +42,7 @@ final class GameView: UIView {
         setupConstraints()
         setupActions()
         setupAddTarget()
+        showHint()
 
     }
 
@@ -73,9 +73,11 @@ final class GameView: UIView {
     }
 }
 
-// MARK: - Extension
+// MARK: - Private Methods
 
 private extension GameView {
+
+    // MARK: - Setup
 
     func setupViews() {
         backgroundColor = .designSystemWhite
@@ -171,70 +173,116 @@ private extension GameView {
 
     func setupActions() {
 
-        oneButton.onAction = {
-            if self.word?.variants[0] == self.word?.translate {
-                self.oneButton.backgroundColor = .designSystemGreen
-                self.oneButton.setTitleColor(.designSystemWhite, for: .normal)
-                if let word = self.word {
-                    self.updateWord?(word.id, .learned)
+        oneButton.onAction = { [weak self] in
+            if self?.word?.variants[0] == self?.word?.translate {
+                self?.oneButton.backgroundColor = .designSystemGreen
+                self?.oneButton.setTitleColor(.designSystemWhite, for: .normal)
+                if let word = self?.word {
+                    self?.updateWord?(word.id, .learned)
                 }
             } else {
-                self.oneButton.backgroundColor = .designSystemRose
-                self.oneButton.setTitleColor(.designSystemWhite, for: .normal)
-                if let word = self.word {
-                    self.updateWord?(word.id, .learning)
+                self?.oneButton.backgroundColor = .designSystemRose
+                self?.oneButton.setTitleColor(.designSystemWhite, for: .normal)
+                if let word = self?.word {
+                    self?.updateWord?(word.id, .learning)
                 }
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.oneButton.backgroundColor = .designSystemWhite
-                self.oneButton.setTitleColor(.designSystemGrey, for: .normal)
-                self.onVariantChanged?()
+                self?.oneButton.backgroundColor = .designSystemWhite
+                self?.oneButton.setTitleColor(.designSystemGrey, for: .normal)
+                self?.onVariantChanged?()
             }
         }
 
-        twoButton.onAction = {
-            if self.word?.variants[1] == self.word?.translate {
-                self.twoButton.backgroundColor = .designSystemGreen
-                self.twoButton.setTitleColor(.designSystemWhite, for: .normal)
+        twoButton.onAction = { [weak self] in
+            if self?.word?.variants[1] == self?.word?.translate {
+                self?.twoButton.backgroundColor = .designSystemGreen
+                self?.twoButton.setTitleColor(.designSystemWhite, for: .normal)
+                if let word = self?.word {
+                    self?.updateWord?(word.id, .learned)
+                }
             } else {
-                self.twoButton.backgroundColor = .designSystemRose
-                self.twoButton.setTitleColor(.designSystemWhite, for: .normal)
+                self?.twoButton.backgroundColor = .designSystemRose
+                self?.twoButton.setTitleColor(.designSystemWhite, for: .normal)
+                if let word = self?.word {
+                    self?.updateWord?(word.id, .learning)
+                }
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.twoButton.backgroundColor = .designSystemWhite
-                self.twoButton.setTitleColor(.designSystemGrey, for: .normal)
-                self.onVariantChanged?()
+                self?.twoButton.backgroundColor = .designSystemWhite
+                self?.twoButton.setTitleColor(.designSystemGrey, for: .normal)
+                self?.onVariantChanged?()
             }
         }
 
-        threeButton.onAction = {
-            if self.word?.variants[2] == self.word?.translate {
-                self.threeButton.backgroundColor = .designSystemGreen
-                self.threeButton.setTitleColor(.designSystemWhite, for: .normal)
+        threeButton.onAction = { [weak self] in
+            if self?.word?.variants[2] == self?.word?.translate {
+                self?.threeButton.backgroundColor = .designSystemGreen
+                self?.threeButton.setTitleColor(.designSystemWhite, for: .normal)
+                if let word = self?.word {
+                    self?.updateWord?(word.id, .learned)
+                }
             } else {
-                self.threeButton.backgroundColor = .designSystemRose
-                self.threeButton.setTitleColor(.designSystemWhite, for: .normal)
+                self?.threeButton.backgroundColor = .designSystemRose
+                self?.threeButton.setTitleColor(.designSystemWhite, for: .normal)
+                if let word = self?.word {
+                    self?.updateWord?(word.id, .learning)
+                }
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.threeButton.backgroundColor = .designSystemWhite
-                self.threeButton.setTitleColor(.designSystemGrey, for: .normal)
-                self.onVariantChanged?()
+                self?.threeButton.backgroundColor = .designSystemWhite
+                self?.threeButton.setTitleColor(.designSystemGrey, for: .normal)
+                self?.onVariantChanged?()
             }
         }
 
-        fourButton.onAction = {
-            if self.word?.variants[3] == self.word?.translate {
-                self.fourButton.backgroundColor = .designSystemGreen
-                self.fourButton.setTitleColor(.designSystemWhite, for: .normal)
+        fourButton.onAction = { [weak self] in
+            if self?.word?.variants[3] == self?.word?.translate {
+                self?.fourButton.backgroundColor = .designSystemGreen
+                self?.fourButton.setTitleColor(.designSystemWhite, for: .normal)
+                if let word = self?.word {
+                    self?.updateWord?(word.id, .learned)
+                }
             } else {
-                self.fourButton.backgroundColor = .designSystemRose
-                self.fourButton.setTitleColor(.designSystemWhite, for: .normal)
+                self?.fourButton.backgroundColor = .designSystemRose
+                self?.fourButton.setTitleColor(.designSystemWhite, for: .normal)
+                if let word = self?.word {
+                    self?.updateWord?(word.id, .learning)
+                }
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.fourButton.backgroundColor = .designSystemWhite
-                self.fourButton.setTitleColor(.designSystemGrey, for: .normal)
-                self.onVariantChanged?()
+                self?.fourButton.backgroundColor = .designSystemWhite
+                self?.fourButton.setTitleColor(.designSystemGrey, for: .normal)
+                self?.onVariantChanged?()
             }
         }
     }
+
+    // MARK: - Hint
+
+    func showHint() {
+        stickerView.onHint = { [weak self] in
+            if self?.word?.variants[0] == self?.word?.translate {
+                self?.showHints(button: self!.oneButton)
+            } else if self?.word?.variants[1] == self?.word?.translate {
+                self?.showHints(button: self!.twoButton)
+            } else if self?.word?.variants[2] == self?.word?.translate {
+                self?.showHints(button: self!.threeButton)
+            } else if self?.word?.variants[3] == self?.word?.translate {
+                self?.showHints(button: self!.fourButton)
+            }
+        }
+    }
+
+    func showHints(button: UIButton) {
+        button.backgroundColor = .designSystemGreen
+        button.setTitleColor(.designSystemWhite, for: .normal)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
+            button.backgroundColor = .designSystemWhite
+            button.setTitleColor(.designSystemGrey, for: .normal)
+            self.onVariantChanged?()
+        }
+    }
+
 }

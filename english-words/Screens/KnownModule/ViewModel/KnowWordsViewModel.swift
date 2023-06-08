@@ -26,7 +26,6 @@ extension KnowWordsViewModel {
 
         let wordsLearned = allWords.filter { word in
             if word.status == .learned {
-
                 return true
             } else {
                 return false
@@ -40,7 +39,6 @@ extension KnowWordsViewModel {
 
         let wordsLearned = allWords.filter { word in
             if word.status == .learned {
-
                 return true
             } else {
                 return false

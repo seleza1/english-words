@@ -50,7 +50,7 @@ final class StudyingWordsViewController: UIViewController {
     }
 }
 
-// MARK: - Extension
+// MARK: - Private Methods
 
 private extension StudyingWordsViewController {
 

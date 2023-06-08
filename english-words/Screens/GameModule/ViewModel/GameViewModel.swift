@@ -15,9 +15,9 @@ final class GameViewModel {
     private var allWords: [Word] = []
     private var index: Int = 0
 
-    weak var viewController: GameViewController?
+    // MARK: - Public
 
-    var word: GameModel?
+    weak var viewController: GameViewController?
 
     // MARK: - Input
     
@@ -60,7 +60,7 @@ final class GameViewModel {
     }
 }
 
-// MARK: - Methods
+// MARK: - Private Methods
 
 private extension GameViewModel {
 

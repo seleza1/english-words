@@ -21,11 +21,14 @@ final class StickerView: UIView {
 
     // MARK: - Public
 
+    var onHint: (()-> Void)?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         setupView()
         setupConstraints()
+        setupActions()
     }
 
     @available(*, unavailable)
@@ -42,6 +45,8 @@ extension StickerView {
         backgroundColor = viewModel.backgroundColor
     }
 }
+
+// MARK: - Private Methods
 
 private extension StickerView {
 
@@ -73,6 +78,15 @@ private extension StickerView {
         hintButton.setImage(.keyImage, for: .normal)
         hintButton.layer.cornerRadius = 22
         hintButton.backgroundColor = .designSystemWhite
+
+    }
+
+    func setupActions() {
+        hintButton.addTarget(self, action: #selector(onTappHintButton), for: .touchUpInside)
+    }
+
+    @objc func onTappHintButton() {
+        onHint?()
     }
 
     func setupConstraints() {

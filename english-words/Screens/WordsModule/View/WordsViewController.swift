@@ -49,7 +49,7 @@ final class WordsViewController: UIViewController {
     }
 }
 
-// MARK: - Extension
+// MARK: - Private Methods
 
 private extension WordsViewController {
 

@@ -9,10 +9,14 @@ import UIKit
 
 final class WordMeaningView: UIView {
 
+    // MARK: - Private
+
     private let stickerView = StickerView()
 
     private let closeButton = UIButton()
     private let nextButton = UIButton()
+
+    // MARK: - Public
 
     let wordLabel = UILabel()
     let translateLabel = UILabel()
@@ -35,6 +39,8 @@ final class WordMeaningView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+// MARK: - Private Methods
 
 private extension WordMeaningView {
 
