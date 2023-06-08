@@ -15,9 +15,11 @@ final class KnownWordsViewController: UIViewController {
         return self.view as! KnownView
     }
 
-    private let viewModel: KnowWordsViewModel
+    var word: GameModel?
 
-    init(viewModel: KnowWordsViewModel) {
+    private let viewModel: KnownWordsViewModel
+
+    init(viewModel: KnownWordsViewModel) {
         self.viewModel = viewModel
         super.init(nibName: "", bundle: nil)
     }
@@ -34,16 +36,32 @@ final class KnownWordsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         viewModel.viewDidLoad()
+        updatesMeaning()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewModel.viewDidAppear()
+
     }
 
     func update(with word: [Word]) {
         knowView.configure(word)
+    }
+
+    func updatesMeaning() {
+        knowView.wordMeaning = { word, translate in
+            let wordMeaning = WordMeaningModuleAssembly.buildModule()
+
+            guard let wordMeaningView = wordMeaning.view as? WordMeaningView else { return }
+            wordMeaningView.stickerView.worldLabel.text = word.capitalized
+            wordMeaningView.stickerView.translationLabel.text = translate.capitalized
+            wordMeaningView.stickerView.hintButton.isHidden = true
+
+
+            wordMeaning.modalPresentationStyle = .fullScreen
+            self.present(wordMeaning, animated: true)
+        }
     }
 }

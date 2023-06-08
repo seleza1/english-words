@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 final class WordMeaningViewController: UIViewController {
 
@@ -30,6 +31,13 @@ final class WordMeaningViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.viewDidLoad()
+        closeButton()
+        nextWords()
+    }
+
+    func update(with word: Int) {
+        wordsView.configure(word)
     }
 }
 
@@ -37,6 +45,12 @@ private extension WordMeaningViewController {
     func closeButton() {
         wordsView.onAction = { [weak self] in
             self?.dismiss(animated: true)
+        }
+    }
+
+    func nextWords() {
+        wordsView.onTappNextButtonS = {
+            print("nextWord")
         }
     }
 }

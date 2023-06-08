@@ -28,6 +28,8 @@ final class KnownView: UIView {
         return tableView
     }()
 
+    var wordMeaning: ((_ word: String,_ translate: String) -> Void)?
+
     // MARK: - Initialization
 
     override init(frame: CGRect) {
@@ -68,6 +70,11 @@ extension KnownView: UITableViewDelegate, UITableViewDataSource {
         cell.selectionStyle = .none
 
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let word = words[indexPath.item]
+        wordMeaning?(word.word, word.translate)
     }
 }
 
