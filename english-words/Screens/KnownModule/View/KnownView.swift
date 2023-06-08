@@ -17,6 +17,9 @@ final class KnownView: UIView {
         }
     }
 
+    private let progressView = UIProgressView()
+    private let wordLabelCount = UILabel()
+
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(WordTableViewCell.self, forCellReuseIdentifier: WordTableViewCell.reuseId)
@@ -49,6 +52,11 @@ final class KnownView: UIView {
 
     func configure(_ words: [Word]) {
         self.words = words
+        
+        let progress = Float(words.count) / Float(5000)
+        progressView.progress = progress
+        wordLabelCount.text = "\(words.count) слов"
+
     }
 }
 
@@ -84,13 +92,34 @@ private extension KnownView {
 
     func setupViews() {
         addSubview(tableView)
+        addSubview(progressView)
+        addSubview(wordLabelCount)
+
+        progressView.progressTintColor = .designSystemGreen
+        progressView.layer.cornerRadius = 12
+        progressView.trackTintColor = .designSystemWhite
     }
 
     func setupConstraints() {
+        wordLabelCount.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            wordLabelCount.topAnchor.constraint(equalTo: topAnchor, constant: 65),
+            wordLabelCount.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+
+        ])
+
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            progressView.topAnchor.constraint(equalTo: topAnchor, constant: 72),
+            progressView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            progressView.trailingAnchor.constraint(equalTo: wordLabelCount.leadingAnchor, constant: -24),
+
+            progressView.heightAnchor.constraint(equalToConstant: 8)
+        ])
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: topAnchor),
+            tableView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 16),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)

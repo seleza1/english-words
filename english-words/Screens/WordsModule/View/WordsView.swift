@@ -17,6 +17,9 @@ final class WordsView: UIView {
         }
     }
 
+    private let progressView = UIProgressView()
+    private let wordLabelCount = UILabel()
+
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(WordTableViewCell.self, forCellReuseIdentifier: WordTableViewCell.reuseId)
@@ -43,6 +46,7 @@ final class WordsView: UIView {
 
         setupViews()
         setupConstraints()
+        setupActions()
 
         self.backgroundColor = .designSystemWhite
     }
@@ -55,6 +59,35 @@ final class WordsView: UIView {
 
     func configure(_ words: [Word]) {
         self.words = words
+
+        let wordStatusLearningAndNone = words.filter { word in
+            if word.status == .learning || word.status == .none {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        let wordStatusLearning = words.filter { word in
+            if word.status == .learning {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        let wordStatusLearned = words.filter { word in
+            if word.status == .learned {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        wordLabelCount.text = "\(wordStatusLearningAndNone.count) слов"
+
+        let progress = Float(wordStatusLearned.count) / Float(wordStatusLearningAndNone.count)
+        progressView.progress = progress
     }
 }
 
@@ -94,25 +127,48 @@ private extension WordsView {
     func setupViews() {
         addSubview(tableView)
         addSubview(startLearnButton)
+        addSubview(progressView)
+        addSubview(wordLabelCount)
 
         startLearnButton.setTitle(.startToLearnButtonTitle, for: .normal)
         startLearnButton.setTitleColor(UIColor.white, for: .normal)
         startLearnButton.titleLabel?.font = .startLearnButton
         startLearnButton.backgroundColor = .designSystemBlue
         startLearnButton.layer.cornerRadius = 33
-        
-        startLearnButton.addTarget(self, action: #selector(onTappStartLearnButton), for: .touchUpInside)
+
+        progressView.progressTintColor = .designSystemGreen
+        progressView.trackTintColor = .designSystemBlue
+        progressView.layer.cornerRadius = 12
     }
 
     @objc func onTappStartLearnButton() {
         oneTapLearnButton?()
     }
 
+    func setupActions() {
+        startLearnButton.addTarget(self, action: #selector(onTappStartLearnButton), for: .touchUpInside)
+    }
+
     func setupConstraints() {
+        wordLabelCount.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            wordLabelCount.topAnchor.constraint(equalTo: topAnchor, constant: 65),
+            wordLabelCount.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+
+        ])
+
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            progressView.topAnchor.constraint(equalTo: topAnchor, constant: 72),
+            progressView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            progressView.trailingAnchor.constraint(equalTo: wordLabelCount.leadingAnchor, constant: -24),
+
+            progressView.heightAnchor.constraint(equalToConstant: 8)
+        ])
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: topAnchor),
+            tableView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 16),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
