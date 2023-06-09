@@ -34,7 +34,6 @@ final class WordsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupActions()
         viewModel.viewDidLoad()
     }

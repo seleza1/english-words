@@ -29,23 +29,17 @@ final class GameView: UIView {
 
     let closeButton = UIButton()
 
-    let oneButton = Button(style: .one)
-    let twoButton = Button(style: .two)
-    let threeButton = Button(style: .three)
-    let fourButton = Button(style: .four)
+    var variantButtons: [VariantButton] = []
 
     // MARK: - Initialization
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
         setupViews()
         setupConstraints()
-        setupActions()
         setupAddTarget()
         showHint()
         speakWord()
-
     }
 
     required init?(coder: NSCoder) {
@@ -68,10 +62,31 @@ final class GameView: UIView {
 
         stickerView.configure(with: model)
 
-        oneButton.setTitle(word.variants[0].capitalized, for: .normal)
-        twoButton.setTitle(word.variants[1].capitalized, for: .normal)
-        threeButton.setTitle(word.variants[2].capitalized, for: .normal)
-        fourButton.setTitle(word.variants[3].capitalized, for: .normal)
+        variantButtons.forEach { button in
+            stackView.removeArrangedSubview(button)
+        }
+
+        variantButtons.removeAll()
+
+        word.variants.enumerated().forEach { index, variant in
+            let button = VariantButton()
+            button.setTitle(variant.capitalized, for: .normal)
+            variantButtons.append(button)
+            stackView.addArrangedSubview(button)
+
+            button.backgroundColor = .designSystemWhite
+            button.setTitleColor(.designSystemGrey, for: .normal)
+            button.layer.cornerRadius = 12
+            button.layer.borderWidth = 1
+            button.layer.borderColor = UIColor.designSystemWhiteSky.cgColor
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .medium)
+
+            configureVariantButtonLayout(button: button)
+            setupActions(button: button, index: index)
+
+            setNeedsLayout()
+            layoutIfNeeded()
+        }
     }
 }
 
@@ -100,11 +115,6 @@ private extension GameView {
         addSubview(numberWordLabel)
         addSubview(stickerView)
 
-        stackView.addArrangedSubview(oneButton)
-        stackView.addArrangedSubview(twoButton)
-        stackView.addArrangedSubview(threeButton)
-        stackView.addArrangedSubview(fourButton)
-
         stackView.axis = .vertical
         stackView.alignment = .center
         stackView.distribution = .fillEqually
@@ -124,27 +134,16 @@ private extension GameView {
     }
 
     func setupConstraints() {
-
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             closeButton.topAnchor.constraint(equalTo: topAnchor, constant: 61),
             closeButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 27),
-            closeButton.heightAnchor.constraint(equalToConstant: 28)
         ])
 
         numberWordLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             numberWordLabel.topAnchor.constraint(equalTo: topAnchor, constant: 64),
-            numberWordLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 280),
-            numberWordLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            numberWordLabel.heightAnchor.constraint(equalToConstant: 22)
-        ])
-
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -40)
+            numberWordLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
         ])
 
         stickerView.translatesAutoresizingMaskIntoConstraints = false
@@ -152,120 +151,43 @@ private extension GameView {
             stickerView.topAnchor.constraint(equalTo: topAnchor, constant: 117),
             stickerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             stickerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            stickerView.heightAnchor.constraint(equalToConstant: 240)
+            stickerView.heightAnchor.constraint(equalToConstant: 240),
         ])
 
-        oneButton.translatesAutoresizingMaskIntoConstraints = false
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            oneButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 1),
-            oneButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -1),
-            oneButton.heightAnchor.constraint(equalToConstant: 54)
-        ])
-
-        twoButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            twoButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 1),
-            twoButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -1),
-            twoButton.heightAnchor.constraint(equalToConstant: 54)
-        ])
-
-        threeButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            threeButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 1),
-            threeButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -1),
-            threeButton.heightAnchor.constraint(equalToConstant: 54)
-        ])
-
-        fourButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            fourButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 1),
-            fourButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -1),
-            fourButton.heightAnchor.constraint(equalToConstant: 54)
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -40),
         ])
     }
 
-    func setupActions() {
+    func configureVariantButtonLayout(button: UIButton) {
 
-        oneButton.onAction = { [weak self] in
-            if self?.word?.variants[0] == self?.word?.translate {
-                self?.oneButton.backgroundColor = .designSystemGreen
-                self?.oneButton.setTitleColor(.designSystemWhite, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            button.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+            button.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+            button.heightAnchor.constraint(equalToConstant: 54),
+        ])
+    }
+
+    func setupActions(button: VariantButton, index: Int) {
+
+        button.onAction = { [weak self] in
+            if self?.word?.variants[index] == self?.word?.translate {
+                button.variantStateRight = .right
                 if let word = self?.word {
                     self?.updateWord?(word.id, .learned)
                 }
             } else {
-                self?.oneButton.backgroundColor = .designSystemRose
-                self?.oneButton.setTitleColor(.designSystemWhite, for: .normal)
+                button.variantStateWrong = .wrong
                 if let word = self?.word {
                     self?.updateWord?(word.id, .learning)
                 }
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self?.oneButton.backgroundColor = .designSystemWhite
-                self?.oneButton.setTitleColor(.designSystemGrey, for: .normal)
-                self?.onVariantChanged?()
-            }
-        }
-
-        twoButton.onAction = { [weak self] in
-            if self?.word?.variants[1] == self?.word?.translate {
-                self?.twoButton.backgroundColor = .designSystemGreen
-                self?.twoButton.setTitleColor(.designSystemWhite, for: .normal)
-                if let word = self?.word {
-                    self?.updateWord?(word.id, .learned)
-                }
-            } else {
-                self?.twoButton.backgroundColor = .designSystemRose
-                self?.twoButton.setTitleColor(.designSystemWhite, for: .normal)
-                if let word = self?.word {
-                    self?.updateWord?(word.id, .learning)
-                }
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self?.twoButton.backgroundColor = .designSystemWhite
-                self?.twoButton.setTitleColor(.designSystemGrey, for: .normal)
-                self?.onVariantChanged?()
-            }
-        }
-
-        threeButton.onAction = { [weak self] in
-            if self?.word?.variants[2] == self?.word?.translate {
-                self?.threeButton.backgroundColor = .designSystemGreen
-                self?.threeButton.setTitleColor(.designSystemWhite, for: .normal)
-                if let word = self?.word {
-                    self?.updateWord?(word.id, .learned)
-                }
-            } else {
-                self?.threeButton.backgroundColor = .designSystemRose
-                self?.threeButton.setTitleColor(.designSystemWhite, for: .normal)
-                if let word = self?.word {
-                    self?.updateWord?(word.id, .learning)
-                }
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self?.threeButton.backgroundColor = .designSystemWhite
-                self?.threeButton.setTitleColor(.designSystemGrey, for: .normal)
-                self?.onVariantChanged?()
-            }
-        }
-
-        fourButton.onAction = { [weak self] in
-            if self?.word?.variants[3] == self?.word?.translate {
-                self?.fourButton.backgroundColor = .designSystemGreen
-                self?.fourButton.setTitleColor(.designSystemWhite, for: .normal)
-                if let word = self?.word {
-                    self?.updateWord?(word.id, .learned)
-                }
-            } else {
-                self?.fourButton.backgroundColor = .designSystemRose
-                self?.fourButton.setTitleColor(.designSystemWhite, for: .normal)
-                if let word = self?.word {
-                    self?.updateWord?(word.id, .learning)
-                }
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self?.fourButton.backgroundColor = .designSystemWhite
-                self?.fourButton.setTitleColor(.designSystemGrey, for: .normal)
+                button.variantStateWrong = .unknown
                 self?.onVariantChanged?()
             }
         }
@@ -276,18 +198,18 @@ private extension GameView {
     func showHint() {
         stickerView.onHint = { [weak self] in
             if self?.word?.variants[0] == self?.word?.translate {
-                self?.showHints(button: self!.oneButton)
+                self?.showHints(button: self!.variantButtons[0])
             } else if self?.word?.variants[1] == self?.word?.translate {
-                self?.showHints(button: self!.twoButton)
+                self?.showHints(button: self!.variantButtons[1])
             } else if self?.word?.variants[2] == self?.word?.translate {
-                self?.showHints(button: self!.threeButton)
+                self?.showHints(button: self!.variantButtons[2])
             } else if self?.word?.variants[3] == self?.word?.translate {
-                self?.showHints(button: self!.fourButton)
+                self?.showHints(button: self!.variantButtons[3])
             }
         }
     }
 
-    func showHints(button: UIButton) {
+    func showHints(button: VariantButton) {
         button.backgroundColor = .designSystemGreen
         button.setTitleColor(.designSystemWhite, for: .normal)
 

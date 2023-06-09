@@ -7,68 +7,51 @@
 
 import UIKit
 
-enum ButtonStyle {
 
-    case one
-    case two
-    case three
-    case four
+extension VariantButton {
+
+    enum State {
+        case unknown
+        case wrong
+        case right
+    }
 }
 
-class Button: UIButton {
+class VariantButton: UIButton {
 
-    var onAction: (()->())?
+    var onAction: (() -> Void)?
 
-    init(style: ButtonStyle) {
-        super.init(frame: .zero)
-
-        switch style {
-
-        case .one:
-            self.backgroundColor = .designSystemWhite
-            self.setTitleColor(.designSystemGrey, for: .normal)
-
-            self.layer.cornerRadius = 12
-            self.layer.borderWidth = 1
-            self.layer.borderColor = UIColor.designSystemWhiteSky.cgColor
-            self.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .medium)
-
-        case .two:
-            self.backgroundColor = .designSystemWhite
-            self.setTitleColor(.designSystemGrey, for: .normal)
-
-            self.layer.cornerRadius = 12
-            self.layer.borderWidth = 1
-            self.layer.borderColor = UIColor.designSystemWhiteSky.cgColor
-            self.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .medium)
-
-        case .three:
-            self.backgroundColor = .designSystemWhite
-            self.setTitleColor(.designSystemGrey, for: .normal)
-
-            self.layer.cornerRadius = 12
-            self.layer.borderWidth = 1
-            self.layer.borderColor = UIColor.designSystemWhiteSky.cgColor
-            self.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .medium)
-
-        case .four:
-            self.backgroundColor = .designSystemWhite
-            self.setTitleColor(.designSystemGrey, for: .normal)
-
-            self.layer.cornerRadius = 12
-            self.layer.borderWidth = 1
-            self.layer.borderColor = UIColor.designSystemWhiteSky.cgColor
-            self.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .medium)
+    var variantStateUnknown: State = .unknown {
+        didSet {
+            backgroundColor = .designSystemWhite
+            setTitleColor(.designSystemGrey, for: .normal)
         }
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
 
-    @objc func buttonTapped() {
-        onAction?()
+    var variantStateWrong: State = .wrong {
+        didSet {
+            backgroundColor = .designSystemRose
+            setTitleColor(.designSystemWhite, for: .normal)
+        }
+    }
+
+    var variantStateRight: State = .right {
+        didSet {
+            backgroundColor = .designSystemGreen
+            setTitleColor(.designSystemWhite, for: .normal)
+        }
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    @objc func buttonTapped() {
+        onAction?()
     }
 }

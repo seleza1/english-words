@@ -15,8 +15,6 @@ final class KnownWordsViewController: UIViewController {
         return self.view as! KnownView
     }
 
-    var word: GameModel?
-
     private let viewModel: KnownWordsViewModel
 
     init(viewModel: KnownWordsViewModel) {

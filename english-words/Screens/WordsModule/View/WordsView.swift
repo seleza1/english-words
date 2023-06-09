@@ -68,14 +68,6 @@ final class WordsView: UIView {
             }
         }
 
-        let wordStatusLearning = words.filter { word in
-            if word.status == .learning {
-                return true
-            } else {
-                return false
-            }
-        }
-
         let wordStatusLearned = words.filter { word in
             if word.status == .learned {
                 return true

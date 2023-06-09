@@ -22,7 +22,6 @@ final class StudyingWordsViewController: UIViewController {
         self.viewModel = viewModel
     }
     
-
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -35,7 +34,6 @@ final class StudyingWordsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupActions()
         viewModel.viewDidLoad()
     }
@@ -43,7 +41,6 @@ final class StudyingWordsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewModel.viewDidAppear()
-        
     }
 
     func update(with word: [Word]) {

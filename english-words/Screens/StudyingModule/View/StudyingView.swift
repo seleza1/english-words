@@ -112,7 +112,6 @@ private extension StudyingView {
     }
 
     func setupConstraints() {
-
         wordLabelCount.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             wordLabelCount.topAnchor.constraint(equalTo: topAnchor, constant: 65),

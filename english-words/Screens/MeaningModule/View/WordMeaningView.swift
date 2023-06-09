@@ -92,7 +92,6 @@ private extension WordMeaningView {
     }
 
     func setupConstraints() {
-        
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             closeButton.topAnchor.constraint(equalTo: topAnchor, constant: 61),

@@ -12,7 +12,7 @@ final class StudyingWordsViewModel {
     // MARK: - Private
 
     private let wordsService = WordsService.shared
-    private var allWords: [Word] = []
+    private var wordsStudying: [Word] = []
 
     weak var viewController: StudyingWordsViewController?
 }
@@ -22,9 +22,9 @@ final class StudyingWordsViewModel {
 extension StudyingWordsViewModel {
 
     func viewDidLoad() {
-        allWords = wordsService.loadWords()
+        wordsStudying = wordsService.loadWords()
 
-        let wordsStudying = allWords.filter { word in
+        wordsStudying = wordsStudying.filter { word in
             if word.status == .learning {
                 return true
             } else {
@@ -35,9 +35,9 @@ extension StudyingWordsViewModel {
     }
 
     func viewDidAppear() {
-        allWords = wordsService.loadWords()
+        wordsStudying = wordsService.loadWords()
 
-        let wordsStudying = allWords.filter { word in
+        wordsStudying = wordsStudying.filter { word in
             if word.status == .learning {
                 return true
             } else {
