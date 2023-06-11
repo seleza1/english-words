@@ -9,12 +9,8 @@ import Foundation
 
 final class WordsService {
 
-    static let shared = WordsService()
-
     private let loader = JSONLoader()
     private let archiver = WordsArchiver()
-
-    var allWords: [Word] = []
 
     private init() {
         var words = archiver.retrieve()
@@ -24,6 +20,10 @@ final class WordsService {
             archiver.save(words)
         }
     }
+
+    static let shared = WordsService()
+
+    var allWords: [Word] = []
 
     func loadWords() -> [Word] {
         archiver.retrieve()
@@ -48,7 +48,7 @@ extension WordsService {
     func next() -> GameModel {
 
         let words = loadWords()
-        self.allWords = words
+        allWords = words
         
         let next = allWords.removeFirst()
 

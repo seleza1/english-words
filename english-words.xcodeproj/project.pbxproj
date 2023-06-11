@@ -142,6 +142,7 @@
 		0CAABDD62A1FC19400240090 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				CE5C11F22A2D10CB00241508 /* Button.swift */,
 				CEB5678C2A16BE32002F2483 /* StickerView */,
 			);
 			path = Subviews;
@@ -329,7 +330,6 @@
 				CE64671429E7E67B00D32B47 /* GameModule */,
 				CE2ADA522A0E2A460031B3EA /* MeaningModule */,
 				CE5C11D92A1DF08F00241508 /* Cell */,
-				CE5C11F22A2D10CB00241508 /* Button.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";

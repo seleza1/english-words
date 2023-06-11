@@ -11,7 +11,7 @@ final class WordMeaningView: UIView {
 
     // MARK: - Private
 
-    let stickerView = StickerView()
+    private let wordsService = WordsService.shared
 
     private let closeButton = UIButton()
     private let nextButton = UIButton()
@@ -19,24 +19,20 @@ final class WordMeaningView: UIView {
 
     private var index: Int = 1
 
-    private let wordsService = WordsService.shared
-
     // MARK: - Public
 
     var onTappNextButtonWord: (() -> Void)?
-    var onVoice: (() -> Void)?
-    var onAction: (() -> Void)?
+    var onActionClose: (() -> Void)?
+
+    let stickerView = StickerView()
     
     // MARK: - Initialization
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
         setupView()
         setupActions()
         setupConstraints()
-
-        self.backgroundColor = .designSystemWhite
     }
 
     func configure(_ words: Int) {
@@ -53,7 +49,7 @@ final class WordMeaningView: UIView {
 private extension WordMeaningView {
 
     func setupView() {
-        backgroundColor = .white
+        backgroundColor = .designSystemWhite
 
         addSubview(closeButton)
         addSubview(stickerView)
@@ -65,26 +61,20 @@ private extension WordMeaningView {
         nextButton.layer.cornerRadius = 32
         nextButton.setTitle(.nextWord, for: .normal)
 
-        stickerView.backgroundColor = .designSystemSky
+        stickerView.backgroundColor = .designSystemMint
 
         closeButton.setImage(.chevronImage, for: .normal)
 
         numberWordLabel.textAlignment = .center
   }
 
-
     func setupActions() {
         closeButton.addTarget(self, action: #selector(onTappCloseButton), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(onTappNextButton), for: .touchUpInside)
-        stickerView.speakerButton.addTarget(self, action: #selector(onTappVoiceButton), for: .touchUpInside)
-    }
-
-    @objc func onTappVoiceButton() {
-        onVoice?()
     }
 
     @objc func onTappCloseButton() {
-        onAction?()
+        onActionClose?()
     }
 
     @objc func onTappNextButton() {

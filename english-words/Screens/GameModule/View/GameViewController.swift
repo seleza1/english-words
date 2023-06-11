@@ -13,7 +13,7 @@ final class GameViewController: UIViewController {
 
     private let viewModel: GameViewModel
     
-    private var gameView: GameView {
+    var gameView: GameView {
         self.view as! GameView
     }
 
@@ -67,6 +67,18 @@ private extension GameViewController {
 
         gameView.updateWord = { [weak self] id, status in
             self?.viewModel.updateStatus(id: id, status: status)
+        }
+
+        gameView.updateButton = { [weak self] button, index in
+            self?.viewModel.updateActions(button: button, index: index)
+        }
+
+        gameView.updateVoice = { [weak self] word in
+            self?.viewModel.updateVoice(word: word)
+        }
+
+        gameView.updateHint = { [weak self] in
+            self?.viewModel.updateHint()
         }
     }
 }

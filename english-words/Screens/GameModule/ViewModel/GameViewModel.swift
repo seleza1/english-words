@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AVFAudio
 
 final class GameViewModel {
 
@@ -22,7 +23,6 @@ final class GameViewModel {
     // MARK: - Input
     
     func viewDidLoad() {
-
         allWords = wordsService.loadWords()
 
         allWords = allWords.filter { word in
@@ -32,7 +32,6 @@ final class GameViewModel {
                 return false
             }
         }
-
         displayNextWord()
     }
 
@@ -55,6 +54,63 @@ final class GameViewModel {
                 word.status = status
                 wordsService.save(word: word)
                 break
+            }
+        }
+    }
+
+    func updateVoice(word: String) {
+        viewController?.gameView.stickerView.onVoice = {
+            let synthesizer = AVSpeechSynthesizer()
+            let utterance = AVSpeechUtterance(string: word)
+            utterance.voice = AVSpeechSynthesisVoice(identifier: "com.apple.eloquence.en-US.Eddy")
+            synthesizer.speak(utterance)
+        }
+    }
+
+    func updateHint() {
+        viewController?.gameView.stickerView.onHint = { [weak self] in
+            let word = self?.viewController?.gameView.word
+
+            if word?.variants[0] == word?.translate {
+                self?.showHints(button: (self?.viewController?.gameView.variantButtons[0])!)
+            } else if word?.variants[1] == word?.translate {
+                self?.showHints(button: (self?.viewController?.gameView.variantButtons[1])!)
+            } else if word?.variants[2] == word?.translate {
+                self?.showHints(button: (self?.viewController?.gameView.variantButtons[2])!)
+            } else if word?.variants[3] == word?.translate {
+                self?.showHints(button: (self?.viewController?.gameView.variantButtons[3])!)
+            }
+        }
+    }
+
+    func showHints(button: VariantButton) {
+        button.variantState = .right
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
+            button.variantState = .unknown
+            self.viewController?.gameView.onVariantChanged?()
+        }
+    }
+
+    func updateActions(button: VariantButton, index: Int) {
+        button.onAction = { [weak self] in
+
+            let word = self?.viewController?.gameView.word
+
+            if word?.variants[index] == word?.translate {
+                button.variantState = .right
+                if let word = self?.viewController?.gameView.word {
+                    self?.updateStatus(id: word.id, status: .learned)
+                }
+            } else {
+                button.variantState = .wrong
+                if let word = word {
+                    self?.updateStatus(id: word.id, status: .learning)
+                }
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                button.variantState = .unknown
+                self?.viewController?.gameView.onVariantChanged?()
             }
         }
     }

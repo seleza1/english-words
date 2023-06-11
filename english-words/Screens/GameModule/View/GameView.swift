@@ -6,28 +6,30 @@
 //
 
 import UIKit
-import AVFoundation
 
 final class GameView: UIView {
 
     // MARK: - Private
 
-    private let stickerView = StickerView()
-
     private let stackView = UIStackView()
-
+    private let closeButton = UIButton()
     private let numberWordLabel = UILabel()
 
     // MARK: - Public
+
+    let stickerView = StickerView()
 
     var word: GameModel?
 
     var onVariantChanged: (() -> Void)?
     var oneTappCloseButton: (() -> Void)?
     var onAction: (() -> Void)?
-    var updateWord: ((_ wordId: Int, _ status: Word.Status) ->Void)?
 
-    let closeButton = UIButton()
+    var updateHint: (() -> Void)?
+
+    var updateWord: ((_ wordId: Int, _ status: Word.Status) -> Void)?
+    var updateButton: ((_ button: VariantButton,_ index: Int) -> Void)?
+    var updateVoice: ((_ word: String) -> Void)?
 
     var variantButtons: [VariantButton] = []
 
@@ -38,8 +40,7 @@ final class GameView: UIView {
         setupViews()
         setupConstraints()
         setupAddTarget()
-        showHint()
-        speakWord()
+
     }
 
     required init?(coder: NSCoder) {
@@ -49,7 +50,6 @@ final class GameView: UIView {
     // MARK: - Public Methods
 
     func configure(word: GameModel, number: Int, index: Int) {
-
         self.word = word
         numberWordLabel.text = "\(number)/ \(index)"
 
@@ -70,19 +70,16 @@ final class GameView: UIView {
 
         word.variants.enumerated().forEach { index, variant in
             let button = VariantButton()
-            button.setTitle(variant.capitalized, for: .normal)
             variantButtons.append(button)
             stackView.addArrangedSubview(button)
 
-            button.backgroundColor = .designSystemWhite
-            button.setTitleColor(.designSystemGrey, for: .normal)
-            button.layer.cornerRadius = 12
-            button.layer.borderWidth = 1
-            button.layer.borderColor = UIColor.designSystemWhiteSky.cgColor
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .medium)
-
+            button.setTitle(variant.capitalized, for: .normal)
+            button.variantState = .unknown
+            
             configureVariantButtonLayout(button: button)
             setupActions(button: button, index: index)
+            speakWord(word: stickerView.worldLabel.text ?? "error")
+            showHint()
 
             setNeedsLayout()
             layoutIfNeeded()
@@ -93,17 +90,6 @@ final class GameView: UIView {
 // MARK: - Private Methods
 
 private extension GameView {
-
-    func speakWord() {
-        stickerView.onVoice = {
-            guard let word = self.stickerView.worldLabel.text else { return }
-
-            let synthesizer = AVSpeechSynthesizer()
-            let utterance = AVSpeechUtterance(string: word)
-            utterance.voice = AVSpeechSynthesisVoice(identifier: "com.apple.eloquence.en-US.Eddy")
-            synthesizer.speak(utterance)
-        }
-    }
 
     // MARK: - Setup
 
@@ -163,61 +149,26 @@ private extension GameView {
     }
 
     func configureVariantButtonLayout(button: UIButton) {
-
         button.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             button.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             button.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
-            button.heightAnchor.constraint(equalToConstant: 54),
+            button.heightAnchor.constraint(equalToConstant: 54)
         ])
     }
 
     func setupActions(button: VariantButton, index: Int) {
-
-        button.onAction = { [weak self] in
-            if self?.word?.variants[index] == self?.word?.translate {
-                button.variantStateRight = .right
-                if let word = self?.word {
-                    self?.updateWord?(word.id, .learned)
-                }
-            } else {
-                button.variantStateWrong = .wrong
-                if let word = self?.word {
-                    self?.updateWord?(word.id, .learning)
-                }
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                button.variantStateWrong = .unknown
-                self?.onVariantChanged?()
-            }
-        }
+        updateButton?(button, index)
     }
 
+    // MARK: - Speak
+
+    func speakWord(word: String) {
+        updateVoice?(word)
+    }
     // MARK: - Hint
 
     func showHint() {
-        stickerView.onHint = { [weak self] in
-            if self?.word?.variants[0] == self?.word?.translate {
-                self?.showHints(button: self!.variantButtons[0])
-            } else if self?.word?.variants[1] == self?.word?.translate {
-                self?.showHints(button: self!.variantButtons[1])
-            } else if self?.word?.variants[2] == self?.word?.translate {
-                self?.showHints(button: self!.variantButtons[2])
-            } else if self?.word?.variants[3] == self?.word?.translate {
-                self?.showHints(button: self!.variantButtons[3])
-            }
-        }
+        updateHint?()
     }
-
-    func showHints(button: VariantButton) {
-        button.backgroundColor = .designSystemGreen
-        button.setTitleColor(.designSystemWhite, for: .normal)
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
-            button.backgroundColor = .designSystemWhite
-            button.setTitleColor(.designSystemGrey, for: .normal)
-            self.onVariantChanged?()
-        }
-    }
-
 }

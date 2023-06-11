@@ -41,11 +41,8 @@ final class StudyingView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
         setupViews()
         setupConstraints()
-
-        self.backgroundColor = .designSystemWhite
     }
 
     required init?(coder: NSCoder) {
@@ -105,6 +102,9 @@ private extension StudyingView {
         progressView.progressTintColor = .designSystemOrange
         progressView.layer.cornerRadius = 12
         progressView.trackTintColor = .designSystemWhite
+
+        backgroundColor = .designSystemWhite
+
     }
 
     @objc func onActionsLearnButton() {

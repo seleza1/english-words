@@ -20,8 +20,8 @@ final class StickerView: UIView {
     let speakerButton = UIButton()
     let hintButton = UIButton()
 
-    var onHint: (()-> Void)?
-    var onVoice: (()-> Void)?
+    var onHint: (() -> Void)?
+    var onVoice: (() -> Void)?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -77,7 +77,6 @@ private extension StickerView {
         hintButton.setImage(.keyImage, for: .normal)
         hintButton.layer.cornerRadius = 22
         hintButton.backgroundColor = .designSystemWhite
-
     }
 
     func setupActions() {

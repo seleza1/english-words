@@ -53,10 +53,10 @@ final class StudyingWordsViewController: UIViewController {
 private extension StudyingWordsViewController {
 
     func setupActions() {
-        studyingView.oneTapLearnButton = {
+        studyingView.oneTapLearnButton = { [weak self] in
             let controller = GameAssembler.buildModule()
             controller.modalPresentationStyle = .fullScreen
-            self.present(controller, animated: true)
+            self?.present(controller, animated: true)
         }
     }
 }

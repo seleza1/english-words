@@ -15,7 +15,6 @@ final class WordMeaningViewModel {
     private var allWords: [Word] = []
 
     weak var viewController: WordMeaningViewController?
-
 }
 
 extension WordMeaningViewModel {

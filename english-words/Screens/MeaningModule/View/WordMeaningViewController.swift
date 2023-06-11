@@ -10,7 +10,7 @@ import AVFoundation
 
 final class WordMeaningViewController: UIViewController {
 
-    private var viewModel = WordMeaningViewModel()
+    private let viewModel: WordMeaningViewModel
 
     private var wordsView: WordMeaningView {
         self.view as! WordMeaningView
@@ -48,7 +48,7 @@ final class WordMeaningViewController: UIViewController {
 
 private extension WordMeaningViewController {
     func closeButton() {
-        wordsView.onAction = { [weak self] in
+        wordsView.onActionClose = { [weak self] in
             self?.dismiss(animated: true)
         }
     }
@@ -60,8 +60,8 @@ private extension WordMeaningViewController {
     }
 
     func speakWord() {
-        wordsView.onVoice = {
-            guard let word = self.wordsView.stickerView.worldLabel.text else { return }
+        wordsView.stickerView.onVoice = { [weak self] in
+            guard let word = self?.wordsView.stickerView.worldLabel.text else { return }
 
             let synthesizer = AVSpeechSynthesizer()
             let utterance = AVSpeechUtterance(string: word)
@@ -71,4 +71,3 @@ private extension WordMeaningViewController {
         }
     }
 }
-

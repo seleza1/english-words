@@ -15,11 +15,10 @@ protocol WordsArchiverProtocol {
 
 final class WordsArchiver: WordsArchiverProtocol {
 
-    private let key = "words"
-
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
 
+    private let key = "words"
 }
 
 // MARK: - Extension

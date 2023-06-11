@@ -41,7 +41,6 @@ final class KnownWordsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewModel.viewDidAppear()
-
     }
 
     func update(with word: [Word]) {
@@ -49,7 +48,7 @@ final class KnownWordsViewController: UIViewController {
     }
 
     func updatesMeaning() {
-        knowView.wordMeaning = { word, translate in
+        knowView.wordMeaning = { [weak self] word, translate in
             let wordMeaning = WordMeaningModuleAssembly.buildModule()
 
             guard let wordMeaningView = wordMeaning.view as? WordMeaningView else { return }
@@ -59,7 +58,7 @@ final class KnownWordsViewController: UIViewController {
 
 
             wordMeaning.modalPresentationStyle = .fullScreen
-            self.present(wordMeaning, animated: true)
+            self?.present(wordMeaning, animated: true)
         }
     }
 }
