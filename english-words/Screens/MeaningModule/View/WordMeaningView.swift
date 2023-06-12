@@ -17,8 +17,6 @@ final class WordMeaningView: UIView {
     private let nextButton = UIButton()
     private let numberWordLabel = UILabel()
 
-    private var index: Int = 1
-
     // MARK: - Public
 
     var onTappNextButtonWord: (() -> Void)?
@@ -35,7 +33,7 @@ final class WordMeaningView: UIView {
         setupConstraints()
     }
 
-    func configure(_ words: Int) {
+    func configure(_ index: Int, _ words: Int) {
         numberWordLabel.text = "\(index) /\(words)"
     }
     

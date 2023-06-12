@@ -12,7 +12,7 @@ final class WordMeaningViewController: UIViewController {
 
     private let viewModel: WordMeaningViewModel
 
-    private var wordsView: WordMeaningView {
+    var wordsView: WordMeaningView {
         self.view as! WordMeaningView
     }
 
@@ -41,8 +41,8 @@ final class WordMeaningViewController: UIViewController {
         speakWord()
     }
 
-    func update(with word: Int) {
-        wordsView.configure(word)
+    func update(index: Int, word: Int) {
+        wordsView.configure(index, word)
     }
 }
 
@@ -54,8 +54,8 @@ private extension WordMeaningViewController {
     }
 
     func nextWords() {
-        wordsView.onTappNextButtonWord = {
-            print("next")
+        wordsView.onTappNextButtonWord = { [weak self] in
+            self?.viewModel.nextWords()
         }
     }
 
