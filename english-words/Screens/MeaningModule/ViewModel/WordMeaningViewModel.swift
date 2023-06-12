@@ -27,7 +27,7 @@ extension WordMeaningViewModel {
     func nextWords() {
         allWords = self.wordsService.loadWords()
         
-        let wordsLearned = allWords.filter { word in
+        allWords = allWords.filter { word in
             if word.status == .learned {
                 return true
             } else {
@@ -43,6 +43,6 @@ extension WordMeaningViewModel {
         stickerView?.translationLabel.text = wordsCount.translate.capitalized
         self.currentIndex += 1
 
-        viewController?.update(index: currentIndex, word: wordsLearned.count)
+        viewController?.update(index: currentIndex, word: allWords.count)
     }
 }
