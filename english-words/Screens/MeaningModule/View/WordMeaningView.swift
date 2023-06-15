@@ -12,6 +12,9 @@ final class WordMeaningView: UIView {
     // MARK: - Private
 
     private let wordsService = WordsService.shared
+    private let voiceService = VoiceService.shared
+
+    private let stickerView = StickerView()
 
     private let closeButton = UIButton()
     private let nextButton = UIButton()
@@ -22,19 +25,27 @@ final class WordMeaningView: UIView {
     var onTappNextButtonWord: (() -> Void)?
     var onActionClose: (() -> Void)?
 
-    let stickerView = StickerView()
-    
+    var data: ((_ word: String,_ translate: String) -> Void)?
+
     // MARK: - Initialization
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+
         setupView()
         setupActions()
         setupConstraints()
+        onVoice()
     }
 
-    func configure(_ index: Int, _ words: Int) {
+    func configure(index: Int, words: Int) {
         numberWordLabel.text = "\(index) /\(words)"
+    }
+
+    func configureScreen(word: String, translate: String) {
+        stickerView.worldLabel.text = word
+        stickerView.translationLabel.text = translate
+        stickerView.hintButton.isHidden = true
     }
     
     required init?(coder: NSCoder) {
@@ -77,6 +88,12 @@ private extension WordMeaningView {
 
     @objc func onTappNextButton() {
         onTappNextButtonWord?()
+    }
+
+    func onVoice() {
+        stickerView.onVoice = { [weak self] in
+            self?.voiceService.speakWord(word: self?.stickerView.worldLabel.text ?? "123")
+        }
     }
 
     func setupConstraints() {

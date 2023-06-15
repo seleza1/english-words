@@ -34,12 +34,14 @@ final class WordsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setupActions()
         viewModel.viewDidLoad()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         viewModel.viewDidAppear()
     }
 

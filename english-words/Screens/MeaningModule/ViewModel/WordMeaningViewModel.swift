@@ -21,11 +21,14 @@ final class WordMeaningViewModel {
 
 extension WordMeaningViewModel {
     func viewDidLoad() {
+
         nextWords()
     }
 
     func nextWords() {
-        allWords = self.wordsService.loadWords()
+        currentIndex += 1
+
+        allWords = wordsService.loadWords()
         
         allWords = allWords.filter { word in
             if word.status == .learned {
@@ -35,14 +38,16 @@ extension WordMeaningViewModel {
             }
         }
 
-        let wordsCount = self.allWords[self.currentIndex]
+        let currentWord = allWords[currentIndex]
 
-        let stickerView = viewController?.wordsView.stickerView
+        viewController?.update(
+            index: currentIndex,
+            words: allWords.count
+        )
 
-        stickerView?.worldLabel.text = wordsCount.word.capitalized
-        stickerView?.translationLabel.text = wordsCount.translate.capitalized
-        self.currentIndex += 1
-
-        viewController?.update(index: currentIndex, word: allWords.count)
+        viewController?.updateScreent(
+            word: currentWord.word.capitalized,
+            translation: currentWord.translate.capitalized
+        )
     }
 }

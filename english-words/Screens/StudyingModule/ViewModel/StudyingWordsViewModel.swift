@@ -45,13 +45,5 @@ extension StudyingWordsViewModel {
             }
         }
         viewController?.update(with: wordsStudying)
-
-        let studyingView = viewController?.studyingView
-
-        if wordsStudying.count == 0 {
-            studyingView?.continueToLearnButton.isHidden = true
-        } else {
-            studyingView?.continueToLearnButton.isHidden = false
-        }
     }
 }

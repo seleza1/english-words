@@ -11,36 +11,33 @@ final class GameView: UIView {
 
     // MARK: - Private
 
+    private var word: GameModel?
+
     private let stackView = UIStackView()
     private let closeButton = UIButton()
     private let numberWordLabel = UILabel()
 
+    private let stickerView = StickerView()
+    private var variantButtons: [VariantButton] = []
+
     // MARK: - Public
 
-    let stickerView = StickerView()
-
-    var word: GameModel?
-
+    var onTapVoice: (() -> Void)?
+    var onTapHint: (() -> Void)?
     var onVariantChanged: (() -> Void)?
-    var oneTappCloseButton: (() -> Void)?
-    var onAction: (() -> Void)?
-
-    var updateHint: (() -> Void)?
-
-    var updateWord: ((_ wordId: Int, _ status: Word.Status) -> Void)?
-    var updateButton: ((_ button: VariantButton,_ index: Int) -> Void)?
-    var updateVoice: ((_ word: String) -> Void)?
-
-    var variantButtons: [VariantButton] = []
+    var oneTapCloseButton: (() -> Void)?
+    var onSelectVariant: ((_ variant: String) -> Void)?
 
     // MARK: - Initialization
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         setupViews()
         setupConstraints()
         setupAddTarget()
-
+        setupVoice()
+        setupHint()
     }
 
     required init?(coder: NSCoder) {
@@ -49,8 +46,25 @@ final class GameView: UIView {
 
     // MARK: - Public Methods
 
+    func display(word: String, as correct: Bool) {
+        variantButtons.forEach { button in
+            if button.title(for: .normal) == word.capitalized {
+                button.variantState = correct ? .right : .wrong
+            }
+        }
+    }
+
+    func displayHint(variant: String) {
+        variantButtons.forEach { button in
+            if button.title(for: .normal) == variant.capitalized {
+                button.variantState = .right
+            }
+        }
+    }
+
     func configure(word: GameModel, number: Int, index: Int) {
         self.word = word
+
         numberWordLabel.text = "\(number)/ \(index)"
 
         let model = StickerViewModel(
@@ -69,6 +83,7 @@ final class GameView: UIView {
         variantButtons.removeAll()
 
         word.variants.enumerated().forEach { index, variant in
+
             let button = VariantButton()
             variantButtons.append(button)
             stackView.addArrangedSubview(button)
@@ -77,13 +92,10 @@ final class GameView: UIView {
             button.variantState = .unknown
             
             configureVariantButtonLayout(button: button)
-            setupActions(button: button, index: index)
-            speakWord(word: stickerView.worldLabel.text ?? "error")
-            showHint()
-
-            setNeedsLayout()
-            layoutIfNeeded()
+            setupActions(button: button, variant: variant)
         }
+        setNeedsLayout()
+        layoutIfNeeded()
     }
 }
 
@@ -116,7 +128,7 @@ private extension GameView {
     }
 
     @objc func oneTappCloseButtons() {
-        oneTappCloseButton?()
+        oneTapCloseButton?()
     }
 
     func setupConstraints() {
@@ -157,18 +169,21 @@ private extension GameView {
         ])
     }
 
-    func setupActions(button: VariantButton, index: Int) {
-        updateButton?(button, index)
+    func setupActions(button: VariantButton, variant: String) {
+        button.onTap = { [weak self] in
+            self?.onSelectVariant?(variant)
+        }
     }
 
-    // MARK: - Speak
-
-    func speakWord(word: String) {
-        updateVoice?(word)
+    func setupHint() {
+        stickerView.onHint = { [weak self] in
+            self?.onTapHint?()
+        }
     }
-    // MARK: - Hint
 
-    func showHint() {
-        updateHint?()
+    func setupVoice() {
+        stickerView.onVoice = {
+            self.onTapVoice?()
+        }
     }
 }

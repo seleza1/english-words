@@ -13,7 +13,7 @@ final class StudyingWordsViewController: UIViewController {
 
     private var viewModel = StudyingWordsViewModel()
 
-    var studyingView: StudyingView {
+    private var studyingView: StudyingView {
         return self.view as! StudyingView
     }
 
@@ -34,12 +34,14 @@ final class StudyingWordsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setupActions()
         viewModel.viewDidLoad()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         viewModel.viewDidAppear()
     }
 

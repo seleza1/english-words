@@ -16,6 +16,8 @@ final class WordTableViewCell: UITableViewCell {
     private let soundButton = UIButton()
     private let statusImageView = UIImageView()
 
+    // MARK: - Public
+
     static let reuseId = "WordCell"
 
     // MARK: - Initialization
@@ -24,6 +26,7 @@ final class WordTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
         setupConstraints()
+        setupActions()
     }
 
     required init?(coder: NSCoder) {
@@ -76,6 +79,13 @@ private extension WordTableViewCell {
         statusImageView.contentMode = .center
 
         wordLabel.font = .wordLabelFont
+    }
+
+    func setupActions() {
+        soundButton.addTarget(self, action: #selector(onTapSoundButton), for: .touchUpInside)
+    }
+
+    @objc func onTapSoundButton() {
     }
 
     func setupConstraints() {
