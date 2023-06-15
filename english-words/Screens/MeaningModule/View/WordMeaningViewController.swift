@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import AVFoundation
 
 final class WordMeaningViewController: UIViewController {
 
@@ -35,14 +34,18 @@ final class WordMeaningViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         viewModel.viewDidLoad()
         closeButton()
         nextWords()
-        speakWord()
     }
 
-    func update(with word: Int) {
-        wordsView.configure(word)
+    func update(index: Int, words: Int) {
+        wordsView.configure(index: index, words: words)
+    }
+
+    func updateScreent(word: String, translation: String) {
+        wordsView.configureScreen(word: word, translate: translation)
     }
 }
 
@@ -54,20 +57,8 @@ private extension WordMeaningViewController {
     }
 
     func nextWords() {
-        wordsView.onTappNextButtonWord = {
-            print("next")
-        }
-    }
-
-    func speakWord() {
-        wordsView.stickerView.onVoice = { [weak self] in
-            guard let word = self?.wordsView.stickerView.worldLabel.text else { return }
-
-            let synthesizer = AVSpeechSynthesizer()
-            let utterance = AVSpeechUtterance(string: word)
-            utterance.voice = AVSpeechSynthesisVoice(language: "com.apple.eloquence.en-US.Eddy")
-
-            synthesizer.speak(utterance)
+        wordsView.onTappNextButtonWord = { [weak self] in
+            self?.viewModel.nextWords()
         }
     }
 }

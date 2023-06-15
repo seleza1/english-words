@@ -11,20 +11,9 @@ final class StudyingView: UIView {
 
     // MARK: - Private
 
-    private var words: [Word] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-
     private let progressView = UIProgressView()
     private let wordLabelCount = UILabel()
-
-    // MARK: - Public
-
-    let continueToLearnButton = UIButton()
-
-    var oneTapLearnButton: (() -> Void)?
+    private let continueToLearnButton = UIButton()
 
     lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -37,10 +26,21 @@ final class StudyingView: UIView {
         return tableView
     }()
 
+    private var words: [Word] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+
+    // MARK: - Public
+
+    var oneTapLearnButton: (() -> Void)?
+
     // MARK: - Initialization
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         setupViews()
         setupConstraints()
     }

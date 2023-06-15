@@ -13,7 +13,7 @@ final class GameViewController: UIViewController {
 
     private let viewModel: GameViewModel
     
-    var gameView: GameView {
+    private var gameView: GameView {
         self.view as! GameView
     }
 
@@ -44,11 +44,22 @@ final class GameViewController: UIViewController {
     // MARK: - Input
     
     func update(word: GameModel, number: Int, index: Int) {
+        gameView.isUserInteractionEnabled = true
         gameView.configure(
             word: word,
             number: number,
             index: index
         )
+    }
+
+    func display(variant: String, as correct: Bool) {
+        gameView.isUserInteractionEnabled = false
+        gameView.display(word: variant, as: correct)
+    }
+
+    func displayHint(word: String) {
+        gameView.isUserInteractionEnabled = false
+        gameView.displayHint(variant: word)
     }
 }
 
@@ -57,7 +68,7 @@ final class GameViewController: UIViewController {
 private extension GameViewController {
     
     func setupActions() {
-        gameView.oneTappCloseButton = { [weak self] in
+        gameView.oneTapCloseButton = { [weak self] in
             self?.dismiss(animated: true)
         }
         
@@ -65,20 +76,16 @@ private extension GameViewController {
             self?.viewModel.displayNextWord()
         }
 
-        gameView.updateWord = { [weak self] id, status in
-            self?.viewModel.updateStatus(id: id, status: status)
+        gameView.onSelectVariant = { [weak self] variant in
+            self?.viewModel.didSelect(variant: variant)
         }
 
-        gameView.updateButton = { [weak self] button, index in
-            self?.viewModel.updateActions(button: button, index: index)
+        gameView.onTapHint = { [weak self] in
+            self?.viewModel.hintTap()
         }
 
-        gameView.updateVoice = { [weak self] word in
-            self?.viewModel.updateVoice(word: word)
-        }
-
-        gameView.updateHint = { [weak self] in
-            self?.viewModel.updateHint()
+        gameView.onTapVoice = { [weak self] in
+            self?.viewModel.voiceTap()
         }
     }
 }

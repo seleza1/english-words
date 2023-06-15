@@ -25,6 +25,7 @@ final class StickerView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+
         setupView()
         setupConstraints()
         setupActions()

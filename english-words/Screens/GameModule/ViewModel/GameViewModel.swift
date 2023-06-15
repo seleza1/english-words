@@ -6,15 +6,16 @@
 //
 
 import Foundation
-import AVFAudio
 
 final class GameViewModel {
 
     // MARK: - Private
     
     private let wordsService = WordsService.shared
+    private let voiceService = VoiceService.shared
+
     private var allWords: [Word] = []
-    private var index: Int = -1
+    private var index: Int = 0
 
     // MARK: - Public
 
@@ -36,83 +37,46 @@ final class GameViewModel {
     }
 
     func displayNextWord() {
-        index += 1
 
         let word = next()
 
         viewController?.update(
             word: word,
-            number: index+1,
+            number: index + 1,
             index: allWords.count
         )
     }
 
-    func updateStatus(id: Int, status: Word.Status) {
-        for allWord in allWords {
-            if allWord.id == id {
-                var word = allWord
-                word.status = status
-                wordsService.save(word: word)
-                break
-            }
+    func didSelect(variant: String) {
+        var currentWord = allWords[index]
+        let isCorrect = currentWord.translate == variant
+
+        viewController?.display(variant: variant, as: isCorrect)
+
+        currentWord.status = isCorrect ? .learned : .learning
+        wordsService.save(word: currentWord)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            self?.index += 1
+            self?.displayNextWord()
         }
     }
 
-    func updateVoice(word: String) {
-        viewController?.gameView.stickerView.onVoice = {
-            let synthesizer = AVSpeechSynthesizer()
-            let utterance = AVSpeechUtterance(string: word)
-            utterance.voice = AVSpeechSynthesisVoice(identifier: "com.apple.eloquence.en-US.Eddy")
-            synthesizer.speak(utterance)
+    func hintTap() {
+        let currentWord = allWords[index]
+
+        viewController?.displayHint(word: currentWord.translate)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) { [weak self] in
+            self?.index += 1
+            self?.displayNextWord()
         }
     }
 
-    func updateHint() {
-        viewController?.gameView.stickerView.onHint = { [weak self] in
-            let word = self?.viewController?.gameView.word
+    func voiceTap() {
+        let currentWord = allWords[index]
 
-            if word?.variants[0] == word?.translate {
-                self?.showHints(button: (self?.viewController?.gameView.variantButtons[0])!)
-            } else if word?.variants[1] == word?.translate {
-                self?.showHints(button: (self?.viewController?.gameView.variantButtons[1])!)
-            } else if word?.variants[2] == word?.translate {
-                self?.showHints(button: (self?.viewController?.gameView.variantButtons[2])!)
-            } else if word?.variants[3] == word?.translate {
-                self?.showHints(button: (self?.viewController?.gameView.variantButtons[3])!)
-            }
-        }
-    }
-
-    func showHints(button: VariantButton) {
-        button.variantState = .right
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
-            button.variantState = .unknown
-            self.viewController?.gameView.onVariantChanged?()
-        }
-    }
-
-    func updateActions(button: VariantButton, index: Int) {
-        button.onAction = { [weak self] in
-
-            let word = self?.viewController?.gameView.word
-
-            if word?.variants[index] == word?.translate {
-                button.variantState = .right
-                if let word = self?.viewController?.gameView.word {
-                    self?.updateStatus(id: word.id, status: .learned)
-                }
-            } else {
-                button.variantState = .wrong
-                if let word = word {
-                    self?.updateStatus(id: word.id, status: .learning)
-                }
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                button.variantState = .unknown
-                self?.viewController?.gameView.onVariantChanged?()
-            }
-        }
+        voiceService.speakWord(word: currentWord.word)
     }
 }
 
