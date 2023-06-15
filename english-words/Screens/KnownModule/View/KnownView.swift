@@ -11,12 +11,6 @@ final class KnownView: UIView {
 
     // MARK: - Private
 
-    private var words: [Word] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-
     private let progressView = UIProgressView()
     private let wordLabelCount = UILabel()
 
@@ -30,6 +24,14 @@ final class KnownView: UIView {
 
         return tableView
     }()
+
+    private var words: [Word] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+
+    // MARK: - Public
 
     var wordMeaning: ((_ word: String,_ translate: String) -> Void)?
 
@@ -56,7 +58,6 @@ final class KnownView: UIView {
         let progress = Float(words.count) / Float(5000)
         progressView.progress = progress
         wordLabelCount.text = "\(words.count) слов"
-
     }
 }
 

@@ -18,7 +18,7 @@ extension VariantButton {
 
 class VariantButton: UIButton {
 
-    var onAction: (() -> Void)?
+    var onTap: (() -> Void)?
 
     var variantState: State = .unknown {
         didSet {
@@ -50,6 +50,6 @@ class VariantButton: UIButton {
     }
 
     @objc func buttonTapped() {
-        onAction?()
+        onTap?()
     }
 }

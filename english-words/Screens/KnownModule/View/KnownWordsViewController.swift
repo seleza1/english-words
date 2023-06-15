@@ -34,12 +34,14 @@ final class KnownWordsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         viewModel.viewDidLoad()
         updatesMeaning()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
         viewModel.viewDidAppear()
     }
 
@@ -52,10 +54,7 @@ final class KnownWordsViewController: UIViewController {
             let wordMeaning = WordMeaningModuleAssembly.buildModule()
 
             guard let wordMeaningView = wordMeaning.view as? WordMeaningView else { return }
-            wordMeaningView.stickerView.worldLabel.text = word.capitalized
-            wordMeaningView.stickerView.translationLabel.text = translate.capitalized
-            wordMeaningView.stickerView.hintButton.isHidden = true
-
+            wordMeaningView.configureScreen(word: word.capitalized, translate: translate.capitalized)
 
             wordMeaning.modalPresentationStyle = .fullScreen
             self?.present(wordMeaning, animated: true)
