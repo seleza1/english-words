@@ -38,7 +38,6 @@ final class WordMeaningViewController: UIViewController {
         viewModel.viewDidLoad()
         closeButton()
         nextWords()
-        //speakWord()
     }
 
     func update(index: Int, words: Int) {
