@@ -11,20 +11,9 @@ final class StudyingView: UIView {
 
     // MARK: - Private
 
-    private var words: [Word] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-
     private let progressView = UIProgressView()
     private let wordLabelCount = UILabel()
-
-    // MARK: - Public
-
-    let continueToLearnButton = UIButton()
-
-    var oneTapLearnButton: (() -> Void)?
+    private let continueToLearnButton = UIButton()
 
     lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -37,15 +26,23 @@ final class StudyingView: UIView {
         return tableView
     }()
 
+    private var words: [Word] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+
+    // MARK: - Public
+
+    var oneTapLearnButton: (() -> Void)?
+
     // MARK: - Initialization
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
         setupViews()
         setupConstraints()
-
-        self.backgroundColor = .designSystemWhite
     }
 
     required init?(coder: NSCoder) {
@@ -105,6 +102,9 @@ private extension StudyingView {
         progressView.progressTintColor = .designSystemOrange
         progressView.layer.cornerRadius = 12
         progressView.trackTintColor = .designSystemWhite
+
+        backgroundColor = .designSystemWhite
+
     }
 
     @objc func onActionsLearnButton() {
@@ -112,7 +112,6 @@ private extension StudyingView {
     }
 
     func setupConstraints() {
-
         wordLabelCount.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             wordLabelCount.topAnchor.constraint(equalTo: topAnchor, constant: 65),

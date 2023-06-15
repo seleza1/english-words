@@ -11,22 +11,22 @@ final class WordMeaningView: UIView {
 
     // MARK: - Private
 
-    let stickerView = StickerView()
+    private let wordsService = WordsService.shared
+    private let voiceService = VoiceService.shared
+
+    private let stickerView = StickerView()
 
     private let closeButton = UIButton()
     private let nextButton = UIButton()
     private let numberWordLabel = UILabel()
 
-    private var index: Int = 1
-
-    private let wordsService = WordsService.shared
-
     // MARK: - Public
 
     var onTappNextButtonWord: (() -> Void)?
-    var onVoice: (() -> Void)?
-    var onAction: (() -> Void)?
-    
+    var onActionClose: (() -> Void)?
+
+    var data: ((_ word: String,_ translate: String) -> Void)?
+
     // MARK: - Initialization
     
     override init(frame: CGRect) {
@@ -35,12 +35,17 @@ final class WordMeaningView: UIView {
         setupView()
         setupActions()
         setupConstraints()
-
-        self.backgroundColor = .designSystemWhite
+        onVoice()
     }
 
-    func configure(_ words: Int) {
+    func configure(index: Int, words: Int) {
         numberWordLabel.text = "\(index) /\(words)"
+    }
+
+    func configureScreen(word: String, translate: String) {
+        stickerView.worldLabel.text = word
+        stickerView.translationLabel.text = translate
+        stickerView.hintButton.isHidden = true
     }
     
     required init?(coder: NSCoder) {
@@ -53,7 +58,7 @@ final class WordMeaningView: UIView {
 private extension WordMeaningView {
 
     func setupView() {
-        backgroundColor = .white
+        backgroundColor = .designSystemWhite
 
         addSubview(closeButton)
         addSubview(stickerView)
@@ -65,34 +70,33 @@ private extension WordMeaningView {
         nextButton.layer.cornerRadius = 32
         nextButton.setTitle(.nextWord, for: .normal)
 
-        stickerView.backgroundColor = .designSystemSky
+        stickerView.backgroundColor = .designSystemMint
 
         closeButton.setImage(.chevronImage, for: .normal)
 
         numberWordLabel.textAlignment = .center
   }
 
-
     func setupActions() {
         closeButton.addTarget(self, action: #selector(onTappCloseButton), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(onTappNextButton), for: .touchUpInside)
-        stickerView.speakerButton.addTarget(self, action: #selector(onTappVoiceButton), for: .touchUpInside)
-    }
-
-    @objc func onTappVoiceButton() {
-        onVoice?()
     }
 
     @objc func onTappCloseButton() {
-        onAction?()
+        onActionClose?()
     }
 
     @objc func onTappNextButton() {
         onTappNextButtonWord?()
     }
 
+    func onVoice() {
+        stickerView.onVoice = { [weak self] in
+            self?.voiceService.speakWord(word: self?.stickerView.worldLabel.text ?? "123")
+        }
+    }
+
     func setupConstraints() {
-        
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             closeButton.topAnchor.constraint(equalTo: topAnchor, constant: 61),

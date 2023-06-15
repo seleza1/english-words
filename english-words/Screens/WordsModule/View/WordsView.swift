@@ -11,14 +11,9 @@ final class WordsView: UIView {
 
     // MARK: - Private
 
-    private var words: [Word] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-
     private let progressView = UIProgressView()
     private let wordLabelCount = UILabel()
+    private let startLearnButton = UIButton()
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -31,13 +26,17 @@ final class WordsView: UIView {
         return tableView
     }()
 
+    private var words: [Word] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+
     // MARK: - Public
 
     var didTapped: ((_ word: String, _ meaning: String) -> Void)?
 
     var oneTapLearnButton: (() -> Void)?
-
-    let startLearnButton = UIButton()
 
     // MARK: - Initialization
 
@@ -48,7 +47,7 @@ final class WordsView: UIView {
         setupConstraints()
         setupActions()
 
-        self.backgroundColor = .designSystemWhite
+        backgroundColor = .designSystemWhite
     }
 
     required init?(coder: NSCoder) {
@@ -62,14 +61,6 @@ final class WordsView: UIView {
 
         let wordStatusLearningAndNone = words.filter { word in
             if word.status == .learning || word.status == .none {
-                return true
-            } else {
-                return false
-            }
-        }
-
-        let wordStatusLearning = words.filter { word in
-            if word.status == .learning {
                 return true
             } else {
                 return false
@@ -114,6 +105,7 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
         let model = WordTableViewCellModel(word: word.word, isLearned: isLearned)
 
         cell.configure(model)
+
         cell.selectionStyle = .none
 
         return cell

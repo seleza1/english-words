@@ -12,9 +12,7 @@ final class KnownWordsViewModel {
     // MARK: - Private
 
     private let wordsService = WordsService.shared
-    private var allWords: [Word] = []
-
-    private var knownView: KnownView?
+    private var wordsLearned: [Word] = []
 
     weak var viewController: KnownWordsViewController?
 }
@@ -24,9 +22,9 @@ final class KnownWordsViewModel {
 extension KnownWordsViewModel {
 
     func viewDidLoad() {
-        allWords = wordsService.loadWords()
+        wordsLearned = wordsService.loadWords()
 
-        let wordsLearned = allWords.filter { word in
+        wordsLearned = wordsLearned.filter { word in
             if word.status == .learned {
                 return true
             } else {
@@ -37,9 +35,9 @@ extension KnownWordsViewModel {
     }
 
     func viewDidAppear() {
-        allWords = wordsService.loadWords()
+        wordsLearned = wordsService.loadWords()
 
-        let wordsLearned = allWords.filter { word in
+        wordsLearned = wordsLearned.filter { word in
             if word.status == .learned {
                 return true
             } else {

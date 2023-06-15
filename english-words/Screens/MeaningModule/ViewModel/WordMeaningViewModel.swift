@@ -14,21 +14,40 @@ final class WordMeaningViewModel {
     private let wordsService = WordsService.shared
     private var allWords: [Word] = []
 
-    weak var viewController: WordMeaningViewController?
+    private var currentIndex = 0
 
+    weak var viewController: WordMeaningViewController?
 }
 
 extension WordMeaningViewModel {
     func viewDidLoad() {
-        allWords = wordsService.loadWords()
 
-        let wordsLearned = allWords.filter { word in
+        nextWords()
+    }
+
+    func nextWords() {
+        currentIndex += 1
+
+        allWords = wordsService.loadWords()
+        
+        allWords = allWords.filter { word in
             if word.status == .learned {
                 return true
             } else {
                 return false
             }
         }
-        viewController?.update(with: wordsLearned.count)
+
+        let currentWord = allWords[currentIndex]
+
+        viewController?.update(
+            index: currentIndex,
+            words: allWords.count
+        )
+
+        viewController?.updateScreent(
+            word: currentWord.word.capitalized,
+            translation: currentWord.translate.capitalized
+        )
     }
 }

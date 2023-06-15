@@ -9,14 +9,14 @@ import UIKit
 
 final class WordTableViewCell: UITableViewCell {
 
-    // MARK: - Private Properties
+    // MARK: - Private
 
     private let wordLabel = UILabel()
     private let roundView = UIView()
     private let soundButton = UIButton()
     private let statusImageView = UIImageView()
 
-    // MARK: - Static Properties
+    // MARK: - Public
 
     static let reuseId = "WordCell"
 
@@ -24,9 +24,9 @@ final class WordTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
         setupViews()
         setupConstraints()
+        setupActions()
     }
 
     required init?(coder: NSCoder) {
@@ -56,7 +56,6 @@ final class WordTableViewCell: UITableViewCell {
 
 // MARK: - Private Methods
 
-
 private extension WordTableViewCell {
 
     func setupViews() {
@@ -82,8 +81,14 @@ private extension WordTableViewCell {
         wordLabel.font = .wordLabelFont
     }
 
+    func setupActions() {
+        soundButton.addTarget(self, action: #selector(onTapSoundButton), for: .touchUpInside)
+    }
+
+    @objc func onTapSoundButton() {
+    }
+
     func setupConstraints() {
-        
         wordLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             wordLabel.topAnchor.constraint(equalTo: topAnchor, constant: 41),

@@ -15,8 +15,6 @@ final class KnownWordsViewController: UIViewController {
         return self.view as! KnownView
     }
 
-    var word: GameModel?
-
     private let viewModel: KnownWordsViewModel
 
     init(viewModel: KnownWordsViewModel) {
@@ -36,14 +34,15 @@ final class KnownWordsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         viewModel.viewDidLoad()
         updatesMeaning()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        viewModel.viewDidAppear()
 
+        viewModel.viewDidAppear()
     }
 
     func update(with word: [Word]) {
@@ -51,17 +50,14 @@ final class KnownWordsViewController: UIViewController {
     }
 
     func updatesMeaning() {
-        knowView.wordMeaning = { word, translate in
+        knowView.wordMeaning = { [weak self] word, translate in
             let wordMeaning = WordMeaningModuleAssembly.buildModule()
 
             guard let wordMeaningView = wordMeaning.view as? WordMeaningView else { return }
-            wordMeaningView.stickerView.worldLabel.text = word.capitalized
-            wordMeaningView.stickerView.translationLabel.text = translate.capitalized
-            wordMeaningView.stickerView.hintButton.isHidden = true
-
+            wordMeaningView.configureScreen(word: word.capitalized, translate: translate.capitalized)
 
             wordMeaning.modalPresentationStyle = .fullScreen
-            self.present(wordMeaning, animated: true)
+            self?.present(wordMeaning, animated: true)
         }
     }
 }
