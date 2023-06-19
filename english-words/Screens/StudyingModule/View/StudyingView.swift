@@ -12,8 +12,11 @@ final class StudyingView: UIView {
     // MARK: - Private
 
     private let progressView = UIProgressView()
-    private let wordLabelCount = UILabel()
+    private let wordCountLabel = UILabel()
+    private let noWordsCountLabel = UILabel()
     private let continueToLearnButton = UIButton()
+
+    private let envelopeImage = UIImageView()
 
     lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -53,10 +56,21 @@ final class StudyingView: UIView {
 
     func configure(_ words: [Word]) {
         self.words = words
-        
+
         let progress = Float(words.count) / Float(5000)
         progressView.progress = progress
-        wordLabelCount.text = "\(words.count) слов"
+        wordCountLabel.text = "\(words.count) слов"
+
+        if words.count < 1 {
+            continueToLearnButton.isEnabled = false
+            continueToLearnButton.backgroundColor = .designSystemLightWhite
+            continueToLearnButton.setTitleColor(.designSystemGrey, for: .normal)
+            noWordsCountLabel.isHidden = false
+        } else if words.count > 0 {
+            continueToLearnButton.isEnabled = true
+            continueToLearnButton.backgroundColor = .designSystemBlue
+            noWordsCountLabel.isHidden = true
+        }
     }
 }
 
@@ -90,7 +104,9 @@ private extension StudyingView {
         addSubview(tableView)
         addSubview(continueToLearnButton)
         addSubview(progressView)
-        addSubview(wordLabelCount)
+        addSubview(wordCountLabel)
+        addSubview(noWordsCountLabel)
+        addSubview(envelopeImage)
 
         continueToLearnButton.setTitle(.continueToLearnButtonTitle, for: .normal)
         continueToLearnButton.setTitleColor(.designSystemWhite, for: .normal)
@@ -103,8 +119,12 @@ private extension StudyingView {
         progressView.layer.cornerRadius = 12
         progressView.trackTintColor = .designSystemWhite
 
-        backgroundColor = .designSystemWhite
+        noWordsCountLabel.text = .noWordsLearning
+        noWordsCountLabel.font = .wordLabelFont
 
+        envelopeImage.image = .enveloperImage
+
+        backgroundColor = .designSystemWhite
     }
 
     @objc func onActionsLearnButton() {
@@ -112,10 +132,10 @@ private extension StudyingView {
     }
 
     func setupConstraints() {
-        wordLabelCount.translatesAutoresizingMaskIntoConstraints = false
+        wordCountLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            wordLabelCount.topAnchor.constraint(equalTo: topAnchor, constant: 65),
-            wordLabelCount.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+            wordCountLabel.topAnchor.constraint(equalTo: topAnchor, constant: 65),
+            wordCountLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
 
         ])
 
@@ -123,7 +143,7 @@ private extension StudyingView {
         NSLayoutConstraint.activate([
             progressView.topAnchor.constraint(equalTo: topAnchor, constant: 72),
             progressView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            progressView.trailingAnchor.constraint(equalTo: wordLabelCount.leadingAnchor, constant: -24),
+            progressView.trailingAnchor.constraint(equalTo: wordCountLabel.leadingAnchor, constant: -24),
 
             progressView.heightAnchor.constraint(equalToConstant: 8)
         ])
@@ -134,6 +154,23 @@ private extension StudyingView {
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+
+        noWordsCountLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            noWordsCountLabel.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 50),
+            noWordsCountLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            noWordsCountLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
+
+        ])
+
+        envelopeImage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            envelopeImage.topAnchor.constraint(equalTo: topAnchor, constant: 100),
+            envelopeImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 90),
+            envelopeImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -90),
+            envelopeImage.heightAnchor.constraint(equalToConstant: 150)
+
         ])
         
         continueToLearnButton.translatesAutoresizingMaskIntoConstraints = false

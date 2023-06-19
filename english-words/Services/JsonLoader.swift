@@ -10,7 +10,6 @@ import Foundation
 enum JSONFile: String {
     
     case words5000
-    
 }
 
 final class JSONLoader {
@@ -22,13 +21,13 @@ final class JSONLoader {
             do {
                 let data = try Data(contentsOf: url)
 
-                let jsonData = try JSONDecoder().decode([Word].self, from: data)
+                let jsonData = try JSONDecoder().decode([Word].self, from: data).shuffled()
+
                 return jsonData
             } catch {
                 print("JSONLoader error: \(error)")
             }
         }
-        
         return nil
     }
 }

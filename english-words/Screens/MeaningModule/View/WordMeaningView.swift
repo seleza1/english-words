@@ -11,7 +11,6 @@ final class WordMeaningView: UIView {
 
     // MARK: - Private
 
-    private let wordsService = WordsService.shared
     private let voiceService = VoiceService.shared
 
     private let stickerView = StickerView()
@@ -36,10 +35,6 @@ final class WordMeaningView: UIView {
         setupActions()
         setupConstraints()
         onVoice()
-    }
-
-    func configure(index: Int, words: Int) {
-        numberWordLabel.text = "\(index) /\(words)"
     }
 
     func configureScreen(word: String, translate: String) {

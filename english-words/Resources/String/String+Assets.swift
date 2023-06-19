@@ -24,4 +24,7 @@ extension String {
     static let allWordsHeader = "Слов осталось"
     static let allLearnHeader = "Всего изучено"
     static let nextWord = "Следующее"
+
+    static let noWordsLearning = "Пока пусто"
+
 }

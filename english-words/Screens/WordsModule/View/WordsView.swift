@@ -105,7 +105,6 @@ extension WordsView: UITableViewDelegate, UITableViewDataSource {
         let model = WordTableViewCellModel(word: word.word, isLearned: isLearned)
 
         cell.configure(model)
-
         cell.selectionStyle = .none
 
         return cell

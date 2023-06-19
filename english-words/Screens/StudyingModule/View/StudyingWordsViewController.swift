@@ -56,9 +56,9 @@ private extension StudyingWordsViewController {
 
     func setupActions() {
         studyingView.oneTapLearnButton = { [weak self] in
-            let controller = GameAssembler.buildModule()
-            controller.modalPresentationStyle = .fullScreen
-            self?.present(controller, animated: true)
+            let gameViewController = GameAssembler.buildModule()
+            gameViewController.modalPresentationStyle = .fullScreen
+            self?.navigationController?.pushViewController(gameViewController, animated: true)
         }
     }
 }

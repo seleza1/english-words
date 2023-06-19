@@ -57,7 +57,7 @@ final class KnownWordsViewController: UIViewController {
             wordMeaningView.configureScreen(word: word.capitalized, translate: translate.capitalized)
 
             wordMeaning.modalPresentationStyle = .fullScreen
-            self?.present(wordMeaning, animated: true)
+            self?.navigationController?.pushViewController(wordMeaning, animated: true)
         }
     }
 }

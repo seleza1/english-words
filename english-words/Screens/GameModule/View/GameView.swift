@@ -182,8 +182,8 @@ private extension GameView {
     }
 
     func setupVoice() {
-        stickerView.onVoice = {
-            self.onTapVoice?()
+        stickerView.onVoice = { [weak self] in
+            self?.onTapVoice?()
         }
     }
 }

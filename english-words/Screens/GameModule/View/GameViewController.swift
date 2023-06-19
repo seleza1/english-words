@@ -69,7 +69,7 @@ private extension GameViewController {
     
     func setupActions() {
         gameView.oneTapCloseButton = { [weak self] in
-            self?.dismiss(animated: true)
+            self?.navigationController?.popViewController(animated: true)
         }
         
         gameView.onVariantChanged = { [weak self] in

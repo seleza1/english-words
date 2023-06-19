@@ -40,19 +40,20 @@ final class WordMeaningViewController: UIViewController {
         nextWords()
     }
 
-    func update(index: Int, words: Int) {
-        wordsView.configure(index: index, words: words)
+    func updateScreen(word: String, translation: String) {
+        wordsView.configureScreen(word: word, translate: translation)
     }
 
-    func updateScreent(word: String, translation: String) {
-        wordsView.configureScreen(word: word, translate: translation)
+    func closeVC() {
+        navigationController?.popViewController(animated: true)
     }
 }
 
 private extension WordMeaningViewController {
+
     func closeButton() {
         wordsView.onActionClose = { [weak self] in
-            self?.dismiss(animated: true)
+            self?.navigationController?.popViewController(animated: true)
         }
     }
 
