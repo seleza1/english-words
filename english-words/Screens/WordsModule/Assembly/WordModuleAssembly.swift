@@ -7,7 +7,11 @@
 
 import UIKit
 
-enum WordModuleAssembly {
+protocol WordModuleAssemblyProtocol {
+    static func buildModule() -> UIViewController
+}
+
+enum WordModuleAssembly: WordModuleAssemblyProtocol {
 
     static func buildModule() -> UIViewController {
         let viewModel = WordsViewModel()

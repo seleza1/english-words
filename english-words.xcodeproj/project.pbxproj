@@ -39,6 +39,9 @@
 		CE64670B29E6ABC300D32B47 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64670A29E6ABC300D32B47 /* GameViewController.swift */; };
 		CE64670D29E7E2B000D32B47 /* KnownWordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64670C29E7E2B000D32B47 /* KnownWordsViewController.swift */; };
 		CE9B85862A3B0C370009F8F0 /* VoiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B85852A3B0C370009F8F0 /* VoiceService.swift */; };
+		CE9B85892A4043510009F8F0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CE9B85882A4043510009F8F0 /* Lottie */; };
+		CE9B858B2A40440E0009F8F0 /* 146836-tea-brewing-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = CE9B858A2A40440E0009F8F0 /* 146836-tea-brewing-animation.json */; };
+		CE9B85CF2A405D060009F8F0 /* 26184-sad-star.json in Resources */ = {isa = PBXBuildFile; fileRef = CE9B85CE2A405D060009F8F0 /* 26184-sad-star.json */; };
 		CEB5679D2A18C101002F2483 /* WordTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB5679C2A18C101002F2483 /* WordTableViewCellModel.swift */; };
 		CEBB91D529E7E7EC00D26220 /* StudyingWordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB91D429E7E7EC00D26220 /* StudyingWordsViewController.swift */; };
 		CEBB91D729E8828F00D26220 /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB91D629E8828E00D26220 /* JsonLoader.swift */; };
@@ -85,6 +88,8 @@
 		CE64670A29E6ABC300D32B47 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		CE64670C29E7E2B000D32B47 /* KnownWordsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnownWordsViewController.swift; sourceTree = "<group>"; };
 		CE9B85852A3B0C370009F8F0 /* VoiceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceService.swift; sourceTree = "<group>"; };
+		CE9B858A2A40440E0009F8F0 /* 146836-tea-brewing-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "146836-tea-brewing-animation.json"; sourceTree = "<group>"; };
+		CE9B85CE2A405D060009F8F0 /* 26184-sad-star.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "26184-sad-star.json"; sourceTree = "<group>"; };
 		CEB5679C2A18C101002F2483 /* WordTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordTableViewCellModel.swift; sourceTree = "<group>"; };
 		CEBB91D429E7E7EC00D26220 /* StudyingWordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyingWordsViewController.swift; sourceTree = "<group>"; };
 		CEBB91D629E8828E00D26220 /* JsonLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonLoader.swift; sourceTree = "<group>"; };
@@ -101,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE9B85892A4043510009F8F0 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +317,7 @@
 		CE6466F729E6992900D32B47 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CE9B85D02A4068870009F8F0 /* Animations */,
 				0C02A0392A1D1C5000094D27 /* Images */,
 				CEB567972A17CD57002F2483 /* String */,
 				CEB567922A16C2B4002F2483 /* Fonts */,
@@ -395,6 +402,15 @@
 			path = GameModule;
 			sourceTree = "<group>";
 		};
+		CE9B85D02A4068870009F8F0 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				CE9B85CE2A405D060009F8F0 /* 26184-sad-star.json */,
+				CE9B858A2A40440E0009F8F0 /* 146836-tea-brewing-animation.json */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 		CEB5678C2A16BE32002F2483 /* StickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -452,6 +468,9 @@
 			dependencies = (
 			);
 			name = "english-words";
+			packageProductDependencies = (
+				CE9B85882A4043510009F8F0 /* Lottie */,
+			);
 			productName = "english-words";
 			productReference = CE6466DF29E6990900D32B47 /* english-words.app */;
 			productType = "com.apple.product-type.application";
@@ -480,6 +499,9 @@
 				Base,
 			);
 			mainGroup = CE6466D629E6990900D32B47;
+			packageReferences = (
+				CE9B85872A4043510009F8F0 /* XCRemoteSwiftPackageReference "lottie-spm" */,
+			);
 			productRefGroup = CE6466E029E6990900D32B47 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -494,8 +516,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE9B858B2A40440E0009F8F0 /* 146836-tea-brewing-animation.json in Resources */,
 				CE6466EF29E6990B00D32B47 /* LaunchScreen.storyboard in Resources */,
 				CE6466EC29E6990B00D32B47 /* Assets.xcassets in Resources */,
+				CE9B85CF2A405D060009F8F0 /* 26184-sad-star.json in Resources */,
 				CE64670329E6A50500D32B47 /* words5000.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -760,6 +784,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CE9B85872A4043510009F8F0 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CE9B85882A4043510009F8F0 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE9B85872A4043510009F8F0 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CE6466D729E6990900D32B47 /* Project object */;
 }

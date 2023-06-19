@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 final class KnownView: UIView {
 
@@ -13,6 +14,9 @@ final class KnownView: UIView {
 
     private let progressView = UIProgressView()
     private let wordLabelCount = UILabel()
+    private let noWordsCountLabel = UILabel()
+
+    private var animationView = LottieAnimationView()
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -42,8 +46,6 @@ final class KnownView: UIView {
 
         setupViews()
         setupConstraints()
-
-        backgroundColor = .designSystemWhite
     }
 
     required init?(coder: NSCoder) {
@@ -54,6 +56,9 @@ final class KnownView: UIView {
 
     func configure(_ words: [Word]) {
         self.words = words
+
+        updateAnimation(words: words)
+        setNeedsDisplay()
         
         let progress = Float(words.count) / Float(5000)
         progressView.progress = progress
@@ -66,14 +71,13 @@ final class KnownView: UIView {
 extension KnownView: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return words.count
+        words.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WordTableViewCell.reuseId, for: indexPath) as! WordTableViewCell
 
-        let word = words[indexPath.item]
-        let model = WordTableViewCellModel(word: word.word, isLearned: true)
+        let model = WordTableViewCellModel(word: words[indexPath.item].word, isLearned: true)
 
         cell.configure(model)
         cell.selectionStyle = .none
@@ -95,10 +99,37 @@ private extension KnownView {
         addSubview(tableView)
         addSubview(progressView)
         addSubview(wordLabelCount)
+        addSubview(noWordsCountLabel)
 
         progressView.progressTintColor = .designSystemGreen
         progressView.layer.cornerRadius = 12
         progressView.trackTintColor = .designSystemWhite
+
+        noWordsCountLabel.text = .noWordsKnown
+        noWordsCountLabel.font = .wordLabelFont
+
+        backgroundColor = .designSystemWhite
+    }
+
+    func setupAnimationView() {
+        animationView = .init(name: .star)
+        animationView.frame = bounds
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .loop
+        animationView.animationSpeed = 1.0
+        addSubview(animationView)
+    }
+
+    func updateAnimation(words: [Word]) {
+        if words.count < 1 {
+            noWordsCountLabel.isHidden = false
+            animationView.play()
+            setupAnimationView()
+        } else if words.count > 0 {
+            noWordsCountLabel.isHidden = true
+            animationView.stop()
+            animationView.isHidden = true
+        }
     }
 
     func setupConstraints() {
@@ -106,7 +137,6 @@ private extension KnownView {
         NSLayoutConstraint.activate([
             wordLabelCount.topAnchor.constraint(equalTo: topAnchor, constant: 65),
             wordLabelCount.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
-
         ])
 
         progressView.translatesAutoresizingMaskIntoConstraints = false
@@ -114,8 +144,14 @@ private extension KnownView {
             progressView.topAnchor.constraint(equalTo: topAnchor, constant: 72),
             progressView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             progressView.trailingAnchor.constraint(equalTo: wordLabelCount.leadingAnchor, constant: -24),
-
             progressView.heightAnchor.constraint(equalToConstant: 8)
+        ])
+
+        noWordsCountLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            noWordsCountLabel.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 50),
+            noWordsCountLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            noWordsCountLabel.trailingAnchor.constraint(equalTo: wordLabelCount.leadingAnchor, constant: -16),
         ])
         
         tableView.translatesAutoresizingMaskIntoConstraints = false

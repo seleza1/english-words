@@ -12,13 +12,13 @@ final class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupView()
+        setup()
     }
 }
 
 private extension MainTabBarController {
 
-    func setupView() {
+    func setup() {
         let wordsController = WordModuleAssembly.buildModule()
         wordsController.tabBarItem = UITabBarItem(
             title: .dictionary,

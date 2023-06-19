@@ -27,4 +27,8 @@ extension String {
 
     static let noWordsLearning = "Пока пусто"
 
+    static let noWordsKnown = "Пока ты ничего не выучил"
+
+    static let tea = "146836-tea-brewing-animation"
+    static let star = "26184-sad-star"
 }

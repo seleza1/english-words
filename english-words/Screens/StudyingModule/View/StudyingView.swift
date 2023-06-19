@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 final class StudyingView: UIView {
 
@@ -16,9 +17,9 @@ final class StudyingView: UIView {
     private let noWordsCountLabel = UILabel()
     private let continueToLearnButton = UIButton()
 
-    private let envelopeImage = UIImageView()
+    private var animationView = LottieAnimationView()
 
-    lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(WordTableViewCell.self, forCellReuseIdentifier: WordTableViewCell.reuseId)
         tableView.delegate = self
@@ -43,7 +44,6 @@ final class StudyingView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setupViews()
         setupConstraints()
     }
@@ -56,21 +56,12 @@ final class StudyingView: UIView {
 
     func configure(_ words: [Word]) {
         self.words = words
+        
+        updateAnimation(words: words)
 
         let progress = Float(words.count) / Float(5000)
         progressView.progress = progress
         wordCountLabel.text = "\(words.count) слов"
-
-        if words.count < 1 {
-            continueToLearnButton.isEnabled = false
-            continueToLearnButton.backgroundColor = .designSystemLightWhite
-            continueToLearnButton.setTitleColor(.designSystemGrey, for: .normal)
-            noWordsCountLabel.isHidden = false
-        } else if words.count > 0 {
-            continueToLearnButton.isEnabled = true
-            continueToLearnButton.backgroundColor = .designSystemBlue
-            noWordsCountLabel.isHidden = true
-        }
     }
 }
 
@@ -79,15 +70,13 @@ final class StudyingView: UIView {
 extension StudyingView: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        return words.count
+        words.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WordTableViewCell.reuseId, for: indexPath) as! WordTableViewCell
 
-        let word = words[indexPath.item]
-        let model = WordTableViewCellModel(word: word.word, isLearned: false)
+        let model = WordTableViewCellModel(word: words[indexPath.item].word, isLearned: false)
 
         cell.configure(model)
         cell.selectionStyle = .none
@@ -106,7 +95,6 @@ private extension StudyingView {
         addSubview(progressView)
         addSubview(wordCountLabel)
         addSubview(noWordsCountLabel)
-        addSubview(envelopeImage)
 
         continueToLearnButton.setTitle(.continueToLearnButtonTitle, for: .normal)
         continueToLearnButton.setTitleColor(.designSystemWhite, for: .normal)
@@ -122,8 +110,6 @@ private extension StudyingView {
         noWordsCountLabel.text = .noWordsLearning
         noWordsCountLabel.font = .wordLabelFont
 
-        envelopeImage.image = .enveloperImage
-
         backgroundColor = .designSystemWhite
     }
 
@@ -131,12 +117,38 @@ private extension StudyingView {
         oneTapLearnButton?()
     }
 
+    func updateAnimation(words: [Word]) {
+        if words.isEmpty {
+            continueToLearnButton.isEnabled = false
+            continueToLearnButton.backgroundColor = .designSystemLightWhite
+            continueToLearnButton.setTitleColor(.designSystemGrey, for: .normal)
+            noWordsCountLabel.isHidden = false
+            setupAnimationView()
+        } else {
+            continueToLearnButton.isEnabled = true
+            continueToLearnButton.backgroundColor = .designSystemBlue
+            continueToLearnButton.setTitleColor(.designSystemWhite, for: .normal)
+            noWordsCountLabel.isHidden = true
+            animationView.stop()
+            animationView.isHidden = true
+        }
+    }
+
+    func setupAnimationView() {
+        animationView = .init(name: .tea)
+        animationView.frame = bounds
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .loop
+        animationView.animationSpeed = 1.0
+        animationView.play()
+        addSubview(animationView)
+    }
+
     func setupConstraints() {
         wordCountLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             wordCountLabel.topAnchor.constraint(equalTo: topAnchor, constant: 65),
             wordCountLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
-
         ])
 
         progressView.translatesAutoresizingMaskIntoConstraints = false
@@ -144,7 +156,6 @@ private extension StudyingView {
             progressView.topAnchor.constraint(equalTo: topAnchor, constant: 72),
             progressView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             progressView.trailingAnchor.constraint(equalTo: wordCountLabel.leadingAnchor, constant: -24),
-
             progressView.heightAnchor.constraint(equalToConstant: 8)
         ])
         
@@ -161,18 +172,8 @@ private extension StudyingView {
             noWordsCountLabel.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 50),
             noWordsCountLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             noWordsCountLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
-
         ])
 
-        envelopeImage.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            envelopeImage.topAnchor.constraint(equalTo: topAnchor, constant: 100),
-            envelopeImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 90),
-            envelopeImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -90),
-            envelopeImage.heightAnchor.constraint(equalToConstant: 150)
-
-        ])
-        
         continueToLearnButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             continueToLearnButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),

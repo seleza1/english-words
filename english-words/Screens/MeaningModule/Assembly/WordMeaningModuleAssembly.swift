@@ -7,7 +7,11 @@
 
 import UIKit
 
-enum WordMeaningModuleAssembly {
+protocol WordMeaningModuleAssemblyProtocol {
+    static func buildModule() -> UIViewController
+}
+
+enum WordMeaningModuleAssembly: WordMeaningModuleAssemblyProtocol {
 
     static func buildModule() -> UIViewController {
         let viewModel = WordMeaningViewModel()

@@ -46,8 +46,6 @@ final class WordsView: UIView {
         setupViews()
         setupConstraints()
         setupActions()
-
-        backgroundColor = .designSystemWhite
     }
 
     required init?(coder: NSCoder) {
@@ -87,8 +85,7 @@ final class WordsView: UIView {
 extension WordsView: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        return words.count
+        words.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -130,6 +127,8 @@ private extension WordsView {
         progressView.progressTintColor = .designSystemGreen
         progressView.trackTintColor = .designSystemBlue
         progressView.layer.cornerRadius = 12
+
+        backgroundColor = .designSystemWhite
     }
 
     @objc func onTappStartLearnButton() {
@@ -145,7 +144,6 @@ private extension WordsView {
         NSLayoutConstraint.activate([
             wordLabelCount.topAnchor.constraint(equalTo: topAnchor, constant: 65),
             wordLabelCount.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
-
         ])
 
         progressView.translatesAutoresizingMaskIntoConstraints = false
@@ -153,7 +151,6 @@ private extension WordsView {
             progressView.topAnchor.constraint(equalTo: topAnchor, constant: 72),
             progressView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             progressView.trailingAnchor.constraint(equalTo: wordLabelCount.leadingAnchor, constant: -24),
-
             progressView.heightAnchor.constraint(equalToConstant: 8)
         ])
 
