@@ -47,3 +47,4 @@ extension StudyingWordsViewModel {
         viewController?.update(with: wordsStudying)
     }
 }
+ 
