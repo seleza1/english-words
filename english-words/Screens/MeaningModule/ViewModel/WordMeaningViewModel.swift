@@ -20,13 +20,12 @@ final class WordMeaningViewModel {
 }
 
 extension WordMeaningViewModel {
-    func viewDidLoad() {
 
+    func viewDidLoad() {
         nextWords()
     }
 
     func nextWords() {
-        currentIndex += 1
 
         allWords = wordsService.loadWords()
         
@@ -38,16 +37,16 @@ extension WordMeaningViewModel {
             }
         }
 
+        if currentIndex >= allWords.count {
+             currentIndex = 0
+         }
+
         let currentWord = allWords[currentIndex]
 
-        viewController?.update(
-            index: currentIndex,
-            words: allWords.count
-        )
-
-        viewController?.updateScreent(
+        viewController?.updateScreen(
             word: currentWord.word.capitalized,
             translation: currentWord.translate.capitalized
         )
+        currentIndex += 1
     }
 }

@@ -7,7 +7,11 @@
 
 import UIKit
 
-enum StudyingModuleAssembly {
+protocol StudyingModuleAssemblyProtocol {
+    static func buildModule() -> UIViewController
+}
+
+enum StudyingModuleAssembly: StudyingModuleAssemblyProtocol {
 
     static func buildModule() -> UIViewController {
         let viewModel = StudyingWordsViewModel()

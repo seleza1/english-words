@@ -7,7 +7,11 @@
 
 import UIKit
 
-enum GameAssembler {
+protocol GameAssemblerProtocol {
+    static func buildModule() -> UIViewController
+}
+
+enum GameAssembler: GameAssemblerProtocol {
     
     static func buildModule() -> UIViewController {
         let viewModel = GameViewModel()

@@ -106,7 +106,6 @@ private extension GameView {
     // MARK: - Setup
 
     func setupViews() {
-        backgroundColor = .designSystemWhite
 
         addSubview(closeButton)
         addSubview(stackView)
@@ -121,6 +120,8 @@ private extension GameView {
         closeButton.setImage(.chevronImage, for: .normal)
 
         numberWordLabel.textAlignment = .center
+
+        backgroundColor = .designSystemWhite
     }
 
     func setupAddTarget() {
@@ -182,8 +183,8 @@ private extension GameView {
     }
 
     func setupVoice() {
-        stickerView.onVoice = {
-            self.onTapVoice?()
+        stickerView.onVoice = { [weak self] in
+            self?.onTapVoice?()
         }
     }
 }

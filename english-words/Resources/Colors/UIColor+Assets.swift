@@ -21,4 +21,6 @@ extension UIColor {
     static let designSystemLightGray = UIColor(named: "designSystemLightGray")!
     static let designSystemWhiteSky = UIColor(named: "designSystemWhiteSky")!
     static let designSystemMint = UIColor(named: "designSystemMint")!
+    static let designSystemLightWhite = UIColor(named: "designSystemLightWhite")!
+
 }

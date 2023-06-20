@@ -47,7 +47,7 @@ extension WordsService {
 
     func next() -> GameModel {
 
-        let words = loadWords()
+        let words = loadWords().shuffled()
         allWords = words
         
         let next = allWords.removeFirst()

@@ -28,4 +28,7 @@ extension UIImage {
 
     static let successIcon = UIImage(named: "success")
     static let repeatIcon = UIImage(named: "repeat")
+
+    static let enveloperImage = UIImage(named: "envelope")
+
 }

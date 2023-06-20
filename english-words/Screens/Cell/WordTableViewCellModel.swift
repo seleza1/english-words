@@ -13,7 +13,7 @@ struct WordTableViewCellModel {
     var isLearned: Bool? = nil
 
     init(word: String, isLearned: Bool?) {
-        self.word = word
+        self.word = word.capitalized
         self.isLearned = isLearned
     }
 }

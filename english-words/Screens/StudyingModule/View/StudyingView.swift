@@ -6,16 +6,20 @@
 //
 
 import UIKit
+import Lottie
 
 final class StudyingView: UIView {
 
     // MARK: - Private
 
     private let progressView = UIProgressView()
-    private let wordLabelCount = UILabel()
+    private let wordCountLabel = UILabel()
+    private let noWordsCountLabel = UILabel()
     private let continueToLearnButton = UIButton()
 
-    lazy var tableView: UITableView = {
+    private var animationView = LottieAnimationView()
+
+    private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(WordTableViewCell.self, forCellReuseIdentifier: WordTableViewCell.reuseId)
         tableView.delegate = self
@@ -40,7 +44,7 @@ final class StudyingView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         setupViews()
         setupConstraints()
     }
@@ -53,10 +57,11 @@ final class StudyingView: UIView {
 
     func configure(_ words: [Word]) {
         self.words = words
-        
-        let progress = Float(words.count) / Float(5000)
-        progressView.progress = progress
-        wordLabelCount.text = "\(words.count) слов"
+
+        updateAnimation()
+
+        progressView.progress = Float(words.count) / Float(5000)
+        wordCountLabel.text = "\(words.count) слов"
     }
 }
 
@@ -65,15 +70,13 @@ final class StudyingView: UIView {
 extension StudyingView: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        return words.count
+        words.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WordTableViewCell.reuseId, for: indexPath) as! WordTableViewCell
 
-        let word = words[indexPath.item]
-        let model = WordTableViewCellModel(word: word.word, isLearned: false)
+        let model = WordTableViewCellModel(word: words[indexPath.item].word, isLearned: false)
 
         cell.configure(model)
         cell.selectionStyle = .none
@@ -90,7 +93,8 @@ private extension StudyingView {
         addSubview(tableView)
         addSubview(continueToLearnButton)
         addSubview(progressView)
-        addSubview(wordLabelCount)
+        addSubview(wordCountLabel)
+        addSubview(noWordsCountLabel)
 
         continueToLearnButton.setTitle(.continueToLearnButtonTitle, for: .normal)
         continueToLearnButton.setTitleColor(.designSystemWhite, for: .normal)
@@ -103,28 +107,55 @@ private extension StudyingView {
         progressView.layer.cornerRadius = 12
         progressView.trackTintColor = .designSystemWhite
 
-        backgroundColor = .designSystemWhite
+        noWordsCountLabel.text = .noWordsLearning
+        noWordsCountLabel.font = .wordLabelFont
 
+        backgroundColor = .designSystemWhite
     }
 
     @objc func onActionsLearnButton() {
         oneTapLearnButton?()
     }
 
-    func setupConstraints() {
-        wordLabelCount.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            wordLabelCount.topAnchor.constraint(equalTo: topAnchor, constant: 65),
-            wordLabelCount.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+    func updateAnimation() {
+        if words.isEmpty {
+            continueToLearnButton.isEnabled = false
+            continueToLearnButton.backgroundColor = .designSystemLightWhite
+            continueToLearnButton.setTitleColor(.designSystemGrey, for: .normal)
+            animationView.play()
+            setupAnimationView()
+        } else {
+            continueToLearnButton.isEnabled = true
+            continueToLearnButton.backgroundColor = .designSystemBlue
+            continueToLearnButton.setTitleColor(.designSystemWhite, for: .normal)
+            noWordsCountLabel.isHidden = true
+            animationView.stop()
+            animationView.isHidden = true
+        }
+    }
 
+    func setupAnimationView() {
+        animationView = .init(name: .tea)
+        animationView.frame = bounds
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .loop
+        animationView.animationSpeed = 1.0
+        animationView.play()
+        addSubview(animationView)
+    }
+
+    func setupConstraints() {
+        wordCountLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            wordCountLabel.topAnchor.constraint(equalTo: topAnchor, constant: 65),
+            wordCountLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
         ])
 
         progressView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             progressView.topAnchor.constraint(equalTo: topAnchor, constant: 72),
             progressView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            progressView.trailingAnchor.constraint(equalTo: wordLabelCount.leadingAnchor, constant: -24),
-
+            progressView.trailingAnchor.constraint(equalTo: wordCountLabel.leadingAnchor, constant: -24),
             progressView.heightAnchor.constraint(equalToConstant: 8)
         ])
         
@@ -135,7 +166,14 @@ private extension StudyingView {
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
-        
+
+        noWordsCountLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            noWordsCountLabel.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 50),
+            noWordsCountLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            noWordsCountLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
+        ])
+
         continueToLearnButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             continueToLearnButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),

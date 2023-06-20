@@ -16,7 +16,11 @@ final class WordTableViewCell: UITableViewCell {
     private let soundButton = UIButton()
     private let statusImageView = UIImageView()
 
+    private let voiceService = VoiceService.shared
+
     // MARK: - Public
+
+    var onTapVoice: (() -> Void)?
 
     static let reuseId = "WordCell"
 
@@ -59,7 +63,7 @@ final class WordTableViewCell: UITableViewCell {
 private extension WordTableViewCell {
 
     func setupViews() {
-        addSubview(roundView)
+        contentView.addSubview(roundView)
 
         roundView.addSubview(wordLabel)
         roundView.addSubview(soundButton)
@@ -86,6 +90,8 @@ private extension WordTableViewCell {
     }
 
     @objc func onTapSoundButton() {
+        voiceService.speakWord(word: wordLabel.text ?? "123")
+        onTapVoice?()
     }
 
     func setupConstraints() {

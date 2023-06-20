@@ -37,11 +37,8 @@ final class GameViewModel {
     }
 
     func displayNextWord() {
-
-        let word = next()
-
         viewController?.update(
-            word: word,
+            word: next(),
             number: index + 1,
             index: allWords.count
         )

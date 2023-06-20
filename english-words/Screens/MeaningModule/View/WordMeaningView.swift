@@ -11,7 +11,6 @@ final class WordMeaningView: UIView {
 
     // MARK: - Private
 
-    private let wordsService = WordsService.shared
     private let voiceService = VoiceService.shared
 
     private let stickerView = StickerView()
@@ -38,10 +37,6 @@ final class WordMeaningView: UIView {
         onVoice()
     }
 
-    func configure(index: Int, words: Int) {
-        numberWordLabel.text = "\(index) /\(words)"
-    }
-
     func configureScreen(word: String, translate: String) {
         stickerView.worldLabel.text = word
         stickerView.translationLabel.text = translate
@@ -58,7 +53,6 @@ final class WordMeaningView: UIView {
 private extension WordMeaningView {
 
     func setupView() {
-        backgroundColor = .designSystemWhite
 
         addSubview(closeButton)
         addSubview(stickerView)
@@ -75,6 +69,8 @@ private extension WordMeaningView {
         closeButton.setImage(.chevronImage, for: .normal)
 
         numberWordLabel.textAlignment = .center
+
+        backgroundColor = .designSystemWhite
   }
 
     func setupActions() {
