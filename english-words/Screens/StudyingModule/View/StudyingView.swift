@@ -44,6 +44,7 @@ final class StudyingView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+
         setupViews()
         setupConstraints()
     }
@@ -56,11 +57,10 @@ final class StudyingView: UIView {
 
     func configure(_ words: [Word]) {
         self.words = words
-        
-        updateAnimation(words: words)
 
-        let progress = Float(words.count) / Float(5000)
-        progressView.progress = progress
+        updateAnimation()
+
+        progressView.progress = Float(words.count) / Float(5000)
         wordCountLabel.text = "\(words.count) слов"
     }
 }
@@ -117,12 +117,12 @@ private extension StudyingView {
         oneTapLearnButton?()
     }
 
-    func updateAnimation(words: [Word]) {
+    func updateAnimation() {
         if words.isEmpty {
             continueToLearnButton.isEnabled = false
             continueToLearnButton.backgroundColor = .designSystemLightWhite
             continueToLearnButton.setTitleColor(.designSystemGrey, for: .normal)
-            noWordsCountLabel.isHidden = false
+            animationView.play()
             setupAnimationView()
         } else {
             continueToLearnButton.isEnabled = true

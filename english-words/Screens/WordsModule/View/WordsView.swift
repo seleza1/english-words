@@ -75,8 +75,7 @@ final class WordsView: UIView {
 
         wordLabelCount.text = "\(wordStatusLearningAndNone.count) слов"
 
-        let progress = Float(wordStatusLearned.count) / Float(wordStatusLearningAndNone.count)
-        progressView.progress = progress
+        progressView.progress = Float(wordStatusLearned.count) / Float(wordStatusLearningAndNone.count)
     }
 }
 

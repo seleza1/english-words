@@ -53,7 +53,6 @@ final class WordMeaningView: UIView {
 private extension WordMeaningView {
 
     func setupView() {
-        backgroundColor = .designSystemWhite
 
         addSubview(closeButton)
         addSubview(stickerView)
@@ -70,6 +69,8 @@ private extension WordMeaningView {
         closeButton.setImage(.chevronImage, for: .normal)
 
         numberWordLabel.textAlignment = .center
+
+        backgroundColor = .designSystemWhite
   }
 
     func setupActions() {

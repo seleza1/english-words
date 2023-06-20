@@ -58,10 +58,8 @@ final class KnownView: UIView {
         self.words = words
 
         updateAnimation(words: words)
-        setNeedsDisplay()
         
-        let progress = Float(words.count) / Float(5000)
-        progressView.progress = progress
+        progressView.progress = Float(words.count) / Float(5000)
         wordLabelCount.text = "\(words.count) слов"
     }
 }
@@ -121,11 +119,11 @@ private extension KnownView {
     }
 
     func updateAnimation(words: [Word]) {
-        if words.count < 1 {
+        if words.isEmpty {
             noWordsCountLabel.isHidden = false
             animationView.play()
             setupAnimationView()
-        } else if words.count > 0 {
+        } else {
             noWordsCountLabel.isHidden = true
             animationView.stop()
             animationView.isHidden = true
