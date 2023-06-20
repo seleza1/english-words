@@ -8,44 +8,39 @@
 import UIKit
 
 final class MainTabBarController: UITabBarController {
-
-    private var wordsController: WordsVC = {
-        let controller = WordsVC()
-        let image = Resources.Icons.wordsControllerIcon
-        let selectedImage = Resources.Icons.wordsControllerIcon
-        let tabItem = Resources.Title.tabItemWords
-        controller.tabBarItem = tabItem
-
-        return controller
-    }()
-
-    private var studyingWordsController: StudyingWordsVC = {
-        let controller = StudyingWordsVC()
-        let image = Resources.Icons.studyingWordsController
-        let selectedImage = Resources.Icons.studyingWordsController
-        let tabItem = Resources.Title.tabItemStudying
-        controller.tabBarItem = tabItem
-
-        return controller
-    }()
-
-    private var knownWordsController: KnownWordsVC = {
-        let controller = KnownWordsVC()
-        let image = Resources.Icons.knownWordsController
-        let selectedImage = Resources.Icons.knownWordsController
-        let tabItem = Resources.Title.tabItemKnown
-        controller.tabBarItem = tabItem
-
-        return controller
-    }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setup()
     }
+}
 
-    private func setup() {
-        tabBar.tintColor = Resources.Colors.tabBarTintColor
+private extension MainTabBarController {
+
+    func setup() {
+        let wordsController = WordModuleAssembly.buildModule()
+        wordsController.tabBarItem = UITabBarItem(
+            title: .dictionary,
+            image: .booksImage,
+            selectedImage: .booksSelectedImage
+        )
+
+        let studyingWordsController = StudyingModuleAssembly.buildModule()
+        studyingWordsController.tabBarItem = UITabBarItem(
+            title: .tableViewLearnButtonTitle,
+            image: .coffeeImage,
+            selectedImage: .coffeeSelectedImage
+        )
+
+        let knownWordsController = KnownModuleAssembly.buildModule()
+        knownWordsController.tabBarItem = UITabBarItem(
+            title: .tableViewKnownButtonTitle,
+            image: .smileImage,
+            selectedImage: .smileSelectedImage
+        )
+
+        tabBar.tintColor = .designSystemBlue
         viewControllers = [wordsController, studyingWordsController, knownWordsController]
     }
 }

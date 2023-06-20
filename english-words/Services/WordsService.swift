@@ -7,27 +7,49 @@
 
 import Foundation
 
-class WordsService {
+final class WordsService {
 
-    let jsonLoader = JsonLoader()
+    private let loader = JSONLoader()
+    private let archiver = WordsArchiver()
 
-    let allWordsArchiver = WordsArchiver(type: .all)
-    let unknownWordsArchiver = WordsArchiver(type: .unknown)
-    let knownWordsArchiver = WordsArchiver(type: .known)
+    private init() {
+        var words = archiver.retrieve()
+
+        if words.isEmpty {
+            words = loader.loadWords(.words5000) ?? []
+            archiver.save(words)
+        }
+    }
+
+    static let shared = WordsService()
 
     var allWords: [Word] = []
 
-    //Выгружать все слова и класть в archiver
-
-    //метод next который вытаскивает слово из массива и передает на экран
-
-    func fetchWords() {
-        let words = jsonLoader.loadProducts(.words5000) ?? []
-        self.allWords = words.shuffled()
+    func loadWords() -> [Word] {
+        archiver.retrieve()
     }
 
-    func next() -> WordModel {
+    func save(word: Word) {
+        var words = archiver.retrieve()
 
+        let index = words.firstIndex { oldWords in
+            oldWords.id == word.id
+        }
+
+        if let index = index {
+            words[index] = word
+            archiver.save(words)
+        }
+    }
+}
+
+extension WordsService {
+
+    func next() -> GameModel {
+
+        let words = loadWords().shuffled()
+        allWords = words
+        
         let next = allWords.removeFirst()
 
         var variants: [String] = Array(repeating: "", count: 4)
@@ -38,7 +60,7 @@ class WordsService {
         }
         variants.shuffle()
 
-        let wordModel = WordModel(
+        let wordModel = GameModel(
             id: next.id,
             word: next.word,
             translate: next.translate,
