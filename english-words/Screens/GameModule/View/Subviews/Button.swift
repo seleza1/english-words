@@ -38,11 +38,12 @@ class VariantButton: UIButton {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+
         titleLabel?.font = .variantButtonFont
         layer.cornerRadius = 12
         layer.borderWidth = 1
         layer.borderColor = UIColor.designSystemWhiteSky.cgColor
+        addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
 
     required init?(coder: NSCoder) {

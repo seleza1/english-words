@@ -106,7 +106,6 @@ private extension GameView {
     // MARK: - Setup
 
     func setupViews() {
-
         addSubview(closeButton)
         addSubview(stackView)
         addSubview(numberWordLabel)

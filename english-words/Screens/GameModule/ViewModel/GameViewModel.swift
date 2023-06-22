@@ -26,13 +26,8 @@ final class GameViewModel {
     func viewDidLoad() {
         allWords = wordsService.loadWords()
 
-        allWords = allWords.filter { word in
-            if word.status == .none || word.status == .learning {
-                return true
-            } else {
-                return false
-            }
-        }
+        allWords = allWords.filter { $0.status == .learning || $0.status == .none }
+
         displayNextWord()
     }
 

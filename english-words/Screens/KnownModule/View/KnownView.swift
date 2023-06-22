@@ -109,25 +109,25 @@ private extension KnownView {
         backgroundColor = .designSystemWhite
     }
 
+    func updateAnimation(words: [Word]) {
+        if words.isEmpty {
+            noWordsCountLabel.isHidden = false
+            setupAnimationView()
+        } else {
+            noWordsCountLabel.isHidden = true
+            animationView.isHidden = true
+        }
+    }
+
     func setupAnimationView() {
+        animationView.removeFromSuperview()
         animationView = .init(name: .star)
         animationView.frame = bounds
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = .loop
         animationView.animationSpeed = 1.0
+        animationView.play()
         addSubview(animationView)
-    }
-
-    func updateAnimation(words: [Word]) {
-        if words.isEmpty {
-            noWordsCountLabel.isHidden = false
-            animationView.play()
-            setupAnimationView()
-        } else {
-            noWordsCountLabel.isHidden = true
-            animationView.stop()
-            animationView.isHidden = true
-        }
     }
 
     func setupConstraints() {

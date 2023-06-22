@@ -12,6 +12,8 @@ final class WordMeaningViewModel {
     // MARK: Private
 
     private let wordsService = WordsService.shared
+    private let voiceService = VoiceService.shared
+
     private var allWords: [Word] = []
 
     private var currentIndex = 0
@@ -26,16 +28,9 @@ extension WordMeaningViewModel {
     }
 
     func nextWords() {
-
         allWords = wordsService.loadWords()
         
-        allWords = allWords.filter { word in
-            if word.status == .learned {
-                return true
-            } else {
-                return false
-            }
-        }
+        allWords = allWords.filter { $0.status == .learned }
 
         if currentIndex >= allWords.count {
              currentIndex = 0
@@ -48,5 +43,9 @@ extension WordMeaningViewModel {
             translation: currentWord.translate.capitalized
         )
         currentIndex += 1
+    }
+
+    func speakWord(word: String) {
+        voiceService.speakWord(word: word)
     }
 }

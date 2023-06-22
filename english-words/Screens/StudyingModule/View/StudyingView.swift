@@ -119,22 +119,22 @@ private extension StudyingView {
 
     func updateAnimation() {
         if words.isEmpty {
-            continueToLearnButton.isEnabled = false
             continueToLearnButton.backgroundColor = .designSystemLightWhite
             continueToLearnButton.setTitleColor(.designSystemGrey, for: .normal)
-            animationView.play()
+            continueToLearnButton.isEnabled = false
+            noWordsCountLabel.isHidden = false
             setupAnimationView()
         } else {
             continueToLearnButton.isEnabled = true
             continueToLearnButton.backgroundColor = .designSystemBlue
             continueToLearnButton.setTitleColor(.designSystemWhite, for: .normal)
             noWordsCountLabel.isHidden = true
-            animationView.stop()
             animationView.isHidden = true
         }
     }
 
     func setupAnimationView() {
+        animationView.removeFromSuperview()
         animationView = .init(name: .tea)
         animationView.frame = bounds
         animationView.contentMode = .scaleAspectFit
