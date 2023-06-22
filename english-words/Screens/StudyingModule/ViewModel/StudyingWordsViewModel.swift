@@ -24,26 +24,14 @@ extension StudyingWordsViewModel {
     func viewDidLoad() {
         wordsStudying = wordsService.loadWords()
 
-        wordsStudying = wordsStudying.filter { word in
-            if word.status == .learning {
-                return true
-            } else {
-                return false
-            }
-        }
+        wordsStudying = wordsStudying.filter { $0.status == .learning }
         viewController?.update(with: wordsStudying)
     }
 
     func viewDidAppear() {
         wordsStudying = wordsService.loadWords()
 
-        wordsStudying = wordsStudying.filter { word in
-            if word.status == .learning {
-                return true
-            } else {
-                return false
-            }
-        }
+        wordsStudying = wordsStudying.filter { $0.status == .learning }
         viewController?.update(with: wordsStudying)
     }
 }
