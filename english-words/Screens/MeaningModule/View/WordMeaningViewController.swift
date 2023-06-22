@@ -38,6 +38,7 @@ final class WordMeaningViewController: UIViewController {
         viewModel.viewDidLoad()
         closeButton()
         nextWords()
+        speakWord()
     }
 
     func updateScreen(word: String, translation: String) {
@@ -60,6 +61,12 @@ private extension WordMeaningViewController {
     func nextWords() {
         wordsView.onTappNextButtonWord = { [weak self] in
             self?.viewModel.nextWords()
+        }
+    }
+
+    func speakWord() {
+        wordsView.speak = { word in
+            self.viewModel.speakWord(word: word)
         }
     }
 }

@@ -57,21 +57,9 @@ final class WordsView: UIView {
     func configure(_ words: [Word]) {
         self.words = words
 
-        let wordStatusLearningAndNone = words.filter { word in
-            if word.status == .learning || word.status == .none {
-                return true
-            } else {
-                return false
-            }
-        }
+        let wordStatusLearningAndNone = words.filter { $0.status == .learning || $0.status == .none }
 
-        let wordStatusLearned = words.filter { word in
-            if word.status == .learned {
-                return true
-            } else {
-                return false
-            }
-        }
+        let wordStatusLearned = words.filter { $0.status == .learned }
 
         wordLabelCount.text = "\(wordStatusLearningAndNone.count) слов"
 

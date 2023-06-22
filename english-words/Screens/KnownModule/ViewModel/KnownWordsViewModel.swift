@@ -24,26 +24,14 @@ extension KnownWordsViewModel {
     func viewDidLoad() {
         wordsLearned = wordsService.loadWords()
 
-        wordsLearned = wordsLearned.filter { word in
-            if word.status == .learned {
-                return true
-            } else {
-                return false
-            }
-        }
+        wordsLearned = wordsLearned.filter { $0.status == .learned }
         viewController?.update(with: wordsLearned)
     }
 
     func viewDidAppear() {
         wordsLearned = wordsService.loadWords()
 
-        wordsLearned = wordsLearned.filter { word in
-            if word.status == .learned {
-                return true
-            } else {
-                return false
-            }
-        }
+        wordsLearned = wordsLearned.filter { $0.status == .learned }
         viewController?.update(with: wordsLearned)
     }
 }

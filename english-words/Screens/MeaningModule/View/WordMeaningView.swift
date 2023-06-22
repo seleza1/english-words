@@ -11,8 +11,6 @@ final class WordMeaningView: UIView {
 
     // MARK: - Private
 
-    private let voiceService = VoiceService.shared
-
     private let stickerView = StickerView()
 
     private let closeButton = UIButton()
@@ -23,6 +21,7 @@ final class WordMeaningView: UIView {
 
     var onTappNextButtonWord: (() -> Void)?
     var onActionClose: (() -> Void)?
+    var speak: ((_ word: String) -> Void)?
 
     var data: ((_ word: String,_ translate: String) -> Void)?
 
@@ -53,7 +52,6 @@ final class WordMeaningView: UIView {
 private extension WordMeaningView {
 
     func setupView() {
-
         addSubview(closeButton)
         addSubview(stickerView)
         addSubview(nextButton)
@@ -88,7 +86,7 @@ private extension WordMeaningView {
 
     func onVoice() {
         stickerView.onVoice = { [weak self] in
-            self?.voiceService.speakWord(word: self?.stickerView.worldLabel.text ?? "123")
+            self?.speak?(self?.stickerView.worldLabel.text ?? "Не читается")
         }
     }
 
