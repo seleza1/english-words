@@ -1,5 +1,4 @@
 {
-    "parks": [
         {
             "district": "Turtle Rock",
             "place": "Joshua Tree National Park",
@@ -27,7 +26,6 @@
             "image": "<https://github.com/seleza1/english-words/assets/106330738/7727a7aa-1555-452b-9388-22f27d2a239f>",
             "favorite": true
         }
-    ]
 }
 
 
