@@ -1,0 +1,43 @@
+[
+    {
+        "name": "Москва",
+				"place": "Площадь",
+				"places": "red"
+        "latitude": 55.755826,
+        "longitude": 37.617299,
+				"image": "https://chepetsk.ru/upload/delight.webpconverter/cache/upload/iblock/5e4/5e435994843e793c9f55990f6bd634bb-480x300.jpg.webp?165289493937682"
+        "favorite": true
+    },
+    {
+        "name": "Санкт-Петербург",
+				"place": "Собор",
+        "latitude": 59.934280,
+        "longitude": 30.335098,
+				"image": "https://chepetsk.ru/upload/delight.webpconverter/cache/upload/iblock/5e4/5e435994843e793c9f55990f6bd634bb-480x300.jpg.webp?165289493937682"
+        "favorite": false
+    },
+		{
+        "name": "Санкт-Петербург",
+				"place": "Собор",
+        "latitude": 59.934280,
+        "longitude": 30.335098,
+				"image": "https://chepetsk.ru/upload/delight.webpconverter/cache/upload/iblock/5e4/5e435994843e793c9f55990f6bd634bb-480x300.jpg.webp?165289493937682"
+        "favorite": false
+    },
+		{
+        "name": "Киров",
+				"place": "Хлынов",
+        "latitude": 59.934280,
+        "longitude": 30.335098,
+				"image": "https://chepetsk.ru/upload/delight.webpconverter/cache/upload/iblock/5e4/5e435994843e793c9f55990f6bd634bb-480x300.jpg.webp?165289493937682"
+        "favorite": true
+    },
+		{
+        "name": "Кирово-Чепецк",
+				"place": "Олимпия",
+        "latitude": 59.934280,
+        "longitude": 30.335098,
+				"image": "https://chepetsk.ru/upload/delight.webpconverter/cache/upload/iblock/5e4/5e435994843e793c9f55990f6bd634bb-480x300.jpg.webp?165289493937682"
+        "favorite": true
+    },
+]
