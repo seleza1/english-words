@@ -1,43 +1,30 @@
 [
+{
+    "district": "Turtle Rock",
+    "place": "Joshua Tree National Park",
+    "state": "California",
+    "latitude": 33.6444,
+    "longitude": 117.8136,
+    "image": "https://github.com/seleza1/english-words/assets/106330738/25a0108d-c684-425e-8c7d-4ef8fb59cdd0"
+    "favorite": false
+},
     {
-        "name": "Москва",
-				"place": "Площадь",
-				"places": "red"
-        "latitude": 55.755826,
-        "longitude": 37.617299,
-				"image": "https://chepetsk.ru/upload/delight.webpconverter/cache/upload/iblock/5e4/5e435994843e793c9f55990f6bd634bb-480x300.jpg.webp?165289493937682"
-        "favorite": true
-    },
+    "district": "St. Mary Lake",
+    "place": "Glacier National Park",
+    "state": "Montana",
+    "latitude": 48.6995,
+    "longitude": 113.4887,
+    "image": "https://github.com/seleza1/english-words/assets/106330738/1b1fcd64-65f6-4fc6-a21a-f968c7cbea23"
+    "favorite": true
+},
     {
-        "name": "Санкт-Петербург",
-				"place": "Собор",
-        "latitude": 59.934280,
-        "longitude": 30.335098,
-				"image": "https://chepetsk.ru/upload/delight.webpconverter/cache/upload/iblock/5e4/5e435994843e793c9f55990f6bd634bb-480x300.jpg.webp?165289493937682"
-        "favorite": false
-    },
-		{
-        "name": "Санкт-Петербург",
-				"place": "Собор",
-        "latitude": 59.934280,
-        "longitude": 30.335098,
-				"image": "https://chepetsk.ru/upload/delight.webpconverter/cache/upload/iblock/5e4/5e435994843e793c9f55990f6bd634bb-480x300.jpg.webp?165289493937682"
-        "favorite": false
-    },
-		{
-        "name": "Киров",
-				"place": "Хлынов",
-        "latitude": 59.934280,
-        "longitude": 30.335098,
-				"image": "https://chepetsk.ru/upload/delight.webpconverter/cache/upload/iblock/5e4/5e435994843e793c9f55990f6bd634bb-480x300.jpg.webp?165289493937682"
-        "favorite": true
-    },
-		{
-        "name": "Кирово-Чепецк",
-				"place": "Олимпия",
-        "latitude": 59.934280,
-        "longitude": 30.335098,
-				"image": "https://chepetsk.ru/upload/delight.webpconverter/cache/upload/iblock/5e4/5e435994843e793c9f55990f6bd634bb-480x300.jpg.webp?165289493937682"
-        "favorite": true
-    },
+    "district": "Glacier National Park",
+    "place": "Joshua Tree National Park",
+    "state": "Montana",
+    "latitude": 48.5832,
+    "longitude": 113.9256,
+    "image": "https://github.com/seleza1/english-words/assets/106330738/7727a7aa-1555-452b-9388-22f27d2a239f"
+    "favorite": true
+},
 ]
+
