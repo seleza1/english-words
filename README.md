@@ -5,7 +5,6 @@
 - MVVM
 - UserDefaults
 - Lottie
-- Unit-tests
 
 📀 Screens
 
